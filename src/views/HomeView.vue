@@ -72,6 +72,9 @@
       >
         <i class="pi pi-github"></i> GitHub
       </a>
+      <a href="https://www.youtube.com/@J.C-12" target="_blank" class="social-button youtube">
+        <i class="pi pi-youtube"></i> YouTube
+      </a>
     </div>
   </div>
 </template>
@@ -395,5 +398,9 @@ export default {
 .social-button.github {
   background-color: #333;
   border-color: #333;
+}
+
+.social-button.youtube {
+  background-image: linear-gradient(to right, #c4302b 0%, #ff0000 51%, #c4302b 100%);
 }
 </style>
