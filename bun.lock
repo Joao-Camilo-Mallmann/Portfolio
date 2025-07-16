@@ -7,6 +7,7 @@
         "@primeuix/themes": "^1.2.1",
         "gsap": "^3.13.0",
         "pinia": "^3.0.3",
+        "primeicons": "^7.0.0",
         "primevue": "^4.3.6",
         "tailwindcss-primeui": "^0.6.1",
         "vue": "^3.5.17",
@@ -557,6 +558,8 @@
     "prettier-linter-helpers": ["prettier-linter-helpers@1.0.0", "", { "dependencies": { "fast-diff": "^1.1.2" } }, "sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w=="],
 
     "pretty-ms": ["pretty-ms@9.2.0", "", { "dependencies": { "parse-ms": "^4.0.0" } }, "sha512-4yf0QO/sllf/1zbZWYnvWw3NxCQwLXKzIj0G849LSufP15BXKM0rbD2Z3wVnkMfjdn/CB0Dpp444gYAACdsplg=="],
+
+    "primeicons": ["primeicons@7.0.0", "", {}, "sha512-jK3Et9UzwzTsd6tzl2RmwrVY/b8raJ3QZLzoDACj+oTJ0oX7L9Hy+XnVwgo4QVKlKpnP/Ur13SXV/pVh4LzaDw=="],
 
     "primevue": ["primevue@4.3.6", "", { "dependencies": { "@primeuix/styled": "^0.7.0", "@primeuix/styles": "^1.2.0", "@primeuix/utils": "^0.6.0", "@primevue/core": "4.3.6", "@primevue/icons": "4.3.6" } }, "sha512-Wwg2dH6pBmOdkj9L/OnrCQf9AKPHfY5CcfnDyWeh0tNlR+XjYKGl8qvMdJOvGO9jjg6UdsX5MSaU8vDDsSG+sg=="],
 

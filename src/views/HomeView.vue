@@ -47,12 +47,32 @@
   </div>
   <div class="introduction-section mt-6 text-center" ref="introSection">
     <h3 class="intro-title">Sobre Mim</h3>
-    <p class="intro-text">
-      Olá! Sou um profissional multifacetado, apaixonado por tecnologia e criatividade. Com
-      experiência tanto em desenvolvimento de software quanto em produção de conteúdo audiovisual,
-      busco sempre unir o melhor dos dois mundos para criar soluções inovadoras e impactantes.
-      Navegue pelos perfis acima para conhecer mais sobre cada uma das minhas áreas de atuação.
+    <p class="intro-text pb-5">
+      Olá! Sou <strong>João Camilo Mallmann</strong>, um Desenvolvedor de Software apaixonado por
+      tecnologia e criatividade. Meu objetivo é criar soluções inovadoras que proporcionem a melhor
+      experiência para o usuário. <br /><br />
+      Como Web Developer, meu foco é construir aplicações com código de alta qualidade, seguro e
+      flexível, utilizando tecnologias como Vue.js, JavaScript/TypeScript e PHP. Paralelamente,
+      exploro minha paixão pela produção de conteúdo audiovisual para criar projetos impactantes e
+      visualmente atraentes.
     </p>
+
+    <div class="social-links mt-5 pt-5">
+      <a
+        href="https://www.linkedin.com/in/joão-camilo-mallmann/"
+        target="_blank"
+        class="social-button linkedin"
+      >
+        <i class="pi pi-linkedin"></i> LinkedIn
+      </a>
+      <a
+        href="https://github.com/Joao-Camilo-Mallmann"
+        target="_blank"
+        class="social-button github"
+      >
+        <i class="pi pi-github"></i> GitHub
+      </a>
+    </div>
   </div>
 </template>
 
@@ -331,5 +351,49 @@ export default {
   font-size: 1.1rem;
   line-height: 1.7;
   color: #c0c0c0;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* Espaçamento entre os botões */
+}
+
+.social-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  border: 1px solid transparent;
+  margin-top: 24px;
+}
+
+.social-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.social-button .pi {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Cores específicas */
+.social-button.linkedin {
+  background-color: #0077b5;
+  border-color: #0077b5;
+}
+
+.social-button.github {
+  background-color: #333;
+  border-color: #333;
 }
 </style>
