@@ -190,7 +190,6 @@ export default {
 }
 
 .profile-panel:hover {
-  border-color: #3b82f6;
   opacity: 0.75;
   z-index: 2;
 }
@@ -245,7 +244,7 @@ export default {
 }
 
 .panel-action {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -262,8 +261,16 @@ export default {
 .profile-panel:hover .action-arrow {
   transform: translateX(8px);
 }
-.profile-panel:hover .panel-action {
-  color: #93c5fd;
+
+.panel-action:hover {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
 .panel-icon {
