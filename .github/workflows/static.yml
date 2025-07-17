@@ -31,13 +31,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Set up Node.js
+        # Adicionado: Configura o ambiente Node.js para rodar os scripts
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Especifique a versão do Node que seu projeto usa
+          cache: 'npm'
+      - name: Install dependencies
+        # Adicionado: Instala as dependências do projeto
+        run: npm ci
+      - name: Build
+        # Adicionado: Roda o script de build que gera a pasta 'public'
+        run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          # Modificado: Aponta para a pasta gerada pelo build
+          path: './public'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

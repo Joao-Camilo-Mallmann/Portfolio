@@ -40,7 +40,7 @@
 
   <div class="profile-photo-container" ref="profilePhoto">
     <img
-      src="https://randomuser.me/api/portraits/men/32.jpg"
+      src="https://avatars.githubusercontent.com/u/94570639"
       alt="Minha foto"
       class="profile-photo"
     />
@@ -267,7 +267,7 @@ export default {
 }
 
 .panel-action {
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
