@@ -31,25 +31,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set up Node.js
-        # Adicionado: Configura o ambiente Node.js para rodar os scripts
-        uses: actions/setup-node@v4
+      - name: Set up Bun
+        # Configura o ambiente Bun para rodar os scripts
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: 20 # Especifique a versão do Node que seu projeto usa
-          cache: 'npm'
+          bun-version: latest
       - name: Install dependencies
-        # Adicionado: Instala as dependências do projeto
-        run: npm ci
+        # Instala as dependências do projeto usando Bun
+        run: bun install --frozen-lockfile
       - name: Build
-        # Adicionado: Roda o script de build que gera a pasta 'public'
-        run: npm run build
+        # Roda o script de build que gera a pasta 'dist'
+        run: bun run build
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Modificado: Aponta para a pasta gerada pelo build
-          path: './public'
+          # Aponta para a pasta gerada pelo build do Vite
+          path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
