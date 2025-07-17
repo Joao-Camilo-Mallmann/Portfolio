@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://joao-camilo-mallmann.github.io/Portfolio/sitemap.xml
