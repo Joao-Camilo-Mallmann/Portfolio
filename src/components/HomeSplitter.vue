@@ -202,12 +202,12 @@ export default {
   z-index: 1;
   transition: background 0.5s ease;
 }
-
+/* Uma cor que contrasta bem com bege é azul escuro (#1e3a5f) ou roxo escuro (#4b206e) */
 .dev-panel:hover::before {
-  background: linear-gradient(0deg, rgba(29, 78, 216, 0.7) 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: linear-gradient(0deg, rgba(77, 145, 234, 0.7) 0%, rgba(0, 0, 0, 0.1) 100%);
 }
 .editor-panel:hover::before {
-  background: linear-gradient(0deg, rgba(107, 33, 168, 0.7) 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: linear-gradient(0deg, rgba(234, 166, 77, 0.7) 0%, rgba(0, 0, 0, 0.1) 100%);
 }
 
 .panel-content {
@@ -274,5 +274,47 @@ export default {
 
 .splitter-gutter {
   display: none;
+}
+
+@media (max-width: 700px) {
+  .profile-splitter {
+    height: auto;
+    min-height: 400px;
+    flex-direction: column !important;
+    display: flex !important;
+  }
+  .splitterpanel {
+    min-width: 100% !important;
+    width: 100% !important;
+    height: 260px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 1.2rem !important;
+  }
+  .panel-content {
+    padding: 1.2rem !important;
+  }
+  .panel-icon {
+    font-size: 2.2rem !important;
+    margin-bottom: 1rem !important;
+  }
+  .panel-title {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .panel-description {
+    font-size: 0.95rem !important;
+    max-width: 90vw !important;
+    padding: 0 !important;
+  }
+  .panel-action {
+    font-size: 0.95rem !important;
+    margin-top: 0.7rem !important;
+  }
+  .panel-bg-image {
+    min-height: 260px !important;
+  }
 }
 </style>

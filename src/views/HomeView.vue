@@ -94,6 +94,10 @@ export default {
 </script>
 
 <style>
+:root {
+  --dev-color: #4d91ea;
+  --editor-color: #eaa64d;
+}
 .profile-photo-container {
   display: flex;
   justify-content: center;
@@ -162,11 +166,11 @@ export default {
 }
 
 .frontend-card {
-  border-left: 4px solid #42b883;
+  border-left: 4px solid var(--dev-color);
 }
 
 .video-card {
-  border-left: 4px solid #ff6b6b;
+  border-left: 4px solid var(--editor-color);
 }
 
 .skill-header {
@@ -182,11 +186,11 @@ export default {
 }
 
 .frontend-icon {
-  color: #42b883;
+  color: var(--dev-color);
 }
 
 .video-icon {
-  color: #ff6b6b;
+  color: var(--editor-color);
 }
 
 .skill-title {
