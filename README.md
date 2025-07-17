@@ -1,35 +1,108 @@
-# portfólio
+# 🎨 Portfolio - João Camilo Mallmann
 
-This template should help get you started developing with Vue 3 in Vite.
+Portfólio profissional desenvolvido em Vue.js apresentando minhas habilidades como **Desenvolvedor Frontend** e **Editor de Vídeo**.
 
-## Recommended IDE Setup
+## 🌐 Acesse o Portfólio
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+**👉 [Ver Portfolio Online](https://joao-camilo-mallmann.github.io/Portfolio/)**
 
-## Customize configuration
+## 🚀 Sobre o Projeto
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+Este é meu portfólio pessoal onde demonstro minha experiência em duas áreas principais:
 
-## Project Setup
+- **💻 Desenvolvimento Frontend:** Aplicações web modernas com Vue.js, JavaScript/TypeScript
+- **🎬 Edição de Vídeo:** Produções audiovisuais com Adobe Photoshop e Premiere Pro
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Vue.js 3** - Framework progressivo
+- **Vite** - Build tool rápido
+- **PrimeVue** - Biblioteca de componentes UI
+- **Tailwind CSS** - Framework de CSS utilitário
+- **GSAP** - Animações avançadas
+- **Bun** - Runtime e gerenciador de pacotes
+
+## 🌐 Deploy
+
+O projeto está hospedado no GitHub Pages:
+**[https://joao-camilo-mallmann.github.io/Portfolio/](https://joao-camilo-mallmann.github.io/Portfolio/)**
+
+## 📁 Estrutura do Projeto
+
+```
+src/
+├── components/     # Componentes reutilizáveis
+├── views/         # Páginas principais
+│   ├── HomeView.vue     # Página inicial
+│   ├── DevView.vue      # Projetos de desenvolvimento
+│   └── EditorView.vue   # Projetos de edição
+├── router/        # Configuração de rotas
+└── stores/        # Gerenciamento de estado
+```
+
+## 🔧 Configuração e Desenvolvimento
+
+### Pré-requisitos
+
+- [Bun](https://bun.sh/) instalado
+
+### Instalação
 
 ```sh
 bun install
 ```
 
-### Compile and Hot-Reload for Development
+### Desenvolvimento Local
 
 ```sh
 bun dev
 ```
 
-### Compile and Minify for Production
+### Build para Produção
 
 ```sh
 bun run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Linting e Formatação
 
 ```sh
 bun lint
+bun format
 ```
+
+## ✨ Funcionalidades
+
+- **Design Responsivo:** Interface adaptável para todos os dispositivos
+- **Animações Suaves:** Transições e efeitos visuais com GSAP
+- **SEO Otimizado:** Meta tags e dados estruturados para melhor indexação
+- **Performance:** Otimizado para carregamento rápido
+- **Acessibilidade:** Seguindo as melhores práticas de acessibilidade
+
+## 📈 SEO e Performance
+
+- Meta tags otimizadas para Google
+- Open Graph para redes sociais
+- Sitemap.xml automático
+- Dados estruturados (Schema.org)
+- Lighthouse Score otimizado
+
+## 🎯 Seções do Portfolio
+
+1. **Home:** Apresentação pessoal e overview das habilidades
+2. **Dev:** Projetos de desenvolvimento frontend
+3. **Editor:** Trabalhos de edição de vídeo e design
+
+## 📱 Contato
+
+- **LinkedIn:** [João Camilo Mallmann](https://www.linkedin.com/in/joão-camilo-mallmann/)
+- **GitHub:** [Joao-Camilo-Mallmann](https://github.com/Joao-Camilo-Mallmann)
+- **YouTube:** [J.C](https://www.youtube.com/@J.C-12)
+
+## 📄 Licença
+
+Este projeto é pessoal e está disponível para referência. Sinta-se livre para se inspirar, mas por favor, não copie diretamente.
+
+---
+
+**Desenvolvido com ❤️ por João Camilo Mallmann**
