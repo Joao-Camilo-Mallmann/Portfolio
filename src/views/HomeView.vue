@@ -1,5 +1,5 @@
 <template>
-  <div class="page-transition">
+  <div class="page-transition min-h-screen">
     <HomeSplitter />
 
     <div ref="profilePhoto" class="flex justify-center sm:-mt-4 md:-mt-20 relative z-10">
@@ -14,7 +14,7 @@
       <h3 class="text-2xl font-semibold text-white mb-4">Sobre Mim</h3>
 
       <!-- Apresentação Principal -->
-      <Card class="border border-white/10 mb-4 text-gray-300 bg-black">
+      <Card class="border border-white/10 mb-4 text-gray-300">
         <template #content>
           <p class="text-base leading-7 text-gray-300 m-0">
             Olá! Sou <strong class="text-white">João Camilo Mallmann</strong>, desenvolvedor
@@ -28,13 +28,12 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
         <!-- Seção Desenvolvedor Frontend -->
         <Card
-          class="cursor-pointer border-l-4 border-[#4d91ea] transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl text-gray-300 bg-black"
-          @click="goToPage('/dev')"
+          class="border-l-4 border-[#4d91ea] !transition-all !duration-300 hover:-translate-y-2 hover:shadow-2xl text-gray-300"
         >
           <template #header>
             <div class="flex items-center justify-center gap-2 p-4">
               <i class="pi pi-desktop text-xl text-[#4d91ea]"></i>
-              <h4 class="text-lg font-semibold text-white m-0">Desenvolvedor Frontend</h4>
+              <h4 class="text-lg font-semibold text-[#4d91ea] m-0">Desenvolvedor Frontend</h4>
             </div>
           </template>
           <template #content>
@@ -43,12 +42,20 @@
               Vue.js, JavaScript/TypeScript e as melhores práticas do mercado.
             </p>
           </template>
+          <template #footer>
+            <Button
+              label="Explorar Projetos"
+              icon="pi pi-arrow-right"
+              @click="goToPage('/dev')"
+              text
+              class="w-full !bg-transparent !border-0 !text-[#4d91ea] !font-semibold !py-3 !px-6 hover:!text-[#6fa3f0] !justify-end"
+            />
+          </template>
         </Card>
 
         <!-- Seção Editor de Vídeo -->
         <Card
-          class="cursor-pointer border-l-4 border-[#eaa64d] transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl text-gray-300 bg-black"
-          @click="goToPage('/editor')"
+          class="border-l-4 border-[#eaa64d] !transition-all !duration-300 hover:-translate-y-2 hover:shadow-2xl text-gray-300"
         >
           <template #header>
             <div class="flex items-center justify-center gap-2 p-4">
@@ -62,11 +69,20 @@
               utilizando Adobe Photoshop e Premiere Pro profissionalmente.
             </p>
           </template>
+          <template #footer>
+            <Button
+              label="Ver Portfólio"
+              icon="pi pi-play"
+              @click="goToPage('/editor')"
+              text
+              class="w-full !bg-transparent !border-0 !text-[#eaa64d] !font-semibold !py-3 !px-6 hover:!text-[#f0b86e] !justify-end"
+            />
+          </template>
         </Card>
       </div>
 
       <!-- Conclusão -->
-      <Card class="border border-white/10 mt-4 text-gray-300 bg-black">
+      <Card class="border border-white/10 mt-4 text-gray-300">
         <template #content>
           <p class="text-gray-300 leading-relaxed m-0">
             Combino criatividade técnica com visão estratégica para entregar projetos que superam
