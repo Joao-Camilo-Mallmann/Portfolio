@@ -96,6 +96,24 @@
       }
     }
     </script>
+
+  <!-- Script para lidar com redirecionamentos do GitHub Pages -->
+  <script>
+    (function () {
+      const redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect !== location.href) {
+        history.replaceState(null, null, redirect);
+      }
+
+      // Capturar parâmetro redirect do 404.html
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectPath = urlParams.get('redirect');
+      if (redirectPath) {
+        history.replaceState(null, null, redirectPath);
+      }
+    })();
+  </script>
 </head>
 
 <body>

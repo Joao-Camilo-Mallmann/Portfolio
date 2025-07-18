@@ -21,6 +21,12 @@ const router = createRouter({
       name: 'EditorView',
       component: EditorView,
     },
+    // Captura todas as rotas não encontradas e redireciona para home
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      redirect: '/',
+    },
   ],
 })
 

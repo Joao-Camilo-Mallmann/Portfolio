@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionando...</title>
+    <script>
+        // Redirecionar para index.html com a rota preservada
+        const path = window.location.pathname.replace('/Portfolio', '');
+        const query = window.location.search;
+        const hash = window.location.hash;
+
+        // Construir a nova URL
+        const newUrl = '/Portfolio/' + (path === '/' ? '' : '?redirect=' + encodeURIComponent(path + query + hash));
+
+        // Redirecionar
+        window.location.replace(newUrl);
+    </script>
+</head>
+
+<body>
+    <p>Redirecionando...</p>
+</body>
+
+</html>
