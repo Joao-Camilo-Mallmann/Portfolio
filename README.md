@@ -19,7 +19,6 @@ Este é meu portfólio pessoal onde demonstro minha experiência em duas áreas 
 - **Vite** - Build tool rápido
 - **PrimeVue** - Biblioteca de componentes UI
 - **Tailwind CSS** - Framework de CSS utilitário
-- **GSAP** - Animações avançadas
 - **Bun** - Runtime e gerenciador de pacotes
 
 ## 🌐 Deploy
@@ -74,10 +73,8 @@ bun format
 ## ✨ Funcionalidades
 
 - **Design Responsivo:** Interface adaptável para todos os dispositivos
-- **Animações Suaves:** Transições e efeitos visuais com GSAP
 - **SEO Otimizado:** Meta tags e dados estruturados para melhor indexação
 - **Performance:** Otimizado para carregamento rápido
-- **Acessibilidade:** Seguindo as melhores práticas de acessibilidade
 
 ## 📈 SEO e Performance
 
@@ -104,5 +101,3 @@ bun format
 Este projeto é pessoal e está disponível para referência. Sinta-se livre para se inspirar, mas por favor, não copie diretamente.
 
 ---
-
-**Desenvolvido com ❤️ por João Camilo Mallmann**
