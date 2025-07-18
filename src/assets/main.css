@@ -1,3 +1,26 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
 
+/* Transições globais para páginas */
+* {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth scroll global */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Evitar FOUC (Flash of Unstyled Content) */
+body {
+  opacity: 1;
+  transition: opacity 0.1s ease-in-out;
+}
+
+/* Melhorar performance das animações */
+.page-transition {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
