@@ -1,6 +1,6 @@
 <template>
   <div
-    class="page-transition min-h-screen !bg-gradient-to-br !from-black !to-[#eaa64d]/10 relative overflow-hidden"
+    class="page-transition min-h-screen !bg-gradient-to-br !to-[#eaa64d]/10 relative overflow-hidden"
   >
     <div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
       <div
@@ -27,7 +27,7 @@
       </Card>
 
       <!-- Canal do YouTube em Destaque -->
-      <Panel class="!bg-transparent !border-0 !shadow-none mb-12 mt-6">
+      <Panel class="!bg-transparent !border-0 !shadow-none mb-6 mt-6">
         <template #header>
           <div class="w-full flex justify-center">
             <h2 class="text-2xl font-bold text-[#eaa64d]">Canal Oficial</h2>
@@ -44,7 +44,7 @@
             <img
               :src="youtubeChannelId"
               alt="Logo do Canal"
-              class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-[#eaa64d] shadow-2xl relative z-10 bg-white group-hover:scale-105 transition-all duration-300"
+              class="w-32 h-32 md:w-50 md:h-50 rounded-full border-4 border-[#eaa64d] shadow-2xl relative z-10 bg-white group-hover:scale-105 transition-all duration-300"
             />
           </div>
           <Button
@@ -96,7 +96,7 @@
         <!-- Ferramentas -->
         <Fieldset
           legend="🛠️ Ferramentas Profissionais"
-          class="!bg-black/60 !border-[#eaa64d]/30 !rounded-3xl !shadow-xl hover:!shadow-yellow-200/20 !transition-all !duration-300 mb-10"
+          class=" !border-[#eaa64d]/30 !rounded-3xl !shadow-xl hover:!shadow-yellow-200/20 !transition-all !duration-300 mb-10"
           :toggleable="true"
         >
           <template #legend>

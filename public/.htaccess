@@ -1,0 +1,38 @@
+# Configurações de cache para GitHub Pages / Apache
+
+# Não fazer cache do HTML principal
+
+<FilesMatch "\.(html|htm)$">
+Header set Cache-Control "no-cache, no-store, must-revalidate"
+Header set Pragma "no-cache"
+Header set Expires "0"
+</FilesMatch>
+
+# Cache de assets com hash por 1 ano
+
+<FilesMatch "\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
+Header set Cache-Control "max-age=31536000, public, immutable"
+</FilesMatch>
+
+# Configurar MIME types
+
+AddType application/javascript .js
+AddType text/css .css
+
+# Configurar para SPA (Single Page Application)
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /Portfolio/
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /Portfolio/index.html [L]
+</IfModule>
+
+# Security headers
+
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
+Header always set X-XSS-Protection "1; mode=block"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
