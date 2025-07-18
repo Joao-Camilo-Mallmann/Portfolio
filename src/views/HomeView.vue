@@ -6,7 +6,7 @@
       <img
         src="https://avatars.githubusercontent.com/u/94570639"
         alt="Minha foto"
-        class="w-40 h-40 object-cover rounded-full shadow-xl border-4 border-slate-800"
+        class="w-40 h-40 object-cover rounded-full shadow-xl border-4 border-black"
       />
     </div>
 
@@ -14,7 +14,7 @@
       <h3 class="text-2xl font-semibold text-white mb-4">Sobre Mim</h3>
 
       <!-- Apresentação Principal -->
-      <Card class="bg-slate-800/80 border border-white/10 mb-4 text-gray-300">
+      <Card class="border border-white/10 mb-4 text-gray-300 bg-black">
         <template #content>
           <p class="text-base leading-7 text-gray-300 m-0">
             Olá! Sou <strong class="text-white">João Camilo Mallmann</strong>, desenvolvedor
@@ -28,7 +28,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
         <!-- Seção Desenvolvedor Frontend -->
         <Card
-          class="cursor-pointer bg-slate-800/80 border-l-4 border-[#4d91ea] transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl text-gray-300"
+          class="cursor-pointer border-l-4 border-[#4d91ea] transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl text-gray-300 bg-black"
           @click="goToPage('/dev')"
         >
           <template #header>
@@ -47,7 +47,7 @@
 
         <!-- Seção Editor de Vídeo -->
         <Card
-          class="cursor-pointer bg-slate-800/80 border-l-4 border-[#eaa64d] transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl text-gray-300"
+          class="cursor-pointer border-l-4 border-[#eaa64d] transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl text-gray-300 bg-black"
           @click="goToPage('/editor')"
         >
           <template #header>
@@ -66,7 +66,7 @@
       </div>
 
       <!-- Conclusão -->
-      <Card class="bg-slate-800/80 border border-white/10 mt-4 text-gray-300">
+      <Card class="border border-white/10 mt-4 text-gray-300 bg-black">
         <template #content>
           <p class="text-gray-300 leading-relaxed m-0">
             Combino criatividade técnica com visão estratégica para entregar projetos que superam
