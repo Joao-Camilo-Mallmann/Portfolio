@@ -35,16 +35,14 @@
         </template>
         <div class="flex flex-col items-center justify-center gap-6 px-2">
           <div class="relative group">
+            <span class="absolute inset-0 rounded-full border-4 border-[#eaa64d] opacity-70"></span>
             <span
-              class="absolute inset-0 rounded-full border-4 border-[#eaa64d] animate-pulse"
-            ></span>
-            <span
-              class="absolute -inset-2 rounded-full border-2 border-[#eaa64d]/30 animate-pulse delay-150"
+              class="absolute -inset-2 rounded-full border-2 border-[#eaa64d]/30 opacity-50"
             ></span>
             <img
               :src="youtubeJCLink"
               alt="Logo do Canal"
-              class="w-32 h-32 md:w-50 md:h-50 rounded-full border-4 border-[#eaa64d] shadow-2xl relative z-10 bg-white group-hover:scale-105 transition-all duration-300"
+              class="w-32 h-32 md:w-50 md:h-50 rounded-full border-4 border-[#eaa64d] shadow-2xl relative z-10 bg-white group-hover:scale-105 transition-transform duration-300"
             />
           </div>
           <Button
@@ -204,7 +202,7 @@
           <!-- Subtitle com efeito especial -->
           <div class="relative inline-block">
             <div
-              class="absolute inset-0 bg-gradient-to-r from-[#eaa64d]/50 to-yellow-500/50 blur-sm rounded-full animate-pulse"
+              class="absolute inset-0 bg-gradient-to-r from-[#eaa64d]/40 to-yellow-500/40 blur-sm rounded-full opacity-70"
             ></div>
             <p
               class="relative text-gray-300 text-base md:text-lg font-medium px-6 py-2 bg-black/60 rounded-full border border-[#eaa64d]/30"
@@ -213,18 +211,10 @@
             </p>
           </div>
 
-          <!-- Elementos decorativos animados -->
+          <!-- Elementos decorativos animados - Reduzidos -->
+          <div class="absolute -top-2 left-1/4 w-2 h-2 bg-yellow-400 rounded-full opacity-80"></div>
           <div
-            class="absolute -top-2 left-1/4 w-2 h-2 bg-yellow-400 rounded-full animate-ping"
-          ></div>
-          <div
-            class="absolute -bottom-2 right-1/4 w-3 h-3 bg-[#eaa64d] rounded-full animate-pulse delay-500"
-          ></div>
-          <div
-            class="absolute top-1/2 -left-4 w-1 h-1 bg-yellow-500 rounded-full animate-bounce"
-          ></div>
-          <div
-            class="absolute top-1/2 -right-4 w-1 h-1 bg-[#f0b86e] rounded-full animate-bounce delay-700"
+            class="absolute -bottom-2 right-1/4 w-3 h-3 bg-[#eaa64d] rounded-full opacity-60"
           ></div>
         </div>
 
@@ -233,12 +223,27 @@
           class="!bg-black/70 !border-2 !border-[#eaa64d]/30 !rounded-2xl !shadow-xl relative backdrop-blur-sm overflow-hidden cursor-pointer hover:!border-[#eaa64d]/50 !transition-all !duration-300 max-w-4xl mx-auto"
           @click="openOFurryChannel"
         >
-          <div class="absolute inset-0 pointer-events-none"></div>
+          <!-- Jogo de luzes DENTRO do painel - Otimizado -->
+          <div class="absolute inset-0 pointer-events-none">
+            <!-- Apenas 2 luzes principais -->
+            <div
+              class="absolute top-4 left-4 w-16 h-16 bg-gradient-to-r from-[#eaa64d]/20 to-yellow-500/20 rounded-full blur-lg opacity-70"
+            ></div>
+            <div
+              class="absolute bottom-4 right-4 w-20 h-20 bg-gradient-to-r from-yellow-400/15 to-[#f0b86e]/15 rounded-full blur-xl opacity-50"
+            ></div>
+
+            <!-- Raios de luz sutis fixos -->
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-[#eaa64d]/3 to-transparent opacity-60"
+            ></div>
+          </div>
 
           <div class="relative z-10 flex items-center justify-between p-6">
+            <!-- Logo grande com efeitos otimizados -->
             <div class="relative">
               <div
-                class="absolute inset-0 bg-gradient-to-r from-[#eaa64d] to-yellow-500 rounded-full blur-md animate-pulse"
+                class="absolute inset-0 bg-gradient-to-r from-[#eaa64d]/60 to-yellow-500/60 rounded-full blur-md opacity-80"
               ></div>
               <div class="relative bg-black rounded-full p-3">
                 <img
@@ -247,8 +252,9 @@
                   class="w-25 h-25 md:w-24 md:h-24 rounded-full border-4 border-[#eaa64d] shadow-2xl"
                 />
               </div>
+              <!-- Anel girante mantido apenas neste elemento -->
               <div
-                class="absolute -inset-2 border-2 border-[#eaa64d]/50 rounded-full animate-spin-slow"
+                class="absolute -inset-2 border-2 border-[#eaa64d]/40 rounded-full animate-spin-slow"
               ></div>
             </div>
 
@@ -348,7 +354,7 @@ export default {
 </script>
 
 <style scoped>
-/* Animações customizadas para o canal OFurry */
+/* Animação otimizada - apenas uma por vez */
 @keyframes spin-slow {
   from {
     transform: rotate(0deg);
@@ -359,21 +365,10 @@ export default {
 }
 
 .animate-spin-slow {
-  animation: spin-slow 8s linear infinite;
+  animation: spin-slow 12s linear infinite;
+  /* Reduz frequência de updates */
 }
 
-/* Efeito de flutuação para elementos decorativos */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
+/* Removidas animações float e bounce para reduzir will-change */
+/* Mantidas apenas animações essenciais */
 </style>
