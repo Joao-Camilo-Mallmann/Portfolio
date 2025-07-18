@@ -94,15 +94,55 @@
         </div>
 
         <!-- Ferramentas -->
-        <div class="mb-10">
-          <CardDetails
-            color="#eaa64d"
-            title="Ferramentas"
-            icon="pi-cog"
-            :tags="['Premiere Pro', 'After Effects', 'Photoshop', 'YouTube']"
-            description="Principais ferramentas profissionais utilizadas para criação audiovisual, desde edição básica até motion graphics avançados."
-          />
-        </div>
+        <Fieldset
+          legend="🛠️ Ferramentas Profissionais"
+          class="!bg-black/60 !border-[#eaa64d]/30 !rounded-3xl !shadow-xl hover:!shadow-yellow-200/20 !transition-all !duration-300 mb-10"
+          :toggleable="true"
+        >
+          <template #legend>
+            <div class="flex items-center gap-2">
+              <i class="pi pi-cog text-[#eaa64d]"></i>
+              <span class="text-[#eaa64d] font-bold">Ferramentas Profissionais</span>
+            </div>
+          </template>
+
+          <p class="text-gray-300 text-center mb-6 leading-relaxed">
+            Principais ferramentas utilizadas para criação audiovisual, desde edição básica até
+            motion graphics avançados.
+          </p>
+
+          <div
+            class="gap-6 md:gap-8"
+            :class="{
+              'grid grid-cols-2': tools.length === 2,
+              'grid grid-cols-3': tools.length === 3,
+              'grid grid-cols-4': tools.length === 4,
+              'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4': tools.length > 4,
+            }"
+          >
+            <!-- Ferramentas dinâmicas -->
+            <Fieldset
+              v-for="tool in tools"
+              :key="tool.name"
+              class="!bg-[#eaa64d]/10 !border-[#eaa64d]/30 hover:!bg-[#eaa64d]/20 hover:!scale-105 !transition-all !duration-300 !cursor-pointer !group !rounded-2xl !p-4"
+              :toggleable="false"
+            >
+              <template #legend>
+                <span class="text-[#eaa64d] font-semibold text-sm md:text-base">{{
+                  tool.name
+                }}</span>
+              </template>
+              <div class="flex justify-center">
+                <img
+                  :src="tool.icon"
+                  :alt="tool.name"
+                  class="w-12 h-12 md:w-16 md:h-16 group-hover:scale-110 transition-transform duration-300"
+                  :class="tool.rounded ? 'rounded' : ''"
+                />
+              </div>
+            </Fieldset>
+          </div>
+        </Fieldset>
       </Panel>
 
       <!-- Projetos / Vídeos -->
@@ -171,6 +211,31 @@ export default {
       youtubeChannelId:
         'https://yt3.ggpht.com/VhJNJwOB8d4NY-XaUtpjcQwHMqlT_DAO7eTc1g0mmaKVt9Jj0bGQv1G02Hp3R6NwkATWXT97Rg=s600-c-k-c0x00ffffff-no-rj-rp-mo',
 
+      // Array de ferramentas
+      tools: [
+        {
+          name: 'Premiere Pro',
+          icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/512px-Adobe_Premiere_Pro_CC_icon.svg.png?20210729021549',
+          rounded: false,
+        },
+        // {
+        //   name: 'After Effects',
+        //   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg',
+        //   rounded: false,
+        // },
+        {
+          name: 'Photoshop',
+          icon: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg',
+          rounded: false,
+        },
+        {
+          name: 'YouTube',
+          icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png',
+          rounded: true,
+        },
+      ],
+
+      // Lista de vídeos destacados
       bestVideos: [
         {
           title: 'Vídeo Institucional - Empresa X',
