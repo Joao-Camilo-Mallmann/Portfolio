@@ -1,11 +1,16 @@
-import Aura from '@primeuix/themes/aura'
-import { createPinia } from 'pinia'
-import 'primeicons/primeicons.css'
-import PrimeVue from 'primevue/config'
 import { createApp } from 'vue'
 import App from './App.vue'
-import './assets/main.css'
 import router from './router'
+import PrimeVue from 'primevue/config'
+import Aura from '@primeuix/themes/aura'
+import { createPinia } from 'pinia'
+
+import 'primeicons/primeicons.css'
+import './assets/main.css'
+
+// Define modo escuro como padrão
+document.documentElement.classList.add('dark')
+
 const app = createApp(App)
 
 app.use(createPinia())
@@ -15,7 +20,7 @@ app.use(PrimeVue, {
     preset: Aura,
     options: {
       prefix: 'p',
-      darkModeSelector: 'system',
+      darkModeSelector: '.dark',
       cssLayer: false,
     },
   },
