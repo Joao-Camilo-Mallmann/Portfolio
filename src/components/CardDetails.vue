@@ -1,6 +1,6 @@
 <template>
   <Card
-    :class="` border-l-4 transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl text-gray-300 border-[${color}]`"
+    :class="`!z-999 border-l-4 transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl text-gray-300 border-[${color}]`"
   >
     <template #header>
       <div class="flex items-center gap-3 p-4">

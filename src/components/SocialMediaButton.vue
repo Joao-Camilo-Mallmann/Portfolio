@@ -38,9 +38,14 @@ export default {
 </script>
 
 <template>
-  <a :href="link" target="_blank" :class="`${platformClass}`">
-    <i :class="platformIcon"></i> {{ platform }}
-  </a>
+  <Button
+    :class="platformClass"
+    :label="platform"
+    :icon="platformIcon"
+    iconPos="left"
+    @click="link && window.open(link, '_blank')"
+    type="button"
+  />
 </template>
 
 <style scoped>
