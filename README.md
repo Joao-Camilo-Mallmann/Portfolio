@@ -25,6 +25,7 @@ Este é meu portfólio pessoal onde demonstro minha experiência em duas áreas 
 
 O projeto está hospedado no GitHub Pages:
 **[https://joao-camilo-mallmann.github.io/Portfolio/](https://joao-camilo-mallmann.github.io/Portfolio/)**
+**[http://joao-camilo-mallmann.com](http://joao-camilo-mallmann.com)**
 
 ## 📁 Estrutura do Projeto
 
