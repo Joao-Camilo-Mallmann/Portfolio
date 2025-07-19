@@ -68,9 +68,8 @@
       <CreativeChannelPanel />
     </div>
 
-    <p class="text-center text-gray-400 text-sm mt-8">
-      Aperta F5 e assista ao balé das bolinhas! Elas ficam tão perdidas que nem elas sabem onde vão
-      parar
+    <p class="text-center text-gray-400 text-sm mt- mb-4">
+      Aperta <span class="text-[#eaa64d]"> F5 ou recarregue a página e assista ao balé das bolinhas!</span> Elas ficam tão perdidas que nem eu sei onde vão parar
     </p>
   </div>
 </template>
