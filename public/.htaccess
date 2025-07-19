@@ -23,11 +23,11 @@ AddType text/css .css
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /Portfolio/
+    RewriteBase /
     RewriteRule ^index\.html$ - [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule . /Portfolio/index.html [L]
+    RewriteRule . /index.html [L]
 </IfModule>
 
 # Security headers

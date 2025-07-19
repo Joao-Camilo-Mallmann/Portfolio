@@ -4,7 +4,7 @@ Portfólio profissional desenvolvido em Vue.js apresentando minhas habilidades c
 
 ## 🌐 Acesse o Portfólio
 
-**👉 [Ver Portfolio Online](https://joao-camilo-mallmann.github.io/Portfolio/)**
+**👉 [Ver Portfolio Online](https://joao-camilo-mallmann.github.io/)**
 
 ## 🚀 Sobre o Projeto
 
@@ -24,7 +24,7 @@ Este é meu portfólio pessoal onde demonstro minha experiência em duas áreas 
 ## 🌐 Deploy
 
 O projeto está hospedado no GitHub Pages:
-**[https://joao-camilo-mallmann.github.io/Portfolio/](https://joao-camilo-mallmann.github.io/Portfolio/)**
+**[https://joao-camilo-mallmann.github.io/](https://joao-camilo-mallmann.github.io/)**
 **[http://joao-camilo-mallmann.com](http://joao-camilo-mallmann.com)**
 
 ## 📁 Estrutura do Projeto
