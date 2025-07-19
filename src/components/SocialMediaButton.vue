@@ -34,6 +34,14 @@ export default {
       return `social-button ${this.platform}`
     },
   },
+
+  methods: {
+    openLink() {
+      if (this.link) {
+        window.open(this.link, '_blank')
+      }
+    },
+  },
 }
 </script>
 
@@ -43,7 +51,7 @@ export default {
     :label="platform"
     :icon="platformIcon"
     iconPos="left"
-    @click="link && window.open(link, '_blank')"
+    @click="openLink"
     type="button"
   />
 </template>
