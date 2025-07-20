@@ -1,25 +1,3 @@
-<template>
-  <div
-    :class="[
-      'absolute rounded-full pointer-events-none',
-      colorClass,
-      animationClass,
-      opacityClass,
-      translateClass,
-    ]"
-    :style="{
-      width: size + 'px',
-      height: size + 'px',
-      left: computedLeft,
-      right: computedRight,
-      top: computedTop,
-      bottom: computedBottom,
-      zIndex: -1000,
-      animationDelay: animationDelay + 's',
-    }"
-  ></div>
-</template>
-
 <script>
 function randomBetween(a, b) {
   return Math.random() * (b - a) + a
@@ -142,7 +120,27 @@ export default {
   },
 }
 </script>
-
+<template>
+  <div
+    :class="[
+      'absolute rounded-full pointer-events-none',
+      colorClass,
+      animationClass,
+      opacityClass,
+      translateClass,
+    ]"
+    :style="{
+      width: size + 'px',
+      height: size + 'px',
+      left: computedLeft,
+      right: computedRight,
+      top: computedTop,
+      bottom: computedBottom,
+      zIndex: -1000,
+      animationDelay: animationDelay + 's',
+    }"
+  ></div>
+</template>
 <style scoped>
 @keyframes wiggle {
   0%,

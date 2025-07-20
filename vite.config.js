@@ -34,6 +34,16 @@ export default defineConfig({
     assetsInlineLimit: 0,
   },
   server: {
+    host: true,
+    port: 5173,
+    strictPort: false,
+    watch: {
+      usePolling: true,
+      interval: 100,
+    },
+    hmr: {
+      overlay: true,
+    },
     headers: {
       // Headers para desenvolvimento
       'Cache-Control': 'no-cache, no-store, must-revalidate',

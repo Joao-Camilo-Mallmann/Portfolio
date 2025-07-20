@@ -70,10 +70,11 @@ export default {
           <i class="pi pi-video panel-icon"></i>
           <h2 class="panel-title">Editor de Vídeo</h2>
           <p class="panel-description">
-            Trabalhos com edição de vídeo, motion design e produção. Veja meu portfólio de Editor!
+            Criação audiovisual profissional com Adobe Premiere Pro, Photoshop e After Effects.
+            Vídeos e conteúdo para redes sociais
           </p>
           <div class="panel-action">
-            <span class="action-text">Clique para ver perfil</span>
+            <span class="action-text">Clique para ver portfólio</span>
             <i class="pi pi-arrow-right action-arrow"></i>
           </div>
         </div>
