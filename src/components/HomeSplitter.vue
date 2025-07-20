@@ -89,17 +89,6 @@ export default {
   animation: fadeIn 1s ease-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .profile-splitter {
   height: 65vh;
   border: none;

@@ -1,7 +1,7 @@
 <template>
-  <div class="page-transition min-h-screen relative overflow-hidden">
+  <main class="page-transition min-h-screen relative overflow-hidden">
     <!-- Elementos de fundo animados -->
-    <div class="floating-elements">
+    <div class="floating-elements" aria-hidden="true">
       <div class="floating-circle circle-1"></div>
       <div class="floating-circle circle-2"></div>
       <div class="floating-circle circle-3"></div>
@@ -11,146 +11,164 @@
 
     <HomeSplitter />
 
-    <div ref="profilePhoto" class="flex justify-center sm:-mt-4 md:-mt-20 relative z-10">
-      <div class="profile-container">
+    <section ref="profilePhoto" class="flex justify-center sm:-mt-4 md:-mt-20 relative z-10">
+      <header class="profile-container">
         <img
           src="https://avatars.githubusercontent.com/u/94570639"
-          alt="Minha foto"
+          alt="Foto de perfil de João Camilo Mallmann"
           class="profile-image w-40 h-40 object-cover rounded-full shadow-xl border-4 border-black"
         />
-        <div class="pulse-ring"></div>
-        <div class="pulse-ring-2"></div>
-      </div>
-    </div>
+        <div class="pulse-ring" aria-hidden="true"></div>
+        <div class="pulse-ring-2" aria-hidden="true"></div>
+      </header>
+    </section>
 
-    <div
+    <section
       ref="introSection"
       class="text-gray-200 max-w-3xl mx-auto p-8 mt-4 text-center animate-fade-in"
     >
-      <h3 class="text-2xl font-semibold text-white mb-4 animate-slide-down">Sobre Mim</h3>
+      <h1 class="text-2xl font-semibold text-white mb-4 animate-slide-down">Sobre Mim</h1>
 
       <!-- Apresentação Principal -->
-      <Card class="border border-white/10 mb-4 text-gray-300 animate-slide-up">
-        <template #content>
-          <p class="text-base leading-7 text-gray-300 m-0">
-            Olá! Sou <strong class="text-white typing-effect">João Camilo Mallmann</strong>,
-            desenvolvedor frontend e editor de vídeo.<br />
-            Minha paixão é criar soluções digitais e conteúdo audiovisual de alta qualidade.
-          </p>
-        </template>
-      </Card>
+      <article class="mb-4 animate-slide-up">
+        <Card class="border border-white/10 text-gray-300">
+          <template #content>
+            <p class="text-base leading-7 text-gray-300 m-0">
+              Olá! Sou <strong class="text-white typing-effect">João Camilo Mallmann</strong>,
+              desenvolvedor frontend e editor de vídeo.<br />
+              Minha paixão é criar soluções digitais e conteúdo audiovisual de alta qualidade.
+            </p>
+          </template>
+        </Card>
+      </article>
 
       <!-- Seções de Habilidades -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
         <!-- Seção Desenvolvedor Frontend -->
-        <Card
-          class="border-l-4 border-[#4d91ea] !transition-all !duration-300 hover:-translate-y-2 hover:shadow-2xl text-gray-300 animate-slide-left card-hover-glow"
-        >
-          <template #header>
-            <div class="flex items-center justify-center gap-2 p-4">
-              <i class="pi pi-desktop text-xl text-[#4d91ea]"></i>
-              <h4 class="text-lg font-semibold text-[#4d91ea] m-0">Desenvolvedor Frontend</h4>
-            </div>
-          </template>
-          <template #content>
-            <p class="text-gray-300 leading-relaxed m-0">
-              Especializado em desenvolvimento de aplicações web modernas e responsivas utilizando
-              Vue.js, JavaScript/TypeScript e as melhores práticas do mercado.
-            </p>
-          </template>
-          <template #footer>
-            <Button
-              label="Explorar Projetos"
-              icon="pi pi-arrow-right"
-              @click="goToPage('/dev')"
-              text
-              class="w-full !bg-transparent !border-0 !text-[#4d91ea] !font-semibold !py-3 !px-6 hover:!text-[#6fa3f0] !justify-end"
-            />
-          </template>
-        </Card>
+        <article class="animate-slide-left card-hover-glow">
+          <Card
+            class="border-l-4 !h-full border-[#4d91ea] !transition-all !duration-300 hover:-translate-y-2 hover:shadow-2xl text-gray-300"
+          >
+            <template #header>
+              <header class="flex items-center justify-center gap-2 p-4">
+                <i class="pi pi-desktop text-xl text-[#4d91ea]" aria-hidden="true"></i>
+                <h2 class="text-lg font-semibold text-[#4d91ea] m-0">Desenvolvedor Frontend</h2>
+              </header>
+            </template>
+            <template #content>
+              <p class="text-gray-300 leading-relaxed m-0">
+                Especializado em desenvolvimento de aplicações web modernas e responsivas utilizando
+                Vue.js, JavaScript/TypeScript e as melhores práticas do mercado.
+              </p>
+            </template>
+            <template #footer>
+              <Button
+                label="Explorar Projetos"
+                icon="pi pi-arrow-right"
+                @click="goToPage('/dev')"
+                text
+                class="w-full !bg-transparent !border-0 !text-[#4d91ea] !font-semibold !py-3 !px-6 hover:!text-[#6fa3f0] !justify-end"
+                aria-label="Navegar para página de projetos de desenvolvimento"
+              />
+            </template>
+          </Card>
+        </article>
 
         <!-- Seção Editor de Vídeo -->
-        <Card
-          class="border-l-4 border-[#eaa64d] !transition-all !duration-300 hover:-translate-y-2 hover:shadow-2xl text-gray-300 animate-slide-right card-hover-glow"
-        >
-          <template #header>
-            <div class="flex items-center justify-center gap-2 p-4">
-              <i class="pi pi-video text-xl text-[#eaa64d]"></i>
-              <h4 class="text-lg font-semibold text-[#eaa64d] m-0">Editor de Vídeo</h4>
-            </div>
-          </template>
-          <template #content>
-            <p class="text-gray-300 leading-relaxed m-0">
-              <span class="text-[#eaa64d] font-semibold">Criação audiovisual profissional</span> com
-              <span class="text-white font-semibold">Adobe Premiere Pro</span>,
-              <span class="text-white font-semibold">Photoshop</span> e
-              <span class="text-white font-semibold">After Effects</span>. Especializado em vídeos
-              institucionais, comerciais e conteúdo para redes sociais.
-            </p>
-          </template>
-          <template #footer>
-            <Button
-              label="Ver Portfólio"
-              icon="pi pi-play"
-              @click="goToPage('/editor')"
-              text
-              class="w-full !bg-transparent !border-0 !text-[#eaa64d] !font-semibold !py-3 !px-6 hover:!text-[#f0b86e] !justify-end"
-            />
-          </template>
-        </Card>
-      </div>
+        <article class="animate-slide-right card-hover-glow">
+          <Card
+            class="border-l-4 border-[#eaa64d] !transition-all !duration-300 hover:-translate-y-2 hover:shadow-2xl text-gray-300"
+          >
+            <template #header>
+              <header class="flex items-center justify-center gap-2 p-4">
+                <i class="pi pi-video text-xl text-[#eaa64d]" aria-hidden="true"></i>
+                <h2 class="text-lg font-semibold text-[#eaa64d] m-0">Editor de Vídeo</h2>
+              </header>
+            </template>
+            <template #content>
+              <p class="text-gray-300 leading-relaxed m-0">
+                <span class="text-[#eaa64d] font-semibold">Criação audiovisual profissional</span>
+                com <span class="text-white font-semibold">Adobe Premiere Pro</span>,
+                <span class="text-white font-semibold">Photoshop</span> e
+                <span class="text-white font-semibold">After Effects</span>. Especializado em vídeos
+                institucionais, comerciais e conteúdo para redes sociais.
+              </p>
+            </template>
+            <template #footer>
+              <Button
+                label="Ver Portfólio"
+                icon="pi pi-play"
+                @click="goToPage('/editor')"
+                text
+                class="w-full !bg-transparent !border-0 !text-[#eaa64d] !font-semibold !py-3 !px-6 hover:!text-[#f0b86e] !justify-end"
+                aria-label="Navegar para página de portfólio de edição de vídeo"
+              />
+            </template>
+          </Card>
+        </article>
+      </section>
 
       <!-- Conclusão -->
-      <Card
-        class="border border-white/10 mt-4 text-gray-300 animate-fade-in-delayed conclusion-card"
-      >
-        <template #header>
-          <div class="flex items-center justify-center gap-3 p-4">
-            <i class="pi pi-star text-xl text-yellow-400 animate-spin-slow"></i>
-            <span class="text-white font-semibold">Minha Filosofia</span>
-            <i class="pi pi-star text-xl text-yellow-400 animate-spin-slow"></i>
-          </div>
-        </template>
-        <template #content>
-          <div class="relative overflow-hidden">
-            <div
-              class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#4d91ea]/20 to-[#eaa64d]/20 rounded-full blur-xl animate-float"
-            ></div>
-            <p class="text-gray-300 leading-relaxed m-0 relative z-10">
-              <span class="text-[#4d91ea] font-semibold">Combino criatividade técnica</span> com
-              <span class="text-[#eaa64d] font-semibold">visão estratégica</span> para entregar
-              projetos que superam expectativas. Seja desenvolvendo
-              <span class="text-white font-semibold">interfaces intuitivas</span> ou produzindo
-              <span class="text-white font-semibold">conteúdo audiovisual impactante</span>, meu
-              foco é sempre a
-              <span
-                class="text-gradient bg-gradient-to-r from-[#4d91ea] to-[#eaa64d] bg-clip-text text-transparent font-bold"
-                >excelência</span
-              >.
-            </p>
-            <div class="flex justify-center mt-4 gap-4">
-              <div class="flex items-center gap-2 text-sm text-gray-400">
-                <i class="pi pi-code text-[#4d91ea]"></i>
-                <span>Desenvolvimento</span>
-              </div>
-              <div class="flex items-center gap-2 text-sm text-gray-400">
-                <i class="pi pi-video text-[#eaa64d]"></i>
-                <span>Produção</span>
-              </div>
-              <div class="flex items-center gap-2 text-sm text-gray-400">
-                <i class="pi pi-heart text-red-400 animate-heartbeat"></i>
-                <span>Paixão</span>
+      <article class="mt-4 animate-fade-in-delayed conclusion-card">
+        <Card class="border border-white/10 text-gray-300">
+          <template #header>
+            <header class="flex items-center justify-center gap-3 p-4">
+              <i
+                class="pi pi-star text-xl text-yellow-400 animate-spin-slow"
+                aria-hidden="true"
+              ></i>
+              <h2 class="text-white font-semibold">Minha Filosofia</h2>
+              <i
+                class="pi pi-star text-xl text-yellow-400 animate-spin-slow"
+                aria-hidden="true"
+              ></i>
+            </header>
+          </template>
+          <template #content>
+            <div class="relative overflow-hidden">
+              <div
+                class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#4d91ea]/20 to-[#eaa64d]/20 rounded-full blur-xl animate-float"
+                aria-hidden="true"
+              ></div>
+              <p class="text-gray-300 leading-relaxed m-0 relative z-10">
+                <span class="text-[#4d91ea] font-semibold">Combino criatividade técnica</span> com
+                <span class="text-[#eaa64d] font-semibold">visão estratégica</span> para entregar
+                projetos que superam expectativas. Seja desenvolvendo
+                <span class="text-white font-semibold">interfaces intuitivas</span> ou produzindo
+                <span class="text-white font-semibold">conteúdo audiovisual impactante</span>, meu
+                foco é sempre a
+                <span
+                  class="text-gradient bg-gradient-to-r from-[#4d91ea] to-[#eaa64d] bg-clip-text text-transparent font-bold"
+                  >excelência</span
+                >.
+              </p>
+              <div class="flex justify-center mt-4 gap-4">
+                <div class="flex items-center gap-2 text-sm text-gray-400">
+                  <i class="pi pi-code text-[#4d91ea]" aria-hidden="true"></i>
+                  <span>Desenvolvimento</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-400">
+                  <i class="pi pi-video text-[#eaa64d]" aria-hidden="true"></i>
+                  <span>Produção</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-400">
+                  <i class="pi pi-heart text-red-400 animate-heartbeat" aria-hidden="true"></i>
+                  <span>Paixão</span>
+                </div>
               </div>
             </div>
-          </div>
-        </template>
-      </Card>
+          </template>
+        </Card>
+      </article>
 
       <!-- Redes Sociais -->
-      <div class="mt-8 pt-8 animate-slide-up-delayed">
+      <footer class="mt-8 pt-8 animate-slide-up-delayed">
         <Divider align="center" type="solid" />
 
-        <div class="flex flex-wrap justify-center gap-3 mt-6 social-buttons-container">
+        <nav
+          class="flex flex-wrap justify-center gap-3 mt-6 social-buttons-container"
+          aria-label="Links de contato e redes sociais"
+        >
           <SocialMediaButton
             link="https://www.linkedin.com/in/joão-camilo-mallmann/"
             platform="linkedin"
@@ -159,10 +177,11 @@
           <SocialMediaButton link="https://www.youtube.com/@J.C-12" platform="youtube" />
           <SocialMediaButton link="https://wa.me/5551994461433" platform="whatsapp" />
           <SocialMediaButton link="mailto:jcamilomallmann@hotmail.com" platform="email" />
-        </div>
-      </div>
-    </div>
-  </div>
+          <SocialMediaButton platform="curriculo" />
+        </nav>
+      </footer>
+    </section>
+  </main>
 </template>
 
 <script setup>
@@ -361,16 +380,7 @@ function goToPage(path) {
   animation: gradientShift 3s ease-in-out infinite;
 }
 
-/* Animações personalizadas */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-  }
-}
+/* Animações personalizadas únicas do HomeView */
 
 @keyframes floatReverse {
   0%,
@@ -430,119 +440,12 @@ function goToPage(path) {
   }
 }
 
-@keyframes heartbeat {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-}
-
-.animate-spin-slow {
-  animation: spin 4s linear infinite;
-}
-
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-
-.animate-heartbeat {
-  animation: heartbeat 1.5s ease-in-out infinite;
-}
-
-/* Classes de animação */
-.animate-fade-in {
-  animation: fadeIn 1s ease-out;
-}
-
-.animate-fade-in-delayed {
-  animation: fadeIn 1s ease-out 0.5s both;
-}
-
-.animate-slide-down {
-  animation: slideDown 0.8s ease-out;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.8s ease-out 0.2s both;
-}
-
-.animate-slide-up-delayed {
-  animation: slideUp 0.8s ease-out 0.8s both;
-}
-
-.animate-slide-left {
-  animation: slideLeft 0.8s ease-out 0.4s both;
-}
-
-.animate-slide-right {
-  animation: slideRight 0.8s ease-out 0.6s both;
-}
-
+/* Classes de animação específicas */
 .animate-pulse-soft {
   animation: pulseSoft 3s ease-in-out infinite;
 }
 
-.animate-bounce-soft {
-  animation: bounceSoft 2s ease-in-out infinite;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+/* Animações específicas do componente */
 
 @keyframes pulseSoft {
   0%,
@@ -551,16 +454,6 @@ function goToPage(path) {
   }
   50% {
     opacity: 0.7;
-  }
-}
-
-@keyframes bounceSoft {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
   }
 }
 

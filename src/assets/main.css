@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
+@import './animations.css';
 
 /* Transições globais para páginas */
 * {
@@ -16,11 +17,4 @@ html {
 body {
   opacity: 1;
   transition: opacity 0.1s ease-in-out;
-}
-
-/* Melhorar performance das animações */
-.page-transition {
-  will-change: opacity, transform;
-  backface-visibility: hidden;
-  transform: translateZ(0);
 }

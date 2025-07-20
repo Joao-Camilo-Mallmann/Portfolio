@@ -5,6 +5,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior(to, from) {
+    // Senão, sempre ir para o topo da página
+    return { top: 0, behavior: 'smooth' }
+  },
   routes: [
     {
       path: '/',

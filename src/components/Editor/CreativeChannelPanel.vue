@@ -84,29 +84,5 @@ export default {
 </script>
 
 <style scoped>
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 12s linear infinite;
-}
-
-@keyframes panel-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-.animate-panel-float {
-  animation: panel-float 4s ease-in-out infinite;
-}
+/* Todas as animações estão agora centralizadas no main.css */
 </style>
