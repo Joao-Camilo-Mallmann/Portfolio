@@ -4,16 +4,22 @@
 
     <div class="text-gray-200 max-w-4xl mx-auto p-4 md:p-8 pt-20 md:pt-24">
       <!-- Aviso de desenvolvimento -->
-      <Card class="bg-yellow-100/10 border-l-4 border-yellow-500 mb-6 md:mb-8">
+      <Card class="bg-blue-100/10 border-l-4 border-[#4d91ea] mb-6 md:mb-8">
         <template #content>
           <div class="flex items-start md:items-center gap-3 p-2">
             <i
-              class="pi pi-exclamation-triangle text-yellow-500 text-lg md:text-xl mt-1 md:mt-0"
+              class="pi pi-wrench text-[#4d91ea] text-lg md:text-xl mt-1 md:mt-0 animate-spin-slow"
             ></i>
-            <span class="text-yellow-100 text-sm md:text-base">
-              <strong>🚧 Página em Construção!</strong> Este portfólio de desenvolvimento está sendo
-              criado. Em breve, você encontrará aqui projetos reais e detalhados.
-            </span>
+            <div class="text-blue-100 text-sm md:text-base">
+              <strong> Em breve!</strong> Estou finalizando esta seção com projetos incríveis.
+              Enquanto isso, que tal dar uma olhada no meu
+              <a
+                href="/editor"
+                class="text-[#eaa64d] font-semibold hover:text-[#f0b86e] underline transition-colors"
+              >
+                portfólio de edição de vídeo </a
+              >? Há muito conteúdo legal lá! 😉🎬
+            </div>
           </div>
         </template>
       </Card>
@@ -124,3 +130,18 @@
 import CardDetails from '@/components/CardDetails.vue'
 import HeaderCore from '@/components/HeaderCore.vue'
 </script>
+
+<style scoped>
+.animate-spin-slow {
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
