@@ -1,6 +1,30 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
-@import './animations.css';
+
+/* Proteção Firefox - Evitar problemas de carregamento */
+@media screen and (-moz-appearance: none) {
+  * {
+    will-change: auto !important;
+  }
+}
+
+/* Transições globais para páginas */
+* {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.3s;
+}
+
+/* Smooth scroll global */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Evitar FOUC (Flash of Unstyled Content) */
+body {
+  opacity: 1;
+  visibility: visible;
+}
 
 /* Transições globais para páginas */
 * {
