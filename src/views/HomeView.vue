@@ -47,7 +47,7 @@
         <!-- Seção Desenvolvedor Frontend -->
         <article class="animate-slide-left card-hover-glow">
           <Card
-            class="border-l-4 !h-full border-[#4d91ea] !transition-all !duration-300 hover:-translate-y-2 hover:shadow-2xl text-gray-300"
+            class="border-l-4 !h-full border-[#4d91ea] !transition-all !duration-300 hover:shadow-2xl text-gray-300"
           >
             <template #header>
               <header class="flex items-center justify-center gap-2 p-4">
@@ -77,7 +77,7 @@
         <!-- Seção Editor de Vídeo -->
         <article class="animate-slide-right card-hover-glow">
           <Card
-            class="border-l-4 border-[#eaa64d] !transition-all !duration-300 hover:-translate-y-2 hover:shadow-2xl text-gray-300"
+            class="border-l-4 border-[#eaa64d] !transition-all !duration-300 hover:shadow-2xl text-gray-300"
           >
             <template #header>
               <header class="flex items-center justify-center gap-2 p-4">
@@ -142,18 +142,18 @@
                   >excelência</span
                 >.
               </p>
-              <div class="flex justify-center mt-4 gap-4">
+              <div class="flex justify-center flex-wrap mt-4 gap-4">
                 <div class="flex items-center gap-2 text-sm text-gray-400">
                   <i class="pi pi-code text-[#4d91ea]" aria-hidden="true"></i>
-                  <span>Desenvolvimento</span>
+                  <span>Tecnologia</span>
                 </div>
                 <div class="flex items-center gap-2 text-sm text-gray-400">
                   <i class="pi pi-video text-[#eaa64d]" aria-hidden="true"></i>
-                  <span>Produção</span>
+                  <span>Criatividade</span>
                 </div>
                 <div class="flex items-center gap-2 text-sm text-gray-400">
                   <i class="pi pi-heart text-red-400 animate-heartbeat" aria-hidden="true"></i>
-                  <span>Paixão</span>
+                  <span>Dedicação</span>
                 </div>
               </div>
             </div>
@@ -177,7 +177,6 @@
           <SocialMediaButton link="https://www.youtube.com/@J.C-12" platform="youtube" />
           <SocialMediaButton link="https://wa.me/5551994461433" platform="whatsapp" />
           <SocialMediaButton link="mailto:jcamilomallmann@hotmail.com" platform="email" />
-          <SocialMediaButton platform="curriculo" />
         </nav>
       </footer>
     </section>

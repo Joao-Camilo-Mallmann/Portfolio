@@ -28,12 +28,6 @@
           link="https://wa.me/5547988776040"
           class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
         />
-
-        <SocialMediaButton
-          platform="curriculo"
-          link="https://github.com/Joao-Camilo-Mallmann/Portfolio/raw/main/public/curriculo.pdf"
-          class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
-        />
       </div>
 
       <!-- Divider com cor dinâmica -->
