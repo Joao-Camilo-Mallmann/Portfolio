@@ -1,6 +1,6 @@
 <script>
-import HeaderCore from '@/components/HeaderCore.vue'
 import FooterContact from '@/components/FooterContact.vue'
+import HeaderCore from '@/components/HeaderCore.vue'
 
 export default {
   components: {
@@ -39,7 +39,7 @@ export default {
           devStatus: 'Concluído',
           devStatusType: 'completed', // 'completed', 'wip'
           year: 2024,
-          colors: { from: '#e4c7aa', to: '#d4b896' },
+          colors: { from: '#ff6b35', to: '#f7931e' },
           tags: [
             { label: 'No Code', color: '#e4c7aa' },
             { label: 'Canvas', color: '#ff6b35' },
@@ -66,7 +66,7 @@ export default {
           devStatus: 'Concluído',
           devStatusType: 'completed',
           year: 2024,
-          colors: { from: '#4285f4', to: '#0066ff' },
+          colors: { from: '#4285f4', to: '#1e40af' },
           tags: [
             { label: 'Node.js', color: '#43853d' },
             { label: 'Express.js', color: '#ffffff' },
@@ -99,7 +99,7 @@ export default {
           devStatus: 'Em Andamento',
           devStatusType: 'wip',
           year: 2024,
-          colors: { from: '#60a5fa', to: '#3b82f6' },
+          colors: { from: '#8b5cf6', to: '#7c3aed' },
           tags: [
             { label: 'Vue.js 3', color: '#4fc08d' },
             { label: 'Pinia', color: '#9333ea' },
@@ -119,7 +119,7 @@ export default {
           devStatus: 'Ativo',
           devStatusType: 'active',
           year: 2024,
-          colors: { from: '#4d91ea', to: '#667eea' },
+          colors: { from: '#10b981', to: '#059669' },
           tags: [
             { label: 'Vue.js 3', color: '#4fc08d' },
             { label: 'Tailwind', color: '#06b6d4' },
@@ -278,8 +278,9 @@ export default {
 
     getProjectCardStyle(project) {
       return {
-        background: `linear-gradient(to bottom right, ${project.colors.from}1A, ${project.colors.to}1A)`,
-        borderColor: `${project.colors.from}4D`,
+        background: `linear-gradient(135deg, ${project.colors.from}20, ${project.colors.to}15)`,
+        borderColor: `${project.colors.from}60`,
+        borderWidth: '1px',
       }
     },
 
@@ -634,7 +635,7 @@ export default {
               <h3 class="text-lg font-semibold text-white mb-1 line-clamp-1">
                 {{ project.title }}
               </h3>
-              <p class="text-gray-400 text-sm line-clamp-2 leading-relaxed">
+              <p class="text-gray-400 text-sm line-clamp-2">
                 {{ project.description }}
               </p>
             </div>
@@ -775,18 +776,30 @@ export default {
 
 /* Project Cards */
 .project-card {
-  background: rgba(30, 41, 59, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;
   overflow: hidden;
   transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: 0.1;
+  transition: opacity 0.3s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.project-card:hover::before {
+  opacity: 0.2;
 }
 
 /* Fieldset Moderno */
@@ -856,20 +869,5 @@ export default {
 
 .tech-item-modern:hover .tech-skill-fill {
   width: 85%;
-}
-
-/* Utility Classes */
-.line-clamp-1 {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 </style>
