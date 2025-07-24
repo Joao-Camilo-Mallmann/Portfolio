@@ -1,4 +1,5 @@
 <script>
+import BackgroundLights from '@/components/Dev/BackgroundLights.vue'
 import FooterContact from '@/components/FooterContact.vue'
 import HeaderCore from '@/components/HeaderCore.vue'
 
@@ -6,6 +7,7 @@ export default {
   components: {
     HeaderCore,
     FooterContact,
+    BackgroundLights,
   },
   data() {
     return {
@@ -174,14 +176,13 @@ export default {
               name: 'Tailwind CSS',
               icon: 'devicon-tailwindcss-plain',
               color: '#38bdf8',
-              image:
-                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg',
+              image: 'https://skillicons.dev/icons?i=tailwind&theme=dark',
             },
             {
               name: 'PrimeVue',
               icon: 'pi pi-palette',
               color: '#9333ea',
-              image: '/img/primevue-logo.svg',
+              image: 'https://primefaces.org/cdn/primevue/images/logo.svg',
             },
           ],
         },
@@ -325,9 +326,12 @@ export default {
     role="main"
     aria-label="Portfólio de Desenvolvimento"
   >
+    <!-- Componente de luzes de fundo -->
+    <BackgroundLights :count="6" />
+
     <HeaderCore />
 
-    <Card class="bg-blue-100/10 border-l-4 border-[#4d91ea] mb-8 md:mb-12 mt-24 max-w-4xl mx-auto">
+    <Card class="bg-blue-100/10 border-l-4 border-[#4d91ea] mb-8 md:mb-12 mt-24 max-w-5xl mx-auto">
       <template #content>
         <div class="flex items-start md:items-center gap-4 p-2">
           <i
@@ -348,12 +352,12 @@ export default {
       </template>
     </Card>
 
-    <section id="about" class="max-w-7xl mx-auto px-4 space-y-12 mb-16">
+    <section id="about" class="!bg-transparent max-w-6xl mx-auto px-4 space-y-12 mb-16">
       <!-- Sobre Mim - Layout Compacto -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Perfil -->
         <div class="lg:col-span-1">
-          <Card class="h-full">
+          <Card class="h-full border-[#4d91ea]">
             <template #header>
               <div class="flex flex-col items-center p-6 pb-0">
                 <h2 class="text-2xl font-bold text-white mb-1">João</h2>
@@ -505,7 +509,7 @@ export default {
       <!-- Tecnologias - Layout Horizontal Compacto -->
     </section>
 
-    <section class="max-w-7xl mx-auto px-4 mb-16">
+    <section class="!bg-transparent max-w-5xl mx-auto px-4 mb-16">
       <Card class="overflow-hidden">
         <template #header>
           <div class="text-center p-6 pb-0">
@@ -517,12 +521,12 @@ export default {
           </div>
         </template>
         <template #content>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Fieldset
               v-for="category in techCategories"
               :key="category.header"
               :legend="category.header"
-              class="tech-fieldset-modern"
+              class="!bg-gradient-to-tl !to-[#4d91ea]/10"
             >
               <template #legend>
                 <div
@@ -545,7 +549,7 @@ export default {
                         v-if="tech.image && !tech.image.includes('/img/')"
                         :src="tech.image"
                         :alt="tech.name"
-                        class="w-6 h-6 object-contain"
+                        class="w-7 h-7 object-contain"
                         @error="(e) => (e.target.style.display = 'none')"
                       />
                       <i
@@ -571,7 +575,7 @@ export default {
     </section>
 
     <!-- Projetos - Layout em Cards Compactos -->
-    <section aria-labelledby="projects-heading" class="max-w-7xl mx-auto px-4 mb-12">
+    <section aria-labelledby="projects-heading" class="!bg-transparent w-4/5 mx-auto px-4 mb-12">
       <div class="text-center mb-8">
         <h2 class="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
           <i class="pi pi-folder text-[#4d91ea]"></i>
@@ -580,86 +584,83 @@ export default {
         <p class="text-gray-400">Alguns dos meus trabalhos mais relevantes</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        <div
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
+        <Card
           v-for="(project, index) in projects"
           :key="index"
           class="project-card group"
           :style="getProjectCardStyle(project)"
         >
-          <!-- Header do Card -->
-          <div class="relative">
-            <div
-              class="h-40 rounded-t-xl flex items-center justify-center overflow-hidden"
-              :style="{ backgroundColor: project.colors.from + '15' }"
-            >
-              <Image
-                v-if="project.image"
-                :src="project.image"
-                :alt="project.imageAlt"
-                class="max-h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-              />
-              <div v-else class="text-center">
-                <i
-                  class="pi pi-user-edit text-3xl mb-1"
-                  :style="{ color: project.colors.from }"
-                ></i>
-                <p class="text-xs font-medium" :style="{ color: project.colors.from }">
-                  Este Portfólio
-                </p>
+          <template #header>
+            <div class="relative">
+              <div
+                class="h-55 flex items-center justify-center overflow-hidden"
+                :style="{ backgroundColor: project.colors.from + '15' }"
+              >
+                <Image
+                  v-if="project.image"
+                  :src="project.image"
+                  :alt="project.imageAlt"
+                  class="!object-fill group-hover:scale-102 transition-transform !duration-300"
+                />
+                <div v-else class="text-center">
+                  <i
+                    class="pi pi-user-edit text-3xl mb-1"
+                    :style="{ color: project.colors.from }"
+                  ></i>
+                  <p class="text-xs font-medium" :style="{ color: project.colors.from }">
+                    Este Portfólio
+                  </p>
+                </div>
+              </div>
+
+              <!-- Status Badge -->
+              <div class="absolute top-3 right-3">
+                <span
+                  v-if="project.statusType === 'public'"
+                  class="inline-flex items-center gap-1 text-xs bg-green-500/90 text-white px-2 py-1 rounded-full backdrop-blur-sm"
+                >
+                  <i class="pi pi-globe text-xs"></i>
+                  Público
+                </span>
+                <span
+                  v-else
+                  class="inline-flex items-center gap-1 text-xs bg-orange-500/90 text-white px-2 py-1 rounded-full backdrop-blur-sm"
+                >
+                  <i class="pi pi-lock text-xs"></i>
+                  Privado
+                </span>
               </div>
             </div>
+          </template>
 
-            <!-- Status Badge -->
-            <div class="absolute top-3 right-3">
-              <span
-                v-if="project.statusType === 'public'"
-                class="inline-flex items-center gap-1 text-xs bg-green-500/90 text-white px-2 py-1 rounded-full backdrop-blur-sm"
-              >
-                <i class="pi pi-globe text-xs"></i>
-                Público
-              </span>
-              <span
-                v-else
-                class="inline-flex items-center gap-1 text-xs bg-orange-500/90 text-white px-2 py-1 rounded-full backdrop-blur-sm"
-              >
-                <i class="pi pi-lock text-xs"></i>
-                Privado
-              </span>
-            </div>
-          </div>
+          <template #title>
+            <h3 class="text-lg font-semibold text-white">
+              {{ project.title }}
+            </h3>
+          </template>
 
-          <!-- Conteúdo do Card -->
-          <div class="p-4 space-y-3">
-            <div>
-              <h3 class="text-lg font-semibold text-white mb-1 line-clamp-1">
-                {{ project.title }}
-              </h3>
-              <p class="text-gray-400 text-sm line-clamp-2">
+          <template #content>
+            <div class="space-y-3">
+              <p class="text-gray-400 text-sm leading-relaxed">
                 {{ project.description }}
               </p>
-            </div>
 
-            <!-- Tags -->
-            <div class="flex flex-wrap gap-1">
-              <span
-                v-for="tag in project.tags.slice(0, 3)"
-                :key="tag.label"
-                class="text-xs px-2 py-1 rounded"
-                :style="{ backgroundColor: tag.color + '20', color: tag.color }"
-              >
-                {{ tag.label }}
-              </span>
-              <span
-                v-if="project.tags.length > 3"
-                class="text-xs px-2 py-1 rounded bg-gray-700/50 text-gray-400"
-              >
-                +{{ project.tags.length - 3 }}
-              </span>
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-1">
+                <Chip
+                  v-for="tag in project.tags"
+                  :key="tag.label"
+                  :label="tag.label"
+                  class="text-xs px-2 py-1 rounded"
+                  :style="{ backgroundColor: tag.color + 10, color: tag.color }"
+                />
+              </div>
             </div>
+          </template>
 
-            <!-- Footer -->
-            <div class="flex items-center justify-between pt-2 border-t border-gray-700/30">
+          <template #footer>
+            <div class="flex items-center justify-between pt-2">
               <div class="flex items-center gap-2">
                 <i
                   :class="getDevStatusIcon(project.devStatusType)"
@@ -685,8 +686,8 @@ export default {
                 </span>
               </div>
             </div>
-          </div>
-        </div>
+          </template>
+        </Card>
       </div>
     </section>
 
@@ -711,19 +712,6 @@ export default {
 
 .animate-spin-slow {
   animation: spin-slow 3s linear infinite;
-}
-
-/* Estilos para a seção de Ferramentas (Fieldset) */
-.tech-fieldset {
-  background-color: rgba(30, 41, 59, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-}
-
-.tech-fieldset:hover {
-  background-color: rgba(30, 41, 59, 0.5);
-  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .tech-item-card {
@@ -761,19 +749,6 @@ export default {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Fieldset Compacto */
-.tech-fieldset-compact {
-  background-color: rgba(30, 41, 59, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
-  transition: all 0.3s ease;
-}
-
-.tech-fieldset-compact:hover {
-  background-color: rgba(30, 41, 59, 0.4);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
 /* Project Cards */
 .project-card {
   border-radius: 0.75rem;
@@ -800,22 +775,6 @@ export default {
 
 .project-card:hover::before {
   opacity: 0.2;
-}
-
-/* Fieldset Moderno */
-.tech-fieldset-modern {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.6));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.tech-fieldset-modern:hover {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* Tech Item Moderno */
