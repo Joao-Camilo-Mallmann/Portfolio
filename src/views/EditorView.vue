@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import CardDetails from '@/components/CardDetails.vue'
+import CardDetails from '@/components/Editor/CardDetails.vue'
 import AnimatedDot from '@/components/Editor/AnimatedDot.vue'
 import CreativeChannelPanel from '@/components/Editor/CreativeChannelPanel.vue'
 import ToolsSection from '@/components/Editor/ToolsSection.vue'
