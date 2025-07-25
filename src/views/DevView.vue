@@ -89,7 +89,7 @@ export default {
           ],
         },
         {
-          title: 'SMU - Sistema de Mobilidade Urbana',
+          title: 'Sistema de Mobilidade Urbana',
           image: '/img/smu.png',
           imageAlt: 'Screenshot do SMU',
           description:
