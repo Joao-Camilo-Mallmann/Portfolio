@@ -68,7 +68,7 @@ export default {
           thumbnail: 'https://i.ytimg.com/vi/UptGuUMaYMs/maxresdefault.jpg',
           description:
             'Entenda por que o Bitcoin é considerado o novo ouro digital e sua importância para o futuro financeiro.',
-          url: 'https://youtu.be/EXEMPLO_VIDEO_ID',
+          url: 'https://youtu.be/UptGuUMaYMs?si=1AfT7HgG3L4y7bcn',
         },
         {
           title: 'Qual é o SEU Tipo de Amor? ',
