@@ -283,7 +283,7 @@
 
 .card-hover:hover {
   will-change: transform;
-  transform: scale(1.05);
+  transform: scale(1.005);
 }
 
 .card-hover:not(:hover) {

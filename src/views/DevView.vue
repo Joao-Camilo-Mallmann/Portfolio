@@ -140,16 +140,10 @@ export default {
       // Array das tecnologias organizadas por categoria
       techCategories: [
         {
-          header: 'Frontend',
-          icon: 'pi pi-palette',
-          description: 'Tecnologias para interface do usuário',
+          header: 'Linguagens & Core',
+          icon: 'pi pi-code',
+          description: 'HTML, CSS, JavaScript, TypeScript',
           technologies: [
-            {
-              name: 'Vue.js',
-              icon: 'devicon-vuejs-plain',
-              color: '#4fc08d',
-              image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
-            },
             {
               name: 'JavaScript',
               icon: 'devicon-javascript-plain',
@@ -165,29 +159,90 @@ export default {
                 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
             },
             {
-              name: 'HTML/CSS',
+              name: 'HTML5 & CSS3',
               icon: 'devicon-html5-plain',
               color: '#e34c26',
               image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
             },
             {
-              name: 'Tailwind CSS',
-              icon: 'devicon-tailwindcss-plain',
-              color: '#38bdf8',
-              image: 'https://skillicons.dev/icons?i=tailwind&theme=dark',
-            },
-            {
-              name: 'PrimeVue',
-              icon: 'pi pi-palette',
-              color: '#9333ea',
-              image: 'https://primefaces.org/cdn/primevue/images/logo.svg',
+              name: 'Sass',
+              icon: 'devicon-sass-original',
+              color: '#cc6699',
+              image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg',
             },
           ],
         },
         {
-          header: 'Backend',
+          header: 'Frameworks & Ecossistema',
+          icon: 'pi pi-sitemap',
+          description: 'Vue.js, Nuxt.js, React, Vite',
+          technologies: [
+            {
+              name: 'Vue.js',
+              icon: 'devicon-vuejs-plain',
+              color: '#4fc08d',
+              image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
+            },
+            {
+              name: 'Nuxt.js',
+              icon: 'devicon-nuxtjs-plain',
+              color: '#00dc82',
+              image:
+                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg',
+            },
+            {
+              name: 'React',
+              icon: 'devicon-react-plain',
+              color: '#61dafb',
+              image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+            },
+            {
+              name: 'Vite',
+              icon: 'devicon-vitejs-plain',
+              color: '#646cff',
+              image:
+                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg',
+            },
+          ],
+        },
+        {
+          header: 'Estilização & UI',
+          icon: 'pi pi-palette',
+          description: 'Vuetify, Bootstrap, Tailwind CSS',
+          technologies: [
+            {
+              name: 'Vuetify',
+              icon: 'devicon-vuetify-plain',
+              color: '#1867c0',
+              image:
+                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuetify/vuetify-original.svg',
+            },
+            {
+              name: 'Bootstrap',
+              icon: 'devicon-bootstrap-plain',
+              color: '#7952b3',
+              image:
+                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
+            },
+            {
+              name: 'Tailwind CSS',
+              icon: 'devicon-tailwindcss-plain',
+              color: '#38bdf8',
+              image:
+                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
+            },
+            {
+              name: 'PrimeVue',
+              icon: 'devicon-primevue-plain',
+              color: '#4fc08d',
+              image: 'https://www.primefaces.org/wp-content/uploads/2019/12/primevue-logo.png',
+            },
+          ],
+        },
+        {
+          header: 'Ambiente, CMS & Back-end',
           icon: 'pi pi-server',
-          description: 'Tecnologias para servidor e APIs',
+          description: 'Node.js, Bun, WordPress, PHP, Java',
           technologies: [
             {
               name: 'Node.js',
@@ -196,60 +251,7 @@ export default {
               image:
                 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
             },
-            {
-              name: 'Express.js',
-              icon: 'devicon-express-original',
-              color: '#ffffff',
-              image:
-                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
-            },
-            {
-              name: 'PHP',
-              icon: 'devicon-php-plain',
-              color: '#777bb4',
-              image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
-            },
-            { name: 'REST API', icon: 'pi pi-link', color: '#ff6b6b', image: '/img/api-icon.svg' },
-            {
-              name: 'WebSocket',
-              icon: 'pi pi-link',
-              color: '#38bdf8',
-              image: '/img/websocket-icon.svg',
-            },
-          ],
-        },
-        {
-          header: 'Database',
-          icon: 'pi pi-database',
-          description: 'Bancos de dados e armazenamento',
-          technologies: [
-            {
-              name: 'MySQL',
-              icon: 'devicon-mysql-plain',
-              color: '#4479a1',
-              image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
-            },
-            {
-              name: 'PostgreSQL',
-              icon: 'devicon-postgresql-plain',
-              color: '#336791',
-              image:
-                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
-            },
-            {
-              name: 'SQLite',
-              icon: 'devicon-sqlite-plain',
-              color: '#38bdf8',
-              image:
-                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg',
-            },
-          ],
-        },
-        {
-          header: 'Tools & Others',
-          icon: 'pi pi-wrench',
-          description: 'Ferramentas e outras tecnologias',
-          technologies: [
+
             {
               name: 'WordPress',
               icon: 'devicon-wordpress-plain',
@@ -258,13 +260,84 @@ export default {
                 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg',
             },
             {
+              name: 'PHP',
+              icon: 'devicon-php-plain',
+              color: '#777bb4',
+              image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
+            },
+            {
+              name: 'Java',
+              icon: 'devicon-java-plain',
+              color: '#007396',
+              image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
+            },
+          ],
+        },
+        {
+          header: 'Ferramentas & Versionamento',
+          icon: 'pi pi-cog',
+          description: 'Git, GitHub, GitLab, Linux, VSCode',
+          technologies: [
+            {
               name: 'Git',
               icon: 'devicon-git-plain',
               color: '#f05032',
               image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
             },
-            { name: 'Scrum', icon: 'pi pi-sync', color: '#0052cc', image: '/img/scrum-icon.svg' },
-            { name: 'LGPD', icon: 'pi pi-shield', color: '#22c55e', image: '/img/lgpd-icon.svg' },
+            {
+              name: 'GitHub',
+              icon: 'devicon-github-original',
+              color: '#181717',
+              image:
+                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
+            },
+
+            {
+              name: 'Linux',
+              icon: 'devicon-linux-plain',
+              color: '#fcc624',
+              image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',
+            },
+            {
+              name: 'VSCode',
+              icon: 'devicon-vscode-plain',
+              color: '#007acc',
+              image:
+                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
+            },
+            {
+              name: 'Figma',
+              icon: 'devicon-figma-plain',
+              color: '#f24e1e',
+              image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
+            },
+          ],
+        },
+        {
+          header: 'Bancos de Dados',
+          icon: 'pi pi-database',
+          description: 'PostgreSQL, MySQL',
+          technologies: [
+            {
+              name: 'PostgreSQL',
+              icon: 'devicon-postgresql-plain',
+              color: '#336791',
+              image:
+                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
+            },
+            {
+              name: 'MySQL',
+              icon: 'devicon-mysql-plain',
+              color: '#4479a1',
+              image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+            },
+            {
+              name: 'SQLite',
+              icon: 'devicon-sqlite-plain',
+              color: '#003b57',
+              image:
+                'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg',
+            },
           ],
         },
       ],
@@ -277,7 +350,7 @@ export default {
 
     getProjectCardStyle(project) {
       return {
-        background: `linear-gradient(135deg, ${project.colors.from}20, ${project.colors.to}15)`,
+        background: `linear-gradient(135deg, ${project.colors.from}80, ${project.colors.to}40)`,
         borderColor: `${project.colors.from}60`,
         borderWidth: '1px',
       }
@@ -285,7 +358,7 @@ export default {
 
     getTagChipStyle(tag) {
       return {
-        backgroundColor: `${tag.color}33`, // Opacidade ~20%
+        backgroundColor: `${tag.color}33`,
         color: tag.color,
         border: `1px solid ${tag.color}4D`, // Opacidade ~30%
       }
@@ -520,7 +593,7 @@ export default {
           </div>
         </template>
         <template #content>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <Fieldset
               v-for="category in techCategories"
               :key="category.header"
@@ -615,20 +688,12 @@ export default {
 
               <!-- Status Badge -->
               <div class="absolute top-3 right-3">
-                <span
-                  v-if="project.statusType === 'public'"
-                  class="inline-flex items-center gap-1 text-xs bg-green-500/90 text-white px-2 py-1 rounded-full backdrop-blur-sm"
-                >
-                  <i class="pi pi-globe text-xs"></i>
-                  Público
-                </span>
-                <span
-                  v-else
-                  class="inline-flex items-center gap-1 text-xs bg-orange-500/90 text-white px-2 py-1 rounded-full backdrop-blur-sm"
-                >
-                  <i class="pi pi-lock text-xs"></i>
-                  Privado
-                </span>
+                <Chip
+                  :label="project.statusType === 'public' ? 'Público' : 'Privado'"
+                  :icon="project.statusType === 'public' ? 'pi pi-globe' : 'pi pi-lock'"
+                  :class="project.statusType === 'public' ? '!bg-green-500 ' : '!bg-orange-500 '"
+                  class="!text-white px-2 py-1 rounded-full backdrop-blur-sm text-xs font-semibold"
+                />
               </div>
             </div>
           </template>
@@ -641,7 +706,7 @@ export default {
 
           <template #content>
             <div class="space-y-3">
-              <p class="text-gray-400 text-sm leading-relaxed">
+              <p class="text-gray-200 text-sm leading-relaxed">
                 {{ project.description }}
               </p>
 
@@ -652,7 +717,7 @@ export default {
                   :key="tag.label"
                   :label="tag.label"
                   class="text-xs px-2 py-1 rounded"
-                  :style="{ backgroundColor: tag.color + 10, color: tag.color }"
+                  :style="getTagChipStyle(tag)"
                 />
               </div>
             </div>
