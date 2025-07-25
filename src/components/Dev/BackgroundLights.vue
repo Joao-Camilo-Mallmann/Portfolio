@@ -1,236 +1,144 @@
 <script>
-function randomBetween(a, b) {
-  return Math.random() * (b - a) + a
-}
-
-function randomPercent(min, max) {
-  return `${randomBetween(min, max)}%`
-}
-
-function randomAnimation() {
-  const animations = ['glow', 'pulse', 'flicker', 'breathe', 'twinkle']
-  return animations[Math.floor(Math.random() * animations.length)]
-}
-
-function randomBlur() {
-  return randomBetween(10, 30)
-}
-
-function randomOpacity() {
-  return randomBetween(0.1, 0.4)
-}
-
 export default {
-  name: 'BackgroundLights',
   props: {
-    count: {
-      type: Number,
-      default: 8,
-    },
-    colors: {
-      type: Array,
-      default: () => ['#4d91ea', '#6ba3f0', '#3876d9', '#5a9bef', '#2d5aa8', '#7db5f5'],
+    // A cor base da luz, recebida do componente pai.
+    color: {
+      type: String,
+      default: '#4d91ea', // Uma cor padrão azulada
     },
   },
   data() {
+    // --- GERAÇÃO ALEATÓRIA PARA CADA LUZ ---
+    // Isto garante que cada instância do componente seja única.
+
+    // Posição aleatória na tela (permitindo sair um pouco das bordas)
+    const top = Math.random() > 0.5 ? `${this.randomBetween(-10, 90)}%` : undefined
+    const bottom = top ? undefined : `${this.randomBetween(-10, 90)}%`
+    const left = Math.random() > 0.5 ? `${this.randomBetween(-10, 90)}%` : undefined
+    const right = left ? undefined : `${this.randomBetween(-10, 90)}%`
+
     return {
-      lights: [],
+      // Propriedades físicas e de animação aleatórias
+      width: Math.round(this.randomBetween(100, 350)),
+      height: Math.round(this.randomBetween(80, 200)),
+      blur: this.randomBetween(25, 70),
+      opacity: this.randomBetween(0.2, 0.4),
+      animationName: this.randomAnimationName(),
+      animationDuration: this.randomBetween(8, 15),
+      driftDuration: this.randomBetween(20, 30),
+      animationDelay: this.randomBetween(0, 8),
+      // Cria uma forma orgânica e assimétrica
+      borderRadius: `${this.randomBetween(40, 60)}% ${this.randomBetween(40, 60)}% ${this.randomBetween(50, 70)}% ${this.randomBetween(30, 60)}%`,
+      top,
+      bottom,
+      left,
+      right,
     }
   },
-  mounted() {
-    this.generateLights()
+  computed: {
+    /**
+     * Objeto de estilo computado que aplica todas as propriedades aleatórias
+     * ao elemento, mantendo o template limpo.
+     */
+    styleObj() {
+      return {
+        // Propriedades de posicionamento e tamanho
+        position: 'absolute',
+        top: this.top,
+        bottom: this.bottom,
+        left: this.left,
+        right: this.right,
+        width: `${this.width}px`,
+        height: `${this.height}px`,
+
+        // Propriedades visuais
+        background: `radial-gradient(ellipse at center, rgba(255, 255, 255, 0.7) 0%, ${this.color} 40%, transparent 80%)`,
+        borderRadius: this.borderRadius,
+        filter: `blur(${this.blur}px)`,
+        opacity: this.opacity,
+        mixBlendMode: 'screen', // Efeito de mistura de luz
+        pointerEvents: 'none', // Impede que a luz intercepte cliques do mouse
+        zIndex: -1000, // Garante que fique no fundo
+
+        // Animações combinadas
+        animation: `
+          ${this.animationName} ${this.animationDuration}s ease-in-out infinite,
+          drift ${this.driftDuration}s ease-in-out infinite
+        `,
+        animationDelay: `${this.animationDelay}s`,
+      }
+    },
   },
   methods: {
-    generateLights() {
-      this.lights = []
-      for (let i = 0; i < this.count; i++) {
-        const light = {
-          id: i,
-          size: Math.round(randomBetween(100, 300)),
-          color: this.colors[Math.floor(Math.random() * this.colors.length)],
-          animation: randomAnimation(),
-          blur: randomBlur(),
-          opacity: randomOpacity(),
-          animationDelay: randomBetween(0, 5),
-          animationDuration: randomBetween(3, 8),
-          // Posicionamento totalmente aleatório em qualquer lugar da tela
-          top: randomPercent(0, 100),
-          left: randomPercent(0, 100),
-        }
-
-        this.lights.push(light)
-      }
+    randomBetween(min, max) {
+      return Math.random() * (max - min) + min
     },
-
-    getLightStyle(light) {
-      return {
-        width: light.size + 'px',
-        height: light.size + 'px',
-        backgroundColor: light.color,
-        filter: `blur(${light.blur}px)`,
-        opacity: light.opacity,
-        animationDelay: light.animationDelay + 's',
-        animationDuration: light.animationDuration + 's',
-        top: light.top,
-        left: light.left,
-        zIndex: -1000,
-      }
-    },
-
-    getAnimationClass(animation) {
-      switch (animation) {
-        case 'glow':
-          return 'animate-glow'
-        case 'pulse':
-          return 'animate-pulse'
-        case 'flicker':
-          return 'animate-flicker'
-        case 'breathe':
-          return 'animate-breathe'
-        case 'twinkle':
-          return 'animate-twinkle'
-        default:
-          return 'animate-glow'
-      }
+    randomAnimationName() {
+      const animations = ['light-glow', 'light-breathe']
+      return animations[Math.floor(Math.random() * animations.length)]
     },
   },
 }
 </script>
 
 <template>
-  <div class="background-lights-container">
-    <div
-      v-for="light in lights"
-      :key="light.id"
-      class="background-light"
-      :class="getAnimationClass(light.animation)"
-      :style="getLightStyle(light)"
-    ></div>
-  </div>
+  <div :style="styleObj"></div>
 </template>
 
 <style scoped>
-.background-lights-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: -1000;
-}
-
-.background-light {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-/* Animações personalizadas */
-@keyframes glow {
+/* Animação de pulsar, focada em opacidade e escala */
+@keyframes light-glow {
   0%,
   100% {
-    opacity: 0.1;
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes light-breathe {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+
+/* Animação de flutuação lenta e orgânica */
+@keyframes drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(15px, -10px);
+  }
+  50% {
+    transform: translate(-10px, 12px);
+  }
+  75% {
+    transform: translate(12px, 5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+  div {
     transform: scale(0.8);
   }
-  50% {
-    opacity: 0.4;
-    transform: scale(1.2);
-  }
 }
-
-@keyframes flicker {
-  0%,
-  100% {
-    opacity: 0.1;
-  }
-  10% {
-    opacity: 0.3;
-  }
-  20% {
-    opacity: 0.1;
-  }
-  30% {
-    opacity: 0.4;
-  }
-  40% {
-    opacity: 0.1;
-  }
-  50% {
-    opacity: 0.2;
-  }
-  60% {
-    opacity: 0.4;
-  }
-  70% {
-    opacity: 0.1;
-  }
-  80% {
-    opacity: 0.3;
-  }
-  90% {
-    opacity: 0.1;
-  }
-}
-
-@keyframes breathe {
-  0%,
-  100% {
-    opacity: 0.1;
-    transform: scale(0.9);
-  }
-  50% {
-    opacity: 0.3;
-    transform: scale(1.1);
-  }
-}
-
-@keyframes twinkle {
-  0%,
-  20%,
-  40%,
-  60%,
-  80%,
-  100% {
-    opacity: 0.1;
-  }
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    opacity: 0.4;
-  }
-}
-
-.animate-glow {
-  animation: glow 4s ease-in-out infinite;
-}
-
-.animate-flicker {
-  animation: flicker 3s linear infinite;
-}
-
-.animate-breathe {
-  animation: breathe 6s ease-in-out infinite;
-}
-
-.animate-twinkle {
-  animation: twinkle 2s linear infinite;
-}
-
-/* Responsividade - reduzir tamanho em telas menores */
-@media (max-width: 768px) {
-  .background-light {
-    transform: scale(0.7);
-  }
-}
-
 @media (max-width: 480px) {
-  .background-light {
-    transform: scale(0.5);
+  div {
+    transform: scale(0.6);
   }
 }
 </style>

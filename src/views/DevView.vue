@@ -2,7 +2,6 @@
 import BackgroundLights from '@/components/Dev/BackgroundLights.vue'
 import FooterContact from '@/components/FooterContact.vue'
 import HeaderCore from '@/components/HeaderCore.vue'
-
 export default {
   components: {
     HeaderCore,
@@ -11,7 +10,6 @@ export default {
   },
   data() {
     return {
-      // Dados que já existiam
       aboutMe: {
         description:
           'Desenvolvedor Frontend apaixonado por tecnologia. Com experiência prática em desenvolvimento de sites e aplicações web, transformo ideias em interfaces intuitivas e visualmente atraentes.',
@@ -111,7 +109,7 @@ export default {
           links: [], // Projeto privado sem links públicos
         },
         {
-          title: 'Portfolio Pessoal',
+          title: 'Portfolio Pessoal (Esse Site)',
           image: null, // Sem imagem, vamos mostrar um ícone
           imageAlt: 'Ícone do portfólio pessoal',
           description:
@@ -322,12 +320,13 @@ export default {
 </script>
 <template>
   <main
-    class="page-transition bg-gradient-to-b to-[#4d91ea]/10 relative overflow-hidden"
+    class="page-transition !bg-gradient-to-b !to-[#4d91ea]/10 relative overflow-hidden"
     role="main"
     aria-label="Portfólio de Desenvolvimento"
   >
-    <!-- Componente de luzes de fundo -->
-    <BackgroundLights :count="6" />
+    <template v-for="i in 20" :key="i">
+      <BackgroundLights color="#4d91ea" />
+    </template>
 
     <HeaderCore />
 
@@ -352,12 +351,12 @@ export default {
       </template>
     </Card>
 
-    <section id="about" class="!bg-transparent max-w-6xl mx-auto px-4 space-y-12 mb-16">
+    <section id="about" class="max-w-7xl mx-auto px-4 space-y-16 mb-20">
       <!-- Sobre Mim - Layout Compacto -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Perfil -->
         <div class="lg:col-span-1">
-          <Card class="h-full border-[#4d91ea]">
+          <Card class="h-full border-[#4d91ea] card-hover">
             <template #header>
               <div class="flex flex-col items-center p-6 pb-0">
                 <h2 class="text-2xl font-bold text-white mb-1">João</h2>
@@ -382,25 +381,25 @@ export default {
                   </h4>
                   <div class="grid grid-cols-1 gap-2">
                     <div
-                      class="flex items-center gap-2 text-xs text-gray-300 p-2 rounded bg-gray-800/20"
+                      class="flex items-center gap-2 text-xs text-gray-300 p-2 rounded bg-gray-800/20 hover:bg-gray-700/30 transition-colors duration-200"
                     >
                       <i class="pi pi-code text-[#4d91ea]"></i>
                       <span>Clean Code & Arquitetura</span>
                     </div>
                     <div
-                      class="flex items-center gap-2 text-xs text-gray-300 p-2 rounded bg-gray-800/20"
+                      class="flex items-center gap-2 text-xs text-gray-300 p-2 rounded bg-gray-800/20 hover:bg-gray-700/30 transition-colors duration-200"
                     >
                       <i class="pi pi-palette text-[#eaa64d]"></i>
                       <span>UX/UI Design</span>
                     </div>
                     <div
-                      class="flex items-center gap-2 text-xs text-gray-300 p-2 rounded bg-gray-800/20"
+                      class="flex items-center gap-2 text-xs text-gray-300 p-2 rounded bg-gray-800/20 hover:bg-gray-700/30 transition-colors duration-200"
                     >
                       <i class="pi pi-users text-purple-400"></i>
                       <span>Colaboração em Equipe</span>
                     </div>
                     <div
-                      class="flex items-center gap-2 text-xs text-gray-300 p-2 rounded bg-gray-800/20"
+                      class="flex items-center gap-2 text-xs text-gray-300 p-2 rounded bg-gray-800/20 hover:bg-gray-700/30 transition-colors duration-200"
                     >
                       <i class="pi pi-lightbulb text-yellow-400"></i>
                       <span>Inovação & Aprendizado</span>
@@ -418,7 +417,7 @@ export default {
                     <div
                       v-for="skill in softSkills"
                       :key="skill.label"
-                      class="flex items-center gap-2 text-xs text-gray-300 bg-gray-800/20 rounded p-2 hover:bg-gray-700/30 transition-colors"
+                      class="flex items-center gap-2 text-xs text-gray-300 bg-gray-800/20 rounded p-2 hover:bg-gray-700/30 !transition-all !duration-200 hover:scale-105"
                     >
                       <i :class="skill.icon" class="text-[#4d91ea] text-xs"></i>
                       <span class="truncate">{{ skill.label }}</span>
@@ -432,7 +431,7 @@ export default {
 
         <!-- Sobre Mim -->
         <div class="lg:col-span-2">
-          <Card class="h-full">
+          <Card class="h-full card-hover">
             <template #header>
               <div class="p-6 pb-0">
                 <h3 class="text-xl font-bold text-white flex items-center gap-2">
@@ -463,7 +462,9 @@ export default {
                     <i class="pi pi-briefcase text-[#4d91ea]"></i>
                     Experiência
                   </h4>
-                  <div class="bg-gray-800/40 rounded-lg p-4 space-y-3">
+                  <div
+                    class="bg-gray-800/40 rounded-lg p-4 space-y-3 hover:bg-gray-800/60 transition-colors duration-300"
+                  >
                     <div class="flex items-start justify-between">
                       <div>
                         <h5 class="text-white font-medium">Web Developer</h5>
@@ -479,8 +480,6 @@ export default {
                   </div>
                 </div>
 
-                <!-- Todas as Soft Skills -->
-
                 <!-- Formação Complementar -->
                 <div class="space-y-4">
                   <h4 class="text-lg font-semibold text-white flex items-center gap-2">
@@ -488,29 +487,29 @@ export default {
                     Formação Complementar
                   </h4>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div class="bg-gray-800/30 rounded-lg p-3">
+                    <div
+                      class="bg-gray-800/30 rounded-lg p-3 hover:bg-gray-800/50 transition-all duration-300 hover:scale-105"
+                    >
                       <h5 class="text-white text-sm font-medium">Front-End e Back-End</h5>
                       <p class="text-gray-400 text-xs">Alura • 2022-2024 • 200h</p>
                     </div>
-                    <div class="bg-gray-800/30 rounded-lg p-3">
+                    <div
+                      class="bg-gray-800/30 rounded-lg p-3 hover:bg-gray-800/50 transition-all duration-300 hover:scale-105"
+                    >
                       <h5 class="text-white text-sm font-medium">Comunicação em Inglês</h5>
                       <p class="text-gray-400 text-xs">UPTIME • 2020-2021 • 198h</p>
                     </div>
                   </div>
                 </div>
-
-                <!-- Objetivos Profissionais -->
               </div>
             </template>
           </Card>
         </div>
       </div>
-
-      <!-- Tecnologias - Layout Horizontal Compacto -->
     </section>
 
-    <section class="!bg-transparent max-w-5xl mx-auto px-4 mb-16">
-      <Card class="overflow-hidden">
+    <section class="max-w-6xl mx-auto px-4 mb-20">
+      <Card class="overflow-hidden card-hover">
         <template #header>
           <div class="text-center p-6 pb-0">
             <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
@@ -526,7 +525,7 @@ export default {
               v-for="category in techCategories"
               :key="category.header"
               :legend="category.header"
-              class="!bg-gradient-to-tl !to-[#4d91ea]/10"
+              class="!bg-gradient-to-tl !to-[#4d91ea]/10 fieldset-hover"
             >
               <template #legend>
                 <div
@@ -575,20 +574,20 @@ export default {
     </section>
 
     <!-- Projetos - Layout em Cards Compactos -->
-    <section aria-labelledby="projects-heading" class="!bg-transparent w-4/5 mx-auto px-4 mb-12">
-      <div class="text-center mb-8">
-        <h2 class="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
-          <i class="pi pi-folder text-[#4d91ea]"></i>
+    <section aria-labelledby="projects-heading" class="w-4/5 mx-auto px-4 mb-16 !z-99">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white mb-3 flex items-center justify-center gap-3">
+          <i class="pi pi-folder text-[#4d91ea] text-2xl"></i>
           Principais Projetos
         </h2>
-        <p class="text-gray-400">Alguns dos meus trabalhos mais relevantes</p>
+        <p class="text-gray-400 text-lg">Alguns dos meus trabalhos mais relevantes</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
         <Card
           v-for="(project, index) in projects"
           :key="index"
-          class="project-card group"
+          class="project-card group !z-99"
           :style="getProjectCardStyle(project)"
         >
           <template #header>
@@ -701,59 +700,13 @@ export default {
   </main>
 </template>
 <style scoped>
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 3s linear infinite;
-}
-
-.tech-item-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  background-color: rgba(15, 23, 42, 0.4);
-  border-radius: 0.5rem;
-  border: 1px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.tech-item-card:hover {
-  background-color: rgba(30, 41, 59, 0.6);
-  border-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-4px);
-}
-
-.tech-icon-wrapper {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid;
-  transition: all 0.3s ease;
-}
-
-.tech-item-card:hover .tech-icon-wrapper {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* Project Cards */
+/* Project Cards - específico para projetos */
 .project-card {
   border-radius: 0.75rem;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   backdrop-filter: blur(8px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   position: relative;
@@ -769,29 +722,42 @@ export default {
 }
 
 .project-card:hover {
+  will-change: transform;
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.project-card:not(:hover) {
+  will-change: auto;
 }
 
 .project-card:hover::before {
   opacity: 0.2;
 }
 
-/* Tech Item Moderno */
+/* Tech Item Moderno - específico para tecnologias */
 .tech-item-modern {
   background: rgba(30, 41, 59, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;
   padding: 0.75rem;
-  transition: all 0.3s ease;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
 .tech-item-modern:hover {
+  will-change: transform;
   background: rgba(30, 41, 59, 0.5);
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateX(4px);
+}
+
+.tech-item-modern:not(:hover) {
+  will-change: auto;
 }
 
 .tech-icon-container {
@@ -802,7 +768,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .tech-item-modern:hover .tech-icon-container {
@@ -810,7 +778,7 @@ export default {
   transform: scale(1.1);
 }
 
-/* Barra de skill animada */
+/* Barra de skill animada - específica para tecnologias */
 .tech-skill-bar {
   height: 3px;
   background: rgba(255, 255, 255, 0.1);

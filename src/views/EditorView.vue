@@ -84,7 +84,7 @@
     </section>
 
     <!-- Nota informativa sobre animações -->
-    <p class="text-center text-gray-400 text-sm mt-4  mb-0 px-4" role="note">
+    <p class="text-center text-gray-400 text-sm mt-4 mb-0 px-4" role="note">
       Aperta
       <span class="text-[#eaa64d]"> F5 ou recarregue a página e assista ao balé das bolinhas!</span>
       Elas ficam tão perdidas que nem eu sei onde vão parar
@@ -101,13 +101,13 @@
 
 <script>
 import CardDetails from '@/components/CardDetails.vue'
-import HeaderCore from '@/components/HeaderCore.vue'
-import FooterContact from '@/components/FooterContact.vue'
 import AnimatedDot from '@/components/Editor/AnimatedDot.vue'
-import YouTubeChannelPanel from '@/components/Editor/YouTubeChannelPanel.vue'
+import CreativeChannelPanel from '@/components/Editor/CreativeChannelPanel.vue'
 import ToolsSection from '@/components/Editor/ToolsSection.vue'
 import VideoPortfolio from '@/components/Editor/VideoPortfolio.vue'
-import CreativeChannelPanel from '@/components/Editor/CreativeChannelPanel.vue'
+import YouTubeChannelPanel from '@/components/Editor/YouTubeChannelPanel.vue'
+import FooterContact from '@/components/FooterContact.vue'
+import HeaderCore from '@/components/HeaderCore.vue'
 import Divider from 'primevue/divider'
 import Panel from 'primevue/panel'
 

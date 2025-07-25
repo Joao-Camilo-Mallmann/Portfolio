@@ -65,7 +65,7 @@ export default {
         },
         {
           title: 'O novo ouro (Veja antes de 2030)',
-          thumbnail: 'https://picsum.photos/400/225?random=1',
+          thumbnail: 'https://i.ytimg.com/vi/UptGuUMaYMs/maxresdefault.jpg',
           description:
             'Entenda por que o Bitcoin é considerado o novo ouro digital e sua importância para o futuro financeiro.',
           url: 'https://youtu.be/EXEMPLO_VIDEO_ID',

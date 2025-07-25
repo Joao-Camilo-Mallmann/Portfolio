@@ -1,5 +1,5 @@
 <template>
-  <footer class="mt-16 border-t border-white/10 bg-black/30 backdrop-blur-sm">
+  <footer class="mt-16 border-t border-white/10 bg-black/30 backdrop-blur-sm !z-99">
     <div class="max-w-6xl mx-auto p-6 md:p-8 flex flex-col items-center">
       <!-- Seção principal -->
       <div class="text-center mb-8">
