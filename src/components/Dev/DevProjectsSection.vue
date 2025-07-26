@@ -123,8 +123,7 @@ export default {
       switch (statusType) {
         case 'completed':
           return 'pi pi-check-circle'
-        case 'wip':
-          return 'pi pi-spinner pi-spin'
+
         case 'active':
           return 'pi pi-bolt'
         default:
@@ -136,10 +135,9 @@ export default {
       switch (statusType) {
         case 'completed':
           return '#22c55e' // Verde
-        case 'wip':
-          return '#f59e0b' // Amarelo
+
         case 'active':
-          return '#3b82f6' // Azul
+          return '#f59e0b' // Azul
         default:
           return '#9ca3af' // Cinza
       }

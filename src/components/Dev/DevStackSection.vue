@@ -211,7 +211,7 @@ export default {
 </script>
 
 <template>
-  <Card class="overflow-hidden card-hover">
+  <Card class="overflow-hidden card-hover animate-slide-down">
     <template #header>
       <div class="text-center p-6 pb-0">
         <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
@@ -240,9 +240,10 @@ export default {
 
           <div class="grid grid-cols-1 gap-3 p-4">
             <div
-              v-for="tech in category.technologies"
+              v-for="(tech, idx) in category.technologies"
               :key="tech.name"
-              class="tech-item-modern group"
+              class="tech-item-modern group animate-slide-up"
+              :style="{ animationDelay: 0.08 * idx + 's' }"
             >
               <div class="flex items-center gap-3">
                 <div class="tech-icon-container">
@@ -250,7 +251,7 @@ export default {
                     v-if="tech.image && !tech.image.includes('/img/')"
                     :src="tech.image"
                     :alt="tech.name"
-                    class="w-7 h-7 object-contain"
+                    class="w-8 h-9 object-contain"
                     @error="(e) => (e.target.style.display = 'none')"
                   />
                   <i v-else :class="tech.icon" class="text-lg" :style="{ color: tech.color }"></i>

@@ -42,6 +42,11 @@ export default {
       <DevProjectsSection />
     </section>
 
+    <p class="text-center text-gray-400 text-sm mt-4 mb-0 px-4" role="note">
+      Parabéns, você chegou ao fim! <b class="text-[#4d91ea]"> Se encontrou algum bug</b>, foi só
+      para testar sua atenção. 😜
+    </p>
+
     <footer class="mt-16">
       <FooterContact
         primary-color="#4d91ea"
@@ -51,6 +56,4 @@ export default {
     </footer>
   </main>
 </template>
-<style scoped>
-
-</style>
+<style scoped></style>
