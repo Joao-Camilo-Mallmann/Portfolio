@@ -25,7 +25,7 @@
 
         <SocialMediaButton
           platform="whatsapp"
-          link="https://wa.me/5547988776040"
+          link="https://wa.me/5551994461433"
           class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
         />
       </div>
