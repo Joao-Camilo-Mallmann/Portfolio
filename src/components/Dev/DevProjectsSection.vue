@@ -163,35 +163,42 @@ export default {
 </script>
 
 <template>
-  <div class="text-center mb-12">
-    <h2 class="text-3xl font-bold text-white mb-3 flex items-center justify-center gap-3">
-      <i class="pi pi-folder text-[#4d91ea] text-2xl"></i>
+  <div class="text-center mb-12 animate-slide-up">
+    <h2
+      class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 bg-gradient-to-r from-[#4d91ea] via-blue-400 to-blue-200 bg-clip-text text-transparent animate-gradient-move"
+    >
+      <i class="pi pi-folder text-[#4d91ea] text-2xl animate-bounce-soft"></i>
       Principais Projetos
     </h2>
-    <p class="text-gray-400 text-lg">Alguns dos meus trabalhos mais relevantes</p>
+    <p class="text-gray-400 text-lg animate-fade-in-delayed">
+      Alguns dos meus trabalhos mais relevantes
+    </p>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
     <Card
       v-for="(project, index) in projects"
       :key="index"
-      class="project-card group !z-99"
+      class="project-card group !z-99 animate-slide-up hover:scale-101 hover:-translate-y-3 transition-all !duration-500 ease-out"
       :style="getProjectCardStyle(project)"
     >
       <template #header>
-        <div class="relative">
+        <div class="relative overflow-hidden">
           <div
-            class="h-55 flex items-center justify-center overflow-hidden"
+            class="h-55 flex items-center justify-center overflow-hidden transition-all duration-300 hover:brightness-110"
             :style="{ backgroundColor: project.colors.from + '15' }"
           >
             <Image
               v-if="project.image"
               :src="project.image"
               :alt="project.imageAlt"
-              class="!object-fill group-hover:scale-102 transition-transform !duration-300"
+              class="!object-fill group-hover:scale-110 transition-all !duration-500 group-hover:brightness-110"
             />
             <div v-else class="text-center">
-              <i class="pi pi-user-edit text-3xl mb-1" :style="{ color: project.colors.from }"></i>
+              <i
+                class="pi pi-user-edit text-3xl mb-1 animate-heartbeat"
+                :style="{ color: project.colors.from }"
+              ></i>
               <p class="text-xs font-medium" :style="{ color: project.colors.from }">
                 Este Portfólio
               </p>
@@ -203,7 +210,7 @@ export default {
             <Chip
               :label="project.statusType === 'public' ? 'Público' : 'Privado'"
               :icon="project.statusType === 'public' ? 'pi pi-globe' : 'pi pi-lock'"
-              :class="project.statusType === 'public' ? '!bg-green-500 ' : '!bg-orange-500 '"
+              :class="project.statusType === 'public' ? '!bg-green-500' : '!bg-orange-500'"
               class="!text-white px-2 py-1 rounded-full backdrop-blur-sm text-xs font-semibold"
             />
           </div>
@@ -211,7 +218,9 @@ export default {
       </template>
 
       <template #title>
-        <h3 class="text-lg font-semibold text-white">
+        <h3
+          class="text-lg font-semibold bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent animate-gradient-move"
+        >
           {{ project.title }}
         </h3>
       </template>
@@ -228,7 +237,7 @@ export default {
               v-for="tag in project.tags"
               :key="tag.label"
               :label="tag.label"
-              class="text-xs px-2 py-1 rounded"
+              class="text-xs px-2 py-1 rounded animate-slide-left hover:scale-105 transition-transform duration-200"
               :style="getTagChipStyle(tag)"
             />
           </div>
@@ -272,9 +281,6 @@ export default {
 .project-card {
   border-radius: 0.75rem;
   overflow: hidden;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
   backdrop-filter: blur(8px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   position: relative;
@@ -289,17 +295,22 @@ export default {
   transition: opacity 0.3s ease;
 }
 
-.project-card:hover {
-  will-change: transform;
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-}
-
-.project-card:not(:hover) {
-  will-change: auto;
-}
-
 .project-card:hover::before {
   opacity: 0.2;
+}
+
+.animate-gradient-move {
+  background-size: 200% 200%;
+  animation: gradientMove 4s ease-in-out infinite;
+}
+
+@keyframes gradientMove {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 </style>

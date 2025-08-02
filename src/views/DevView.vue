@@ -43,8 +43,12 @@ export default {
     </section>
 
     <p class="text-center text-gray-400 text-sm mt-4 mb-0 px-4" role="note">
-      Parabéns, você chegou ao fim! <b class="text-[#4d91ea]"> Se encontrou algum bug</b>, foi só
-      para testar sua atenção. 😜
+      🎉 Parabéns! Você sobreviveu ao meu portfólio sem crashar!
+      <span class="text-[#4d91ea] font-semibold">Achievement Unlocked:</span>
+      "Visitante Corajoso" 😎 <br />
+      <span class="text-xs text-gray-500 mt-1 block">
+        PS: Se encontrou algum bug, foi feature não documentada 🐛✨
+      </span>
     </p>
 
     <footer class="mt-16">
