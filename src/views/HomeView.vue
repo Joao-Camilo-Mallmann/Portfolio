@@ -126,10 +126,6 @@
           </template>
           <template #content>
             <div class="relative overflow-hidden">
-              <div
-                class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#4d91ea]/20 to-[#eaa64d]/20 rounded-full blur-xl animate-float"
-                aria-hidden="true"
-              ></div>
               <p class="text-gray-300 leading-relaxed m-0 relative z-10">
                 <span class="text-[#4d91ea] font-semibold">Combino criatividade técnica</span> com
                 <span class="text-[#eaa64d] font-semibold">visão estratégica</span> para entregar
