@@ -10,15 +10,13 @@ export default {
       softSkills: [
         { label: 'Comunicação Clara', icon: 'pi pi-comments', color: 'text-blue-400' },
         { label: 'Trabalho em Equipe', icon: 'pi pi-users', color: 'text-purple-400' },
-        { label: 'Flexibilidade & Resiliência', icon: 'pi pi-refresh', color: 'text-emerald-400' },
-        { label: 'Inteligência Emocional', icon: 'pi pi-heart', color: 'text-pink-400' },
+        { label: 'Resolução de Problemas', icon: 'pi pi-key', color: 'text-orange-400' },
+        { label: 'Pensamento Crítico', icon: 'pi pi-sitemap', color: 'text-green-400' },
+        { label: 'Adaptabilidade e Resiliência', icon: 'pi pi-refresh', color: 'text-emerald-400' },
+        { label: 'Metodologias Ágeis', icon: 'pi pi-sync', color: 'text-sky-400' },
         { label: 'Criatividade', icon: 'pi pi-lightbulb', color: 'text-amber-400' },
-        { label: 'Flexibilidade', icon: 'pi pi-refresh', color: 'text-emerald-400' },
-        { label: 'Resiliência', icon: 'pi pi-shield', color: 'text-red-400' },
-        { label: 'Inteligência emocional', icon: 'pi pi-heart', color: 'text-pink-400' },
-        { label: 'Trabalho em equipe', icon: 'pi pi-users', color: 'text-purple-400' },
-        { label: 'Metodologia Ágil', icon: 'pi pi-sync', color: 'text-sky-400' },
-        { label: 'Liderança', icon: 'pi pi-crown', color: 'text-yellow-400' },
+        { label: 'Inteligência Emocional', icon: 'pi pi-heart', color: 'text-pink-400' },
+        { label: 'Pensamento Crítico', icon: 'pi pi-microchip', color: 'text-green-400' },
       ],
     }
   },
@@ -228,8 +226,7 @@ export default {
                     <i class="pi pi-check-circle text-green-400 mt-1"></i>
                     <span
                       >Participei ativamente do ciclo de desenvolvimento em equipes ágeis (Scrum),
-                      colaborando em cerimônias de planejamento, revisão e entrega de
-                      sprints.</span
+                      colaborando em cerimônias de planejamento, revisão e entrega de sprints.</span
                     >
                   </li>
                 </ul>
