@@ -1,5 +1,21 @@
 User-agent: *
 Allow: /
+Allow: /#/dev
+Allow: /#/editor
+Allow: /#/home
+
+# Permitir recursos importantes
+Allow: /favicon.ico
+Allow: /assets/
+
+# Evitar indexar arquivos desnecessários
+Disallow: /404.html
+
+# Crawl delay para ser gentil com o servidor
+Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://joao-camilo-mallmann.github.io/sitemap.xml
+Sitemap: https://joao-camilo-mallmann.com/sitemap.xml
+
+# Portfolio de João Camilo Mallmann
+# Desenvolvedor Frontend & Editor de Vídeo

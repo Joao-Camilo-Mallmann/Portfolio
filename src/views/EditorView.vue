@@ -129,8 +129,7 @@ export default {
     return {
       skillsDescription: `
         Especialista em edição de vídeo com domínio avançado em Adobe Premiere Pro, After Effects e Photoshop.
-        Produzo conteúdos audiovisuais impactantes para YouTube, redes sociais e projetos comerciais, utilizando técnicas de motion graphics,
-        correção de cor e storytelling visual. Transformo ideias em narrativas envolventes com edição precisa e criatividade técnica.
+        Produzo conteúdos audiovisuais impactantes para YouTube, redes sociais e projetos comerciais, correção de cor e storytelling visual. Transformo ideias em narrativas envolventes com edição precisa e criatividade técnica.
       `,
     }
   },
