@@ -88,7 +88,7 @@ export default {
           image: null, // Sem imagem, vamos mostrar um ícone
           imageAlt: 'Ícone do portfólio pessoal',
           description:
-            'Portfólio pessoal desenvolvido com Vue.js 3, Tailwind CSS e PrimeVue. Interface moderna e responsiva para apresentar projetos, habilidades e experiências como desenvolvedor frontend e editor de vídeo.',
+            'Portfólio pessoal desenvolvido com Vue.js 3, Tailwind CSS e PrimeVue. Interface moderna e responsiva para apresentar projetos, habilidades e experiências como Software Developer | Frontend Specialist e editor de vídeo.',
           status: 'Público',
           statusType: 'public',
           devStatus: 'Ativo',

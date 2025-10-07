@@ -18,4 +18,4 @@ Crawl-delay: 1
 Sitemap: https://joao-camilo-mallmann.com/sitemap.xml
 
 # Portfolio de João Camilo Mallmann
-# Desenvolvedor Frontend & Editor de Vídeo
+# Software Developer | Frontend Specialist & Editor de Vídeo

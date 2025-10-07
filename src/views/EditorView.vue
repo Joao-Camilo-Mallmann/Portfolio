@@ -7,7 +7,7 @@
     <HeaderCore />
 
     <!-- Elementos decorativos animados -->
-    <template v-for="i in 12" :key="i">
+    <template v-for="i in 20" :key="i">
       <AnimatedDot color="yellow" />
       <AnimatedDot color="gold" />
     </template>
@@ -23,7 +23,7 @@
       <YouTubeChannelPanel />
 
       <Panel
-        class="!bg-transparent !border-0 !shadow-none text-gray-200 max-w-4xl mx-auto p-2 md:p-8"
+        class="!bg-transparent !border-0 !shadow-none text-gray-200 px-4 lg:px-16 p-4 md:p-8"
         role="region"
         aria-labelledby="portfolio-heading"
       >
@@ -53,14 +53,9 @@
         </header>
 
         <!-- Seção sobre habilidades -->
-        <section class="mb-8" aria-labelledby="skills-heading">
+        <section class="mb-8 max-w-4xl mx-auto" aria-labelledby="skills-heading">
           <h2 id="skills-heading" class="sr-only">Habilidades e Experiência</h2>
-          <CardDetails
-            color="#eaa64d"
-            title="Sobre & Skills"
-            icon="pi-video"
-            :description="skillsDescription"
-          />
+          <CardDetails />
         </section>
 
         <!-- Seção de ferramentas -->
@@ -100,7 +95,6 @@
 </template>
 
 <script>
-import CardDetails from '@/components/Editor/CardDetails.vue'
 import AnimatedDot from '@/components/Editor/AnimatedDot.vue'
 import CreativeChannelPanel from '@/components/Editor/CreativeChannelPanel.vue'
 import ToolsSection from '@/components/Editor/ToolsSection.vue'
@@ -114,7 +108,6 @@ import Panel from 'primevue/panel'
 export default {
   components: {
     HeaderCore,
-    CardDetails,
     AnimatedDot,
     YouTubeChannelPanel,
     ToolsSection,
@@ -126,12 +119,7 @@ export default {
   },
 
   data() {
-    return {
-      skillsDescription: `
-        Especialista em edição de vídeo com domínio avançado em Adobe Premiere Pro, After Effects e Photoshop.
-        Produzo conteúdos audiovisuais impactantes para YouTube, redes sociais e projetos comerciais, correção de cor e storytelling visual. Transformo ideias em narrativas envolventes com edição precisa e criatividade técnica.
-      `,
-    }
+    return {}
   },
 }
 </script>

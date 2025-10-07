@@ -4,7 +4,7 @@ export default {
     return {
       aboutMe: {
         description:
-          'Desenvolvedor Frontend (Vue.js & TypeScript) focado em performance e UX. Proficiente em arquiteturas escaláveis e código limpo, transformo desafios em soluções digitais robustas em ambientes ágeis.',
+          'Software Developer | Frontend Specialist (Vue.js & TypeScript) focado em performance e UX. Proficiente em arquiteturas escaláveis e código limpo, transformo desafios em soluções digitais robustas em ambientes ágeis.',
         avatar: 'https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png',
       },
       softSkills: [

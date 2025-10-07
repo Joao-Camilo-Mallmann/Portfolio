@@ -1,6 +1,6 @@
 # 🎨 Portfolio - João Camilo Mallmann
 
-Portfólio profissional desenvolvido em Vue.js apresentando minhas habilidades como **Desenvolvedor Frontend** e **Editor de Vídeo**.
+Portfólio profissional desenvolvido em Vue.js apresentando minhas habilidades como **Software Developer | Frontend Specialist** e **Editor de Vídeo**.
 
 ## 🌐 Acesse o Portfólio
 

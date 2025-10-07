@@ -35,7 +35,7 @@
           <template #content>
             <p class="text-base leading-7 text-gray-300 m-0">
               Olá! Sou <strong class="text-white typing-effect">João Camilo Mallmann</strong>,
-              desenvolvedor frontend e editor de vídeo.<br />
+              Software Developer | Frontend Specialist e editor de vídeo.<br />
               Minha paixão é criar soluções digitais e conteúdo audiovisual de alta qualidade.
             </p>
           </template>
@@ -44,7 +44,7 @@
 
       <!-- Seções de Habilidades -->
       <section class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-        <!-- Seção Desenvolvedor Frontend -->
+        <!-- Seção Software Developer | Frontend Specialist -->
         <article class="animate-slide-left card-hover-glow">
           <Card
             class="border-l-4 !h-full border-[#4d91ea] !transition-all !duration-300 hover:shadow-2xl text-gray-300"
@@ -52,7 +52,7 @@
             <template #header>
               <header class="flex items-center justify-center gap-2 p-4">
                 <i class="pi pi-desktop text-xl text-[#4d91ea]" aria-hidden="true"></i>
-                <h2 class="text-lg font-semibold text-[#4d91ea] m-0">Desenvolvedor Frontend</h2>
+                <h2 class="text-lg font-semibold text-[#4d91ea] m-0">Software Developer</h2>
               </header>
             </template>
             <template #content>
