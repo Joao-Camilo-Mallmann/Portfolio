@@ -15,8 +15,8 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
 - Sempre que possivel usar **componentes do PrimeVue** para consistência visual.
 - O projeto utiliza a biblioteca de componentes PrimeVue, com o tema `tailwindcss-primeui`.
 - **Regra Principal:** Todos os estilos globais e animações devem ser centralizados nos arquivos:
-    - `src/assets/main.css` (para estilos globais e imports)
-    - `src/assets/animations.css` (para keyframes e classes de animação)
+  - `src/assets/main.css` (para estilos globais e imports)
+  - `src/assets/animations.css` (para keyframes e classes de animação)
 - Estilos específicos de um componente devem ser declarados dentro do próprio componente, utilizando a tag `<style scoped>`.
 - Não utilize a tag `<style>` sem o atributo `scoped` em componentes.
 
@@ -37,3 +37,9 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
 - O código deve ser formatado utilizando o Prettier, seguindo as regras do arquivo `.prettierrc.json`.
 - Os comentários no código devem ser escritos em português.
 - Utilize classes de animação do `animations.css` sempre que possível, em vez de criar novas animações dentro dos componentes.
+
+## 5. Vite Configuração
+
+- Sempre use BUN e não NPM
+- O arquivo `vite.config.js` deve ser configurado para suportar Tailwind CSS e PrimeVue conforme o exemplo fornecido.
+- Não adicione plugins desnecessários ao Vite.

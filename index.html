@@ -1,163 +1,188 @@
 <!doctype html>
 <html lang="pt-BR">
+  <head>
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://joao-camilo-mallmann.com/" />
+    <meta name="theme-color" content="#000000" />
+    <meta charset="UTF-8" />
 
-<head>
-  <!-- Additional SEO -->
-  <link rel="canonical" href="https://joao-camilo-mallmann.com/" />
-  <meta name="theme-color" content="#000000" />
+    <!-- PWA e Mobile -->
+    <meta name="application-name" content="João Camilo Portfolio" />
+    <meta name="apple-mobile-web-app-title" content="João Camilo Portfolio" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="icon" href="/src/assets/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- PWA e Mobile -->
-  <meta name="application-name" content="João Camilo Portfolio" />
-  <meta name="apple-mobile-web-app-title" content="João Camilo Portfolio" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <link rel="icon" href="/src/assets/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 
-  <!-- Cache Control -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
+    <!-- SEO Meta Tags -->
+    <title>João Camilo Mallmann</title>
+    <meta
+      name="description"
+      content="Portfolio de João Camilo Mallmann: Software Developer | Frontend Specialist Vue.js/JavaScript e editor de vídeo Adobe Premiere Pro. Projetos web modernos e edição audiovisual profissional para YouTube e empresas."
+    />
+    <meta
+      name="keywords"
+      content="João Camilo Mallmann, Software Developer | Frontend Specialist, Vue.js, JavaScript, editor de vídeo, Adobe Premiere Pro, Photoshop, portfolio programador, edição audiovisual, motion graphics, freelancer Brasil"
+    />
+    <meta name="author" content="João Camilo Mallmann" />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
 
-  <!-- SEO Meta Tags -->
-  <title>Software Developer | Frontend Specialist</title>
-  <meta name="description"
-    content="Portfolio de João Camilo Mallmann: Software Developer | Frontend Specialist Vue.js/JavaScript e editor de vídeo Adobe Premiere Pro. Projetos web modernos e edição audiovisual profissional para YouTube e empresas." />
-  <meta name="keywords"
-    content="João Camilo Mallmann, Software Developer | Frontend Specialist, Vue.js, JavaScript, editor de vídeo, Adobe Premiere Pro, Photoshop, portfolio programador, edição audiovisual, motion graphics, freelancer Brasil" />
-  <meta name="author" content="João Camilo Mallmann" />
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <!-- Informações geográficas e idioma -->
+    <meta name="geo.region" content="BR" />
+    <meta name="geo.country" content="Brasil" />
+    <meta name="language" content="pt-BR" />
+    <meta name="revisit-after" content="7 days" />
 
-  <!-- Informações geográficas e idioma -->
-  <meta name="geo.region" content="BR" />
-  <meta name="geo.country" content="Brasil" />
-  <meta name="language" content="pt-BR" />
-  <meta name="revisit-after" content="7 days" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://joao-camilo-mallmann.com/" />
+    <meta
+      property="og:title"
+      content="João Camilo Mallmann - Software Developer | Frontend Specialist & Editor de Vídeo"
+    />
+    <meta
+      property="og:description"
+      content="Portfolio profissional: Software Developer | Frontend Specialist Vue.js/JavaScript e editor de vídeo Adobe Premiere Pro. Projetos web modernos e edição audiovisual para YouTube e empresas."
+    />
+    <meta property="og:image" content="https://joao-camilo-mallmann.com/favicon.ico" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="João Camilo Mallmann Portfolio" />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://joao-camilo-mallmann.com/" />
-  <meta property="og:title" content="João Camilo Mallmann - Software Developer | Frontend Specialist & Editor de Vídeo" />
-  <meta property="og:description"
-    content="Portfolio profissional: Software Developer | Frontend Specialist Vue.js/JavaScript e editor de vídeo Adobe Premiere Pro. Projetos web modernos e edição audiovisual para YouTube e empresas." />
-  <meta property="og:image" content="https://joao-camilo-mallmann.com/favicon.ico" />
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:site_name" content="João Camilo Mallmann Portfolio" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://joao-camilo-mallmann.com/" />
+    <meta
+      property="twitter:title"
+      content="João Camilo Mallmann - Software Developer | Frontend Specialist & Editor de Vídeo"
+    />
+    <meta
+      property="twitter:description"
+      content="Portfolio profissional: Software Developer | Frontend Specialist Vue.js/JavaScript e editor de vídeo Adobe Premiere Pro. Projetos web modernos e edição audiovisual."
+    />
+    <meta property="twitter:image" content="https://joao-camilo-mallmann.com/favicon.ico" />
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://joao-camilo-mallmann.com/" />
-  <meta property="twitter:title" content="João Camilo Mallmann - Software Developer | Frontend Specialist & Editor de Vídeo" />
-  <meta property="twitter:description"
-    content="Portfolio profissional: Software Developer | Frontend Specialist Vue.js/JavaScript e editor de vídeo Adobe Premiere Pro. Projetos web modernos e edição audiovisual." />
-  <meta property="twitter:image" content="https://joao-camilo-mallmann.com/favicon.ico" />
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://joao-camilo-mallmann.com/" />
+    <meta name="theme-color" content="#000000" />
 
-  <!-- Additional SEO -->
-  <link rel="canonical" href="https://joao-camilo-mallmann.com/" />
-  <meta name="theme-color" content="#000000" />
+    <meta name="google-site-verification" content="v4kw-11XYKXTiL31LkMPGhUzXslJS4F6ju6qpPHMZ8g" />
 
-  <meta name="google-site-verification" content="v4kw-11XYKXTiL31LkMPGhUzXslJS4F6ju6qpPHMZ8g" />
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
 
-  <!-- Preconnect to external domains for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+    <!-- Security e Performance -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
 
-  <!-- Security e Performance -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
-  <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
-
-  <!-- Structured Data - JSON-LD -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": ["Person", "WebSite"],
-      "name": "João Camilo Mallmann",
-      "alternateName": "João Camilo",
-      "jobTitle": ["Software Developer | Frontend Specialist", "Editor de Vídeo Profissional"],
-      "description": "Software Developer | Frontend Specialist e editor de vídeo profissional especializado em Vue.js, JavaScript e Adobe Creative Suite",
-      "url": "https://joao-camilo-mallmann.com/",
-      "mainEntityOfPage": "https://joao-camilo-mallmann.com/",
-      "image": "https://joao-camilo-mallmann.com/favicon.ico",
-      "sameAs": ["https://github.com/Joao-Camilo-Mallmann"],
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "BR"
-      },
-      "hasOccupation": [
-        {
-          "@type": "Occupation",
-          "name": "Software Developer | Frontend Specialist",
-          "description": "Especialista em Vue.js, JavaScript e desenvolvimento web moderno",
-          "occupationLocation": {
-            "@type": "Country",
-            "name": "Brasil"
-          },
-          "skills": "Vue.js, JavaScript, HTML5, CSS3, Tailwind CSS"
+    <!-- Structured Data - JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": ["Person", "WebSite"],
+        "name": "João Camilo Mallmann",
+        "alternateName": "João Camilo",
+        "jobTitle": ["Software Developer | Frontend Specialist", "Editor de Vídeo Profissional"],
+        "description": "Software Developer | Frontend Specialist e editor de vídeo profissional especializado em Vue.js, JavaScript e Adobe Creative Suite",
+        "url": "https://joao-camilo-mallmann.com/",
+        "mainEntityOfPage": "https://joao-camilo-mallmann.com/",
+        "image": "https://joao-camilo-mallmann.com/favicon.ico",
+        "sameAs": ["https://github.com/Joao-Camilo-Mallmann"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "BR"
         },
-        {
-          "@type": "Occupation",
-          "name": "Editor de Vídeo",
-          "description": "Editor profissional especializado em Adobe Creative Suite",
-          "occupationLocation": {
-            "@type": "Country",
-            "name": "Brasil"
+        "hasOccupation": [
+          {
+            "@type": "Occupation",
+            "name": "Software Developer | Frontend Specialist",
+            "description": "Especialista em Vue.js, JavaScript e desenvolvimento web moderno",
+            "occupationLocation": {
+              "@type": "Country",
+              "name": "Brasil"
+            },
+            "skills": "Vue.js, JavaScript, HTML5, CSS3, Tailwind CSS"
           },
-          "skills": "Adobe Premiere Pro, Adobe Photoshop, Motion Graphics"
-        }
-      ],
-      "knowsAbout": [
-        "Vue.js", "JavaScript", "HTML5", "CSS3", "Frontend Development",
-        "Adobe Premiere Pro", "Adobe Photoshop", "Motion Graphics", 
-        "Video Editing", "Web Development", "Responsive Design"
-      ],
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Freelancer"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://joao-camilo-mallmann.com/?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-      },
-      "inLanguage": "pt-BR"
-    }
+          {
+            "@type": "Occupation",
+            "name": "Editor de Vídeo",
+            "description": "Editor profissional especializado em Adobe Creative Suite",
+            "occupationLocation": {
+              "@type": "Country",
+              "name": "Brasil"
+            },
+            "skills": "Adobe Premiere Pro, Adobe Photoshop, Motion Graphics"
+          }
+        ],
+        "knowsAbout": [
+          "Vue.js",
+          "JavaScript",
+          "HTML5",
+          "CSS3",
+          "Frontend Development",
+          "Adobe Premiere Pro",
+          "Adobe Photoshop",
+          "Motion Graphics",
+          "Video Editing",
+          "Web Development",
+          "Responsive Design"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelancer"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://joao-camilo-mallmann.com/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        },
+        "inLanguage": "pt-BR"
+      }
     </script>
 
-  <!-- Script para lidar com redirecionamentos do GitHub Pages -->
-  <script>
-    ; (function () {
-      const redirect = sessionStorage.redirect
-      delete sessionStorage.redirect
-      if (redirect && redirect !== location.href) {
-        history.replaceState(null, null, redirect)
+    <!-- Script para lidar com redirecionamentos do GitHub Pages -->
+    <script>
+      ;(function () {
+        const redirect = sessionStorage.redirect
+        delete sessionStorage.redirect
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect)
+        }
+
+        // Capturar parâmetro redirect do 404.html
+        const urlParams = new URLSearchParams(window.location.search)
+        const redirectPath = urlParams.get('redirect')
+        if (redirectPath) {
+          history.replaceState(null, null, redirectPath)
+        }
+      })()
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJC4PCW2LZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
       }
+      gtag('js', new Date())
 
-      // Capturar parâmetro redirect do 404.html
-      const urlParams = new URLSearchParams(window.location.search)
-      const redirectPath = urlParams.get('redirect')
-      if (redirectPath) {
-        history.replaceState(null, null, redirectPath)
-      }
-    })()
-  </script>
+      gtag('config', 'G-JJC4PCW2LZ')
+    </script>
+  </head>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJC4PCW2LZ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-JJC4PCW2LZ');
-  </script>
-
-</head>
-
-<body>
-  <div id="app"></div>
-  <script type="module" src="/src/main.js"></script>
-</body>
-
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
