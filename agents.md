@@ -12,7 +12,7 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
 ## 2. Estilização
 
 - A estilização é feita primariamente com Tailwind CSS.
-- Sempre que possivel usar **componentes do PrimeVue** para consistência visual.
+- Sempre que possivel usar  COMO OBRIGATORIO OS **componentes do PrimeVue** para consistência visual.
 - O projeto utiliza a biblioteca de componentes PrimeVue, com o tema `tailwindcss-primeui`.
 - **Regra Principal:** Todos os estilos globais e animações devem ser centralizados nos arquivos:
   - `src/assets/main.css` (para estilos globais e imports)

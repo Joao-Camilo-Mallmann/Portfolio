@@ -1,58 +1,88 @@
 <template>
-  <Panel class="!bg-transparent !border-0 !shadow-none mb-16 pt-8">
-    <template #header>
-      <div class="w-full flex justify-center mb-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-[#eaa64d] drop-shadow-lg">
-          Vídeos em Destaque
-        </h2>
-      </div>
-    </template>
-    <div class="w-full px-4 md:px-8">
-      <div
-        class="absolute top-8 left-1/3 w-16 h-16 bg-[#eaa64d]/20 rounded-full blur-2xl opacity-80 animate-pulse"
-      ></div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-        <Card
-          v-for="video in bestVideos"
-          :key="video.title"
-          class="group !bg-gradient-to-br !from-black !to-[#eaa64d]/10 rounded-3xl shadow-xl overflow-hidden flex flex-col border border-[#eaa64d]/30 hover:scale-[1.02] hover:shadow-yellow-200/30 hover:border-[#eaa64d]/50 transition-all duration-300"
-        >
-          <template #content>
+  <section class="w-full max-w-7xl mx-auto px-4 md:px-6 py-16">
+    <!-- Header Clean -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-editor mb-4">Portfólio de Vídeos</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-editor/60 to-editor mx-auto rounded-full"></div>
+      <p class="text-gray-400 mt-6 text-lg max-w-2xl mx-auto">
+        Conteúdos audiovisuais que contam histórias e geram impacto
+      </p>
+    </div>
+
+    <!-- Grid de Vídeos Modernizado -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <Card
+        v-for="video in bestVideos"
+        :key="video.title"
+        @click="openVideo(video.url)"
+        class="group !bg-gray-900/50 !backdrop-blur-sm !rounded-2xl overflow-hidden !border !border-gray-800/50 hover:!border-editor/50 transition-all duration-500 hover:-translate-y-2 !bg-gradient-to-br !to-editor/10 cursor-pointer"
+      >
+        <template #content>
+          <!-- Thumbnail Container -->
+          <div class="relative overflow-hidden rounded-xl mb-4">
             <img
               :src="video.thumbnail"
               :alt="video.title"
-              class="w-full h-48 md:h-64 object-contain object-center bg-black rounded-xl border-4 border-[#eaa64d] shadow-lg group-hover:border-yellow-400 transition mb-4"
+              class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
+              :onerror="`this.src='https://i.ytimg.com/vi/${video.url.split('youtu.be/')[1]?.split('?')[0]}/hqdefault.jpg'`"
+              loading="lazy"
             />
-            <h3 class="text-lg md:text-xl font-extrabold text-white mb-2">{{ video.title }}</h3>
-            <p class="text-gray-200 text-sm md:text-base mb-4">{{ video.description }}</p>
-            <a
-              :href="video.url"
-              target="_blank"
-              rel="noopener"
-              class="inline-flex items-center justify-center gap-2 px-4 py-2 md:px-6 md:py-2 rounded-full bg-[#eaa64d] text-white font-bold text-sm md:text-base shadow hover:brightness-110 hover:scale-105 transition-all"
+
+            <!-- Overlay Gradient -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            ></div>
+
+            <!-- YouTube Badge -->
+            <div
+              class="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-5 h-5 text-white"
-              >
+              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M23.498 6.186a2.994 2.994 0 0 0-2.107-2.117C19.228 3.5 12 3.5 12 3.5s-7.228 0-9.391.569A2.994 2.994 0 0 0 .502 6.186C0 8.36 0 12 0 12s0 3.64.502 5.814a2.994 2.994 0 0 0 2.107 2.117C4.772 20.5 12 20.5 12 20.5s7.228 0 9.391-.569a2.994 2.994 0 0 0 2.107-2.117C24 15.64 24 12 24 12s0-3.64-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
                 />
               </svg>
-              Assistir no YouTube
-            </a>
-          </template>
-        </Card>
-      </div>
+              YouTube
+            </div>
+
+            <!-- Play Button -->
+            <div
+              class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500"
+            >
+              <div
+                class="bg-editor/90 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover:scale-100 transition-transform duration-500 shadow-2xl"
+              >
+                <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="">
+            <h3 class="text-xl font-bold text-white mb-3 line-clamp-2">{{ video.title }}</h3>
+            <p class="text-gray-400 text-sm mb-0 line-clamp-3">{{ video.description }}</p>
+          </div>
+        </template>
+      </Card>
     </div>
-  </Panel>
+  </section>
 </template>
 
 <script>
+import Card from 'primevue/card'
+
 export default {
   name: 'VideoPortfolio',
+  components: {
+    Card,
+  },
+  methods: {
+    openVideo(url) {
+      window.open(url, '_blank', 'noopener,noreferrer')
+    },
+  },
   data() {
     return {
       bestVideos: [

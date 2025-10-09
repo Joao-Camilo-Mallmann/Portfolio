@@ -31,7 +31,7 @@
         <header class="text-center mb-12 px-2">
           <h1
             id="portfolio-heading"
-            class="text-3xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg bg-gradient-to-r from-white to-gray-200 bg-clip-text"
+            class="text-3xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg bg-gradient-to-r from-white to-gray-200 bg-clip-text !text-editor/20"
           >
             Portfólio de Edição
           </h1>

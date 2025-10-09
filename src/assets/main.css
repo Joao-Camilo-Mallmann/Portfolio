@@ -2,6 +2,11 @@
 @import 'tailwindcss-primeui';
 @import './animations.css';
 
+@theme {
+  --color-dev: #4d91ea;
+  --color-editor: #eaa64d;
+}
+
 /* Smooth scroll global */
 html {
   scroll-behavior: smooth;

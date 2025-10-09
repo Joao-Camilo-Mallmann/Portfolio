@@ -1,11 +1,8 @@
+/** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      colors: {
-        dev: '#4d91ea',
-        editor: '#eaa64d',
-      },
       animation: {
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
         'bounce-in': 'bounce-in 0.8s ease-out forwards',

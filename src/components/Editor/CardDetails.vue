@@ -1,5 +1,7 @@
 <template>
-  <Card class="card-container bg-gray-800/30 backdrop-blur-sm border border-white/10 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1">
+  <Card
+    class="card-container bg-gray-800/30 backdrop-blur-sm border border-white/10 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
+  >
     <template #content>
       <Tabs value="0" class="custom-tabs">
         <TabList>
@@ -19,41 +21,184 @@
         <TabPanels>
           <TabPanel value="0">
             <div class="p-4 text-center">
-              <h3 class="text-2xl font-bold text-[#eaa64d] mb-4">Editor de Vídeo & Criador de Conteúdo</h3>
+              <h3 class="text-2xl font-bold text-editor mb-4">
+                Editor de Vídeo & Criador de Conteúdo
+              </h3>
               <p class="text-gray-300 leading-relaxed">
-                Com mais de 3 anos de experiência, transformo ideias em narrativas visuais impactantes. Minha paixão é contar histórias que cativam, engajam e geram resultados, utilizando as melhores ferramentas e técnicas do mercado.
+                Com mais de 3 anos de experiência, transformo ideias em narrativas visuais
+                impactantes. Minha paixão é contar histórias que cativam, engajam e geram
+                resultados, utilizando as melhores ferramentas e técnicas do mercado.
               </p>
             </div>
           </TabPanel>
           <TabPanel value="1">
-                      <div class="p-4 flex flex-wrap justify-center gap-6 text-gray-300">
-                        <div class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer">
-                          <i class="pi pi-video text-[#eaa64d]"></i>
-                          <span>Edição de Vídeo</span>
-                        </div>
-                        <div class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer">
-                          <i class="pi pi-palette text-[#eaa64d]"></i>
-                          <span>Color Grading</span>
-                        </div>
-                        <div class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer">
-                          <i class="pi pi-book text-[#eaa64d]"></i>
-                          <span>Storytelling</span>
-                        </div>
-                        <div class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer">
-                          <i class="pi pi-briefcase text-[#eaa64d]"></i>
-                          <span>Experiência (+3 Anos)</span>
-                        </div>
-                      </div>          </TabPanel>
+            <div class="p-4 flex flex-wrap justify-center gap-6 text-gray-300">
+              <div
+                class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer"
+              >
+                <i class="pi pi-video text-editor"></i>
+                <span>Edição de Vídeo</span>
+              </div>
+              <div
+                class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer"
+              >
+                <i class="pi pi-palette text-editor"></i>
+                <span>Color Grading</span>
+              </div>
+              <div
+                class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer"
+              >
+                <i class="pi pi-book text-editor"></i>
+                <span>Storytelling</span>
+              </div>
+              <div
+                class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer"
+              >
+                <i class="pi pi-briefcase text-editor"></i>
+                <span>Experiência (+3 Anos)</span>
+              </div>
+            </div>
+          </TabPanel>
           <TabPanel value="2">
-                      <div class="p-4 flex justify-center items-center gap-6 flex-wrap">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/512px-Adobe_Premiere_Pro_CC_icon.svg.png" alt="Premiere Pro" class="h-12 transition-transform duration-200 hover:scale-110 hover:drop-shadow-[0_0_15px_#eaa64d40] cursor-pointer" title="Premiere Pro" />
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/768px-Adobe_After_Effects_CC_icon.svg.png" alt="After Effects" class="h-12 transition-transform duration-200 hover:scale-110 hover:drop-shadow-[0_0_15px_#eaa64d40] cursor-pointer" title="After Effects" />
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" alt="Photoshop" class="h-12 transition-transform duration-200 hover:scale-110 hover:drop-shadow-[0_0_15px_#eaa64d40] cursor-pointer" title="Photoshop" />
-                        <img src="https://icon-icons.com/icons2/2407/PNG/512/adobe_audition_icon_146139.png" alt="Audition" class="h-12 transition-transform duration-200 hover:scale-110 hover:drop-shadow-[0_0_15px_#eaa64d40] cursor-pointer" title="Audition" />
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/512px-Adobe_Illustrator_CC_icon.svg.png" alt="Illustrator" class="h-12 transition-transform duration-200 hover:scale-110 hover:drop-shadow-[0_0_15px_#eaa64d40] cursor-pointer" title="Illustrator" />
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" alt="Notion" class="h-12 transition-transform duration-200 hover:scale-110 hover:drop-shadow-[0_0_15px_#eaa64d40] cursor-pointer" title="Notion" />
-                        <img src="https://icon-icons.com/icons2/3032/PNG/512/capcut_logo_icon_189232.png" alt="CapCut" class="h-12 transition-transform duration-200 hover:scale-110 hover:drop-shadow-[0_0_15px_#eaa64d40] cursor-pointer" title="CapCut" />
-                      </div>          </TabPanel>
+            <div class="p-6">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
+                <!-- Premiere Pro -->
+                <div
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                >
+                  <div
+                    class="h-12 w-12 bg-gradient-to-br from-purple-600 to-blue-700 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                  >
+                    <span class="text-white font-bold text-lg">Pr</span>
+                  </div>
+                  <span
+                    class="text-xs text-gray-400 group-hover:text-editor transition-colors duration-200"
+                    >Premiere</span
+                  >
+                </div>
+
+                <!-- After Effects -->
+                <div
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                >
+                  <div
+                    class="h-12 w-12 bg-gradient-to-br from-purple-700 to-indigo-800 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                  >
+                    <span class="text-white font-bold text-lg">Ae</span>
+                  </div>
+                  <span
+                    class="text-xs text-gray-400 group-hover:text-editor transition-colors duration-200"
+                    >After Effects</span
+                  >
+                </div>
+
+                <!-- Photoshop -->
+                <div
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                >
+                  <div
+                    class="h-12 w-12 bg-gradient-to-br from-blue-600 to-cyan-700 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                  >
+                    <span class="text-white font-bold text-lg">Ps</span>
+                  </div>
+                  <span
+                    class="text-xs text-gray-400 group-hover:text-editor transition-colors duration-200"
+                    >Photoshop</span
+                  >
+                </div>
+
+                <!-- Audition -->
+                <div
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                >
+                  <div
+                    class="h-12 w-12 bg-gradient-to-br from-green-600 to-teal-700 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                  >
+                    <span class="text-white font-bold text-lg">Au</span>
+                  </div>
+                  <span
+                    class="text-xs text-gray-400 group-hover:text-editor transition-colors duration-200"
+                    >Audition</span
+                  >
+                </div>
+
+                <!-- Illustrator -->
+                <div
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                >
+                  <div
+                    class="h-12 w-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                  >
+                    <span class="text-white font-bold text-lg">Ai</span>
+                  </div>
+                  <span
+                    class="text-xs text-gray-400 group-hover:text-editor transition-colors duration-200"
+                    >Illustrator</span
+                  >
+                </div>
+
+                <!-- Notion -->
+                <div
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                >
+                  <div
+                    class="h-12 w-12 bg-gradient-to-br from-gray-100 to-gray-300 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                  >
+                    <svg viewBox="0 0 24 24" class="h-7 w-7 text-gray-800">
+                      <path
+                        d="M4 4v16h16V4H4zm2 2h12v12H6V6zm2 2v8h8V8H8zm2 2h4v4h-4v-4z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                  <span
+                    class="text-xs text-gray-400 group-hover:text-editor transition-colors duration-200"
+                    >Notion</span
+                  >
+                </div>
+
+                <!-- CapCut -->
+                <div
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                >
+                  <div
+                    class="h-12 w-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                  >
+                    <svg viewBox="0 0 24 24" class="h-7 w-7 text-white">
+                      <path
+                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17l-3-3 1.5-1.5L9 14l6-6L16.5 9.5 9 17z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                  <span
+                    class="text-xs text-gray-400 group-hover:text-editor transition-colors duration-200"
+                    >CapCut</span
+                  >
+                </div>
+
+                <!-- DaVinci Resolve -->
+                <div
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                >
+                  <div
+                    class="h-12 w-12 bg-gradient-to-br from-red-600 to-orange-500 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                  >
+                    <svg viewBox="0 0 24 24" class="h-7 w-7 text-white">
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                  <span
+                    class="text-xs text-gray-400 group-hover:text-editor transition-colors duration-200"
+                    >DaVinci</span
+                  >
+                </div>
+              </div>
+            </div>
+          </TabPanel>
         </TabPanels>
       </Tabs>
     </template>
@@ -61,13 +206,13 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
 import Card from 'primevue/card'
-import Tabs from 'primevue/tabs'
-import TabList from 'primevue/tablist'
 import Tab from 'primevue/tab'
-import TabPanels from 'primevue/tabpanels'
+import TabList from 'primevue/tablist'
 import TabPanel from 'primevue/tabpanel'
+import TabPanels from 'primevue/tabpanels'
+import Tabs from 'primevue/tabs'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'CardDetails',
@@ -110,10 +255,12 @@ export default defineComponent({
 .custom-tabs >>> .p-tab {
   background: transparent !important;
   color: #a0aec0 !important; /* gray-500 */
-  transition: color 0.3s, border-color 0.3s;
+  transition:
+    color 0.3s,
+    border-color 0.3s;
 }
 
-.custom-tabs >>> .p-tab[data-active="true"] {
+.custom-tabs >>> .p-tab[data-active='true'] {
   color: #eaa64d !important; /* editor color */
 }
 
