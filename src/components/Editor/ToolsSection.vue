@@ -1,85 +1,97 @@
 <template>
-  <div class="py-16">
-    <div class="text-center mb-16 animate-fade-in-up">
-      <h2 class="text-5xl font-bold text-editor">Minha Jornada Criativa</h2>
-      <p class="text-gray-400 mt-3 text-xl">
+  <div class="py-6 md:py-16 px-3 md:px-8">
+    <!-- Header -->
+    <div class="text-center mb-6 md:mb-16">
+      <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-editor">Minha Jornada Criativa</h2>
+      <p class="text-gray-400 mt-2 md:mt-3 text-base md:text-xl max-w-2xl mx-auto px-2">
         Cada projeto é uma história, e esta é a minha forma de contá-la.
       </p>
     </div>
 
-    <Timeline :value="creativeProcess" align="alternate" class="custom-timeline animate-fade-in">
+    <!-- Timeline para Desktop -->
+    <Timeline :value="creativeProcess" v-if="!isMobile" align="alternate" class="custom-timeline">
       <template #marker="slotProps">
         <span
-          class="flex w-12 h-12 md:w-16 md:h-16 items-center justify-center text-white rounded-full z-10 shadow-lg transform transition-all duration-500 ease-in-out hover:scale-125 border-4 animate-bounce-soft"
-          :class="`animate-delay-${slotProps.index * 200}`"
+          class="flex w-16 h-16 items-center justify-center text-white rounded-full z-10 shadow-lg transition-all duration-300 hover:scale-110 border-4"
           :style="{
             borderColor: slotProps.item.color,
             backgroundColor: '#1f2937',
-            animationDelay: `${slotProps.index * 0.3}s`,
           }"
         >
           <i
-            :class="`pi ${slotProps.item.icon} text-2xl md:text-3xl transition-all duration-300 hover:scale-110`"
+            :class="`pi ${slotProps.item.icon} text-3xl`"
             :style="{ color: slotProps.item.color }"
           ></i>
         </span>
       </template>
       <template #content="slotProps">
-        <div
-          v-scroll-animation="'animate-slide-up'"
-          class="relative p-1 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2"
-          :style="{ animationDelay: `${slotProps.index * 400}ms` }"
+        <Card
+          class="card-timeline p-5 border-2 rounded-xl h-full transition-all duration-300 hover:scale-[1.02]"
+          :style="{ '--card-color': slotProps.item.color }"
         >
-          <div
-            class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 opacity-70 animate-glow"
-            :style="{ animationDelay: `${slotProps.index * 0.5}s` }"
-          ></div>
-          <Card
-            class="card-timeline relative p-5 bg-transparent border-2 rounded-xl h-full course-title-shine transition-all duration-500 hover:scale-105 animate-fade-in-delayed"
-            :class="`animate-delay-${slotProps.index * 100}`"
-            :style="{
-              '--card-color': slotProps.item.color,
-              animationDelay: `${slotProps.index * 0.2}s`,
-            }"
-          >
-            <template #title>
-              <h3
-                class="text-xl md:text-2xl font-bold mb-3 animate-slide-left"
-                :class="`animate-delay-${slotProps.index * 100}`"
-                :style="{
-                  color: slotProps.item.color,
-                  animationDelay: `${slotProps.index * 0.3}s`,
-                }"
-              >
-                {{ slotProps.item.title }}
-              </h3>
-            </template>
-            <template #content>
-              <p
-                class="text-gray-300 leading-relaxed m-0 mb-4 animate-slide-right"
-                :style="{ animationDelay: `${slotProps.index * 0.4}s` }"
-              >
-                {{ slotProps.item.description }}
-              </p>
-              <ul class="list-none p-0 m-0 space-y-3 mb-6">
-                <li
-                  v-for="(detail, i) in slotProps.item.details"
-                  :key="i"
-                  class="flex items-center animate-fade-in-item"
-                  :style="{ animationDelay: `${slotProps.index * 300 + (i + 1) * 200}ms` }"
-                >
-                  <i
-                    :class="`pi ${detail.icon} mr-3 text-lg animate-heartbeat`"
-                    :style="{ color: slotProps.item.color, animationDelay: `${(i + 1) * 0.5}s` }"
-                  ></i>
-                  <span class="text-gray-400">{{ detail.text }}</span>
-                </li>
-              </ul>
-            </template>
-          </Card>
-        </div>
+          <template #title>
+            <h3 class="text-2xl font-bold mb-3" :style="{ color: slotProps.item.color }">
+              {{ slotProps.item.title }}
+            </h3>
+          </template>
+          <template #content>
+            <p class="text-gray-300 leading-relaxed m-0 mb-4">
+              {{ slotProps.item.description }}
+            </p>
+            <ul class="list-none p-0 m-0 space-y-3">
+              <li v-for="(detail, i) in slotProps.item.details" :key="i" class="flex items-center">
+                <i
+                  :class="`pi ${detail.icon} mr-3 text-lg`"
+                  :style="{ color: slotProps.item.color }"
+                ></i>
+                <span class="text-gray-400">{{ detail.text }}</span>
+              </li>
+            </ul>
+          </template>
+        </Card>
       </template>
     </Timeline>
+
+    <!-- Timeline para Mobile e Tablet -->
+    <div class="block lg:hidden space-y-6">
+      <Card
+        v-for="(item, index) in creativeProcess"
+        :key="index"
+        class="card-timeline-mobile border-2 rounded-xl mobile-timeline-item"
+        :style="{ '--card-color': item.color }"
+      >
+        <template #title>
+          <div class="flex items-center gap-3 mb-3">
+            <div
+              class="flex w-12 h-12 items-center justify-center text-white rounded-full shadow-lg border-2 flex-shrink-0"
+              :style="{
+                borderColor: item.color,
+                backgroundColor: '#1f2937',
+              }"
+            >
+              <i :class="`pi ${item.icon} text-xl`" :style="{ color: item.color }"></i>
+            </div>
+            <h3 class="text-lg font-bold leading-tight m-0" :style="{ color: item.color }">
+              {{ item.title }}
+            </h3>
+          </div>
+        </template>
+        <template #content>
+          <p class="text-gray-300 text-sm leading-relaxed m-0 mb-3">
+            {{ item.description }}
+          </p>
+          <ul class="list-none p-0 m-0 space-y-2">
+            <li v-for="(detail, i) in item.details" :key="i" class="flex items-start gap-2">
+              <i
+                :class="`pi ${detail.icon} text-sm mt-0.5 flex-shrink-0`"
+                :style="{ color: item.color }"
+              ></i>
+              <span class="text-gray-400 text-sm leading-relaxed">{{ detail.text }}</span>
+            </li>
+          </ul>
+        </template>
+      </Card>
+    </div>
   </div>
 </template>
 
@@ -189,10 +201,17 @@ export default {
       ],
     }
   },
+
+  computed: {
+    isMobile() {
+      return window.innerWidth < 1024 // Ajuste o valor conforme necessário
+    },
+  },
 }
 </script>
 
 <style scoped>
+/* Estilos para Timeline Desktop */
 .card-timeline {
   border-color: var(--card-color);
   box-shadow: 0 0 15px color-mix(in srgb, var(--card-color) 20%, transparent);
@@ -202,119 +221,55 @@ export default {
   box-shadow: 0 0 30px color-mix(in srgb, var(--card-color) 40%, transparent);
 }
 
-@keyframes draw-line {
+/* Estilos para Timeline Mobile */
+.card-timeline-mobile {
+  border-color: var(--card-color);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--card-color) 20%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.card-timeline-mobile :deep(.p-card-body) {
+  padding: 1.25rem;
+}
+
+.card-timeline-mobile :deep(.p-card-content) {
+  padding: 0;
+}
+
+.card-timeline-mobile :deep(.p-card-title) {
+  margin-bottom: 0;
+}
+
+/* Estilos para Timeline Desktop - PrimeVue */
+.custom-timeline :deep(.p-timeline-event-connector) {
+  background: linear-gradient(to bottom, #eaa64d 0%, #4d91ea 50%, #2ecc71 100%);
+}
+
+/* Animações de entrada para mobile */
+@keyframes mobile-fade-in {
   from {
-    transform: scaleY(0);
     opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: scaleY(1);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@keyframes fade-in-item {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animate-fade-in-item {
-  animation: fade-in-item 0.5s ease-out forwards;
-  opacity: 0; /* Começa invisível */
-}
-
-.custom-timeline >>> .p-timeline-event-connector {
-  animation: draw-line 2s ease-out forwards;
-  transform-origin: top;
-  width: 3px !important;
-  background: linear-gradient(to bottom, #eaa64d, #4d91ea, #2ecc71) !important;
-  position: relative;
-}
-
-.custom-timeline >>> .p-timeline-event-connector::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(234, 166, 77, 0.5),
-    rgba(77, 145, 234, 0.5),
-    rgba(46, 204, 113, 0.5)
-  );
-  animation: pulse-line 3s ease-in-out infinite;
-}
-
-@keyframes pulse-line {
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: scaleX(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scaleX(1.5);
-  }
-}
-
-.custom-timeline >>> .p-timeline-event {
-  animation: timeline-item-enter 0.8s ease-out forwards;
+/* Aplicar animação aos cards mobile */
+.mobile-timeline-item {
+  animation: mobile-fade-in 0.6s ease-out forwards;
   opacity: 0;
-  transform: translateX(-30px);
 }
 
-.custom-timeline >>> .p-timeline-event:nth-child(1) {
-  animation-delay: 0.2s;
+.mobile-timeline-item:nth-child(1) {
+  animation-delay: 0.1s;
 }
-.custom-timeline >>> .p-timeline-event:nth-child(2) {
+.mobile-timeline-item:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.mobile-timeline-item:nth-child(3) {
   animation-delay: 0.5s;
-}
-.custom-timeline >>> .p-timeline-event:nth-child(3) {
-  animation-delay: 0.8s;
-}
-
-@keyframes timeline-item-enter {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.custom-timeline.p-timeline-alternate .p-timeline-event:nth-child(even) .p-timeline-event-content {
-  text-align: left;
-}
-
-.course-title-shine {
-  position: relative;
-  overflow: hidden;
-}
-
-.course-title-shine:hover::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  animation: shine 0.8s ease-in-out;
-}
-
-@keyframes shine {
-  to {
-    left: 100%;
-  }
 }
 </style>

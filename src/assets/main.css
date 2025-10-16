@@ -2,18 +2,62 @@
 @import 'tailwindcss-primeui';
 @import './animations.css';
 
+/* ========================================
+   TEMA - Cores Semânticas do Projeto
+   ======================================== */
 @theme {
+  /* Cores principais do portfólio */
   --color-dev: #4d91ea;
   --color-editor: #eaa64d;
+
+  /* Animações customizadas */
+  --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
+  --animate-bounce-in: bounce-in 0.8s ease-out forwards;
+  --animate-pulse-slower: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Smooth scroll global */
-html {
-  scroll-behavior: smooth;
+/* ========================================
+   KEYFRAMES - Animações Customizadas
+   ======================================== */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Evitar FOUC (Flash of Unstyled Content) */
-body {
-  opacity: 1;
-  transition: opacity 0.1s ease-in-out;
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-10deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05) rotate(2deg);
+  }
+  70% {
+    transform: scale(0.9) rotate(-1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* ========================================
+   BASE STYLES - Configurações Globais
+   ======================================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    opacity: 1;
+    transition: opacity 0.1s ease-in-out;
+  }
 }

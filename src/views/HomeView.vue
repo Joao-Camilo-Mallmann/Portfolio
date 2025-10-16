@@ -45,7 +45,9 @@
       <!-- Seções de Habilidades -->
       <section class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
         <!-- Seção Software Developer | Frontend Specialist -->
-        <article class="animate-slide-left card-hover-glow">
+        <article
+          class="animate-slide-left card-hover-glow hover:scale-102 transition-transform duration-300"
+        >
           <Card
             class="border-l-4 !h-full border-[#4d91ea] !transition-all !duration-300 hover:shadow-2xl text-gray-300"
           >
@@ -61,13 +63,16 @@
                 Vue.js, JavaScript/TypeScript e as melhores práticas do mercado.
               </p>
             </template>
+
             <template #footer>
+              <br />
               <Button
                 label="Explorar Projetos"
                 icon="pi pi-arrow-right"
+                iconPos="right"
                 @click="goToPage('/dev')"
                 text
-                class="w-full !bg-transparent !border-0 !text-[#4d91ea] !font-semibold !py-3 !px-6 hover:!text-[#6fa3f0] !justify-end"
+                class="w-full !bg-transparent !border-0 !text-dev !font-semibold !py-3 !px-6 hover:!text-dev/80 !justify-end !transition-all !duration-300 hover:!scale-105 hover:!translate-x-2"
                 aria-label="Navegar para página de projetos de desenvolvimento"
               />
             </template>
@@ -75,7 +80,9 @@
         </article>
 
         <!-- Seção Editor de Vídeo -->
-        <article class="animate-slide-right card-hover-glow">
+        <article
+          class="animate-slide-right card-hover-glow hover:scale-102 transition-transform duration-300"
+        >
           <Card
             class="border-l-4 border-[#eaa64d] !transition-all !duration-300 hover:shadow-2xl text-gray-300"
           >
@@ -98,9 +105,10 @@
               <Button
                 label="Ver Portfólio"
                 icon="pi pi-play"
+                iconPos="right"
                 @click="goToPage('/editor')"
                 text
-                class="w-full !bg-transparent !border-0 !text-[#eaa64d] !font-semibold !py-3 !px-6 hover:!text-[#f0b86e] !justify-end"
+                class="w-full !bg-transparent !border-0 !text-editor !font-semibold !py-3 !px-6 hover:!text-editor/80 !justify-end !transition-all !duration-300 hover:!scale-105 hover:!translate-x-2"
                 aria-label="Navegar para página de portfólio de edição de vídeo"
               />
             </template>
@@ -312,6 +320,7 @@ function goToPage(path) {
 .card-hover-glow {
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .card-hover-glow::before {

@@ -276,4 +276,9 @@ export default defineComponent({
 .custom-tabs >>> .p-tabpanels {
   background: transparent;
 }
+div .p-tablist-tab-list {
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+}
 </style>
