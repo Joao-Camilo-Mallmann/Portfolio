@@ -19,7 +19,7 @@ export default {
       // Aguarda a animação de expansão antes de navegar
       setTimeout(() => {
         this.$router.push(path)
-      }, 800) // Tempo da animação de expansão
+      }, 1000) // Tempo sincronizado com animação otimizada
     },
   },
 }
@@ -83,10 +83,10 @@ export default {
   </div>
 </template>
 
-<style lang="css">
+<style scoped>
 .splitter-container {
   width: 100%;
-  animation: fadeIn 1s ease-out;
+  animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .profile-splitter {
@@ -105,14 +105,14 @@ export default {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition:
-    box-shadow 0.4s ease,
-    border-color 0.4s ease;
+  transition: opacity 0.5s ease-out;
   border: 2px solid transparent;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .profile-panel:hover {
-  opacity: 0.75;
+  opacity: 0.92;
   z-index: 2;
 }
 
@@ -124,12 +124,14 @@ export default {
   height: 100%;
   background-size: cover;
   background-position: center;
-  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.8s ease-out;
   z-index: 0;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .profile-panel:hover .panel-bg-image {
-  transform: scale(1.05);
+  transform: scale(1.02) translateZ(0);
 }
 
 .profile-panel::before {
@@ -139,17 +141,56 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 100%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.15) 100%);
   z-index: 1;
-  transition: background 0.5s ease;
+  transition: opacity 0.6s ease-out;
+  backface-visibility: hidden;
 }
 
-.dev-panel:hover::before {
-  background: linear-gradient(0deg, rgba(77, 145, 234, 0.7) 0%, rgba(0, 0, 0, 0.1) 100%);
+.dev-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    rgba(77, 145, 234, 0.75) 0%,
+    rgba(77, 145, 234, 0.2) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+  backface-visibility: hidden;
 }
 
-.editor-panel:hover::before {
-  background: linear-gradient(0deg, rgba(234, 166, 77, 0.7) 0%, rgba(0, 0, 0, 0.1) 100%);
+.dev-panel:hover::after {
+  opacity: 1;
+}
+
+.editor-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    rgba(234, 166, 77, 0.75) 0%,
+    rgba(234, 166, 77, 0.2) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+  backface-visibility: hidden;
+}
+
+.editor-panel:hover::after {
+  opacity: 1;
 }
 
 .panel-content {
@@ -158,12 +199,14 @@ export default {
   text-align: center;
   color: #fff;
   padding: 2rem;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease-out;
   text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.7);
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .profile-panel:hover .panel-content {
-  transform: translateY(-10px);
+  transform: translateY(-6px) translateZ(0);
 }
 
 .panel-action {
@@ -174,15 +217,20 @@ export default {
   margin-top: 1.2rem;
   font-size: 1.1rem;
   font-weight: 500;
-  transition: color 0.3s;
+  transition: transform 0.5s ease-out;
+}
+
+.profile-panel:hover .panel-action {
+  transform: scale(1.03);
 }
 
 .action-arrow {
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.6s ease-out;
+  display: inline-block;
 }
 
 .profile-panel:hover .action-arrow {
-  transform: translateX(8px);
+  transform: translateX(6px);
 }
 
 .panel-icon {
@@ -207,37 +255,27 @@ export default {
   display: none;
 }
 
-/* Animações de expansão */
+/* Animações de expansão otimizadas para performance */
 .profile-splitter.animating {
   overflow: hidden;
 }
 
 .panel-expanding {
-  animation: expandPanel 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: expandPanel 1s ease-out forwards;
   z-index: 10 !important;
 }
 
 .panel-shrinking {
-  animation: shrinkPanel 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: shrinkPanel 1s ease-out forwards;
   z-index: 1 !important;
 }
 
 @keyframes expandPanel {
   0% {
     flex: 1;
-    transform: scale(1);
-  }
-  30% {
-    flex: 1.5;
-    transform: scale(1.02);
-  }
-  70% {
-    flex: 3;
-    transform: scale(1.05);
   }
   100% {
     flex: 10;
-    transform: scale(1.1);
     width: 100%;
   }
 }
@@ -246,104 +284,68 @@ export default {
   0% {
     flex: 1;
     opacity: 1;
-    transform: scale(1);
-    width: 50%;
-  }
-  30% {
-    flex: 0.5;
-    opacity: 0.5;
-    transform: scale(0.95);
-    width: 30%;
-  }
-  70% {
-    flex: 0.1;
-    opacity: 0.2;
-    transform: scale(0.9);
-    width: 10%;
   }
   100% {
     flex: 0;
     opacity: 0;
-    transform: scale(0.8);
     width: 0%;
-    display: none;
   }
 }
 
 .panel-expanding .panel-content {
-  animation: contentExpand 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: contentExpand 1s ease-out forwards;
 }
 
 .panel-shrinking .panel-content {
-  animation: contentShrink 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: contentShrink 1s ease-out forwards;
 }
 
 @keyframes contentExpand {
   0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  40% {
-    transform: translateY(-15px) scale(1.05);
-    opacity: 0.95;
-  }
-  80% {
-    transform: translateY(-25px) scale(1.15);
+    transform: translateY(0) translateZ(0);
     opacity: 1;
   }
   100% {
-    transform: translateY(-30px) scale(1.2);
+    transform: translateY(-15px) translateZ(0);
     opacity: 1;
   }
 }
 
 @keyframes contentShrink {
   0% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0) translateZ(0);
     opacity: 1;
   }
-  50% {
-    transform: translateY(10px) scale(0.9);
-    opacity: 0.3;
-  }
   100% {
-    transform: translateY(20px) scale(0.7);
+    transform: translateY(10px) translateZ(0);
     opacity: 0;
   }
 }
 
 .panel-expanding .panel-bg-image {
-  animation: bgExpand 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: bgExpand 1s ease-out forwards;
 }
 
 .panel-shrinking .panel-bg-image {
-  animation: bgShrink 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: bgShrink 1s ease-out forwards;
 }
 
 @keyframes bgExpand {
   0% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-  50% {
-    transform: scale(1.05);
-    filter: brightness(1.1);
+    transform: scale(1) translateZ(0);
   }
   100% {
-    transform: scale(1.15);
-    filter: brightness(1.3);
+    transform: scale(1.05) translateZ(0);
   }
 }
 
 @keyframes bgShrink {
   0% {
-    transform: scale(1);
-    filter: brightness(1);
+    transform: scale(1) translateZ(0);
     opacity: 1;
   }
   100% {
-    transform: scale(0.8);
-    filter: brightness(0.5);
+    transform: scale(0.95) translateZ(0);
     opacity: 0;
   }
 }
@@ -419,28 +421,23 @@ export default {
     transform: none;
   }
 
-  /* Animações simplificadas para mobile */
+  /* Animações otimizadas para mobile */
   .panel-expanding {
-    animation: expandPanelMobile 0.6s ease-out forwards;
+    animation: expandPanelMobile 0.8s ease-out forwards;
   }
 
   .panel-shrinking {
-    animation: shrinkPanelMobile 0.6s ease-out forwards;
+    animation: shrinkPanelMobile 0.8s ease-out forwards;
   }
 
   @keyframes expandPanelMobile {
     0% {
-      transform: scale(1);
+      transform: translateZ(0);
       opacity: 1;
       height: 50vh;
     }
-    50% {
-      transform: scale(1.02);
-      opacity: 1;
-      height: 70vh;
-    }
     100% {
-      transform: scale(1.05);
+      transform: translateZ(0);
       opacity: 1;
       height: 100vh;
     }
@@ -448,49 +445,43 @@ export default {
 
   @keyframes shrinkPanelMobile {
     0% {
-      transform: scale(1);
+      transform: translateZ(0);
       opacity: 1;
       height: 50vh;
     }
-    50% {
-      transform: scale(0.98);
-      opacity: 0.5;
-      height: 20vh;
-    }
     100% {
-      transform: scale(0.95);
+      transform: translateZ(0);
       opacity: 0;
       height: 0vh;
-      display: none;
     }
   }
 
   .panel-expanding .panel-content {
-    animation: contentExpandMobile 0.6s ease-out forwards;
+    animation: contentExpandMobile 0.8s ease-out forwards;
   }
 
   .panel-shrinking .panel-content {
-    animation: contentShrinkMobile 0.6s ease-out forwards;
+    animation: contentShrinkMobile 0.8s ease-out forwards;
   }
 
   @keyframes contentExpandMobile {
     0% {
-      transform: scale(1);
+      transform: translateZ(0);
       opacity: 1;
     }
     100% {
-      transform: scale(1.1);
+      transform: translateZ(0);
       opacity: 1;
     }
   }
 
   @keyframes contentShrinkMobile {
     0% {
-      transform: scale(1);
+      transform: translateZ(0);
       opacity: 1;
     }
     100% {
-      transform: scale(0.8);
+      transform: translateZ(0);
       opacity: 0;
     }
   }
