@@ -100,6 +100,7 @@
                 <span class="text-white font-semibold">After Effects</span>. Especializado em vídeos
                 institucionais, comerciais e conteúdo para redes sociais.
               </p>
+              <br />
             </template>
             <template #footer>
               <Button
