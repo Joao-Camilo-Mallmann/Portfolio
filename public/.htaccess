@@ -1,8 +1,20 @@
 # Configurações de cache para GitHub Pages / Apache
 
-# Não fazer cache do HTML principal
+# MIME Types importantes para SEO
+AddType application/xml .xml
+AddType text/xml .xml
+AddType application/javascript .js
+AddType text/css .css
 
+# Não fazer cache do HTML principal
 <FilesMatch "\.(html|htm)$">
+Header set Cache-Control "no-cache, no-store, must-revalidate"
+Header set Pragma "no-cache"
+Header set Expires "0"
+</FilesMatch>
+
+# Não fazer cache do sitemap e robots
+<FilesMatch "\.(xml|txt)$">
 Header set Cache-Control "no-cache, no-store, must-revalidate"
 Header set Pragma "no-cache"
 Header set Expires "0"

@@ -1,8 +1,7 @@
 User-agent: *
 Allow: /
-Allow: /#/dev
-Allow: /#/editor
-Allow: /#/home
+Allow: /dev
+Allow: /editor
 
 # Permitir recursos importantes
 Allow: /favicon.ico

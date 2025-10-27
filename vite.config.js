@@ -22,6 +22,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  publicDir: 'public',
   build: {
     rollupOptions: {
       output: {
@@ -33,6 +34,8 @@ export default defineConfig({
     },
     // Força rebuild ao fazer deploy
     assetsInlineLimit: 0,
+    // Copia arquivos públicos para dist
+    copyPublicDir: true,
   },
   server: {
     host: true,

@@ -3,31 +3,23 @@
   <!-- Página Principal -->
   <url>
     <loc>https://joao-camilo-mallmann.com/</loc>
-    <lastmod>2025-09-26</lastmod>
+    <lastmod>2025-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
-  <!-- Seções do Portfolio -->
-  <url>
-    <loc>https://joao-camilo-mallmann.com/#/home</loc>
-    <lastmod>2025-09-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
   <!-- Desenvolvimento Frontend -->
   <url>
-    <loc>https://joao-camilo-mallmann.com/#/dev</loc>
-    <lastmod>2025-09-26</lastmod>
+    <loc>https://joao-camilo-mallmann.com/dev</loc>
+    <lastmod>2025-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <!-- Edição de Vídeo -->
   <url>
-    <loc>https://joao-camilo-mallmann.com/#/editor</loc>
-    <lastmod>2025-09-26</lastmod>
+    <loc>https://joao-camilo-mallmann.com/editor</loc>
+    <lastmod>2025-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
