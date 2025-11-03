@@ -204,6 +204,8 @@ export default {
 
   computed: {
     isMobile() {
+      // Proteção SSR: retorna false no servidor, verdadeiro valor no cliente
+      if (typeof window === 'undefined') return false
       return window.innerWidth < 1024 // Ajuste o valor conforme necessário
     },
   },
