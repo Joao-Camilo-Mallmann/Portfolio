@@ -23,11 +23,6 @@ onMounted(() => {
       <div class="loading-bg-circle circle-3"></div>
 
       <div class="loading-content">
-        <!-- Logo/Icon area with pulse -->
-        <div class="loading-logo">
-          <span class="logo-icon">JC</span>
-        </div>
-
         <!-- Animated dots loader -->
         <div class="loading-dots">
           <span class="dot dot-1"></span>
@@ -56,7 +51,7 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: linear-gradient(135deg, #1c1b22 0%, #2a2930 50%, #1c1b22 100%);
   display: flex;
   align-items: center;
   justify-content: center;
