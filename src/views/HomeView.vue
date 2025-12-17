@@ -191,9 +191,49 @@
 <script setup>
 import HomeSplitter from '@/components/HomeSplitter.vue'
 import SocialMediaButton from '@/components/SocialMediaButton.vue'
+import { useHead } from '@unhead/vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+
+useHead({
+  title: 'Início',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Portfólio de João Camilo Mallmann - Desenvolvedor Frontend especialista em Vue.js/JavaScript e Editor de Vídeo profissional com Adobe Premiere Pro e After Effects.',
+    },
+    {
+      name: 'keywords',
+      content:
+        'João Camilo Mallmann, desenvolvedor frontend, Vue.js, JavaScript, editor de vídeo, Adobe Premiere Pro, portfolio, freelancer Brasil',
+    },
+    // Open Graph
+    {
+      property: 'og:title',
+      content: 'João Camilo Mallmann - Desenvolvedor Frontend & Editor de Vídeo',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Portfolio profissional: Desenvolvimento web com Vue.js e edição audiovisual com Adobe Creative Suite.',
+    },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://joao-camilo-mallmann.com/' },
+    { property: 'og:image', content: 'https://joao-camilo-mallmann.com/favicon.ico' },
+    { property: 'og:locale', content: 'pt_BR' },
+    // Twitter
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'João Camilo Mallmann - Portfolio' },
+    {
+      name: 'twitter:description',
+      content: 'Desenvolvedor Frontend e Editor de Vídeo profissional.',
+    },
+  ],
+  link: [{ rel: 'canonical', href: 'https://joao-camilo-mallmann.com/' }],
+})
+
 function goToPage(path) {
   router.push(path)
 }

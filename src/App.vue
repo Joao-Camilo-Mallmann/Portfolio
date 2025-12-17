@@ -9,7 +9,7 @@ onMounted(() => {
   // Aguarda um pequeno delay para garantir que tudo carregou
   setTimeout(() => {
     isLoading.value = false
-  }, 800)
+  }, 1200)
 })
 </script>
 
@@ -17,9 +17,25 @@ onMounted(() => {
   <!-- Loading Screen -->
   <Transition name="loading-fade">
     <div v-if="isLoading" class="loading-screen">
+      <!-- Animated background elements -->
+      <div class="loading-bg-circle circle-1"></div>
+      <div class="loading-bg-circle circle-2"></div>
+      <div class="loading-bg-circle circle-3"></div>
+
       <div class="loading-content">
-        <div class="loading-spinner"></div>
-        <p class="loading-text">Carregando...</p>
+        <!-- Logo/Icon area with pulse -->
+        <div class="loading-logo">
+          <span class="logo-icon">JC</span>
+        </div>
+
+        <!-- Animated dots loader -->
+        <div class="loading-dots">
+          <span class="dot dot-1"></span>
+          <span class="dot dot-2"></span>
+          <span class="dot dot-3"></span>
+        </div>
+
+        <p class="loading-text">Carregando experiência...</p>
       </div>
     </div>
   </Transition>
@@ -40,46 +56,164 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #0f172a;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  overflow: hidden;
+}
+
+/* Animated background circles */
+.loading-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 6s ease-in-out infinite;
+}
+
+.circle-1 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(45deg, #4d91ea, #eaa64d);
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.circle-2 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(45deg, #eaa64d, #4d91ea);
+  bottom: -50px;
+  right: -50px;
+  animation-delay: 2s;
+}
+
+.circle-3 {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(45deg, #4d91ea, #22c55e);
+  top: 50%;
+  right: 10%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
 }
 
 .loading-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
+  z-index: 1;
 }
 
-.loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top-color: #4d91ea;
+/* Logo with pulse animation */
+.loading-logo {
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  background: linear-gradient(135deg, #4d91ea 0%, #1e40af 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse-glow 2s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(77, 145, 234, 0.4);
+}
+
+.logo-icon {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.05em;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px rgba(77, 145, 234, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(77, 145, 234, 0.6);
+  }
+}
+
+/* Animated dots */
+.loading-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4d91ea, #eaa64d);
+  animation: bounce 1.4s ease-in-out infinite;
+}
+
+.dot-1 {
+  animation-delay: 0s;
+}
+
+.dot-2 {
+  animation-delay: 0.2s;
+}
+
+.dot-3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .loading-text {
   color: #94a3b8;
   font-size: 0.875rem;
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: fade-pulse 2s ease-in-out infinite;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+@keyframes fade-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
   }
 }
 
-/* Loading Fade Transition */
-.loading-fade-enter-active,
+/* Loading Fade Transition - smoother */
+.loading-fade-enter-active {
+  transition: opacity 0.3s ease;
+}
+
 .loading-fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.8s ease-out;
 }
 
 .loading-fade-enter-from,

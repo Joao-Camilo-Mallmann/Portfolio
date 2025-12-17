@@ -94,34 +94,51 @@
   </main>
 </template>
 
-<script>
+<script setup>
 import AnimatedDot from '@/components/Editor/AnimatedDot.vue'
+import CardDetails from '@/components/Editor/CardDetails.vue'
 import CreativeChannelPanel from '@/components/Editor/CreativeChannelPanel.vue'
 import ToolsSection from '@/components/Editor/ToolsSection.vue'
 import VideoPortfolio from '@/components/Editor/VideoPortfolio.vue'
 import YouTubeChannelPanel from '@/components/Editor/YouTubeChannelPanel.vue'
 import FooterContact from '@/components/FooterContact.vue'
 import HeaderCore from '@/components/HeaderCore.vue'
+import { useHead } from '@unhead/vue'
 import Divider from 'primevue/divider'
 import Panel from 'primevue/panel'
 
-export default {
-  components: {
-    HeaderCore,
-    AnimatedDot,
-    YouTubeChannelPanel,
-    ToolsSection,
-    VideoPortfolio,
-    CreativeChannelPanel,
-    FooterContact,
-    Divider,
-    Panel,
-  },
-
-  data() {
-    return {}
-  },
-}
+useHead({
+  title: 'Editor de Vídeo',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Portfólio de edição de vídeo de João Camilo Mallmann. Especialista em Adobe Premiere Pro, After Effects e Photoshop. Criação audiovisual profissional para YouTube, empresas e redes sociais.',
+    },
+    {
+      name: 'keywords',
+      content:
+        'editor de vídeo, Adobe Premiere Pro, After Effects, Photoshop, edição audiovisual, YouTube, motion graphics, freelancer Brasil',
+    },
+    // Open Graph
+    { property: 'og:title', content: 'João Camilo Mallmann - Editor de Vídeo Profissional' },
+    {
+      property: 'og:description',
+      content:
+        'Criação audiovisual profissional com Adobe Creative Suite. Vídeos para YouTube, empresas e redes sociais.',
+    },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://joao-camilo-mallmann.com/editor' },
+    // Twitter
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'João Camilo Mallmann - Editor de Vídeo' },
+    {
+      name: 'twitter:description',
+      content: 'Edição audiovisual profissional com Adobe Premiere Pro e After Effects.',
+    },
+  ],
+  link: [{ rel: 'canonical', href: 'https://joao-camilo-mallmann.com/editor' }],
+})
 </script>
 
 <style scoped></style>
