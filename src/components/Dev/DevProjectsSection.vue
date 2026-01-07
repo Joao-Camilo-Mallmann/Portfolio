@@ -8,18 +8,18 @@ export default {
           image: '/img/vimasi.png',
           imageAlt: 'Screenshot do site Vimasi Vedações',
           description:
-            'Site desenvolvido para um amigo especializado em gaxetas, anéis de vedação e reparos hidráulicos. Proporcionou experiência valiosa em desenvolvimento No Code, configuração de domínio, deploy e otimização SEO.',
+            'Site institucional de alta performance desenvolvido com Nuxt (Vue.js). Foco total em SEO técnico, arquitetura de componentes escalável e experiência do usuário (UX) para conversão de clientes reais.',
           status: 'Público',
           statusType: 'public', // 'public', 'private'
           devStatus: 'Concluído',
           devStatusType: 'completed', // 'completed', 'wip'
-          year: 2024,
+          year: 2025,
           colors: { from: '#ff6b35', to: '#f7931e' },
           tags: [
-            { label: 'No Code', color: '#e4c7aa' },
-            { label: 'Canvas', color: '#ff6b35' },
-            { label: 'Hospedagem', color: '#4ecdc4' },
-            { label: 'Domínio', color: '#45b7d1' },
+            { label: 'Nuxt', color: '#00DC82' },
+            { label: 'Vue.js', color: '#42b883' },
+            { label: 'SEO', color: '#f59e0b' },
+            { label: 'JavaScript', color: '#f7df1e' },
           ],
           links: [
             {
@@ -27,6 +27,12 @@ export default {
               icon: 'pi pi-external-link',
               url: 'https://vimasi-vedacoes.com/',
               type: 'primary',
+            },
+            {
+              label: 'Código',
+              icon: 'pi pi-github',
+              url: 'https://github.com/Joao-Camilo-Mallmann/vimasi-vedacoes-vue',
+              type: 'secondary',
             },
           ],
         },
@@ -205,7 +211,6 @@ export default {
             </div>
           </div>
 
-          <!-- Status Badge -->
           <div class="absolute top-3 right-3">
             <Chip
               :label="project.statusType === 'public' ? 'Público' : 'Privado'"
@@ -231,7 +236,6 @@ export default {
             {{ project.description }}
           </p>
 
-          <!-- Tags -->
           <div class="flex flex-wrap gap-1">
             <Chip
               v-for="tag in project.tags"
