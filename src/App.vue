@@ -1,9 +1,22 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
 
 const route = useRoute()
 const isLoading = ref(true)
+
+// Desativa o scroll quando loading está ativo
+watch(
+  isLoading,
+  (newValue) => {
+    if (newValue) {
+      document.body.classList.add('no-scroll')
+    } else {
+      document.body.classList.remove('no-scroll')
+    }
+  },
+  { immediate: true },
+)
 
 onMounted(() => {
   // Aguarda um pequeno delay para garantir que tudo carregou
@@ -44,6 +57,14 @@ onMounted(() => {
 </template>
 
 <style>
+/* Desativa scroll quando loading está ativo */
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
 /* Loading Screen Styles */
 .loading-screen {
   position: fixed;

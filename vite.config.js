@@ -12,7 +12,9 @@ export default defineConfig({
   plugins: [
     vue(),
     tailwindcss(),
-    vueDevTools(),
+    vueDevTools({
+      launchEditor:'antigravity'
+    }),
     Components({
       resolvers: [PrimeVueResolver()],
     }),
