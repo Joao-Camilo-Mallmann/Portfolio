@@ -23,11 +23,11 @@
           class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
         />
 
-        <SocialMediaButton
+        <!-- <SocialMediaButton
           platform="whatsapp"
           link="https://wa.me/5551994461433"
           class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
-        />
+        /> -->
       </div>
 
       <!-- Divider com cor dinâmica -->
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import SocialMediaButton from './SocialMediaButton.vue'
+import SocialMediaButton from './SocialMediaButton.vue';
 
 export default {
   name: 'FooterContact',

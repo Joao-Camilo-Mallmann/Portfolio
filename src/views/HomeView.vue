@@ -180,7 +180,7 @@
           />
           <SocialMediaButton link="https://github.com/Joao-Camilo-Mallmann" platform="github" />
           <SocialMediaButton link="https://www.youtube.com/@J.C-12" platform="youtube" />
-          <SocialMediaButton link="https://wa.me/5551994461433" platform="whatsapp" />
+          <!-- <SocialMediaButton link="https://wa.me/5551994461433" platform="whatsapp" /> -->
           <SocialMediaButton link="mailto:jcamilomallmann@hotmail.com" platform="email" />
         </nav>
       </footer>
