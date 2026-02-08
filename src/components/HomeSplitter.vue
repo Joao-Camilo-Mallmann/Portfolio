@@ -1,27 +1,27 @@
-<script>
-export default {
-  data() {
-    return {
-      selectedPanel: null,
-      isAnimating: false,
-      urlDevImg:
-        'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=crop',
-      urlEditorImg:
-        'https://images.unsplash.com/photo-1574717025058-2f8737d2e2b7?q=80&w=687&auto=format&fit=crop',
-    }
-  },
-  methods: {
-    selectProfile(profile, path) {
-      if (this.isAnimating) return
-      this.isAnimating = true
-      this.selectedPanel = profile
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-      // Aguarda a animação de expansão antes de navegar
-      setTimeout(() => {
-        this.$router.push(path)
-      }, 1000) // Tempo sincronizado com animação otimizada
-    },
-  },
+const router = useRouter()
+
+const selectedPanel = ref(null)
+const isAnimating = ref(false)
+const urlDevImg = ref(
+  'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=crop',
+)
+const urlEditorImg = ref(
+  'https://images.unsplash.com/photo-1574717025058-2f8737d2e2b7?q=80&w=687&auto=format&fit=crop',
+)
+
+const selectProfile = (profile, path) => {
+  if (isAnimating.value) return
+  isAnimating.value = true
+  selectedPanel.value = profile
+
+  // Aguarda a animação de expansão antes de navegar
+  setTimeout(() => {
+    router.push(path)
+  }, 1000) // Tempo sincronizado com animação otimizada
 }
 </script>
 

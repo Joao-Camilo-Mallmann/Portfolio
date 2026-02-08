@@ -1,170 +1,164 @@
-<script>
-export default {
-  data() {
-    return {
-      projects: [
-        {
-          title: 'Vimasi Vedações 🔧',
-          image: '/img/vimasi.png',
-          imageAlt: 'Screenshot do site Vimasi Vedações',
-          description:
-            'Site institucional de alta performance desenvolvido com Nuxt (Vue.js). Foco total em SEO técnico, arquitetura de componentes escalável e experiência do usuário (UX) para conversão de clientes reais.',
-          status: 'Público',
-          statusType: 'public', // 'public', 'private'
-          devStatus: 'Concluído',
-          devStatusType: 'completed', // 'completed', 'wip'
-          year: 2025,
-          colors: { from: '#ff6b35', to: '#f7931e' },
-          tags: [
-            { label: 'Nuxt', color: '#00DC82' },
-            { label: 'Vue.js', color: '#42b883' },
-            { label: 'SEO', color: '#f59e0b' },
-            { label: 'JavaScript', color: '#f7df1e' },
-          ],
-          links: [
-            {
-              label: 'Visitar Site',
-              icon: 'pi pi-external-link',
-              url: 'https://vimasi-vedacoes.com/',
-              type: 'primary',
-            },
-            {
-              label: 'Código',
-              icon: 'pi pi-github',
-              url: 'https://github.com/Joao-Camilo-Mallmann/vimasi-vedacoes-vue',
-              type: 'secondary',
-            },
-          ],
-        },
-        {
-          title: 'Travel Mate - Agência de Turismo',
-          image: '/img/destinos.png',
-          imageAlt: 'Screenshot do Travel Mate',
-          description:
-            'Plataforma full-stack para agência de turismo com interface moderna e responsiva. Backend em Node.js com Express.js, banco SQLite e deploy automático na Railway. Inclui API RESTful, galeria de destinos e sistema de pacotes.',
-          status: 'Público',
-          statusType: 'public',
-          devStatus: 'Concluído',
-          devStatusType: 'completed',
-          year: 2024,
-          colors: { from: '#4285f4', to: '#1e40af' },
-          tags: [
-            { label: 'Node.js', color: '#43853d' },
-            { label: 'Express.js', color: '#ffffff' },
-            { label: 'SQLite', color: '#38bdf8' },
-            { label: 'Railway', color: '#0066ff' },
-          ],
-          links: [
-            {
-              label: 'Ver Site',
-              icon: 'pi pi-external-link',
-              url: 'https://web-production-758be.up.railway.app/',
-              type: 'primary',
-            },
-            {
-              label: 'Código',
-              icon: 'pi pi-github',
-              url: 'https://github.com/JoaoCamiloMallmann/back',
-              type: 'secondary',
-            },
-          ],
-        },
-        {
-          title: 'Sistema de Mobilidade Urbana',
-          image: '/img/smu.png',
-          imageAlt: 'Screenshot do SMU',
-          description:
-            'Sistema completo para gestão de mobilidade urbana com Vue.js 3, Pinia, WebSocket e Google Maps. Dashboard em tempo real, gestão de ocorrências, despacho automático e rastreamento de viaturas com interface responsiva.',
-          status: 'Privado',
-          statusType: 'private',
-          devStatus: 'Em Andamento',
-          devStatusType: 'wip',
-          year: 2024,
-          colors: { from: '#8b5cf6', to: '#7c3aed' },
-          tags: [
-            { label: 'Vue.js 3', color: '#4fc08d' },
-            { label: 'Pinia', color: '#9333ea' },
-            { label: 'Vuetify', color: '#1976d2' },
-            { label: 'WebSocket', color: '#38bdf8' },
-          ],
-          links: [], // Projeto privado sem links públicos
-        },
-        {
-          title: 'Portfolio Pessoal (Esse Site)',
-          image: null, // Sem imagem, vamos mostrar um ícone
-          imageAlt: 'Ícone do portfólio pessoal',
-          description:
-            'Portfólio pessoal desenvolvido com Vue.js 3, Tailwind CSS e PrimeVue. Interface moderna e responsiva para apresentar projetos, habilidades e experiências como Software Developer | Frontend Specialist e editor de vídeo.',
-          status: 'Público',
-          statusType: 'public',
-          devStatus: 'Ativo',
-          devStatusType: 'active',
-          year: 2024,
-          colors: { from: '#10b981', to: '#059669' },
-          tags: [
-            { label: 'Vue.js 3', color: '#4fc08d' },
-            { label: 'Tailwind', color: '#06b6d4' },
-            { label: 'PrimeVue', color: '#9333ea' },
-            { label: 'JavaScript', color: '#f59e0b' },
-          ],
-          links: [
-            {
-              label: 'Código',
-              icon: 'pi pi-github',
-              url: 'https://github.com/Joao-Camilo-Mallmann/Portfolio',
-              type: 'primary',
-            },
-          ],
-        },
-      ],
-    }
+<script setup>
+import { ref } from 'vue'
+
+const projects = ref([
+  {
+    title: 'Vimasi Vedações 🔧',
+    image: '/img/vimasi.png',
+    imageAlt: 'Screenshot do site Vimasi Vedações',
+    description:
+      'Site institucional de alta performance desenvolvido com Nuxt (Vue.js). Foco total em SEO técnico, arquitetura de componentes escalável e experiência do usuário (UX) para conversão de clientes reais.',
+    status: 'Público',
+    statusType: 'public', // 'public', 'private'
+    devStatus: 'Concluído',
+    devStatusType: 'completed', // 'completed', 'wip'
+    year: 2025,
+    colors: { from: '#ff6b35', to: '#f7931e' },
+    tags: [
+      { label: 'Nuxt', color: '#00DC82' },
+      { label: 'Vue.js', color: '#42b883' },
+      { label: 'SEO', color: '#f59e0b' },
+      { label: 'JavaScript', color: '#f7df1e' },
+    ],
+    links: [
+      {
+        label: 'Visitar Site',
+        icon: 'pi pi-external-link',
+        url: 'https://vimasi-vedacoes.com/',
+        type: 'primary',
+      },
+      {
+        label: 'Código',
+        icon: 'pi pi-github',
+        url: 'https://github.com/Joao-Camilo-Mallmann/vimasi-vedacoes-vue',
+        type: 'secondary',
+      },
+    ],
   },
-
-  methods: {
-    openLink(url) {
-      window.open(url, '_blank', 'noopener,noreferrer')
-    },
-
-    getDevStatusIcon(statusType) {
-      switch (statusType) {
-        case 'completed':
-          return 'pi pi-check-circle'
-
-        case 'active':
-          return 'pi pi-bolt'
-        default:
-          return 'pi pi-info-circle'
-      }
-    },
-
-    getDevStatusColor(statusType) {
-      switch (statusType) {
-        case 'completed':
-          return '#22c55e' // Verde
-
-        case 'active':
-          return '#f59e0b' // Azul
-        default:
-          return '#9ca3af' // Cinza
-      }
-    },
-
-    getProjectCardStyle(project) {
-      return {
-        background: `linear-gradient(135deg, ${project.colors.from}80, ${project.colors.to}40)`,
-        borderColor: `${project.colors.from}60`,
-        borderWidth: '1px',
-      }
-    },
-
-    getTagChipStyle(tag) {
-      return {
-        backgroundColor: `${tag.color}33`,
-        color: tag.color,
-        border: `1px solid ${tag.color}4D`, // Opacidade ~30%
-      }
-    },
+  {
+    title: 'Travel Mate - Agência de Turismo',
+    image: '/img/destinos.png',
+    imageAlt: 'Screenshot do Travel Mate',
+    description:
+      'Plataforma full-stack para agência de turismo com interface moderna e responsiva. Backend em Node.js com Express.js, banco SQLite e deploy automático na Railway. Inclui API RESTful, galeria de destinos e sistema de pacotes.',
+    status: 'Público',
+    statusType: 'public',
+    devStatus: 'Concluído',
+    devStatusType: 'completed',
+    year: 2024,
+    colors: { from: '#4285f4', to: '#1e40af' },
+    tags: [
+      { label: 'Node.js', color: '#43853d' },
+      { label: 'Express.js', color: '#ffffff' },
+      { label: 'SQLite', color: '#38bdf8' },
+      { label: 'Railway', color: '#0066ff' },
+    ],
+    links: [
+      {
+        label: 'Ver Site',
+        icon: 'pi pi-external-link',
+        url: 'https://web-production-758be.up.railway.app/',
+        type: 'primary',
+      },
+      {
+        label: 'Código',
+        icon: 'pi pi-github',
+        url: 'https://github.com/JoaoCamiloMallmann/back',
+        type: 'secondary',
+      },
+    ],
   },
+  {
+    title: 'Sistema de Mobilidade Urbana',
+    image: '/img/smu.png',
+    imageAlt: 'Screenshot do SMU',
+    description:
+      'Sistema completo para gestão de mobilidade urbana com Vue.js 3, Pinia, WebSocket e Google Maps. Dashboard em tempo real, gestão de ocorrências, despacho automático e rastreamento de viaturas com interface responsiva.',
+    status: 'Privado',
+    statusType: 'private',
+    devStatus: 'Em Andamento',
+    devStatusType: 'wip',
+    year: 2024,
+    colors: { from: '#8b5cf6', to: '#7c3aed' },
+    tags: [
+      { label: 'Vue.js 3', color: '#4fc08d' },
+      { label: 'Pinia', color: '#9333ea' },
+      { label: 'Vuetify', color: '#1976d2' },
+      { label: 'WebSocket', color: '#38bdf8' },
+    ],
+    links: [], // Projeto privado sem links públicos
+  },
+  {
+    title: 'Portfolio Pessoal (Esse Site)',
+    image: null, // Sem imagem, vamos mostrar um ícone
+    imageAlt: 'Ícone do portfólio pessoal',
+    description:
+      'Portfólio pessoal desenvolvido com Vue.js 3, Tailwind CSS e PrimeVue. Interface moderna e responsiva para apresentar projetos, habilidades e experiências como Software Developer | Frontend Specialist e editor de vídeo.',
+    status: 'Público',
+    statusType: 'public',
+    devStatus: 'Ativo',
+    devStatusType: 'active',
+    year: 2024,
+    colors: { from: '#10b981', to: '#059669' },
+    tags: [
+      { label: 'Vue.js 3', color: '#4fc08d' },
+      { label: 'Tailwind', color: '#06b6d4' },
+      { label: 'PrimeVue', color: '#9333ea' },
+      { label: 'JavaScript', color: '#f59e0b' },
+    ],
+    links: [
+      {
+        label: 'Código',
+        icon: 'pi pi-github',
+        url: 'https://github.com/Joao-Camilo-Mallmann/Portfolio',
+        type: 'primary',
+      },
+    ],
+  },
+])
+
+const openLink = (url) => {
+  window.open(url, '_blank', 'noopener,noreferrer')
+}
+
+const getDevStatusIcon = (statusType) => {
+  switch (statusType) {
+    case 'completed':
+      return 'pi pi-check-circle'
+
+    case 'active':
+      return 'pi pi-bolt'
+    default:
+      return 'pi pi-info-circle'
+  }
+}
+
+const getDevStatusColor = (statusType) => {
+  switch (statusType) {
+    case 'completed':
+      return '#22c55e' // Verde
+
+    case 'active':
+      return '#f59e0b' // Azul
+    default:
+      return '#9ca3af' // Cinza
+  }
+}
+
+const getProjectCardStyle = (project) => {
+  return {
+    background: `linear-gradient(135deg, ${project.colors.from}80, ${project.colors.to}40)`,
+    borderColor: `${project.colors.from}60`,
+    borderWidth: '1px',
+  }
+}
+
+const getTagChipStyle = (tag) => {
+  return {
+    backgroundColor: `${tag.color}33`,
+    color: tag.color,
+    border: `1px solid ${tag.color}4D`, // Opacidade ~30%
+  }
 }
 </script>
 

@@ -1,26 +1,23 @@
-<script>
-export default {
-  data() {
-    return {
-      aboutMe: {
-        description:
-          'Software Developer | Frontend Specialist (Vue.js & TypeScript) focado em performance e UX. Proficiente em arquiteturas escaláveis e código limpo, transformo desafios em soluções digitais robustas em ambientes ágeis.',
-        avatar: 'https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png',
-      },
-      softSkills: [
-        { label: 'Comunicação Clara', icon: 'pi pi-comments', color: 'text-blue-400' },
-        { label: 'Trabalho em Equipe', icon: 'pi pi-users', color: 'text-purple-400' },
-        { label: 'Resolução de Problemas', icon: 'pi pi-key', color: 'text-orange-400' },
-        { label: 'Pensamento Crítico', icon: 'pi pi-sitemap', color: 'text-green-400' },
-        { label: 'Adaptabilidade e Resiliência', icon: 'pi pi-refresh', color: 'text-emerald-400' },
-        { label: 'Metodologias Ágeis', icon: 'pi pi-sync', color: 'text-sky-400' },
-        { label: 'Criatividade', icon: 'pi pi-lightbulb', color: 'text-amber-400' },
-        { label: 'Inteligência Emocional', icon: 'pi pi-heart', color: 'text-pink-400' },
-        { label: 'Pensamento Crítico', icon: 'pi pi-microchip', color: 'text-green-400' },
-      ],
-    }
-  },
-}
+<script setup>
+import { ref } from 'vue'
+
+const aboutMe = ref({
+  description:
+    'Software Developer | Frontend Specialist (Vue.js & TypeScript) focado em performance e UX. Proficiente em arquiteturas escaláveis e código limpo, transformo desafios em soluções digitais robustas em ambientes ágeis.',
+  avatar: 'https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png',
+})
+
+const softSkills = ref([
+  { label: 'Comunicação Clara', icon: 'pi pi-comments', color: 'text-blue-400' },
+  { label: 'Trabalho em Equipe', icon: 'pi pi-users', color: 'text-purple-400' },
+  { label: 'Resolução de Problemas', icon: 'pi pi-key', color: 'text-orange-400' },
+  { label: 'Pensamento Crítico', icon: 'pi pi-sitemap', color: 'text-green-400' },
+  { label: 'Adaptabilidade e Resiliência', icon: 'pi pi-refresh', color: 'text-emerald-400' },
+  { label: 'Metodologias Ágeis', icon: 'pi pi-sync', color: 'text-sky-400' },
+  { label: 'Criatividade', icon: 'pi pi-lightbulb', color: 'text-amber-400' },
+  { label: 'Inteligência Emocional', icon: 'pi pi-heart', color: 'text-pink-400' },
+  { label: 'Pensamento Crítico', icon: 'pi pi-microchip', color: 'text-green-400' },
+])
 </script>
 
 <template>

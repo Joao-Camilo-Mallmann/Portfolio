@@ -29,14 +29,10 @@
   </Panel>
 </template>
 
-<script>
-export default {
-  name: 'YouTubeChannelPanel',
-  data() {
-    return {
-      youtubeJCLink:
-        'https://yt3.ggpht.com/VhJNJwOB8d4NY-XaUtpjcQwHMqlT_DAO7eTc1g0mmaKVt9Jj0bGQv1G02Hp3R6NwkATWXT97Rg=s600-c-k-c0x00ffffff-no-rj-rp-mo',
-    }
-  },
-}
+<script setup>
+import { ref } from 'vue'
+
+const youtubeJCLink = ref(
+  'https://yt3.ggpht.com/VhJNJwOB8d4NY-XaUtpjcQwHMqlT_DAO7eTc1g0mmaKVt9Jj0bGQv1G02Hp3R6NwkATWXT97Rg=s600-c-k-c0x00ffffff-no-rj-rp-mo',
+)
 </script>

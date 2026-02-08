@@ -4,7 +4,7 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
 
 ## 1. Estrutura de Arquivos
 
-- O projeto é desenvolvido em Vue.js (Options API).
+- O projeto é desenvolvido em Vue.js (Composition API).
 - Os componentes reutilizáveis devem ser criados em `src/components`.
 - As views (páginas) principais devem ser criadas em `src/views`.
 - Os componentes devem ser nomeados em PascalCase (ex: `MeuComponente.vue`).
@@ -25,7 +25,7 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
 - **OBRIGATÓRIO:** Use APENAS classes semânticas de cores, nunca valores hex diretamente no código.
 - As cores primárias são definidas no `main.css` usando a diretiva `@theme` do Tailwind CSS v4:
   - `--color-dev: #4d91ea` (azul para portfólio de Desenvolvedor)
-  - `--color-editor: #eaa64d` (laranja para portfólio de Editor)
+  - `--color-editor: #w` (laranja para portfólio de Editor)
 - **IMPORTANTE:** Não existe mais o arquivo `tailwind.config.js` - toda configuração é feita via CSS usando `@theme`
 
 #### Classes de Cores Permitidas:
@@ -54,10 +54,11 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
 
 ## 3. Componentes Vue
 
-- Utilize a **Options API** para a criação de todos os componentes. O uso da Composition API não é permitido.
-- Declare as `props` com tipos e, quando aplicável, com `required: true`.
-- Mantenha a estrutura dos componentes organizada: `name`, `components`, `props`, `data`, `methods`, etc.
-- Para métodos que interagem com APIs do navegador (como `window.open`), crie métodos dedicados no componente em vez de usar diretamente no template.
+- Utilize a **Composition API** (`<script setup>`) para a criação de todos os componentes. O uso da Options API não é mais recomendado.
+- Declare as `props` usando `defineProps`.
+- Declare os eventos usando `defineEmits`.
+- Mantenha a estrutura dos componentes organizada e limpa.
+- Para métodos que interagem com APIs do navegador (como `window.open`), crie funções dentro do `<script setup>`.
 
 ## 4. Código e Padrões
 
@@ -110,5 +111,5 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
 
 **Última atualização:** Outubro 2025
 **Versão do Tailwind CSS:** v4
-**Versão do Vue:** 3 (Options API)
+**Versão do Vue:** 3 (Composition API)
 **Gerenciador de Pacotes:** BUN

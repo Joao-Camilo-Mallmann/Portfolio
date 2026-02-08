@@ -70,45 +70,35 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import Card from 'primevue/card'
+import { ref } from 'vue'
 
-export default {
-  name: 'VideoPortfolio',
-  components: {
-    Card,
+const bestVideos = ref([
+  {
+    title: 'Um jogo sobre Redenção.......',
+    thumbnail: 'https://i.ytimg.com/vi/YVjG6wA-zz4/hqdefault.jpg',
+    description:
+      'Análise e edição sobre Red Dead Redemption 2, destacando narrativa e produção visual.',
+    url: 'https://youtu.be/YVjG6wA-zz4?si=cAKm0HZKXfuBwMe-',
   },
-  methods: {
-    openVideo(url) {
-      window.open(url, '_blank', 'noopener,noreferrer')
-    },
+  {
+    title: 'O novo ouro (Veja antes de 2030)',
+    thumbnail: 'https://i.ytimg.com/vi/UptGuUMaYMs/maxresdefault.jpg',
+    description:
+      'Entenda por que o Bitcoin é considerado o novo ouro digital e sua importância para o futuro financeiro.',
+    url: 'https://youtu.be/UptGuUMaYMs?si=1AfT7HgG3L4y7bcn',
   },
-  data() {
-    return {
-      bestVideos: [
-        {
-          title: 'Um jogo sobre Redenção.......',
-          thumbnail: 'https://i.ytimg.com/vi/YVjG6wA-zz4/hqdefault.jpg',
-          description:
-            'Análise e edição sobre Red Dead Redemption 2, destacando narrativa e produção visual.',
-          url: 'https://youtu.be/YVjG6wA-zz4?si=cAKm0HZKXfuBwMe-',
-        },
-        {
-          title: 'O novo ouro (Veja antes de 2030)',
-          thumbnail: 'https://i.ytimg.com/vi/UptGuUMaYMs/maxresdefault.jpg',
-          description:
-            'Entenda por que o Bitcoin é considerado o novo ouro digital e sua importância para o futuro financeiro.',
-          url: 'https://youtu.be/UptGuUMaYMs?si=1AfT7HgG3L4y7bcn',
-        },
-        {
-          title: 'Qual é o SEU Tipo de Amor? ',
-          thumbnail: 'https://i.ytimg.com/vi/s7bjysMoHYQ/maxresdefault.jpg',
-          description:
-            'Descubra as 5 linguagens do amor e como elas ajudam a fortalecer relações e demonstrar afeto.',
-          url: 'https://youtu.be/s7bjysMoHYQ?si=iXzuPpr459RidSaW',
-        },
-      ],
-    }
+  {
+    title: 'Qual é o SEU Tipo de Amor? ',
+    thumbnail: 'https://i.ytimg.com/vi/s7bjysMoHYQ/maxresdefault.jpg',
+    description:
+      'Descubra as 5 linguagens do amor e como elas ajudam a fortalecer relações e demonstrar afeto.',
+    url: 'https://youtu.be/s7bjysMoHYQ?si=iXzuPpr459RidSaW',
   },
+])
+
+const openVideo = (url) => {
+  window.open(url, '_blank', 'noopener,noreferrer')
 }
 </script>

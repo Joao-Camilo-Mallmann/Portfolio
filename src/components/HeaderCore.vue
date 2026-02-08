@@ -94,20 +94,16 @@
   </header>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      mobileMenuOpen: false,
-    }
-  },
-  methods: {
-    toggleMobileMenu() {
-      this.mobileMenuOpen = !this.mobileMenuOpen
-    },
-    closeMobileMenu() {
-      this.mobileMenuOpen = false
-    },
-  },
+<script setup>
+import { ref } from 'vue'
+
+const mobileMenuOpen = ref(false)
+
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value
+}
+
+const closeMobileMenu = () => {
+  mobileMenuOpen.value = false
 }
 </script>

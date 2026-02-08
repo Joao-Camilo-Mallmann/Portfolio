@@ -1,6 +1,3 @@
-import DevView from '@/views/DevView.vue'
-import EditorView from '@/views/EditorView.vue'
-import HomeView from '@/views/HomeView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Definir rotas (exportado para uso no ViteSSG)
@@ -8,17 +5,22 @@ export const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: () => import('../views/HomeView.vue'),
   },
   {
     path: '/dev',
     name: 'DevView',
-    component: DevView,
+    component: () => import('../views/DevView.vue'),
   },
   {
     path: '/editor',
     name: 'EditorView',
-    component: EditorView,
+    component: () => import('../views/EditorView.vue'),
+  },
+  {
+    path: '/easter-egg',
+    name: 'SecretView',
+    component: () => import('../views/SecretView.vue'),
   },
   // Captura todas as rotas não encontradas e redireciona para home
   {

@@ -205,26 +205,13 @@
   </Card>
 </template>
 
-<script>
+<script setup>
 import Card from 'primevue/card'
 import Tab from 'primevue/tab'
 import TabList from 'primevue/tablist'
 import TabPanel from 'primevue/tabpanel'
 import TabPanels from 'primevue/tabpanels'
 import Tabs from 'primevue/tabs'
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'CardDetails',
-  components: {
-    Card,
-    Tabs,
-    TabList,
-    Tab,
-    TabPanels,
-    TabPanel,
-  },
-})
 </script>
 
 <style scoped>

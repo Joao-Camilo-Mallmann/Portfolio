@@ -50,34 +50,26 @@
   </footer>
 </template>
 
-<script>
+<script setup>
+import { computed } from 'vue';
 import SocialMediaButton from './SocialMediaButton.vue';
 
-export default {
-  name: 'FooterContact',
-  components: {
-    SocialMediaButton,
+defineProps({
+  primaryColor: {
+    type: String,
+    default: '#4d91ea',
   },
-  props: {
-    primaryColor: {
-      type: String,
-      default: '#4d91ea',
-    },
-    ctaText: {
-      type: String,
-      default: 'Entre em contato comigo!',
-    },
-    variant: {
-      type: String,
-      default: 'default', // 'default' or 'editor'
-    },
+  ctaText: {
+    type: String,
+    default: 'Entre em contato comigo!',
   },
-  computed: {
-    currentYear() {
-      return new Date().getFullYear()
-    },
+  variant: {
+    type: String,
+    default: 'default', // 'default' or 'editor'
   },
-}
+})
+
+const currentYear = computed(() => new Date().getFullYear())
 </script>
 
 <style scoped>

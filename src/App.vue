@@ -1,9 +1,37 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue'
-import { RouterView, useRoute } from 'vue-router'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { RouterView, useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
+const router = useRouter()
 const isLoading = ref(true)
+
+// Konami Code Logic
+const konamiCode = [
+  'ArrowUp',
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+  'ArrowLeft',
+  'ArrowRight',
+  'b',
+  'a',
+]
+let konamiIndex = 0
+
+const handleKeydown = (e) => {
+  if (e.key === konamiCode[konamiIndex]) {
+    konamiIndex++
+    if (konamiIndex === konamiCode.length) {
+      router.push('/secret')
+      konamiIndex = 0
+    }
+  } else {
+    konamiIndex = 0
+  }
+}
 
 // Desativa o scroll quando loading está ativo
 watch(
@@ -19,10 +47,15 @@ watch(
 )
 
 onMounted(() => {
+  window.addEventListener('keydown', handleKeydown)
   // Aguarda um pequeno delay para garantir que tudo carregou
   setTimeout(() => {
     isLoading.value = false
   }, 1200)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown)
 })
 </script>
 

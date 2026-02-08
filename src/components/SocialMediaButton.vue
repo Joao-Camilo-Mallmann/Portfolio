@@ -1,95 +1,88 @@
-<script>
-export default {
-  name: 'SocialMediaButton',
-  props: {
-    platform: {
-      type: String,
-      required: true,
-      validator: (value) =>
-        ['linkedin', 'github', 'youtube', 'whatsapp', 'email', 'curriculo'].includes(value),
-    },
-    link: {
-      type: String,
-      required: false,
-    },
-    variant: {
-      type: String,
-      default: 'default', // 'default' or 'editor'
-    },
-  },
+<script setup>
+import { computed } from 'vue'
 
-  data() {
-    return {
-      platformConfig: {
-        linkedin: {
-          icon: 'pi pi-linkedin',
-          colors: {
-            primary: '#0077b5',
-            hover: '#005885',
-          },
-        },
-        github: {
-          icon: 'pi pi-github',
-          colors: {
-            primary: '#333',
-            hover: '#24292e',
-          },
-        },
-        youtube: {
-          icon: 'pi pi-youtube',
-          colors: {
-            primary: 'linear-gradient(to right, #c4302b 0%, #ff0000 51%, #c4302b 100%)',
-            hover: 'linear-gradient(to right, #a02622 0%, #e60000 51%, #a02622 100%)',
-          },
-        },
-        whatsapp: {
-          icon: 'pi pi-whatsapp',
-          colors: {
-            primary: '#25d366',
-            hover: '#1da851',
-          },
-        },
-        email: {
-          icon: 'pi pi-envelope',
-          colors: {
-            primary: '#ea4335',
-            hover: '#d33b2c',
-          },
-        },
-        curriculo: {
-          icon: 'pi pi-file',
-          colors: {
-            primary: '#4d91ea',
-            hover: '#3a6bbf',
-          },
-        },
-      },
-    }
+const props = defineProps({
+  platform: {
+    type: String,
+    required: true,
+    validator: (value) =>
+      ['linkedin', 'github', 'youtube', 'whatsapp', 'email', 'curriculo'].includes(value),
   },
+  link: {
+    type: String,
+    required: false,
+  },
+  variant: {
+    type: String,
+    default: 'default', // 'default' or 'editor'
+  },
+})
 
-  computed: {
-    platformIcon() {
-      return this.platformConfig[this.platform]?.icon || ''
-    },
-    platformClass() {
-      return `social-button ${this.platform}`
-    },
-    platformColors() {
-      return this.platformConfig[this.platform]?.colors || {}
+const platformConfig = {
+  linkedin: {
+    icon: 'pi pi-linkedin',
+    colors: {
+      primary: '#0077b5',
+      hover: '#005885',
     },
   },
+  github: {
+    icon: 'pi pi-github',
+    colors: {
+      primary: '#333',
+      hover: '#24292e',
+    },
+  },
+  youtube: {
+    icon: 'pi pi-youtube',
+    colors: {
+      primary: 'linear-gradient(to right, #c4302b 0%, #ff0000 51%, #c4302b 100%)',
+      hover: 'linear-gradient(to right, #a02622 0%, #e60000 51%, #a02622 100%)',
+    },
+  },
+  whatsapp: {
+    icon: 'pi pi-whatsapp',
+    colors: {
+      primary: '#25d366',
+      hover: '#1da851',
+    },
+  },
+  email: {
+    icon: 'pi pi-envelope',
+    colors: {
+      primary: '#ea4335',
+      hover: '#d33b2c',
+    },
+  },
+  curriculo: {
+    icon: 'pi pi-file',
+    colors: {
+      primary: '#4d91ea',
+      hover: '#3a6bbf',
+    },
+  },
+}
 
-  methods: {
-    openLink() {
-      if (this.platform === 'email') {
-        window.location.href = this.link
-      } else if (this.platform === 'curriculo') {
-        window.open('public/Currículo.pdf', '_blank')
-      } else {
-        window.open(this.link, '_blank')
-      }
-    },
-  },
+const platformIcon = computed(() => {
+  return platformConfig[props.platform]?.icon || ''
+})
+
+const platformClass = computed(() => {
+  return `social-button ${props.platform}`
+})
+
+const platformColors = computed(() => {
+  return platformConfig[props.platform]?.colors || {}
+})
+
+const openLink = () => {
+  if (props.platform === 'email') {
+    window.location.href = props.link
+  } else if (props.platform === 'curriculo') {
+    window.open('public/Currículo.pdf', '_blank')
+  } else {
+    window.open(props.link, '_blank')
+  }
 }
 </script>
 

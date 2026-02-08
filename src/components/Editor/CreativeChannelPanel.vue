@@ -66,20 +66,15 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'CreativeChannelPanel',
-  data() {
-    return {
-      youtubeOFurryLink:
-        'https://yt3.googleusercontent.com/gnIEqwR1vmWB45wdNA45xHpRYaE0XiJUYihwt3aCI2A4TWG4jusXHKOLVi9WDr3rcJ1P5GlHcw=s160-c-k-c0x00ffffff-no-rj',
-    }
-  },
-  methods: {
-    openChannel() {
-      window.open('https://www.youtube.com/@OFurryOficial', '_blank')
-    },
-  },
+<script setup>
+import { ref } from 'vue'
+
+const youtubeOFurryLink = ref(
+  'https://yt3.googleusercontent.com/gnIEqwR1vmWB45wdNA45xHpRYaE0XiJUYihwt3aCI2A4TWG4jusXHKOLVi9WDr3rcJ1P5GlHcw=s160-c-k-c0x00ffffff-no-rj',
+)
+
+const openChannel = () => {
+  window.open('https://www.youtube.com/@OFurryOficial', '_blank')
 }
 </script>
 
