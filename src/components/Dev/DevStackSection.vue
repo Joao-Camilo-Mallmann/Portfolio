@@ -1,9 +1,9 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 const techCategories = ref([
   {
-    header: 'Linguagens & Core',
+    header: 'Core Engineering & Languages',
     icon: 'pi pi-code',
     description: 'HTML, CSS, JavaScript, TypeScript',
     technologies: [
@@ -36,7 +36,7 @@ const techCategories = ref([
     ],
   },
   {
-    header: 'Frameworks & Ecossistema',
+    header: 'Ecosystem & Architecture',
     icon: 'pi pi-sitemap',
     description: 'Vue.js, Nuxt.js, React, Vite',
     technologies: [
@@ -67,7 +67,7 @@ const techCategories = ref([
     ],
   },
   {
-    header: 'Estilização & UI',
+    header: 'Design Systems & UI Engineering',
     icon: 'pi pi-palette',
     description: 'Vuetify, Bootstrap, Tailwind CSS',
     technologies: [
@@ -100,7 +100,7 @@ const techCategories = ref([
     ],
   },
   {
-    header: 'Ambiente, CMS & Back-end',
+    header: 'Backend & Infrastructure',
     icon: 'pi pi-server',
     description: 'Node.js, Bun, WordPress, PHP, Java',
     technologies: [
@@ -133,7 +133,7 @@ const techCategories = ref([
     ],
   },
   {
-    header: 'Ferramentas & Versionamento',
+    header: 'DevOps & Tooling',
     icon: 'pi pi-cog',
     description: 'Git, GitHub, GitLab, Linux, VSCode',
     technologies: [

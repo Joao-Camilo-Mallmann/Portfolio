@@ -8,33 +8,34 @@ import HeaderCore from '@/components/HeaderCore.vue'
 import { useHead } from '@unhead/vue'
 
 useHead({
-  title: 'Desenvolvedor',
+  title: 'Full Stack Developer | Frontend Specialist',
   meta: [
     {
       name: 'description',
       content:
-        'Portfólio de desenvolvimento de João Camilo Mallmann. Especialista em Vue.js, JavaScript, TypeScript e desenvolvimento web moderno. Projetos, stack tecnológico e experiência profissional.',
+        'Portfólio de João Camilo Mallmann. Full Stack Developer especializado em Vue.js e React. Foco em arquiteturas frontend escaláveis, performance web e experiência do usuário.',
     },
     {
       name: 'keywords',
       content:
-        'desenvolvedor frontend, Vue.js, JavaScript, TypeScript, desenvolvimento web, programador Brasil, portfolio desenvolvedor',
+        'full stack developer, frontend specialist, Vue.js, React, arquitetura de software, performance web, desenvolvedor senior',
     },
     // Open Graph
-    { property: 'og:title', content: 'João Camilo Mallmann - Desenvolvedor Frontend' },
+    { property: 'og:title', content: 'João Camilo Mallmann - Full Stack Developer' },
     {
       property: 'og:description',
       content:
-        'Especialista em Vue.js e JavaScript. Confira meus projetos e experiência em desenvolvimento web moderno.',
+        'Full Stack Developer com foco em Frontend. Especialista em Vue.js e React. Arquiteturas escaláveis e performance.',
     },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: 'https://joao-camilo-mallmann.com/dev' },
     // Twitter
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'João Camilo Mallmann - Desenvolvedor Frontend' },
+    { name: 'twitter:title', content: 'João Camilo Mallmann - Full Stack Developer' },
     {
       name: 'twitter:description',
-      content: 'Especialista em Vue.js e JavaScript. Confira meus projetos de desenvolvimento.',
+      content:
+        'Full Stack Developer | Especialista Vue.js & React. Foco em arquitetura frontend e DX.',
     },
   ],
   link: [{ rel: 'canonical', href: 'https://joao-camilo-mallmann.com/dev' }],

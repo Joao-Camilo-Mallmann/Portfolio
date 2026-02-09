@@ -7,7 +7,7 @@ const projects = ref([
     image: '/img/vimasi.png',
     imageAlt: 'Screenshot do site Vimasi Vedações',
     description:
-      'Site institucional de alta performance desenvolvido com Nuxt (Vue.js). Foco total em SEO técnico, arquitetura de componentes escalável e experiência do usuário (UX) para conversão de clientes reais.',
+      'Site institucional de alta performance com Nuxt. Implementação de estratégias avançadas de SEO Técnico e SSG (Static Site Generation), resultando em Core Web Vitals otimizados e alta taxa de conversão.',
     status: 'Público',
     statusType: 'public', // 'public', 'private'
     devStatus: 'Concluído',
@@ -40,7 +40,7 @@ const projects = ref([
     image: '/img/destinos.png',
     imageAlt: 'Screenshot do Travel Mate',
     description:
-      'Plataforma full-stack para agência de turismo com interface moderna e responsiva. Backend em Node.js com Express.js, banco SQLite e deploy automático na Railway. Inclui API RESTful, galeria de destinos e sistema de pacotes.',
+      'Solução Full Stack escalável com arquitetura monolítica modular em Node.js. API RESTful documentada, integração com banco de dados SQLite otimizado e pipeline de deploy automatizado na Railway.',
     status: 'Público',
     statusType: 'public',
     devStatus: 'Concluído',
@@ -73,7 +73,7 @@ const projects = ref([
     image: '/img/smu.png',
     imageAlt: 'Screenshot do SMU',
     description:
-      'Sistema completo para gestão de mobilidade urbana com Vue.js 3, Pinia, WebSocket e Google Maps. Dashboard em tempo real, gestão de ocorrências, despacho automático e rastreamento de viaturas com interface responsiva.',
+      'Plataforma de missão crítica para monitoramento em tempo real. Arquitetura orientada a eventos utilizando WebSockets para streaming de dados geoespaciais e renderização otimizada de milhares de ativos no mapa.',
     status: 'Privado',
     statusType: 'private',
     devStatus: 'Em Andamento',
@@ -93,7 +93,7 @@ const projects = ref([
     image: null, // Sem imagem, vamos mostrar um ícone
     imageAlt: 'Ícone do portfólio pessoal',
     description:
-      'Portfólio pessoal desenvolvido com Vue.js 3, Tailwind CSS e PrimeVue. Interface moderna e responsiva para apresentar projetos, habilidades e experiências como Software Developer | Frontend Specialist e editor de vídeo.',
+      'Vitrine tecnológica desenvolvida com foco em DX e performance. Utiliza Vue 3 Composition API, Tailwind v4 e automação de CI/CD. Implementação de práticas de acessibilidade (a11y) e SEO semântico.',
     status: 'Público',
     statusType: 'public',
     devStatus: 'Ativo',
@@ -165,9 +165,9 @@ const getTagChipStyle = (tag) => {
 <template>
   <div class="text-center mb-12 animate-slide-up">
     <h2
-      class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 bg-gradient-to-r from-[#4d91ea] via-blue-400 to-blue-200 bg-clip-text text-transparent animate-gradient-move"
+      class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent animate-gradient-move"
     >
-      <i class="pi pi-folder text-[#4d91ea] text-2xl animate-bounce-soft"></i>
+      <i class="pi pi-folder text-dev text-2xl animate-bounce-soft"></i>
       Principais Projetos
     </h2>
     <p class="text-gray-400 text-lg animate-fade-in-delayed">
@@ -179,7 +179,7 @@ const getTagChipStyle = (tag) => {
     <Card
       v-for="(project, index) in projects"
       :key="index"
-      class="project-card group !z-99 animate-slide-up hover:scale-101 hover:-translate-y-3 transition-all !duration-500 ease-out"
+      class="project-card group z-99! animate-slide-up hover:scale-101 hover:-translate-y-3 transition-all duration-500! ease-out"
       :style="getProjectCardStyle(project)"
     >
       <template #header>
@@ -192,7 +192,7 @@ const getTagChipStyle = (tag) => {
               v-if="project.image"
               :src="project.image"
               :alt="project.imageAlt"
-              class="!object-fill group-hover:scale-110 transition-all !duration-500 group-hover:brightness-110"
+              class="object-fill! group-hover:scale-110 transition-all duration-500! group-hover:brightness-110"
             />
             <div v-else class="text-center">
               <i
@@ -209,8 +209,8 @@ const getTagChipStyle = (tag) => {
             <Chip
               :label="project.statusType === 'public' ? 'Público' : 'Privado'"
               :icon="project.statusType === 'public' ? 'pi pi-globe' : 'pi pi-lock'"
-              :class="project.statusType === 'public' ? '!bg-green-500' : '!bg-orange-500'"
-              class="!text-white px-2 py-1 rounded-full backdrop-blur-sm text-xs font-semibold"
+              :class="project.statusType === 'public' ? 'bg-green-500!' : 'bg-orange-500!'"
+              class="text-white! px-2 py-1 rounded-full backdrop-blur-sm text-xs font-semibold"
             />
           </div>
         </div>
@@ -218,7 +218,7 @@ const getTagChipStyle = (tag) => {
 
       <template #title>
         <h3
-          class="text-lg font-semibold bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent animate-gradient-move"
+          class="text-lg font-semibold bg-linear-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent animate-gradient-move"
         >
           {{ project.title }}
         </h3>
@@ -262,7 +262,7 @@ const getTagChipStyle = (tag) => {
               :severity="link.type === 'secondary' ? 'secondary' : 'primary'"
               :outlined="link.type === 'secondary'"
               @click="openLink(link.url)"
-              class="!p-2 !border-none"
+              class="p-2! border-none!"
             />
             <span v-if="project.links.length === 0" class="text-xs text-orange-400 px-2 py-1">
               Restrito

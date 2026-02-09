@@ -1,22 +1,21 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 const aboutMe = ref({
   description:
-    'Software Developer | Frontend Specialist (Vue.js & TypeScript) focado em performance e UX. Proficiente em arquiteturas escaláveis e código limpo, transformo desafios em soluções digitais robustas em ambientes ágeis.',
+    'Full Stack Developer com foco central em Frontend. Especialista em Vue.js e React, construo aplicações web de alta performance com arquiteturas escaláveis e código limpo.',
   avatar: 'https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png',
 })
 
 const softSkills = ref([
-  { label: 'Comunicação Clara', icon: 'pi pi-comments', color: 'text-blue-400' },
-  { label: 'Trabalho em Equipe', icon: 'pi pi-users', color: 'text-purple-400' },
+  { label: 'Arquitetura de Software', icon: 'pi pi-sitemap', color: 'text-blue-400' },
   { label: 'Resolução de Problemas', icon: 'pi pi-key', color: 'text-orange-400' },
-  { label: 'Pensamento Crítico', icon: 'pi pi-sitemap', color: 'text-green-400' },
-  { label: 'Adaptabilidade e Resiliência', icon: 'pi pi-refresh', color: 'text-emerald-400' },
+  { label: 'Trabalho em Equipe', icon: 'pi pi-users', color: 'text-purple-400' },
+  { label: 'Adaptabilidade', icon: 'pi pi-refresh', color: 'text-emerald-400' },
   { label: 'Metodologias Ágeis', icon: 'pi pi-sync', color: 'text-sky-400' },
-  { label: 'Criatividade', icon: 'pi pi-lightbulb', color: 'text-amber-400' },
-  { label: 'Inteligência Emocional', icon: 'pi pi-heart', color: 'text-pink-400' },
-  { label: 'Pensamento Crítico', icon: 'pi pi-microchip', color: 'text-green-400' },
+  { label: 'Comunicação Clara', icon: 'pi pi-comments', color: 'text-indigo-400' },
+  { label: 'Pensamento Crítico', icon: 'pi pi-check-circle', color: 'text-green-400' },
+  { label: 'Aprendizado Contínuo', icon: 'pi pi-lightbulb', color: 'text-amber-400' },
 ])
 </script>
 
@@ -31,13 +30,13 @@ const softSkills = ref([
               <div class="avatar-ring"></div>
               <div class="avatar-inner">
                 <h2
-                  class="text-2xl font-bold bg-gradient-to-r from-[#4d91ea] via-blue-400 to-blue-200 bg-clip-text text-transparent mb-1 name-bounce"
+                  class="text-2xl font-bold bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent mb-1 name-bounce"
                 >
                   João
                 </h2>
               </div>
             </div>
-            <p class="font-medium text-blue-300 typewriter">Software Developer</p>
+            <p class="font-medium text-blue-300 typewriter">Full Stack Developer</p>
           </div>
         </template>
         <template #content>
@@ -45,10 +44,10 @@ const softSkills = ref([
             <!-- Resumo pessoal -->
             <div class="text-center border-b border-gray-700/30 pb-4">
               <p
-                class="text-sm leading-relaxed bg-gradient-to-r from-blue-200 via-blue-400 to-[#4d91ea] bg-clip-text text-transparent"
+                class="text-sm leading-relaxed bg-linear-to-r from-blue-200 via-blue-400 to-dev bg-clip-text text-transparent"
               >
-                Apaixonado por tecnologia e inovação. Gosto de transformar ideias complexas em
-                soluções elegantes e funcionais.
+                Apaixonado por arquitetura de software e qualidade de código. Transformo requisitos
+                complexos em sistemas robustos, escaláveis e de fácil manutenção.
               </p>
             </div>
 
@@ -63,7 +62,7 @@ const softSkills = ref([
                   class="flex items-center gap-2 text-xs text-gray-300 p-2 rounded bg-gray-800/20 hover:bg-gray-700/30 hover:scale-105 transition-all duration-200"
                 >
                   <i
-                    class="pi pi-code text-[#4d91ea] hover:rotate-12 transition-transform duration-300"
+                    class="pi pi-code text-dev hover:rotate-12 transition-transform duration-300"
                   ></i>
                   <span>Clean Code & Arquitetura</span>
                 </div>
@@ -71,7 +70,7 @@ const softSkills = ref([
                   class="flex items-center gap-2 text-xs text-gray-300 p-2 rounded bg-gray-800/20 hover:bg-gray-700/30 hover:scale-105 transition-all duration-200"
                 >
                   <i
-                    class="pi pi-palette text-[#4d91ea] hover:rotate-12 transition-transform duration-300"
+                    class="pi pi-palette text-dev hover:rotate-12 transition-transform duration-300"
                   ></i>
                   <span>UX/UI Design</span>
                 </div>
@@ -79,7 +78,7 @@ const softSkills = ref([
                   class="flex items-center gap-2 text-xs text-gray-300 p-2 rounded bg-gray-800/20 hover:bg-gray-700/30 hover:scale-105 transition-all duration-200"
                 >
                   <i
-                    class="pi pi-users text-[#4d91ea] hover:rotate-12 transition-transform duration-300"
+                    class="pi pi-users text-dev hover:rotate-12 transition-transform duration-300"
                   ></i>
                   <span>Colaboração em Equipe</span>
                 </div>
@@ -87,7 +86,7 @@ const softSkills = ref([
                   class="flex items-center gap-2 text-xs text-gray-300 p-2 rounded bg-gray-800/20 hover:bg-gray-700/30 hover:scale-105 transition-all duration-200"
                 >
                   <i
-                    class="pi pi-lightbulb text-[#4d91ea] hover:rotate-12 transition-transform duration-300"
+                    class="pi pi-lightbulb text-dev hover:rotate-12 transition-transform duration-300"
                   ></i>
                   <span>Inovação & Aprendizado</span>
                 </div>
@@ -97,9 +96,9 @@ const softSkills = ref([
             <!-- Competências Interpessoais -->
             <div class="space-y-3">
               <h4
-                class="text-sm font-semibold flex items-center gap-2 bg-gradient-to-r from-[#eaa64d] via-yellow-300 to-yellow-100 bg-clip-text text-transparent"
+                class="text-sm font-semibold flex items-center gap-2 bg-linear-to-r from-editor via-yellow-300 to-yellow-100 bg-clip-text text-transparent"
               >
-                <i class="pi pi-star text-[#eaa64d] animate-spin-slow"></i>
+                <i class="pi pi-star text-editor animate-spin-slow"></i>
                 Soft Skills
               </h4>
               <div class="grid grid-cols-1 gap-2">
@@ -124,9 +123,9 @@ const softSkills = ref([
         <template #header>
           <div class="p-6 pb-0">
             <h3
-              class="text-xl font-bold flex items-center gap-2 bg-gradient-to-r from-[#4d91ea] via-blue-400 to-blue-200 bg-clip-text text-transparent"
+              class="text-xl font-bold flex items-center gap-2 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent"
             >
-              <i class="pi pi-user text-[#4d91ea]"></i>
+              <i class="pi pi-user text-dev"></i>
               Experiência & Formação
             </h3>
           </div>
@@ -144,11 +143,11 @@ const softSkills = ref([
                 class="text-gray-300 leading-relaxed text-sm hover:text-gray-200 transition-colors duration-300"
               >
                 Atualmente cursando
-                <strong class="text-white hover:text-[#4d91ea] transition-colors duration-300"
+                <strong class="text-white hover:text-dev transition-colors duration-300"
                   >Engenharia de Software</strong
                 >
                 em universidade e formado como
-                <strong class="text-white hover:text-[#4d91ea] transition-colors duration-300"
+                <strong class="text-white hover:text-dev transition-colors duration-300"
                   >Técnico em Automação Industrial</strong
                 >
                 por instituto federal (2019-2023).
@@ -158,9 +157,9 @@ const softSkills = ref([
             <!-- Experiência Profissional -->
             <div class="space-y-6">
               <h4
-                class="text-lg font-semibold flex items-center gap-3 bg-gradient-to-r from-[#4d91ea] via-blue-400 to-blue-200 bg-clip-text text-transparent hover:-translate-y-1 transition-transform duration-300"
+                class="text-lg font-semibold flex items-center gap-3 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent hover:-translate-y-1 transition-transform duration-300"
               >
-                <i class="pi pi-briefcase text-[#4d91ea] animate-bounce-soft"></i>
+                <i class="pi pi-briefcase text-dev animate-bounce-soft"></i>
                 Experiência Profissional
               </h4>
               <div
@@ -168,10 +167,8 @@ const softSkills = ref([
               >
                 <div class="flex items-center justify-between">
                   <div>
-                    <h5 class="text-white font-semibold text-lg">Web Developer</h5>
-                    <p
-                      class="text-[#4d91ea] text-sm hover:text-blue-300 transition-colors duration-300"
-                    >
+                    <h5 class="text-white font-semibold text-lg">Full Stack Developer</h5>
+                    <p class="text-dev text-sm hover:text-blue-300 transition-colors duration-300">
                       Liquid Soluções em TI
                     </p>
                   </div>
@@ -183,9 +180,8 @@ const softSkills = ref([
                   >
                     <i class="pi pi-check-circle text-green-400 mt-1"></i>
                     <span
-                      >Projetei e desenvolvi interfaces de usuário (UI) responsivas, focando na
-                      otimização da experiência do usuário (UX) e garantindo compatibilidade
-                      cross-browser.</span
+                      >Liderança técnica na definição de arquitetura de SPAs escaláveis, garantindo
+                      performance, manutenibilidade e padrões de código rigorosos.</span
                     >
                   </li>
                   <li
@@ -193,8 +189,8 @@ const softSkills = ref([
                   >
                     <i class="pi pi-check-circle text-green-400 mt-1"></i>
                     <span
-                      >Estruturei a comunicação com o backend via APIs REST, assegurando a
-                      integridade e a performance no fluxo de dados com PostgreSQL e MySQL.</span
+                      >Design e implementação de APIs RESTful robustas e otimização de queries em
+                      bancos de dados relacionais (PostgreSQL/MySQL) para alta carga.</span
                     >
                   </li>
                   <li
@@ -202,9 +198,8 @@ const softSkills = ref([
                   >
                     <i class="pi pi-check-circle text-green-400 mt-1"></i>
                     <span
-                      >Otimizei a performance e a manutenibilidade de sistemas legados através da
-                      refatoração de código e aplicação de padrões de projeto modernos em
-                      JavaScript/TypeScript, PHP e WordPress.</span
+                      >Modernização estratégica de sistemas legados (Legacy Modernization), migrando
+                      monólitos para arquiteturas modernas sem downtime.</span
                     >
                   </li>
                   <li
@@ -212,9 +207,8 @@ const softSkills = ref([
                   >
                     <i class="pi pi-check-circle text-green-400 mt-1"></i>
                     <span
-                      >Automatizei o ciclo de entregas com a implementação e manutenção de esteiras
-                      de CI/CD no GitLab, integrando testes E2E e de componente para garantir a
-                      qualidade contínua do software.</span
+                      >Implementação de cultura DevOps e pipelines de CI/CD automatizados, reduzindo
+                      significativamente o ciclo de deploy e bugs em produção.</span
                     >
                   </li>
                   <li
@@ -222,8 +216,8 @@ const softSkills = ref([
                   >
                     <i class="pi pi-check-circle text-green-400 mt-1"></i>
                     <span
-                      >Participei ativamente do ciclo de desenvolvimento em equipes ágeis (Scrum),
-                      colaborando em cerimônias de planejamento, revisão e entrega de sprints.</span
+                      >Mentoria técnica e code reviews, elevando o nível técnico da equipe e
+                      garantindo a aplicação das melhores práticas de engenharia de software.</span
                     >
                   </li>
                 </ul>
@@ -233,7 +227,7 @@ const softSkills = ref([
             <!-- Formação Complementar -->
             <div class="space-y-6">
               <h4
-                class="text-lg font-semibold flex items-center gap-3 bg-gradient-to-r from-purple-400 via-purple-300 to-blue-300 bg-clip-text text-transparent hover:-translate-y-1 transition-transform duration-300"
+                class="text-lg font-semibold flex items-center gap-3 bg-linear-to-r from-purple-400 via-purple-300 to-blue-300 bg-clip-text text-transparent hover:-translate-y-1 transition-transform duration-300"
               >
                 <i class="pi pi-graduation-cap text-purple-400 animate-float"></i>
                 Formação Complementar
