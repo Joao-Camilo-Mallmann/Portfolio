@@ -31,14 +31,10 @@
         <header class="text-center mb-12 px-2">
           <h1
             id="portfolio-heading"
-            class="text-3xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg bg-gradient-to-r from-white to-gray-200 bg-clip-text !text-editor/20"
+            class="text-3xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg"
           >
             Portfólio de Edição
           </h1>
-          <div
-            class="absolute top-4 left-4 w-16 h-16 bg-gradient-to-r from-[#eaa64d]/20 to-yellow-500/20 rounded-full blur-lg opacity-70"
-            aria-hidden="true"
-          ></div>
           <Divider
             class="!w-24 md:!w-32 !h-1.5 !mx-auto !bg-gradient-to-r !from-[#eaa64d] !to-yellow-200/60 !rounded-full !mb-6 !shadow-lg !border-0"
           />
@@ -46,29 +42,29 @@
             class="text-gray-300 text-lg md:text-2xl px-2 md:px-4 font-medium leading-relaxed max-w-3xl mx-auto"
           >
             Criação audiovisual profissional com
-            <strong class="text-[#eaa64d] font-bold">Adobe Premiere Pro</strong>,
-            <strong class="text-[#eaa64d] font-bold">Adobe Photoshop</strong> e
-            <strong class="text-[#eaa64d] font-bold">After Effects</strong>
+            <strong class="text-editor font-bold">Adobe Premiere Pro</strong>,
+            <strong class="text-editor font-bold">Adobe Photoshop</strong> e
+            <strong class="text-editor font-bold">After Effects</strong>
           </p>
         </header>
-
-        <!-- Seção sobre habilidades -->
-        <section class="mb-8 max-w-4xl mx-auto" aria-labelledby="skills-heading">
-          <h2 id="skills-heading" class="sr-only">Habilidades e Experiência</h2>
-          <CardDetails />
-        </section>
-
-        <!-- Seção de ferramentas -->
-        <section aria-labelledby="tools-heading">
-          <h2 id="tools-heading" class="sr-only">Ferramentas de Trabalho</h2>
-          <ToolsSection />
-        </section>
       </Panel>
 
-      <!-- Seção de portfólio de vídeos -->
-      <section aria-labelledby="video-portfolio-heading">
-        <h2 id="video-portfolio-heading" class="sr-only">Portfólio de Vídeos</h2>
-        <VideoPortfolio />
+      <!-- Seção da Playlist do YouTube -->
+      <section aria-labelledby="playlist-heading">
+        <h2 id="playlist-heading" class="sr-only">Playlist de Vídeos</h2>
+        <PlaylistSection />
+      </section>
+
+      <!-- Seção de ferramentas -->
+      <section class="px-4 lg:px-16" aria-labelledby="tools-heading">
+        <h2 id="tools-heading" class="sr-only">Ferramentas de Trabalho</h2>
+        <ToolsSection />
+      </section>
+
+      <!-- Seção sobre habilidades -->
+      <section class="mb-8 max-w-4xl mx-auto px-4" aria-labelledby="skills-heading">
+        <h2 id="skills-heading" class="sr-only">Habilidades e Experiência</h2>
+        <CardDetails />
       </section>
 
       <!-- Seção do canal criativo -->
@@ -98,8 +94,8 @@
 import AnimatedDot from '@/components/Editor/AnimatedDot.vue'
 import CardDetails from '@/components/Editor/CardDetails.vue'
 import CreativeChannelPanel from '@/components/Editor/CreativeChannelPanel.vue'
+import PlaylistSection from '@/components/Editor/PlaylistSection.vue'
 import ToolsSection from '@/components/Editor/ToolsSection.vue'
-import VideoPortfolio from '@/components/Editor/VideoPortfolio.vue'
 import YouTubeChannelPanel from '@/components/Editor/YouTubeChannelPanel.vue'
 import FooterContact from '@/components/FooterContact.vue'
 import HeaderCore from '@/components/HeaderCore.vue'

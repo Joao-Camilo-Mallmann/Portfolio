@@ -35,7 +35,7 @@
           class="absolute inset-0 bg-gradient-to-r from-transparent via-[#eaa64d]/3 to-transparent opacity-60"
         ></div>
       </div>
-      <div class="relative z-10 flex items-center justify-between p-6">
+      <div class="relative z-10 flex items-center justify-between p-6 d-flex md:flex-row flex-col ">
         <div class="relative">
           <div
             class="absolute inset-0 bg-gradient-to-r from-[#eaa64d]/60 to-yellow-500/60 rounded-full blur-md opacity-80"
@@ -51,7 +51,7 @@
             class="absolute -inset-2 border-2 border-[#eaa64d]/40 rounded-full animate-spin-slow"
           ></div>
         </div>
-        <div class="flex-1 ml-6">
+        <div class="flex-1 ml-6 d-flex flex-col justify-center items-center">
           <h3 class="text-lg md:text-xl font-bold text-[#eaa64d] mb-2">OFurry</h3>
           <p class="text-gray-300 text-sm md:text-base mb-4">
             Meu lado mais <span class="text-[#eaa64d] font-semibold">criativo</span> e experimental

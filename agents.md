@@ -98,7 +98,8 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
 ## 7. Integração PrimeVue
 
 - Use componentes PrimeVue sempre que disponível: `Card`, `Timeline`, `Tabs`, `Panel`, etc.
-- Para customização visual, use classes Tailwind com `!important` quando necessário: `!bg-gray-900`, `!border-editor`.
+- Não **IMPORTE** os componentes do PrimeVue, eles já são importados automaticamente.
+- Para customização visual, use classes Tailwind com `!important` quando necessário: `!border-editor`.
 - Mantenha a consistência visual através do tema `tailwindcss-primeui`.
 
 ## 8. Git e Versionamento
