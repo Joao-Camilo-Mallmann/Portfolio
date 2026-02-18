@@ -1,3 +1,117 @@
+<script setup>
+import { useI18n } from '@/composables/useI18n'
+import { computed, onMounted, ref } from 'vue'
+
+const { t } = useI18n()
+
+const PLAYLIST_ID = 'PL6E1iPJrFf0NPhk4D7ohTw2_yMmRG9goH'
+const MAX_VIDEOS = 12
+
+// Múltiplos proxies CORS para fallback
+const CORS_PROXIES = [
+  'https://api.allorigins.win/raw?url=',
+  'https://corsproxy.io/?',
+  'https://api.codetabs.com/v1/proxy?quest=',
+]
+
+const playlistVideos = ref([])
+const currentIndex = ref(0)
+const loading = ref(true)
+const error = ref(null)
+const playerModalVisible = ref(false)
+const selectedVideo = ref(null)
+
+const currentVideo = computed(() => playlistVideos.value[currentIndex.value] ?? {})
+const playlistUrl = computed(() => `https://www.youtube.com/playlist?list=${PLAYLIST_ID}`)
+const totalVideos = computed(() => playlistVideos.value.length)
+
+const getThumbnailUrl = (videoId) => `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`
+
+function parseVideos(entries) {
+  return Array.from(entries)
+    .slice(0, MAX_VIDEOS)
+    .map((entry) => {
+      const id = entry.querySelector('yt\\:videoId, videoId')?.textContent
+      const title = entry.querySelector('title')?.textContent
+      return id && title ? { id, title, thumbnail: getThumbnailUrl(id) } : null
+    })
+    .filter(Boolean)
+}
+
+function loadFallbackVideos() {
+  playlistVideos.value = [
+    { id: 'Ml0e7RQDI-M', title: 'Um jogo sobre Redenção.......' },
+    { id: 'ZMThOw1ItTk', title: 'Qual é o SEU Tipo de Amor? (As 5 Linguagens Do Amor)' },
+    { id: 'aMDvPpkbHxg', title: 'A História do HOLLOW KNIGHT em 15 minutos' },
+  ].map((v) => ({ ...v, thumbnail: getThumbnailUrl(v.id) }))
+  error.value = null
+}
+
+async function fetchPlaylistVideos() {
+  loading.value = true
+  error.value = null
+
+  const rssUrl = `https://www.youtube.com/feeds/videos.xml?playlist_id=${PLAYLIST_ID}`
+
+  for (const proxy of CORS_PROXIES) {
+    try {
+      const response = await fetch(proxy + encodeURIComponent(rssUrl), {
+        signal: AbortSignal.timeout(5000),
+      })
+
+      if (!response.ok) continue
+
+      const xmlDoc = new DOMParser().parseFromString(await response.text(), 'text/xml')
+
+      if (xmlDoc.querySelector('parsererror')) continue
+
+      const videos = parseVideos(xmlDoc.querySelectorAll('entry'))
+
+      if (videos.length > 0) {
+        playlistVideos.value = videos
+        loading.value = false
+        return
+      }
+    } catch (err) {
+      console.warn(`Proxy ${proxy} falhou:`, err.message)
+    }
+  }
+
+  console.error('Todos os proxies falharam, usando vídeos de fallback')
+  loadFallbackVideos()
+  loading.value = false
+}
+
+const nextVideo = () => {
+  currentIndex.value = (currentIndex.value + 1) % totalVideos.value
+}
+
+const prevVideo = () => {
+  currentIndex.value = currentIndex.value === 0 ? totalVideos.value - 1 : currentIndex.value - 1
+}
+
+const goToVideo = (index) => {
+  currentIndex.value = index
+}
+
+const openPlayerModal = (video) => {
+  selectedVideo.value = video
+  playerModalVisible.value = true
+}
+
+const stopVideo = () => {
+  selectedVideo.value = null
+}
+
+const handleImageError = (event, videoId) => {
+  event.target.src = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
+}
+
+onMounted(() => {
+  fetchPlaylistVideos()
+})
+</script>
+
 <template>
   <section class="w-full py-16 md:py-24 relative overflow-visible">
     <!-- Background Effects -->
@@ -15,10 +129,10 @@
       <!-- Header Simples -->
       <div class="text-center mb-10">
         <h2 class="text-3xl md:text-5xl font-black text-white mb-4">
-          Meus
-          <span class="text-editor">Vídeos</span>
+          {{ t('editorPlaylist.myVideos') }}
+          <span class="text-editor">{{ t('editorPlaylist.videosHighlight') }}</span>
         </h2>
-        <p class="text-gray-400 text-lg">Navegue pelos destaques do meu trabalho</p>
+        <p class="text-gray-400 text-lg">{{ t('editorPlaylist.browseHighlights') }}</p>
       </div>
 
       <!-- Loading State -->
@@ -103,28 +217,28 @@
                 <div class="flex items-center justify-between gap-4">
                   <!-- Botão Anterior -->
                   <Button
-                    @click="prevVideo"
                     class="!flex !items-center !gap-2 !px-5 !py-3 !rounded-full !bg-gray-800 hover:!bg-gray-700 !text-white !font-medium !transition-all !duration-300 hover:!scale-105"
+                    @click="prevVideo"
                   >
                     <i class="pi pi-chevron-left text-lg"></i>
-                    <span class="hidden sm:inline">Anterior</span>
+                    <span class="hidden sm:inline">{{ t('editorPlaylist.previous') }}</span>
                   </Button>
 
                   <!-- Botão Assistir -->
                   <Button
-                    @click="openPlayerModal(currentVideo)"
                     class="!flex-1 !max-w-xs !flex !items-center !justify-center !gap-3 !px-6 !py-4 !rounded-full !bg-editor hover:!bg-editor/80 !text-white !font-bold !text-lg !transition-all !duration-300 hover:!scale-105 !shadow-lg !shadow-editor/30"
+                    @click="openPlayerModal(currentVideo)"
                   >
                     <i class="pi pi-play-circle text-xl"></i>
-                    <span>Assistir</span>
+                    <span>{{ t('editorPlaylist.watch') }}</span>
                   </Button>
 
                   <!-- Botão Próximo -->
                   <Button
-                    @click="nextVideo"
                     class="!flex !items-center !gap-2 !px-5 !py-3 !rounded-full !bg-gray-800 hover:!bg-gray-700 !text-white !font-medium !transition-all !duration-300 hover:!scale-105 bor"
+                    @click="nextVideo"
                   >
-                    <span class="hidden sm:inline">Próximo</span>
+                    <span class="hidden sm:inline">{{ t('editorPlaylist.next') }}</span>
                     <i class="pi pi-chevron-right text-lg"></i>
                   </Button>
                 </div>
@@ -138,13 +252,13 @@
           <button
             v-for="(video, index) in playlistVideos"
             :key="video.id"
-            @click="goToVideo(index)"
             class="transition-all duration-300"
             :class="
               index === currentIndex
                 ? 'w-10 h-3 rounded-full bg-editor'
                 : 'w-3 h-3 rounded-full bg-gray-700 hover:bg-gray-600'
             "
+            @click="goToVideo(index)"
           ></button>
         </div>
 
@@ -156,7 +270,7 @@
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 text-gray-400 hover:text-editor transition-colors duration-300"
           >
-            <span>Ver playlist completa no YouTube</span>
+            <span>{{ t('editorPlaylist.fullPlaylist') }}</span>
             <i class="pi pi-external-link"></i>
           </a>
         </div>
@@ -168,7 +282,7 @@
       v-model:visible="playerModalVisible"
       :header="selectedVideo?.title || 'Player'"
       modal
-      dismissableMask
+      dismissable-mask
       :style="{ width: '95vw', maxWidth: '1200px' }"
       :pt="{
         root: {
@@ -206,134 +320,6 @@
     </Dialog>
   </section>
 </template>
-
-<script>
-const PLAYLIST_ID = 'PL6E1iPJrFf0NPhk4D7ohTw2_yMmRG9goH'
-const MAX_VIDEOS = 12
-
-// Múltiplos proxies CORS para fallback
-const CORS_PROXIES = [
-  'https://api.allorigins.win/raw?url=',
-  'https://corsproxy.io/?',
-  'https://api.codetabs.com/v1/proxy?quest=',
-]
-
-export default {
-  name: 'PlaylistSection',
-
-  data: () => ({
-    playlistVideos: [],
-    currentIndex: 0,
-    loading: true,
-    error: null,
-    playerModalVisible: false,
-    selectedVideo: null,
-  }),
-
-  computed: {
-    currentVideo() {
-      return this.playlistVideos[this.currentIndex] ?? {}
-    },
-    playlistUrl() {
-      return `https://www.youtube.com/playlist?list=${PLAYLIST_ID}`
-    },
-    totalVideos() {
-      return this.playlistVideos.length
-    },
-  },
-
-  mounted() {
-    this.fetchPlaylistVideos()
-  },
-
-  methods: {
-    async fetchPlaylistVideos() {
-      this.loading = true
-      this.error = null
-
-      const rssUrl = `https://www.youtube.com/feeds/videos.xml?playlist_id=${PLAYLIST_ID}`
-
-      // Tenta cada proxy até um funcionar
-      for (const proxy of CORS_PROXIES) {
-        try {
-          const response = await fetch(proxy + encodeURIComponent(rssUrl), {
-            signal: AbortSignal.timeout(5000), // Timeout de 5 segundos
-          })
-
-          if (!response.ok) continue
-
-          const xmlDoc = new DOMParser().parseFromString(await response.text(), 'text/xml')
-
-          if (xmlDoc.querySelector('parsererror')) continue
-
-          const videos = this.parseVideos(xmlDoc.querySelectorAll('entry'))
-
-          if (videos.length > 0) {
-            this.playlistVideos = videos
-            this.loading = false
-            return
-          }
-        } catch (err) {
-          console.warn(`Proxy ${proxy} falhou:`, err.message)
-        }
-      }
-
-      // Se todos os proxies falharem, usa fallback
-      console.error('Todos os proxies falharam, usando vídeos de fallback')
-      this.loadFallbackVideos()
-      this.loading = false
-    },
-
-    parseVideos(entries) {
-      return Array.from(entries)
-        .slice(0, MAX_VIDEOS)
-        .map((entry) => {
-          const id = entry.querySelector('yt\\:videoId, videoId')?.textContent
-          const title = entry.querySelector('title')?.textContent
-          return id && title ? { id, title, thumbnail: this.getThumbnailUrl(id) } : null
-        })
-        .filter(Boolean)
-    },
-
-    getThumbnailUrl: (videoId) => `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
-
-    loadFallbackVideos() {
-      // Vídeos estáticos da playlist como fallback
-      this.playlistVideos = [
-        { id: 'Ml0e7RQDI-M', title: 'Um jogo sobre Redenção.......' },
-        { id: 'ZMThOw1ItTk', title: 'Qual é o SEU Tipo de Amor? (As 5 Linguagens Do Amor)' },
-        { id: 'aMDvPpkbHxg', title: 'A História do HOLLOW KNIGHT em 15 minutos' },
-      ].map((v) => ({ ...v, thumbnail: this.getThumbnailUrl(v.id) }))
-      this.error = null
-    },
-
-    nextVideo() {
-      this.currentIndex = (this.currentIndex + 1) % this.totalVideos
-    },
-
-    prevVideo() {
-      this.currentIndex = this.currentIndex === 0 ? this.totalVideos - 1 : this.currentIndex - 1
-    },
-
-    goToVideo(index) {
-      this.currentIndex = index
-    },
-
-    openPlayerModal(video) {
-      this.selectedVideo = video
-      this.playerModalVisible = true
-    },
-
-    stopVideo() {
-      this.selectedVideo = null
-    },
-
-    handleImageError(event, videoId) {
-      event.target.src = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
-    },
-  },
-}
-</script>
 
 <style scoped>
 /* Transição suave ao trocar de vídeo */

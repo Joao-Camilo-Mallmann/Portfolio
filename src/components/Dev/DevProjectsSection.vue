@@ -261,8 +261,8 @@ const getTagChipStyle = (tag) => {
               size="small"
               :severity="link.type === 'secondary' ? 'secondary' : 'primary'"
               :outlined="link.type === 'secondary'"
-              @click="openLink(link.url)"
               class="p-2! border-none!"
+              @click="openLink(link.url)"
             />
             <span v-if="project.links.length === 0" class="text-xs text-orange-400 px-2 py-1">
               Restrito

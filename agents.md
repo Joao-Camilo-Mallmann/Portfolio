@@ -108,9 +108,45 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
 - Mantenha o código organizado e bem comentado.
 - Teste sempre as mudanças antes de fazer commit.
 
+## 9. Internacionalização (i18n)
+
+- O sistema de traduções usa um composable customizado (`src/composables/useI18n.js`) com dot-notation.
+- Idiomas suportados: `pt-BR` (padrão) e `en`.
+
+### Estrutura de Arquivos
+
+```
+src/i18n/
+├── pt-BR.js          # Arquivo principal PT-BR (seções compartilhadas + imports das subpastas)
+├── en.js             # Arquivo principal EN (seções compartilhadas + imports das subpastas)
+├── home/
+│   ├── pt-BR.js      # Traduções: home, splitter
+│   └── en.js
+├── dev/
+│   ├── pt-BR.js      # Traduções: dev, devProfile, devProjects, devStack
+│   └── en.js
+└── editor/
+    ├── pt-BR.js      # Traduções: editor, editorCard, editorChannel, editorCreative, editorPlaylist, editorTools
+    └── en.js
+```
+
+### Regras de Organização
+
+- **Seções compartilhadas** (footer, social, seo, header, loading) ficam nos arquivos principais (`src/i18n/pt-BR.js` e `src/i18n/en.js`).
+- **Seções contextuais** ficam nas subpastas (`home/`, `dev/`, `editor/`), separadas por página/contexto.
+- Os arquivos principais importam e fazem **spread** das subpastas, unificando tudo num único export default.
+- O composable `useI18n.js` importa apenas os dois arquivos principais — **não importar subpastas diretamente no composable**.
+
+### Como Adicionar Novas Traduções
+
+1. Se a tradução pertence a uma página específica (Home, Dev, Editor), adicionar no arquivo da subpasta correspondente.
+2. Se a tradução é compartilhada (usada em múltiplas páginas), adicionar nos arquivos principais.
+3. Se uma nova página for criada, criar uma nova subpasta em `src/i18n/<nome-da-pagina>/` com `pt-BR.js` e `en.js`.
+4. Sempre adicionar a tradução em **ambos os idiomas** (pt-BR e en).
+
 ---
 
-**Última atualização:** Outubro 2025
+**Última atualização:** Fevereiro 2026
 **Versão do Tailwind CSS:** v4
 **Versão do Vue:** 3 (Composition API)
 **Gerenciador de Pacotes:** BUN

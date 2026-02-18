@@ -1,65 +1,75 @@
+<script setup>
+import { useI18n } from '@/composables/useI18n'
+import Card from 'primevue/card'
+import Tab from 'primevue/tab'
+import TabList from 'primevue/tablist'
+import TabPanel from 'primevue/tabpanel'
+import TabPanels from 'primevue/tabpanels'
+import Tabs from 'primevue/tabs'
+
+const { t } = useI18n()
+</script>
+
 <template>
-  <Card
-    class="card-container bg-gray-800/30 backdrop-blur-sm border border-white/10 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
+  <card
+    class="card-container bg-gray-800/30z backdrop-blur-sm border border-white/10 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
   >
     <template #content>
-      <Tabs value="0" class="custom-tabs">
-        <TabList>
-          <Tab value="0">
+      <tabs value="0" class="custom-tabs">
+        <tab-list>
+          <tab value="0">
             <i class="pi pi-user mr-2"></i>
-            <span>Sobre Mim</span>
-          </Tab>
-          <Tab value="1">
+            <span>{{ t('editorCard.tabAbout') }}</span>
+          </tab>
+          <tab value="1">
             <i class="pi pi-sparkles mr-2"></i>
-            <span>Habilidades</span>
-          </Tab>
-          <Tab value="2">
+            <span>{{ t('editorCard.tabSkills') }}</span>
+          </tab>
+          <tab value="2">
             <i class="pi pi-desktop mr-2"></i>
-            <span>Ferramentas</span>
-          </Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel value="0">
+            <span>{{ t('editorCard.tabTools') }}</span>
+          </tab>
+        </tab-list>
+        <tab-panels>
+          <tab-panel value="0">
             <div class="p-4 text-center">
               <h3 class="text-2xl font-bold text-editor mb-4">
-                Editor de Vídeo & Criador de Conteúdo
+                {{ t('editorCard.aboutTitle') }}
               </h3>
               <p class="text-gray-300 leading-relaxed">
-                Com mais de 3 anos de experiência, transformo ideias em narrativas visuais
-                impactantes. Minha paixão é contar histórias que cativam, engajam e geram
-                resultados, utilizando as melhores ferramentas e técnicas do mercado.
+                {{ t('editorCard.aboutDescription') }}
               </p>
             </div>
-          </TabPanel>
-          <TabPanel value="1">
+          </tab-panel>
+          <tab-panel value="1">
             <div class="p-4 flex flex-wrap justify-center gap-6 text-gray-300">
               <div
                 class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer"
               >
                 <i class="pi pi-video text-editor"></i>
-                <span>Edição de Vídeo</span>
+                <span>{{ t('editorCard.skillEditing') }}</span>
               </div>
               <div
                 class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer"
               >
                 <i class="pi pi-palette text-editor"></i>
-                <span>Color Grading</span>
+                <span>{{ t('editorCard.skillColorGrading') }}</span>
               </div>
               <div
                 class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer"
               >
                 <i class="pi pi-book text-editor"></i>
-                <span>Storytelling</span>
+                <span>{{ t('editorCard.skillStorytelling') }}</span>
               </div>
               <div
                 class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer"
               >
                 <i class="pi pi-briefcase text-editor"></i>
-                <span>Experiência (+3 Anos)</span>
+                <span>{{ t('editorCard.skillExperience') }}</span>
               </div>
             </div>
-          </TabPanel>
-          <TabPanel value="2">
+          </tab-panel>
+          <tab-panel value="2">
             <div class="p-6">
               <div class="grid grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
                 <!-- Premiere Pro -->
@@ -198,21 +208,12 @@
                 </div>
               </div>
             </div>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+          </tab-panel>
+        </tab-panels>
+      </tabs>
     </template>
-  </Card>
+  </card>
 </template>
-
-<script setup>
-import Card from 'primevue/card'
-import Tab from 'primevue/tab'
-import TabList from 'primevue/tablist'
-import TabPanel from 'primevue/tabpanel'
-import TabPanels from 'primevue/tabpanels'
-import Tabs from 'primevue/tabs'
-</script>
 
 <style scoped>
 .card-container:hover {

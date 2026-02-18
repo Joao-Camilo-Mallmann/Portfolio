@@ -64,10 +64,10 @@ onMounted(async () => {
     class="page-transition bg-linear-to-b! from-black/90 to-[#22c55e]/10! relative overflow-hidden min-h-screen flex flex-col"
   >
     <template v-for="i in 20" :key="i">
-      <BackgroundLights color="#22c55e" />
+      <background-lights color="#22c55e" />
     </template>
 
-    <HeaderCore />
+    <header-core />
 
     <div class="grow flex items-center justify-center relative z-10 px-4">
       <div
@@ -100,7 +100,7 @@ onMounted(async () => {
                 class="p-4 bg-[#22c55e]/10 rounded border border-[#22c55e]/20 hover:bg-[#22c55e]/20 transition-all cursor-crosshair group"
               >
                 <h3
-                  class="text-[#22c55e] font-bold mb-2 group-hover:scale-105 transition-transform"
+                  class="text-green-400 font-bold mb-2 group-hover:scale-105 transition-transform"
                 >
                   01. CURIOSIDADE
                 </h3>
@@ -112,7 +112,7 @@ onMounted(async () => {
                 class="p-4 bg-[#22c55e]/10 rounded border border-[#22c55e]/20 hover:bg-[#22c55e]/20 transition-all cursor-crosshair group"
               >
                 <h3
-                  class="text-[#22c55e] font-bold mb-2 group-hover:scale-105 transition-transform"
+                  class="text-green-400 font-bold mb-2 group-hover:scale-105 transition-transform"
                 >
                   02. PERSISTÊNCIA
                 </h3>
@@ -124,8 +124,8 @@ onMounted(async () => {
 
             <div class="pt-8">
               <button
+                class="px-8 py-3 bg-green-400 text-black font-bold rounded hover:bg-green-500 transition-colors shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)]"
                 @click="router.push('/')"
-                class="px-8 py-3 bg-[#22c55e] text-black font-bold rounded hover:bg-[#16a34a] transition-colors shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)]"
               >
                 VOLTAR À REALIDADE
               </button>
@@ -136,7 +136,7 @@ onMounted(async () => {
     </div>
 
     <footer class="mt-auto">
-      <FooterContact
+      <footer-contact
         primary-color="#22c55e"
         cta-text="Segredo mantido?"
         status-text="Sistema Seguro"

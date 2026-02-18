@@ -1,23 +1,50 @@
+<script setup>
+import { useI18n } from '@/composables/useI18n'
+import { computed } from 'vue'
+import SocialMediaButton from './SocialMediaButton.vue'
+
+defineProps({
+  primaryColor: {
+    type: String,
+    default: '#4d91ea',
+  },
+  ctaText: {
+    type: String,
+    required: true,
+  },
+  variant: {
+    type: String,
+    default: 'default', // 'default' or 'editor'
+  },
+})
+
+const { t } = useI18n()
+
+const currentYear = computed(() => new Date().getFullYear())
+</script>
+
 <template>
   <footer class="mt-16 border-t border-white/10 bg-black/30 backdrop-blur-sm !z-99">
     <div class="max-w-6xl mx-auto p-6 md:p-8 flex flex-col items-center">
       <!-- Seção principal -->
       <div class="text-center mb-8">
-        <h3 class="text-xl md:text-2xl font-bold text-white mb-4">Vamos Trabalhar Juntos?</h3>
+        <h3 class="text-xl md:text-2xl font-bold text-white mb-4">{{ t('footer.title') }}</h3>
         <p class="text-gray-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-          Estou sempre aberto a novos projetos e colaborações.
-          <span class="font-semibold" :style="`color: ${primaryColor}`">{{ ctaText }}</span>
+          {{ t('footer.subtitle') }}
+          <span class="font-semibold" :style="`color: ${primaryColor}`">{{
+            ctaText || t('footer.ctaDefault')
+          }}</span>
         </p>
       </div>
 
       <!-- Links de contato -->
       <div class="!flex !flex-wrap justify-center gap-3 sm:gap-4 mb-8 px-4">
-        <SocialMediaButton
+        <social-media-button
           platform="linkedin"
           link="https://www.linkedin.com/in/joão-camilo-mallmann/"
           class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
         />
-        <SocialMediaButton
+        <social-media-button
           platform="email"
           link="mailto:jcamilomallmann@hotmail.com"
           class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
@@ -49,28 +76,6 @@
     </div>
   </footer>
 </template>
-
-<script setup>
-import { computed } from 'vue';
-import SocialMediaButton from './SocialMediaButton.vue';
-
-defineProps({
-  primaryColor: {
-    type: String,
-    default: '#4d91ea',
-  },
-  ctaText: {
-    type: String,
-    default: 'Entre em contato comigo!',
-  },
-  variant: {
-    type: String,
-    default: 'default', // 'default' or 'editor'
-  },
-})
-
-const currentYear = computed(() => new Date().getFullYear())
-</script>
 
 <style scoped>
 /* Animação de entrada */

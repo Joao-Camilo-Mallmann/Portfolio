@@ -2,6 +2,7 @@ import Aura from '@primeuix/themes/aura'
 import PrimeVue from 'primevue/config'
 import { ViteSSG } from 'vite-ssg'
 import App from './App.vue'
+import { initI18n } from './composables/useI18n'
 import { routes, scrollBehavior, setupRouterGuards } from './router'
 
 import 'primeicons/primeicons.css'
@@ -25,6 +26,9 @@ export const createApp = ViteSSG(App, { routes, scrollBehavior }, ({ app, router
   if (isClient) {
     // Define modo escuro como padrão
     document.documentElement.classList.add('dark')
+
+    // Inicializa internacionalização (restaura idioma do localStorage)
+    initI18n()
 
     // Aplicar guards de navegação
     setupRouterGuards(router)

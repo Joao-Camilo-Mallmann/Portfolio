@@ -1,3 +1,57 @@
+<script setup>
+import HomeSplitter from '@/components/HomeSplitter.vue'
+import SocialMediaButton from '@/components/SocialMediaButton.vue'
+import { useI18n } from '@/composables/useI18n'
+import { useHead } from '@unhead/vue'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const { t, locale } = useI18n()
+
+useHead({
+  title: computed(() => t('seo.homeTitle')),
+  meta: [
+    {
+      name: 'description',
+      content: computed(() => t('seo.homeDescription')),
+    },
+    {
+      name: 'keywords',
+      content: computed(() => t('seo.homeKeywords')),
+    },
+    // Open Graph
+    {
+      property: 'og:title',
+      content: computed(() => t('seo.ogTitle')),
+    },
+    {
+      property: 'og:description',
+      content: computed(() => t('seo.ogDescription')),
+    },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://joao-camilo-mallmann.com/' },
+    { property: 'og:image', content: 'https://joao-camilo-mallmann.com/favicon.ico' },
+    {
+      property: 'og:locale',
+      content: computed(() => (locale.value === 'pt-BR' ? 'pt_BR' : 'en_US')),
+    },
+    // Twitter
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: computed(() => t('seo.twitterTitle')) },
+    {
+      name: 'twitter:description',
+      content: computed(() => t('seo.twitterDescription')),
+    },
+  ],
+  link: [{ rel: 'canonical', href: 'https://joao-camilo-mallmann.com/' }],
+})
+
+function goToPage(path) {
+  router.push(path)
+}
+</script>
+
 <template>
   <main class="page-transition min-h-screen relative overflow-hidden">
     <!-- Elementos de fundo animados -->
@@ -9,9 +63,9 @@
       <div class="floating-square square-2"></div>
     </div>
 
-    <HomeSplitter />
+    <home-splitter />
 
-    <section ref="profilePhoto" class="flex justify-center sm:-mt-4 md:-mt-20 relative z-10">
+    <section class="flex justify-center sm:-mt-4 md:-mt-20 relative z-10">
       <header class="profile-container">
         <img
           src="https://avatars.githubusercontent.com/u/94570639"
@@ -27,19 +81,22 @@
       ref="introSection"
       class="text-gray-200 max-w-3xl mx-auto p-8 mt-4 text-center animate-fade-in"
     >
-      <h1 class="text-2xl font-semibold text-white mb-4 animate-slide-down">Sobre Mim</h1>
+      <h1 class="text-2xl font-semibold text-white mb-4 animate-slide-down">
+        {{ t('home.aboutMe') }}
+      </h1>
 
       <!-- Apresentação Principal -->
       <article class="mb-4 animate-slide-up">
-        <Card class="border border-white/10 text-gray-300">
+        <card class="border border-white/10 text-gray-300">
           <template #content>
             <p class="text-base leading-7 text-gray-300 m-0">
-              Olá! Sou <strong class="text-white typing-effect">João Camilo Mallmann</strong>,
-              Software Developer | Frontend Specialist e editor de vídeo.<br />
-              Minha paixão é criar soluções digitais e conteúdo audiovisual de alta qualidade.
+              {{ t('home.greeting') }}
+              <strong class="text-white typing-effect">João Camilo Mallmann</strong>,
+              {{ t('home.role') }}<br />
+              {{ t('home.passion') }}
             </p>
           </template>
-        </Card>
+        </card>
       </article>
 
       <!-- Seções de Habilidades -->
@@ -48,85 +105,93 @@
         <article
           class="animate-slide-left card-hover-glow hover:scale-102 transition-transform duration-300"
         >
-          <Card
-            class="border-l-4 !h-full border-[#4d91ea] !transition-all !duration-300 hover:shadow-2xl text-gray-300"
+          <card
+            class="border-l-4 !h-full border-dev !transition-all !duration-300 hover:shadow-2xl text-gray-300"
           >
             <template #header>
               <header class="flex items-center justify-center gap-2 p-4">
-                <i class="pi pi-desktop text-xl text-[#4d91ea]" aria-hidden="true"></i>
-                <h2 class="text-lg font-semibold text-[#4d91ea] m-0">Software Developer</h2>
+                <i class="pi pi-desktop text-xl text-dev" aria-hidden="true"></i>
+                <h2 class="text-lg font-semibold text-dev m-0">{{ t('home.devTitle') }}</h2>
               </header>
             </template>
             <template #content>
               <p class="text-gray-300 leading-relaxed m-0">
-                Especializado em desenvolvimento de aplicações web modernas e responsivas utilizando
-                Vue.js, JavaScript/TypeScript e as melhores práticas do mercado.
+                {{ t('home.devDescription') }}
               </p>
             </template>
 
             <template #footer>
               <br />
-              <Button
-                label="Explorar Projetos"
+              <button
+                :label="t('home.devButton')"
                 icon="pi pi-arrow-right"
-                iconPos="right"
-                @click="goToPage('/dev')"
+                icon-pos="right"
                 text
                 class="w-full !bg-transparent !border-0 !text-dev !font-semibold !py-3 !px-6 hover:!text-dev/80 !justify-end !transition-all !duration-300 hover:!scale-105 hover:!translate-x-2"
-                aria-label="Navegar para página de projetos de desenvolvimento"
+                :aria-label="t('home.devButtonAria')"
+                @click="goToPage('/dev')"
               />
             </template>
-          </Card>
+          </card>
         </article>
 
         <!-- Seção Editor de Vídeo -->
         <article
           class="animate-slide-right card-hover-glow hover:scale-102 transition-transform duration-300"
         >
-          <Card
-            class="border-l-4 border-[#eaa64d] !transition-all !duration-300 hover:shadow-2xl text-gray-300"
+          <card
+            class="border-l-4 border-editor !transition-all !duration-300 hover:shadow-2xl text-gray-300"
           >
             <template #header>
               <header class="flex items-center justify-center gap-2 p-4">
-                <i class="pi pi-video text-xl text-[#eaa64d]" aria-hidden="true"></i>
-                <h2 class="text-lg font-semibold text-[#eaa64d] m-0">Editor de Vídeo</h2>
+                <i class="pi pi-video text-xl text-editor" aria-hidden="true"></i>
+                <h2 class="text-lg font-semibold text-editor m-0">{{ t('home.editorTitle') }}</h2>
               </header>
             </template>
             <template #content>
               <p class="text-gray-300 leading-relaxed m-0">
-                <span class="text-[#eaa64d] font-semibold">Criação audiovisual profissional</span>
-                com <span class="text-white font-semibold">Adobe Premiere Pro</span>,
-                <span class="text-white font-semibold">Photoshop</span> e
-                <span class="text-white font-semibold">After Effects</span>. Especializado em vídeos
-                institucionais, comerciais e conteúdo para redes sociais.
+                <span class="text-editor font-semibold">{{ t('home.editorCreation') }}</span>
+                {{ ' ' }}
+                <template v-if="locale === 'pt-BR'">
+                  com <span class="text-white font-semibold">Adobe Premiere Pro</span>,
+                  <span class="text-white font-semibold">Photoshop</span> e
+                  <span class="text-white font-semibold">After Effects</span>. Especializado em
+                  vídeos institucionais, comerciais e conteúdo para redes sociais.
+                </template>
+                <template v-else>
+                  with <span class="text-white font-semibold">Adobe Premiere Pro</span>,
+                  <span class="text-white font-semibold">Photoshop</span> and
+                  <span class="text-white font-semibold">After Effects</span>. Specialized in
+                  institutional, commercial videos and social media content.
+                </template>
               </p>
               <br />
             </template>
             <template #footer>
-              <Button
-                label="Ver Portfólio"
+              <button
+                :label="t('home.editorButton')"
                 icon="pi pi-play"
-                iconPos="right"
-                @click="goToPage('/editor')"
+                icon-pos="right"
                 text
                 class="w-full !bg-transparent !border-0 !text-editor !font-semibold !py-3 !px-6 hover:!text-editor/80 !justify-end !transition-all !duration-300 hover:!scale-105 hover:!translate-x-2"
-                aria-label="Navegar para página de portfólio de edição de vídeo"
+                :aria-label="t('home.editorButtonAria')"
+                @click="goToPage('/editor')"
               />
             </template>
-          </Card>
+          </card>
         </article>
       </section>
 
       <!-- Conclusão -->
       <article class="mt-4 animate-fade-in-delayed conclusion-card">
-        <Card class="border border-white/10 text-gray-300">
+        <card class="border border-white/10 text-gray-300">
           <template #header>
             <header class="flex items-center justify-center gap-3 p-4">
               <i
                 class="pi pi-star text-xl text-yellow-400 animate-spin-slow"
                 aria-hidden="true"
               ></i>
-              <h2 class="text-white font-semibold">Minha Filosofia</h2>
+              <h2 class="text-white font-semibold">{{ t('home.philosophyTitle') }}</h2>
               <i
                 class="pi pi-star text-xl text-yellow-400 animate-spin-slow"
                 aria-hidden="true"
@@ -136,108 +201,65 @@
           <template #content>
             <div class="relative overflow-hidden">
               <p class="text-gray-300 leading-relaxed m-0 relative z-10">
-                <span class="text-[#4d91ea] font-semibold">Combino criatividade técnica</span> com
-                <span class="text-[#eaa64d] font-semibold">visão estratégica</span> para entregar
-                projetos que superam expectativas. Seja desenvolvendo
-                <span class="text-white font-semibold">interfaces intuitivas</span> ou produzindo
-                <span class="text-white font-semibold">conteúdo audiovisual impactante</span>, meu
-                foco é sempre a
+                <span class="text-dev font-semibold">{{ t('home.philosophyCreativity') }}</span>
+                {{ ' ' }}
+                <template v-if="locale === 'pt-BR'">com</template>
+                <template v-else>with</template>
+                {{ ' ' }}
+                <span class="text-editor font-semibold">{{ t('home.philosophyVision') }}</span>
+                {{ ' ' }} {{ t('home.philosophyDelivery') }} {{ ' ' }}
+                <span class="text-white font-semibold">{{ t('home.philosophyInterfaces') }}</span>
+                {{ ' ' }}
+                <template v-if="locale === 'pt-BR'">ou produzindo</template>
+                <template v-else>or producing</template>
+                {{ ' ' }}
+                <span class="text-white font-semibold">{{ t('home.philosophyContent') }}</span
+                >, {{ t('home.philosophyFocus') }} {{ ' ' }}
                 <span
-                  class="text-gradient bg-gradient-to-r from-[#4d91ea] to-[#eaa64d] bg-clip-text text-transparent font-bold"
-                  >excelência</span
+                  class="text-gradient bg-gradient-to-r from-dev to-editor bg-clip-text text-transparent font-bold"
+                  >{{ t('home.philosophyExcellence') }}</span
                 >.
               </p>
               <div class="flex justify-center flex-wrap mt-4 gap-4">
                 <div class="flex items-center gap-2 text-sm text-gray-400">
-                  <i class="pi pi-code text-[#4d91ea]" aria-hidden="true"></i>
-                  <span>Tecnologia</span>
+                  <i class="pi pi-code text-dev" aria-hidden="true"></i>
+                  <span>{{ t('home.tagTechnology') }}</span>
                 </div>
                 <div class="flex items-center gap-2 text-sm text-gray-400">
-                  <i class="pi pi-video text-[#eaa64d]" aria-hidden="true"></i>
-                  <span>Criatividade</span>
+                  <i class="pi pi-video text-editor" aria-hidden="true"></i>
+                  <span>{{ t('home.tagCreativity') }}</span>
                 </div>
                 <div class="flex items-center gap-2 text-sm text-gray-400">
                   <i class="pi pi-heart text-red-400 animate-heartbeat" aria-hidden="true"></i>
-                  <span>Dedicação</span>
+                  <span>{{ t('home.tagDedication') }}</span>
                 </div>
               </div>
             </div>
           </template>
-        </Card>
+        </card>
       </article>
 
       <!-- Redes Sociais -->
       <footer class="mt-8 pt-8 animate-slide-up-delayed">
-        <Divider align="center" type="solid" />
+        <divider align="center" type="solid" />
 
         <nav
           class="flex flex-wrap justify-center gap-3 mt-6 social-buttons-container"
-          aria-label="Links de contato e redes sociais"
+          :aria-label="t('home.socialAria')"
         >
-          <SocialMediaButton
+          <social-media-button
             link="https://www.linkedin.com/in/joão-camilo-mallmann/"
             platform="linkedin"
           />
-          <SocialMediaButton link="https://github.com/Joao-Camilo-Mallmann" platform="github" />
-          <SocialMediaButton link="https://www.youtube.com/@J.C-12" platform="youtube" />
+          <social-media-button link="https://github.com/Joao-Camilo-Mallmann" platform="github" />
+          <social-media-button link="https://www.youtube.com/@J.C-12" platform="youtube" />
           <!-- <SocialMediaButton link="https://wa.me/5551994461433" platform="whatsapp" /> -->
-          <SocialMediaButton link="mailto:jcamilomallmann@hotmail.com" platform="email" />
+          <social-media-button link="mailto:jcamilomallmann@hotmail.com" platform="email" />
         </nav>
       </footer>
     </section>
   </main>
 </template>
-
-<script setup>
-import HomeSplitter from '@/components/HomeSplitter.vue'
-import SocialMediaButton from '@/components/SocialMediaButton.vue'
-import { useHead } from '@unhead/vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-
-useHead({
-  title: 'Início',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Portfólio de João Camilo Mallmann - Desenvolvedor Frontend especialista em Vue.js/JavaScript e Editor de Vídeo profissional com Adobe Premiere Pro e After Effects.',
-    },
-    {
-      name: 'keywords',
-      content:
-        'João Camilo Mallmann, desenvolvedor frontend, Vue.js, JavaScript, editor de vídeo, Adobe Premiere Pro, portfolio, freelancer Brasil',
-    },
-    // Open Graph
-    {
-      property: 'og:title',
-      content: 'João Camilo Mallmann - Desenvolvedor Frontend & Editor de Vídeo',
-    },
-    {
-      property: 'og:description',
-      content:
-        'Portfolio profissional: Desenvolvimento web com Vue.js e edição audiovisual com Adobe Creative Suite.',
-    },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://joao-camilo-mallmann.com/' },
-    { property: 'og:image', content: 'https://joao-camilo-mallmann.com/favicon.ico' },
-    { property: 'og:locale', content: 'pt_BR' },
-    // Twitter
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'João Camilo Mallmann - Portfolio' },
-    {
-      name: 'twitter:description',
-      content: 'Desenvolvedor Frontend e Editor de Vídeo profissional.',
-    },
-  ],
-  link: [{ rel: 'canonical', href: 'https://joao-camilo-mallmann.com/' }],
-})
-
-function goToPage(path) {
-  router.push(path)
-}
-</script>
 
 <style scoped>
 /* Elementos flutuantes de fundo */

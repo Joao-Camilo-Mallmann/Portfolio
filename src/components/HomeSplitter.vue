@@ -1,6 +1,8 @@
 <script setup>
+import { useI18n } from '@/composables/useI18n'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+const { t } = useI18n()
 
 const router = useRouter()
 
@@ -43,12 +45,12 @@ const selectProfile = (profile, path) => {
         <div class="panel-bg-image" :style="{ backgroundImage: `url('${urlDevImg}')` }"></div>
         <div class="panel-content">
           <i class="pi pi-code panel-icon"></i>
-          <h2 class="panel-title">Desenvolvedor</h2>
+          <h2 class="panel-title">{{ t('splitter.devTitle') }}</h2>
           <p class="panel-description">
-            Projetos de desenvolvimento web, apps e automações. Explore meu portfólio como DEV!
+            {{ t('splitter.devDescription') }}
           </p>
           <div class="panel-action">
-            <span class="action-text">Clique para ver perfil</span>
+            <span class="action-text">{{ t('splitter.devAction') }}</span>
             <i class="pi pi-arrow-right action-arrow"></i>
           </div>
         </div>
@@ -68,13 +70,12 @@ const selectProfile = (profile, path) => {
         <div class="panel-bg-image" :style="{ backgroundImage: `url('${urlEditorImg}')` }"></div>
         <div class="panel-content">
           <i class="pi pi-video panel-icon"></i>
-          <h2 class="panel-title">Editor de Vídeo</h2>
+          <h2 class="panel-title">{{ t('splitter.editorTitle') }}</h2>
           <p class="panel-description">
-            Criação audiovisual profissional com Adobe Premiere Pro, Photoshop e After Effects.
-            Vídeos e conteúdo para redes sociais
+            {{ t('splitter.editorDescription') }}
           </p>
           <div class="panel-action">
-            <span class="action-text">Clique para ver portfólio</span>
+            <span class="action-text">{{ t('splitter.editorAction') }}</span>
             <i class="pi pi-arrow-right action-arrow"></i>
           </div>
         </div>

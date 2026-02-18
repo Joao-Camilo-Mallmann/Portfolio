@@ -1,6 +1,9 @@
 <script setup>
+import { useI18n } from '@/composables/useI18n'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { RouterView, useRoute, useRouter } from 'vue-router'
+
+const { t } = useI18n()
 
 const route = useRoute()
 const router = useRouter()
@@ -76,7 +79,7 @@ onUnmounted(() => {
           <span class="dot dot-3"></span>
         </div>
 
-        <p class="loading-text">Carregando experiência...</p>
+        <p class="loading-text">{{ t('loading') }}</p>
       </div>
     </div>
   </Transition>

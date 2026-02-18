@@ -1,15 +1,118 @@
+<script setup>
+import { useI18n } from '@/composables/useI18n'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+
+const { t } = useI18n()
+
+const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1024)
+
+const onResize = () => {
+  windowWidth.value = window.innerWidth
+}
+
+onMounted(() => {
+  window.addEventListener('resize', onResize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', onResize)
+})
+
+const isMobile = computed(() => windowWidth.value < 1024)
+
+// Custom directive (auto-registered via vScrollAnimation naming)
+const vScrollAnimation = {
+  mounted(el, binding) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            el.classList.add(binding.value)
+            observer.unobserve(el)
+          }
+        })
+      },
+      { threshold: 0.5 },
+    )
+    observer.observe(el)
+  },
+}
+
+const creativeProcess = computed(() => [
+  {
+    title: t('editorTools.step1Title'),
+    icon: 'pi-map',
+    color: '#eaa64d',
+    description: t('editorTools.step1Desc'),
+    details: [
+      { icon: 'pi-comments', text: t('editorTools.step1Detail1') },
+      { icon: 'pi-file-edit', text: t('editorTools.step1Detail2') },
+      { icon: 'pi-calendar-plus', text: t('editorTools.step1Detail3') },
+    ],
+  },
+  {
+    title: t('editorTools.step2Title'),
+    icon: 'pi-sliders-h',
+    color: '#4d91ea',
+    description: t('editorTools.step2Desc'),
+    details: [
+      { icon: 'pi-scissors', text: t('editorTools.step2Detail1') },
+      { icon: 'pi-sort-amount-up', text: t('editorTools.step2Detail2') },
+      { icon: 'pi-sync', text: t('editorTools.step2Detail3') },
+    ],
+    software: [
+      {
+        name: 'Premiere Pro',
+        icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/512px-Adobe_Premiere_Pro_CC_icon.svg.png?20210729021549',
+      },
+      {
+        name: 'Adobe Audition',
+        icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Adobe_Audition_CC_icon.svg/512px-Adobe_Audition_CC_icon.svg.png',
+      },
+    ],
+  },
+  {
+    title: t('editorTools.step3Title'),
+    icon: 'pi-sparkles',
+    color: '#2ecc71',
+    description: t('editorTools.step3Desc'),
+    details: [
+      { icon: 'pi-palette', text: t('editorTools.step3Detail1') },
+      { icon: 'pi-volume-up', text: t('editorTools.step3Detail2') },
+      { icon: 'pi-check-circle', text: t('editorTools.step3Detail3') },
+    ],
+    software: [
+      {
+        name: 'After Effects',
+        icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/768px-Adobe_After_Effects_CC_icon.svg.png',
+      },
+      {
+        name: 'Photoshop',
+        icon: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg',
+      },
+      {
+        name: 'Adobe Media Encoder',
+        icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Adobe_Media_Encoder_CC_icon.svg/512px-Adobe_Media_Encoder_CC_icon.svg.png',
+      },
+    ],
+  },
+])
+</script>
+
 <template>
   <div class="py-6 md:py-16 px-3 md:px-8">
     <!-- Header -->
     <div class="text-center mb-6 md:mb-16">
-      <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-editor">Minha Jornada Criativa</h2>
+      <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-editor">
+        {{ t('editorTools.journeyTitle') }}
+      </h2>
       <p class="text-gray-400 mt-2 md:mt-3 text-base md:text-xl max-w-2xl mx-auto px-2">
-        Cada projeto é uma história, e esta é a minha forma de contá-la.
+        {{ t('editorTools.journeySubtitle') }}
       </p>
     </div>
 
     <!-- Timeline para Desktop -->
-    <Timeline :value="creativeProcess" v-if="!isMobile" align="alternate" class="custom-timeline">
+    <timeline v-if="!isMobile" :value="creativeProcess" align="alternate" class="custom-timeline">
       <template #marker="slotProps">
         <span
           class="flex w-16 h-16 items-center justify-center text-white rounded-full z-10 shadow-lg transition-all duration-300 hover:scale-110 border-4"
@@ -25,7 +128,7 @@
         </span>
       </template>
       <template #content="slotProps">
-        <Card
+        <card
           class="card-timeline p-5 border-2 rounded-xl h-full transition-all duration-300 hover:scale-[1.02]"
           :style="{ '--card-color': slotProps.item.color }"
         >
@@ -48,13 +151,13 @@
               </li>
             </ul>
           </template>
-        </Card>
+        </card>
       </template>
-    </Timeline>
+    </timeline>
 
     <!-- Timeline para Mobile e Tablet -->
     <div class="block lg:hidden space-y-6">
-      <Card
+      <card
         v-for="(item, index) in creativeProcess"
         :key="index"
         class="card-timeline-mobile border-2 rounded-xl mobile-timeline-item"
@@ -90,127 +193,10 @@
             </li>
           </ul>
         </template>
-      </Card>
+      </card>
     </div>
   </div>
 </template>
-
-<script>
-import Card from 'primevue/card'
-import Timeline from 'primevue/timeline'
-
-export default {
-  name: 'ToolsSection',
-  components: {
-    Timeline,
-    Card,
-  },
-  directives: {
-    'scroll-animation': {
-      mounted(el, binding) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                el.classList.add(binding.value)
-                observer.unobserve(el)
-              }
-            })
-          },
-          { threshold: 0.5 },
-        )
-        observer.observe(el)
-      },
-    },
-  },
-  data() {
-    return {
-      creativeProcess: [
-        {
-          title: '1. Estratégia e Roteiro',
-          icon: 'pi-map',
-          color: '#eaa64d', // Cor do Editor
-          description:
-            'Onde a visão ganha um plano. Nesta fase, mergulho no conceito para estruturar uma narrativa que não apenas informa, mas ressoa com a audiência.',
-          details: [
-            {
-              icon: 'pi-comments',
-              text: 'Sessões de brainstorming para definir a mensagem central.',
-            },
-            { icon: 'pi-file-edit', text: 'Desenvolvimento de roteiros e storyboards detalhados.' },
-            {
-              icon: 'pi-calendar-plus',
-              text: 'Planejamento de produção e definição de cronogramas.',
-            },
-          ],
-        },
-        {
-          title: '2. Edição e Montagem',
-          icon: 'pi-sliders-h',
-          color: '#4d91ea', // Cor do Dev
-          description:
-            'O coração do processo, onde a história toma forma. Seleciono as melhores cenas e construo o ritmo que prende a atenção do início ao fim.',
-          details: [
-            { icon: 'pi-scissors', text: 'Decupagem e organização de todo o material bruto.' },
-            {
-              icon: 'pi-sort-amount-up',
-              text: 'Montagem da estrutura narrativa e sequenciamento.',
-            },
-            { icon: 'pi-sync', text: 'Sincronização de áudio e vídeo com precisão.' },
-          ],
-          software: [
-            {
-              name: 'Premiere Pro',
-              icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/512px-Adobe_Premiere_Pro_CC_icon.svg.png?20210729021549',
-            },
-            {
-              name: 'Adobe Audition',
-              icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Adobe_Audition_CC_icon.svg/512px-Adobe_Audition_CC_icon.svg.png',
-            },
-          ],
-        },
-        {
-          title: '3. Pós-Produção e Finalização',
-          icon: 'pi-sparkles',
-          color: '#2ecc71', // Cor complementar
-          description:
-            'A etapa final, onde o vídeo ganha brilho e polimento. Adiciono os toques finais que elevam a qualidade e garantem um resultado profissional.',
-          details: [
-            { icon: 'pi-palette', text: 'Color grading para criar a atmosfera visual desejada.' },
-            { icon: 'pi-volume-up', text: 'Sound design e mixagem de áudio para imersão sonora.' },
-            {
-              icon: 'pi-check-circle',
-              text: 'Exportação em alta qualidade para diversas plataformas.',
-            },
-          ],
-          software: [
-            {
-              name: 'After Effects',
-              icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/768px-Adobe_After_Effects_CC_icon.svg.png',
-            },
-            {
-              name: 'Photoshop',
-              icon: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg',
-            },
-            {
-              name: 'Adobe Media Encoder',
-              icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Adobe_Media_Encoder_CC_icon.svg/512px-Adobe_Media_Encoder_CC_icon.svg.png',
-            },
-          ],
-        },
-      ],
-    }
-  },
-
-  computed: {
-    isMobile() {
-      // Proteção SSR: retorna false no servidor, verdadeiro valor no cliente
-      if (typeof window === 'undefined') return false
-      return window.innerWidth < 1024 // Ajuste o valor conforme necessário
-    },
-  },
-}
-</script>
 
 <style scoped>
 /* Estilos para Timeline Desktop */

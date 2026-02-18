@@ -1,4 +1,5 @@
 <script setup>
+import { useI18n } from '@/composables/useI18n'
 import { computed } from 'vue'
 
 const props = defineProps({
@@ -10,6 +11,7 @@ const props = defineProps({
   },
   link: {
     type: String,
+    default: '',
     required: false,
   },
   variant: {
@@ -17,6 +19,8 @@ const props = defineProps({
     default: 'default', // 'default' or 'editor'
   },
 })
+
+const { t } = useI18n()
 
 const platformConfig = {
   linkedin: {
@@ -67,12 +71,12 @@ const platformIcon = computed(() => {
   return platformConfig[props.platform]?.icon || ''
 })
 
-const platformClass = computed(() => {
-  return `social-button ${props.platform}`
+const platformLabel = computed(() => {
+  return t(`social.${props.platform}`)
 })
 
-const platformColors = computed(() => {
-  return platformConfig[props.platform]?.colors || {}
+const platformClass = computed(() => {
+  return `social-button ${props.platform}`
 })
 
 const openLink = () => {
@@ -87,15 +91,15 @@ const openLink = () => {
 </script>
 
 <template>
-  <Button
+  <button
     :class="platformClass"
-    :label="platform"
+    :label="platformLabel"
     :icon="platformIcon"
-    iconPos="left"
-    @click="openLink"
+    icon-pos="left"
     type="button"
     size="small"
     class="social-media-btn !transition-all !duration-300"
+    @click="openLink"
   />
 </template>
 

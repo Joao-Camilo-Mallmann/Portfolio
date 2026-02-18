@@ -1,3 +1,18 @@
+<script setup>
+import { useI18n } from '@/composables/useI18n'
+import { ref } from 'vue'
+
+const { t } = useI18n()
+
+const youtubeOFurryLink = ref(
+  'https://yt3.googleusercontent.com/gnIEqwR1vmWB45wdNA45xHpRYaE0XiJUYihwt3aCI2A4TWG4jusXHKOLVi9WDr3rcJ1P5GlHcw=s160-c-k-c0x00ffffff-no-rj',
+)
+
+const openChannel = () => {
+  window.open('https://www.youtube.com/@OFurryOficial', '_blank')
+}
+</script>
+
 <template>
   <div class="relative mb-8 mx-4">
     <div class="text-center mb-6 relative">
@@ -5,7 +20,7 @@
         <span
           class="bg-gradient-to-r from-[#eaa64d] via-yellow-400 to-[#f0b86e] bg-clip-text text-transparent drop-shadow-lg"
         >
-          🎨 Meu Canal Criativo
+          {{ t('editorCreative.title') }}
         </span>
       </h2>
       <div class="relative inline-block">
@@ -15,7 +30,9 @@
         <p
           class="relative text-gray-300 text-base md:text-lg font-medium px-6 py-2 bg-black/60 rounded-full border border-[#eaa64d]/30"
         >
-          Onde a <span class="text-[#eaa64d] font-bold">criatividade</span> não tem limites
+          {{ t('editorCreative.subtitle') }}
+          <span class="text-[#eaa64d] font-bold">{{ t('editorCreative.subtitleHighlight') }}</span>
+          {{ t('editorCreative.subtitleEnd') }}
         </p>
       </div>
     </div>
@@ -35,7 +52,7 @@
           class="absolute inset-0 bg-gradient-to-r from-transparent via-[#eaa64d]/3 to-transparent opacity-60"
         ></div>
       </div>
-      <div class="relative z-10 flex items-center justify-between p-6 d-flex md:flex-row flex-col ">
+      <div class="relative z-10 flex items-center justify-between p-6 d-flex md:flex-row flex-col">
         <div class="relative">
           <div
             class="absolute inset-0 bg-gradient-to-r from-[#eaa64d]/60 to-yellow-500/60 rounded-full blur-md opacity-80"
@@ -43,7 +60,7 @@
           <div class="relative bg-black rounded-full p-3">
             <img
               :src="youtubeOFurryLink"
-              alt="Canal OFurry"
+              :alt="t('editorCreative.channelAlt')"
               class="w-25 h-25 md:w-24 md:h-24 rounded-full border-4 border-[#eaa64d] shadow-2xl"
             />
           </div>
@@ -54,29 +71,21 @@
         <div class="flex-1 ml-6 d-flex flex-col justify-center items-center">
           <h3 class="text-lg md:text-xl font-bold text-[#eaa64d] mb-2">OFurry</h3>
           <p class="text-gray-300 text-sm md:text-base mb-4">
-            Meu lado mais <span class="text-[#eaa64d] font-semibold">criativo</span> e experimental
+            {{ t('editorCreative.channelDescription') }}
+            <span class="text-[#eaa64d] font-semibold">{{
+              t('editorCreative.channelHighlight')
+            }}</span>
+            {{ t('editorCreative.channelEnd') }}
           </p>
           <span class="inline-flex items-center gap-2 text-[#eaa64d] font-semibold py-2 px-4">
             <i class="pi pi-external-link"></i>
-            Explorar Canal
+            {{ t('editorCreative.exploreChannel') }}
           </span>
         </div>
       </div>
     </Panel>
   </div>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-
-const youtubeOFurryLink = ref(
-  'https://yt3.googleusercontent.com/gnIEqwR1vmWB45wdNA45xHpRYaE0XiJUYihwt3aCI2A4TWG4jusXHKOLVi9WDr3rcJ1P5GlHcw=s160-c-k-c0x00ffffff-no-rj',
-)
-
-const openChannel = () => {
-  window.open('https://www.youtube.com/@OFurryOficial', '_blank')
-}
-</script>
 
 <style scoped>
 /* Todas as animações estão agora centralizadas no main.css */
