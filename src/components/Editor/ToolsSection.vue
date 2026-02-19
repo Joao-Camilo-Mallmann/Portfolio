@@ -20,24 +20,6 @@ onUnmounted(() => {
 
 const isMobile = computed(() => windowWidth.value < 1024)
 
-// Custom directive (auto-registered via vScrollAnimation naming)
-const vScrollAnimation = {
-  mounted(el, binding) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            el.classList.add(binding.value)
-            observer.unobserve(el)
-          }
-        })
-      },
-      { threshold: 0.5 },
-    )
-    observer.observe(el)
-  },
-}
-
 const creativeProcess = computed(() => [
   {
     title: t('editorTools.step1Title'),

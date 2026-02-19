@@ -77,10 +77,7 @@ function goToPage(path) {
       </header>
     </section>
 
-    <section
-      ref="introSection"
-      class="text-gray-200 max-w-3xl mx-auto p-8 mt-4 text-center animate-fade-in"
-    >
+    <section class="text-gray-200 max-w-3xl mx-auto p-8 mt-4 text-center animate-fade-in">
       <h1 class="text-2xl font-semibold text-white mb-4 animate-slide-down">
         {{ t('home.aboutMe') }}
       </h1>
