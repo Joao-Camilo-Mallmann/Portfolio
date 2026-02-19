@@ -1,7 +1,10 @@
 <script setup>
-import { ref } from 'vue';
+import { useI18n } from '@/composables/useI18n';
+import { computed } from 'vue';
 
-const techCategories = ref([
+const { t } = useI18n()
+
+const techCategories = computed(() => [
   {
     header: 'Core Engineering & Languages',
     icon: 'pi pi-code',
@@ -171,7 +174,7 @@ const techCategories = ref([
     ],
   },
   {
-    header: 'Bancos de Dados',
+    header: t('devStack.databases'),
     icon: 'pi pi-database',
     description: 'PostgreSQL, MySQL',
     technologies: [
@@ -205,9 +208,9 @@ const techCategories = ref([
       <div class="text-center p-6 pb-0">
         <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
           <i class="pi pi-code text-dev"></i>
-          Stack Tecnológico
+          {{ t('devStack.title') }}
         </h3>
-        <p class="text-gray-400">Principais tecnologias que utilizo no desenvolvimento</p>
+        <p class="text-gray-400">{{ t('devStack.subtitle') }}</p>
       </div>
     </template>
     <template #content>

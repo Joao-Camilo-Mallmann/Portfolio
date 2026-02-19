@@ -1,17 +1,17 @@
 <script setup>
-import { ref } from 'vue'
+import { useI18n } from '@/composables/useI18n'
+import { computed } from 'vue'
 
-const projects = ref([
+const { t } = useI18n()
+
+const projects = computed(() => [
   {
-    title: 'Vimasi Vedações 🔧',
+    title: t('devProjects.project1Title'),
     image: '/img/vimasi.png',
-    imageAlt: 'Screenshot do site Vimasi Vedações',
-    description:
-      'Site institucional de alta performance com Nuxt. Implementação de estratégias avançadas de SEO Técnico e SSG (Static Site Generation), resultando em Core Web Vitals otimizados e alta taxa de conversão.',
-    status: 'Público',
-    statusType: 'public', // 'public', 'private'
-    devStatus: 'Concluído',
-    devStatusType: 'completed', // 'completed', 'wip'
+    imageAlt: t('devProjects.project1Alt'),
+    description: t('devProjects.project1Desc'),
+    statusType: 'public',
+    devStatusType: 'completed',
     year: 2025,
     colors: { from: '#ff6b35', to: '#f7931e' },
     tags: [
@@ -22,13 +22,13 @@ const projects = ref([
     ],
     links: [
       {
-        label: 'Visitar Site',
+        label: t('devProjects.visitSite'),
         icon: 'pi pi-external-link',
         url: 'https://vimasi-vedacoes.com/',
         type: 'primary',
       },
       {
-        label: 'Código',
+        label: t('devProjects.code'),
         icon: 'pi pi-github',
         url: 'https://github.com/Joao-Camilo-Mallmann/vimasi-vedacoes-vue',
         type: 'secondary',
@@ -36,14 +36,11 @@ const projects = ref([
     ],
   },
   {
-    title: 'Travel Mate - Agência de Turismo',
+    title: t('devProjects.project2Title'),
     image: '/img/destinos.png',
-    imageAlt: 'Screenshot do Travel Mate',
-    description:
-      'Solução Full Stack escalável com arquitetura monolítica modular em Node.js. API RESTful documentada, integração com banco de dados SQLite otimizado e pipeline de deploy automatizado na Railway.',
-    status: 'Público',
+    imageAlt: t('devProjects.project2Alt'),
+    description: t('devProjects.project2Desc'),
     statusType: 'public',
-    devStatus: 'Concluído',
     devStatusType: 'completed',
     year: 2024,
     colors: { from: '#4285f4', to: '#1e40af' },
@@ -55,13 +52,13 @@ const projects = ref([
     ],
     links: [
       {
-        label: 'Ver Site',
+        label: t('devProjects.viewSite'),
         icon: 'pi pi-external-link',
         url: 'https://web-production-758be.up.railway.app/',
         type: 'primary',
       },
       {
-        label: 'Código',
+        label: t('devProjects.code'),
         icon: 'pi pi-github',
         url: 'https://github.com/JoaoCamiloMallmann/back',
         type: 'secondary',
@@ -69,14 +66,11 @@ const projects = ref([
     ],
   },
   {
-    title: 'Sistema de Mobilidade Urbana',
+    title: t('devProjects.project3Title'),
     image: '/img/smu.png',
-    imageAlt: 'Screenshot do SMU',
-    description:
-      'Plataforma de missão crítica para monitoramento em tempo real. Arquitetura orientada a eventos utilizando WebSockets para streaming de dados geoespaciais e renderização otimizada de milhares de ativos no mapa.',
-    status: 'Privado',
+    imageAlt: t('devProjects.project3Alt'),
+    description: t('devProjects.project3Desc'),
     statusType: 'private',
-    devStatus: 'Em Andamento',
     devStatusType: 'wip',
     year: 2024,
     colors: { from: '#8b5cf6', to: '#7c3aed' },
@@ -86,17 +80,14 @@ const projects = ref([
       { label: 'Vuetify', color: '#1976d2' },
       { label: 'WebSocket', color: '#38bdf8' },
     ],
-    links: [], // Projeto privado sem links públicos
+    links: [],
   },
   {
-    title: 'Portfolio Pessoal (Esse Site)',
-    image: null, // Sem imagem, vamos mostrar um ícone
-    imageAlt: 'Ícone do portfólio pessoal',
-    description:
-      'Vitrine tecnológica desenvolvida com foco em DX e performance. Utiliza Vue 3 Composition API, Tailwind v4 e automação de CI/CD. Implementação de práticas de acessibilidade (a11y) e SEO semântico.',
-    status: 'Público',
+    title: t('devProjects.project4Title'),
+    image: null,
+    imageAlt: t('devProjects.project4Alt'),
+    description: t('devProjects.project4Desc'),
     statusType: 'public',
-    devStatus: 'Ativo',
     devStatusType: 'active',
     year: 2024,
     colors: { from: '#10b981', to: '#059669' },
@@ -108,7 +99,7 @@ const projects = ref([
     ],
     links: [
       {
-        label: 'Código',
+        label: t('devProjects.code'),
         icon: 'pi pi-github',
         url: 'https://github.com/Joao-Camilo-Mallmann/Portfolio',
         type: 'primary',
@@ -116,6 +107,23 @@ const projects = ref([
     ],
   },
 ])
+
+const getStatusLabel = (statusType) => {
+  return statusType === 'public' ? t('devProjects.public') : t('devProjects.private')
+}
+
+const getDevStatusLabel = (devStatusType) => {
+  switch (devStatusType) {
+    case 'completed':
+      return t('devProjects.completed')
+    case 'active':
+      return t('devProjects.active')
+    case 'wip':
+      return t('devProjects.inProgress')
+    default:
+      return ''
+  }
+}
 
 const openLink = (url) => {
   window.open(url, '_blank', 'noopener,noreferrer')
@@ -168,10 +176,10 @@ const getTagChipStyle = (tag) => {
       class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent animate-gradient-move"
     >
       <i class="pi pi-folder text-dev text-2xl animate-bounce-soft"></i>
-      Principais Projetos
+      {{ t('devProjects.mainTitle') }}
     </h2>
     <p class="text-gray-400 text-lg animate-fade-in-delayed">
-      Alguns dos meus trabalhos mais relevantes
+      {{ t('devProjects.subtitle') }}
     </p>
   </div>
 
@@ -200,14 +208,14 @@ const getTagChipStyle = (tag) => {
                 :style="{ color: project.colors.from }"
               ></i>
               <p class="text-xs font-medium" :style="{ color: project.colors.from }">
-                Este Portfólio
+                {{ t('devProjects.thisPortfolio') }}
               </p>
             </div>
           </div>
 
           <div class="absolute top-3 right-3">
             <Chip
-              :label="project.statusType === 'public' ? 'Público' : 'Privado'"
+              :label="getStatusLabel(project.statusType)"
               :icon="project.statusType === 'public' ? 'pi pi-globe' : 'pi pi-lock'"
               :class="project.statusType === 'public' ? 'bg-green-500!' : 'bg-orange-500!'"
               class="text-white! px-2 py-1 rounded-full backdrop-blur-sm text-xs font-semibold"
@@ -250,7 +258,9 @@ const getTagChipStyle = (tag) => {
               :style="{ color: getDevStatusColor(project.devStatusType) }"
               class="text-sm"
             ></i>
-            <span class="text-xs text-gray-400">{{ project.devStatus }}</span>
+            <span class="text-xs text-gray-400">{{
+              getDevStatusLabel(project.devStatusType)
+            }}</span>
           </div>
 
           <div class="flex gap-1">
@@ -265,7 +275,7 @@ const getTagChipStyle = (tag) => {
               @click="openLink(link.url)"
             />
             <span v-if="project.links.length === 0" class="text-xs text-orange-400 px-2 py-1">
-              Restrito
+              {{ t('devProjects.restricted') }}
             </span>
           </div>
         </div>
