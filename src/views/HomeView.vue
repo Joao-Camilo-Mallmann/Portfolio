@@ -123,14 +123,13 @@ function goToPage(path) {
             <template #footer>
               <br />
               <button
-                :label="t('home.devButton')"
-                icon="pi pi-arrow-right"
-                icon-pos="right"
-                text
-                class="w-full !bg-transparent !border-0 !text-dev !font-semibold !py-3 !px-6 hover:!text-dev/80 !justify-end !transition-all !duration-300 hover:!scale-105 hover:!translate-x-2"
+                class="w-full !bg-transparent !border-0 !text-dev !font-semibold !py-3 !px-6 hover:!text-dev/80 !justify-end !transition-all !duration-300 hover:!scale-105 hover:!translate-x-2 flex items-center gap-2"
                 :aria-label="t('home.devButtonAria')"
                 @click="goToPage('/dev')"
-              />
+              >
+                <span>{{ t('home.devButton') }}</span>
+                <i class="pi pi-arrow-right"></i>
+              </button>
             </template>
           </card>
         </article>
@@ -169,14 +168,13 @@ function goToPage(path) {
             </template>
             <template #footer>
               <button
-                :label="t('home.editorButton')"
-                icon="pi pi-play"
-                icon-pos="right"
-                text
-                class="w-full !bg-transparent !border-0 !text-editor !font-semibold !py-3 !px-6 hover:!text-editor/80 !justify-end !transition-all !duration-300 hover:!scale-105 hover:!translate-x-2"
+                class="w-full !bg-transparent !border-0 !text-editor !font-semibold !py-3 !px-6 hover:!text-editor/80 !justify-end !transition-all !duration-300 hover:!scale-105 hover:!translate-x-2 flex items-center gap-2"
                 :aria-label="t('home.editorButtonAria')"
                 @click="goToPage('/editor')"
-              />
+              >
+                <span>{{ t('home.editorButton') }}</span>
+                <i class="pi pi-play"></i>
+              </button>
             </template>
           </card>
         </article>

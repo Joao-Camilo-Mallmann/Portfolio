@@ -29,8 +29,8 @@ const selectProfile = (profile, path) => {
 
 <template>
   <div class="splitter-container">
-    <splitter class="profile-splitter component" :class="{ animating: isAnimating }">
-      <splitterpanel
+    <Splitter class="profile-splitter component" :class="{ animating: isAnimating }">
+      <Splitterpanel
         :class="[
           'profile-panel',
           'dev-panel',
@@ -54,8 +54,8 @@ const selectProfile = (profile, path) => {
             <i class="pi pi-arrow-right action-arrow"></i>
           </div>
         </div>
-      </splitterpanel>
-      <splitterpanel
+      </Splitterpanel>
+      <Splitterpanel
         :class="[
           'profile-panel',
           'editor-panel',
@@ -79,8 +79,8 @@ const selectProfile = (profile, path) => {
             <i class="pi pi-arrow-right action-arrow"></i>
           </div>
         </div>
-      </splitterpanel>
-    </splitter>
+      </Splitterpanel>
+    </Splitter>
   </div>
 </template>
 

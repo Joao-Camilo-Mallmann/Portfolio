@@ -93,14 +93,13 @@ const openLink = () => {
 <template>
   <button
     :class="platformClass"
-    :label="platformLabel"
-    :icon="platformIcon"
-    icon-pos="left"
     type="button"
-    size="small"
     class="social-media-btn !transition-all !duration-300"
     @click="openLink"
-  />
+  >
+    <i v-if="platformIcon" :class="platformIcon"></i>
+    <span>{{ platformLabel }}</span>
+  </button>
 </template>
 
 <style scoped>
