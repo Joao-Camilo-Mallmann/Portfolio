@@ -108,7 +108,16 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
 - Mantenha o código organizado e bem comentado.
 - Teste sempre as mudanças antes de fazer commit.
 
-## 9. Internacionalização (i18n)
+## 9. SEO
+
+- Utilize o `useHead` (`@unhead/vue`) na inicialização da página principal e rotas para adicionar regras de SEO dinâmicas.
+- O favicon deve ser servido como `favicon.ico` na raiz para o build correto, além do SVG.
+- Manter regras de PWA, Open Graph e Twitter Cards alinhadas nas rotas.
+- O sitemap será gerado de acordo com as rotas exportadas.
+- O Sitelinks Search Box deve ser implementado nas rotas de busca, enquanto SiteNavigationElement deve estar no `index.html` ou gerado via SSG.
+- Para gerar páginas estáticas ou ter rotas resolvidas para os crawlers que não executam JS, garanta o output prerenderizado.
+
+## 10. Internacionalização (i18n)
 
 - O sistema de traduções usa um composable customizado (`src/composables/useI18n.js`) com dot-notation.
 - Idiomas suportados: `pt-BR` (padrão) e `en`.
