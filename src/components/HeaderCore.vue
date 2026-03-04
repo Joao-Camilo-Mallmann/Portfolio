@@ -120,10 +120,10 @@ function closeMobileMenu() {
           <!-- Botão de troca de idioma (Mobile) -->
           <button
             class="locale-toggle-mobile"
-            :aria-label="locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
+            :aria-label="locale === 'pt-BR' ? 'Mudar para Português' : 'Switch to English'"
             @click="toggleLocale"
           >
-            <span class="locale-flag text-lg">{{ locale === 'pt-BR' ? '🇧🇷' : '🇺🇸' }}</span>
+            <span class="locale-flag text-lg">{{ locale === 'pt-BR' ? '🇺🇸' : '🇧🇷' }}</span>
             <span class="text-gray-300">{{ locale === 'pt-BR' ? 'English' : 'Português' }}</span>
           </button>
         </nav>
