@@ -1,13 +1,13 @@
 <script setup>
+import FooterContact from '@/components/FooterContact.vue'
 import HomeSplitter from '@/components/HomeSplitter.vue'
-import SocialMediaButton from '@/components/SocialMediaButton.vue'
 import { useI18n } from '@/composables/useI18n'
 import { useHead } from '@unhead/vue'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const { t, locale } = useI18n()
+const { t, locale, toggleLocale } = useI18n()
 
 useHead({
   title: computed(() => t('seo.homeTitle')),
@@ -78,6 +78,29 @@ function goToPage(path) {
     </section>
 
     <section class="text-gray-200 max-w-3xl mx-auto p-8 mt-4 text-center animate-fade-in">
+      <!-- Alternador de Idioma na Home -->
+      <div class="flex justify-center mb-8 animate-slide-down">
+        <button
+          class="home-locale-toggle group"
+          :aria-label="locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
+          @click="toggleLocale"
+        >
+          <div class="flex items-center gap-3">
+            <span class="text-xl transition-transform duration-300 group-hover:scale-110">
+              {{ locale === 'pt-BR' ? '🇺🇸' : '🇧🇷' }}
+            </span>
+            <span
+              class="font-medium tracking-wide text-sm text-gray-300 group-hover:text-white transition-colors"
+            >
+              {{ locale === 'pt-BR' ? 'View in English' : 'Ver em Português' }}
+            </span>
+          </div>
+          <i
+            class="pi pi-sync text-sm ml-2 text-gray-500 transition-all duration-500 group-hover:rotate-180 group-hover:text-white"
+          ></i>
+        </button>
+      </div>
+
       <h1 class="text-2xl font-semibold text-white mb-4 animate-slide-down">
         {{ t('home.aboutMe') }}
       </h1>
@@ -233,26 +256,10 @@ function goToPage(path) {
           </template>
         </card>
       </article>
-
-      <!-- Redes Sociais -->
-      <footer class="mt-8 pt-8 animate-slide-up-delayed">
-        <divider align="center" type="solid" />
-
-        <nav
-          class="flex flex-wrap justify-center gap-3 mt-6 social-buttons-container"
-          :aria-label="t('home.socialAria')"
-        >
-          <social-media-button
-            link="https://www.linkedin.com/in/joão-camilo-mallmann/"
-            platform="linkedin"
-          />
-          <social-media-button link="https://github.com/Joao-Camilo-Mallmann" platform="github" />
-          <social-media-button link="https://www.youtube.com/@J.C-12" platform="youtube" />
-          <!-- <SocialMediaButton link="https://wa.me/5551994461433" platform="whatsapp" /> -->
-          <social-media-button link="mailto:jcamilomallmann@hotmail.com" platform="email" />
-        </nav>
-      </footer>
     </section>
+
+    <!-- Footer Padrão -->
+    <footer-contact primary-color="#ffffff" :cta-text="t('footer.ctaDefault')" />
   </main>
 </template>
 
@@ -440,6 +447,33 @@ function goToPage(path) {
 .text-gradient {
   background-size: 200% 200%;
   animation: gradientShift 3s ease-in-out infinite;
+}
+
+/* Toggle de Idioma na Home */
+.home-locale-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+.home-locale-toggle:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 25px -6px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.home-locale-toggle:active {
+  transform: translateY(0) scale(0.98);
 }
 
 /* Animações personalizadas únicas do HomeView */
