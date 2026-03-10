@@ -106,6 +106,36 @@ const projects = computed(() => [
       },
     ],
   },
+  {
+    title: t('devProjects.project5Title'),
+    image: '/img/STW.png',
+    imageAlt: t('devProjects.project5Alt'),
+    description: t('devProjects.project5Desc'),
+    statusType: 'public',
+    devStatusType: 'completed',
+    year: 2026,
+    colors: { from: '#0284c7', to: '#0369a1' },
+    tags: [
+      { label: 'React.js', color: '#61dafb' },
+      { label: 'Node.js', color: '#339933' },
+      { label: 'SQLite', color: '#003b57' },
+      { label: 'Tailwind v4', color: '#06b6d4' },
+    ],
+    links: [
+      {
+        label: t('devProjects.viewSite'),
+        icon: 'pi pi-external-link',
+        url: 'https://smart-dashboard-frontend.onrender.com/',
+        type: 'primary',
+      },
+      {
+        label: t('devProjects.code'),
+        icon: 'pi pi-github',
+        url: 'https://github.com/Joao-Camilo-Mallmann/Smart-manufacturing-dashboard',
+        type: 'secondary',
+      },
+    ],
+  },
 ])
 
 const getStatusLabel = (statusType) => {

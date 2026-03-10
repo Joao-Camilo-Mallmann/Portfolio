@@ -1,6 +1,6 @@
 <script setup>
-import { useI18n } from '@/composables/useI18n';
-import { computed } from 'vue';
+import { useI18n } from '@/composables/useI18n'
+import { computed } from 'vue'
 
 const { t } = useI18n()
 

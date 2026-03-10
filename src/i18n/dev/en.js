@@ -102,6 +102,10 @@ export default {
     project4Alt: 'Personal portfolio icon',
     project4Desc:
       'Technology showcase developed with focus on DX and performance. Uses Vue 3 Composition API, Tailwind v4 and CI/CD automation. Implementation of accessibility (a11y) and semantic SEO practices.',
+    project5Title: 'Industrial Monitoring Dashboard ',
+    project5Alt: 'Industrial Dashboard icon',
+    project5Desc:
+      'Full stack solution for real-time monitoring of industrial machines featuring asynchronous simulation, React panels and robust NodeJS REST API. Includes embedded SQLite and Tailwind CSS v4.',
   },
 
   // Dev Stack

@@ -102,6 +102,10 @@ export default {
     project4Alt: 'Ícone do portfólio pessoal',
     project4Desc:
       'Vitrine tecnológica desenvolvida com foco em DX e performance. Utiliza Vue 3 Composition API, Tailwind v4 e automação de CI/CD. Implementação de práticas de acessibilidade (a11y) e SEO semântico.',
+    project5Title: 'Dashboard de Monitoramento Industrial ',
+    project5Alt: 'Ícone do Dashboard Industrial',
+    project5Desc:
+      'Solução full stack para monitoramento em tempo real de máquina industrial com simulação assíncrona, painéis React e API REST NodeJS robusta. Inclui SQLite embutido e Tailwind CSS v4.',
   },
 
   // Dev Stack
