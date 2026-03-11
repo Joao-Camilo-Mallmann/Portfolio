@@ -36,6 +36,36 @@ const projects = computed(() => [
     ],
   },
   {
+    title: t('devProjects.project5Title'),
+    image: '/img/STW.png',
+    imageAlt: t('devProjects.project5Alt'),
+    description: t('devProjects.project5Desc'),
+    statusType: 'public',
+    devStatusType: 'completed',
+    year: 2026,
+    colors: { from: '#0284c7', to: '#0369a1' },
+    tags: [
+      { label: 'React.js', color: '#61dafb' },
+      { label: 'Node.js', color: '#339933' },
+      { label: 'SQLite', color: '#003b57' },
+      { label: 'Tailwind v4', color: '#06b6d4' },
+    ],
+    links: [
+      {
+        label: t('devProjects.viewSite'),
+        icon: 'pi pi-external-link',
+        url: 'https://smart-dashboard-frontend.onrender.com/',
+        type: 'primary',
+      },
+      {
+        label: t('devProjects.code'),
+        icon: 'pi pi-github',
+        url: 'https://github.com/Joao-Camilo-Mallmann/Smart-manufacturing-dashboard',
+        type: 'secondary',
+      },
+    ],
+  },
+  {
     title: t('devProjects.project2Title'),
     image: '/img/destinos.png',
     imageAlt: t('devProjects.project2Alt'),
@@ -103,36 +133,6 @@ const projects = computed(() => [
         icon: 'pi pi-github',
         url: 'https://github.com/Joao-Camilo-Mallmann/Portfolio',
         type: 'primary',
-      },
-    ],
-  },
-  {
-    title: t('devProjects.project5Title'),
-    image: '/img/STW.png',
-    imageAlt: t('devProjects.project5Alt'),
-    description: t('devProjects.project5Desc'),
-    statusType: 'public',
-    devStatusType: 'completed',
-    year: 2026,
-    colors: { from: '#0284c7', to: '#0369a1' },
-    tags: [
-      { label: 'React.js', color: '#61dafb' },
-      { label: 'Node.js', color: '#339933' },
-      { label: 'SQLite', color: '#003b57' },
-      { label: 'Tailwind v4', color: '#06b6d4' },
-    ],
-    links: [
-      {
-        label: t('devProjects.viewSite'),
-        icon: 'pi pi-external-link',
-        url: 'https://smart-dashboard-frontend.onrender.com/',
-        type: 'primary',
-      },
-      {
-        label: t('devProjects.code'),
-        icon: 'pi pi-github',
-        url: 'https://github.com/Joao-Camilo-Mallmann/Smart-manufacturing-dashboard',
-        type: 'secondary',
       },
     ],
   },
@@ -217,7 +217,10 @@ const getTagChipStyle = (tag) => {
     <Card
       v-for="(project, index) in projects"
       :key="index"
-      class="project-card group z-99! animate-slide-up hover:scale-101 hover:-translate-y-3 transition-all duration-500! ease-out"
+      :class="[
+        'project-card group z-99! animate-slide-up hover:scale-101 hover:-translate-y-3 transition-all duration-500! ease-out',
+        projects.length % 2 !== 0 && index === projects.length - 1 ? 'md:col-span-2 md:w-[calc(50%-0.75rem)] md:justify-self-center' : ''
+      ]"
       :style="getProjectCardStyle(project)"
     >
       <template #header>
