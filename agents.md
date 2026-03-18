@@ -12,13 +12,14 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
 ## 2. Estilização
 
 - A estilização é feita primariamente com Tailwind CSS v4.
+- **Preferência por Tailwind:** Priorize sempre o uso de classes utilitárias do Tailwind CSS no template. Tente reduzir e evitar o uso de estilos customizados dentro da tag `<style scoped>`, deixando-os apenas para casos onde o Tailwind não seja prático.
 - Sempre que possível usar **COMO OBRIGATÓRIO OS componentes do PrimeVue** para consistência visual.
 - O projeto utiliza a biblioteca de componentes PrimeVue, com o tema `tailwindcss-primeui`.
 - **Regra Principal:** Todos os estilos globais e animações devem ser centralizados nos arquivos:
-  - `src/assets/main.css` (para estilos globais, imports, definições de cores com @theme e keyframes de animações customizadas)
+  - `src/assets/main.css` (para estilos globais, para definições de cores com @theme e keyframes de animações customizadas)
   - `src/assets/animations.css` (para keyframes e classes de animação complexas)
-- Estilos específicos de um componente devem ser declarados dentro do próprio componente, utilizando a tag `<style scoped>`.
-- Não utilize a tag `<style>` sem o atributo `scoped` em componentes.
+- Dê preferência ao Tailwind antes de recorrer ao `<style scoped>` para manter o código conciso.
+- **Atenção:** Evite utilizar a tag `<style>` sem o atributo `scoped` em componentes para garantir que os estilos não afetem outros elementos.
 
 ### Cores - Sistema Semântico (Tailwind v4)
 
@@ -28,17 +29,17 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
   - `--color-editor: #w` (laranja para portfólio de Editor)
 - **IMPORTANTE:** Não existe mais o arquivo `tailwind.config.js` - toda configuração é feita via CSS usando `@theme`
 
-#### Classes de Cores Permitidas:
+#### Classes de Cores Permitidas
 
 - **Desenvolvedor:** `text-dev`, `bg-dev`, `border-dev`, `hover:text-dev`, `group-hover:text-dev`, etc.
 - **Editor:** `text-editor`, `bg-editor`, `border-editor`, `hover:text-editor`, `group-hover:text-editor`, etc.
 - **Variações de Opacidade:** `bg-dev/20`, `border-editor/50`, `text-dev/80`, etc.
 - **CSS Variables:** Para uso em JavaScript ou CSS inline: `var(--color-dev)`, `var(--color-editor)`
 
-#### Regras de Cores:
+#### Regras de Cores
 
-- ❌ **PROIBIDO:** Usar hex colors (`#eaa64d`, `#4d91ea`) diretamente no código HTML/templates
-- ❌ **PROIBIDO:** Usar `text-[#eaa64d]` ou sintaxe similar com valores arbitrários
+- ⚠️ **Evite:** Usar hex colors (`#eaa64d`, `#4d91ea`) diretamente no código HTML/templates
+- ⚠️ **Evite:** Usar `text-[#eaa64d]` ou sintaxe similar com valores arbitrários
 - ✅ **PERMITIDO:** `text-editor`, `bg-dev`, `border-editor/30`
 - ✅ **PERMITIDO:** CSS Variables: `color: var(--color-dev)`, `backgroundColor: 'var(--color-editor)'`
 - ✅ **PERMITIDO:** Para drop-shadow, usar rgba: `drop-shadow-[0_0_15px_rgba(234,166,77,0.4)]`
@@ -124,7 +125,7 @@ Este documento descreve as principais regras e convenções a serem seguidas nes
 
 ### Estrutura de Arquivos
 
-```
+```javascript
 src/i18n/
 ├── pt-BR.js          # Arquivo principal PT-BR (seções compartilhadas + imports das subpastas)
 ├── en.js             # Arquivo principal EN (seções compartilhadas + imports das subpastas)
@@ -134,9 +135,9 @@ src/i18n/
 ├── dev/
 │   ├── pt-BR.js      # Traduções: dev, devProfile, devProjects, devStack
 │   └── en.js
-└── editor/
-    ├── pt-BR.js      # Traduções: editor, editorCard, editorChannel, editorCreative, editorPlaylist, editorTools
-    └── en.js
+├── editor/
+│   ├── pt-BR.js      # Traduções: editor, editorCard, editorChannel, editorCreative, editorPlaylist, editorTools
+│   └── en.js
 ```
 
 ### Regras de Organização
@@ -153,9 +154,20 @@ src/i18n/
 3. Se uma nova página for criada, criar uma nova subpasta em `src/i18n/<nome-da-pagina>/` com `pt-BR.js` e `en.js`.
 4. Sempre adicionar a tradução em **ambos os idiomas** (pt-BR e en).
 
+## 11. Polimento de Interface (UI/UX)
+
+- **OBRIGATÓRIO:** Consultar e aplicar os princípios do skill `make-interfaces-feel-better` em todo desenvolvimento de interface.
+- **Detalhes de Qualidade:**
+  - **Bordas:** Use bordas concêntricas (outer = inner + padding).
+  - **Alinhamento:** Priorize o alinhamento óptico sobre o geométrico quando necessário.
+  - **Sombras:** Prefira sombras suaves e em camadas (`box-shadow`) em vez de bordas sólidas para profundidade.
+  - **Animações:** Use animações interrompíveis (`transitions`) e escalonadas (`stagger`) para entradas de conteúdo.
+  - **Feedback:** Implemente feedback tátil sutil, como `scale(0.96)` no clique de botões.
+  - **Tipografia:** Use `antialiased` no root, `tabular-nums` para contadores e `text-wrap: balance` em títulos.
+
 ---
 
-**Última atualização:** Fevereiro 2026
+**Última atualização:** Março 2026
 **Versão do Tailwind CSS:** v4
 **Versão do Vue:** 3 (Composition API)
 **Gerenciador de Pacotes:** BUN
