@@ -97,7 +97,7 @@ onMounted(async () => {
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
               <div
-                class="p-4 bg-[#22c55e]/10 rounded border border-[#22c55e]/20 hover:bg-[#22c55e]/20 transition-all cursor-crosshair group"
+                class="p-4 bg-[#22c55e]/10 rounded border border-[#22c55e]/20 hover:bg-[#22c55e]/20 transition-colors transition-transform cursor-crosshair group"
               >
                 <h3
                   class="text-green-400 font-bold mb-2 group-hover:scale-105 transition-transform"
@@ -109,7 +109,7 @@ onMounted(async () => {
                 </p>
               </div>
               <div
-                class="p-4 bg-[#22c55e]/10 rounded border border-[#22c55e]/20 hover:bg-[#22c55e]/20 transition-all cursor-crosshair group"
+                class="p-4 bg-[#22c55e]/10 rounded border border-[#22c55e]/20 hover:bg-[#22c55e]/20 transition-colors transition-transform cursor-crosshair group"
               >
                 <h3
                   class="text-green-400 font-bold mb-2 group-hover:scale-105 transition-transform"

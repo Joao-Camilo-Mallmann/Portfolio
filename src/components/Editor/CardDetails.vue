@@ -12,7 +12,7 @@ const { t } = useI18n()
 
 <template>
   <card
-    class="card-container bg-gray-800/30z backdrop-blur-sm border border-white/10 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
+    class="card-container bg-gray-800/30z backdrop-blur-sm border border-white/10 rounded-2xl shadow-2xl overflow-hidden transition duration-300 hover:-translate-y-1"
   >
     <template #content>
       <tabs value="0" class="custom-tabs">
@@ -33,10 +33,10 @@ const { t } = useI18n()
         <tab-panels>
           <tab-panel value="0">
             <div class="p-4 text-center">
-              <h3 class="text-2xl font-bold text-editor mb-4">
+              <h3 class="text-2xl font-bold text-editor mb-4 text-balance">
                 {{ t('editorCard.aboutTitle') }}
               </h3>
-              <p class="text-gray-300 leading-relaxed">
+              <p class="text-gray-300 leading-relaxed text-pretty">
                 {{ t('editorCard.aboutDescription') }}
               </p>
             </div>
@@ -44,25 +44,25 @@ const { t } = useI18n()
           <tab-panel value="1">
             <div class="p-4 flex flex-wrap justify-center gap-6 text-gray-300">
               <div
-                class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer"
+                class="flex items-center gap-2 transition duration-200 hover:text-white hover:scale-105 active:scale-[0.96] cursor-pointer"
               >
                 <i class="pi pi-video text-editor"></i>
                 <span>{{ t('editorCard.skillEditing') }}</span>
               </div>
               <div
-                class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer"
+                class="flex items-center gap-2 transition duration-200 hover:text-white hover:scale-105 active:scale-[0.96] cursor-pointer"
               >
                 <i class="pi pi-palette text-editor"></i>
                 <span>{{ t('editorCard.skillColorGrading') }}</span>
               </div>
               <div
-                class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer"
+                class="flex items-center gap-2 transition duration-200 hover:text-white hover:scale-105 active:scale-[0.96] cursor-pointer"
               >
                 <i class="pi pi-book text-editor"></i>
                 <span>{{ t('editorCard.skillStorytelling') }}</span>
               </div>
               <div
-                class="flex items-center gap-2 transition-all duration-200 hover:text-white hover:scale-105 cursor-pointer"
+                class="flex items-center gap-2 transition duration-200 hover:text-white hover:scale-105 active:scale-[0.96] cursor-pointer"
               >
                 <i class="pi pi-briefcase text-editor"></i>
                 <span>{{ t('editorCard.skillExperience') }}</span>
@@ -74,10 +74,10 @@ const { t } = useI18n()
               <div class="grid grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
                 <!-- Premiere Pro -->
                 <div
-                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition duration-300 hover:bg-gray-700/30 active:scale-[0.96] cursor-pointer"
                 >
                   <div
-                    class="h-12 w-12 bg-gradient-to-br from-purple-600 to-blue-700 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                    class="h-12 w-12 bg-linear-to-br from-purple-600 to-blue-700 rounded-xl flex items-center justify-center transition duration-200 group-hover:scale-110 editor-glow"
                   >
                     <span class="text-white font-bold text-lg">Pr</span>
                   </div>
@@ -89,10 +89,10 @@ const { t } = useI18n()
 
                 <!-- After Effects -->
                 <div
-                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition duration-300 hover:bg-gray-700/30 active:scale-[0.96] cursor-pointer"
                 >
                   <div
-                    class="h-12 w-12 bg-gradient-to-br from-purple-700 to-indigo-800 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                    class="h-12 w-12 bg-linear-to-br from-purple-700 to-indigo-800 rounded-xl flex items-center justify-center transition duration-200 group-hover:scale-110 editor-glow"
                   >
                     <span class="text-white font-bold text-lg">Ae</span>
                   </div>
@@ -104,10 +104,10 @@ const { t } = useI18n()
 
                 <!-- Photoshop -->
                 <div
-                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition duration-300 hover:bg-gray-700/30 active:scale-[0.96] cursor-pointer"
                 >
                   <div
-                    class="h-12 w-12 bg-gradient-to-br from-blue-600 to-cyan-700 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                    class="h-12 w-12 bg-linear-to-br from-blue-600 to-cyan-700 rounded-xl flex items-center justify-center transition duration-200 group-hover:scale-110 editor-glow"
                   >
                     <span class="text-white font-bold text-lg">Ps</span>
                   </div>
@@ -119,10 +119,10 @@ const { t } = useI18n()
 
                 <!-- Audition -->
                 <div
-                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition duration-300 hover:bg-gray-700/30 active:scale-[0.96] cursor-pointer"
                 >
                   <div
-                    class="h-12 w-12 bg-gradient-to-br from-green-600 to-teal-700 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                    class="h-12 w-12 bg-linear-to-br from-green-600 to-teal-700 rounded-xl flex items-center justify-center transition duration-200 group-hover:scale-110 editor-glow"
                   >
                     <span class="text-white font-bold text-lg">Au</span>
                   </div>
@@ -134,10 +134,10 @@ const { t } = useI18n()
 
                 <!-- Illustrator -->
                 <div
-                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition duration-300 hover:bg-gray-700/30 active:scale-[0.96] cursor-pointer"
                 >
                   <div
-                    class="h-12 w-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                    class="h-12 w-12 bg-linear-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center transition duration-200 group-hover:scale-110 editor-glow"
                   >
                     <span class="text-white font-bold text-lg">Ai</span>
                   </div>
@@ -149,10 +149,10 @@ const { t } = useI18n()
 
                 <!-- Notion -->
                 <div
-                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition duration-300 hover:bg-gray-700/30 active:scale-[0.96] cursor-pointer"
                 >
                   <div
-                    class="h-12 w-12 bg-gradient-to-br from-gray-100 to-gray-300 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                    class="h-12 w-12 bg-linear-to-br from-gray-100 to-gray-300 rounded-xl flex items-center justify-center transition duration-200 group-hover:scale-110 editor-glow"
                   >
                     <svg viewBox="0 0 24 24" class="h-7 w-7 text-gray-800">
                       <path
@@ -169,10 +169,10 @@ const { t } = useI18n()
 
                 <!-- CapCut -->
                 <div
-                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition duration-300 hover:bg-gray-700/30 active:scale-[0.96] cursor-pointer"
                 >
                   <div
-                    class="h-12 w-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                    class="h-12 w-12 bg-linear-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center transition duration-200 group-hover:scale-110 editor-glow"
                   >
                     <svg viewBox="0 0 24 24" class="h-7 w-7 text-white">
                       <path
@@ -189,10 +189,10 @@ const { t } = useI18n()
 
                 <!-- DaVinci Resolve -->
                 <div
-                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-gray-700/30"
+                  class="group flex flex-col items-center gap-2 p-3 rounded-lg transition duration-300 hover:bg-gray-700/30 active:scale-[0.96] cursor-pointer"
                 >
                   <div
-                    class="h-12 w-12 bg-gradient-to-br from-red-600 to-orange-500 rounded-xl flex items-center justify-center group-hover:drop-shadow-[0_0_15px_rgba(234,166,77,0.4)] transition-all duration-200 group-hover:scale-110"
+                    class="h-12 w-12 bg-linear-to-br from-red-600 to-orange-500 rounded-xl flex items-center justify-center transition duration-200 group-hover:scale-110 editor-glow"
                   >
                     <svg viewBox="0 0 24 24" class="h-7 w-7 text-white">
                       <path
@@ -217,7 +217,17 @@ const { t } = useI18n()
 
 <style scoped>
 .card-container:hover {
-  box-shadow: 0 0 30px #eaa64d30;
+  box-shadow: 0 0 30px color-mix(in srgb, var(--color-editor) 20%, transparent);
+}
+
+.editor-glow {
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.group:hover .editor-glow {
+  filter: drop-shadow(0 0 15px color-mix(in srgb, var(--color-editor) 40%, transparent));
 }
 
 @keyframes tab-content-enter {

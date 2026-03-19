@@ -94,7 +94,7 @@ const openLink = () => {
   <button
     :class="platformClass"
     type="button"
-    class="social-media-btn !transition-all !duration-300"
+    class="social-media-btn active:scale-[0.96] transition-transform duration-300"
     @click="openLink"
   >
     <i v-if="platformIcon" :class="platformIcon"></i>
@@ -121,6 +121,8 @@ const openLink = () => {
   text-transform: capitalize;
   transition:
     transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
     box-shadow 0.2s ease;
   border: 1px solid transparent;
   margin: 0.25rem;

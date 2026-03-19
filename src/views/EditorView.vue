@@ -84,25 +84,27 @@ useHead({
 
       <!-- Seção da Playlist do YouTube -->
       <section aria-labelledby="playlist-heading">
-        <h2 id="playlist-heading" class="sr-only">{{ t('editor.playlistHeading') }}</h2>
+        <h2 id="playlist-heading" class="sr-only text-balance">
+          {{ t('editor.playlistHeading') }}
+        </h2>
         <playlist-section />
       </section>
 
       <!-- Seção de ferramentas -->
       <section class="px-4 lg:px-16" aria-labelledby="tools-heading">
-        <h2 id="tools-heading" class="sr-only">{{ t('editor.toolsHeading') }}</h2>
+        <h2 id="tools-heading" class="sr-only text-balance">{{ t('editor.toolsHeading') }}</h2>
         <tools-section />
       </section>
 
       <!-- Seção sobre habilidades -->
       <section class="mb-8 max-w-4xl mx-auto px-4" aria-labelledby="skills-heading">
-        <h2 id="skills-heading" class="sr-only">{{ t('editor.skillsHeading') }}</h2>
+        <h2 id="skills-heading" class="sr-only text-balance">{{ t('editor.skillsHeading') }}</h2>
         <card-details />
       </section>
 
       <!-- Seção do canal criativo -->
       <section aria-labelledby="creative-channel-heading">
-        <h2 id="creative-channel-heading" class="sr-only">
+        <h2 id="creative-channel-heading" class="sr-only text-balance">
           {{ t('editor.creativeChannelHeading') }}
         </h2>
         <creative-channel-panel />

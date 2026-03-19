@@ -128,11 +128,11 @@ onMounted(() => {
     <div class="max-w-5xl mx-auto px-4 md:px-6 relative z-10">
       <!-- Header Simples -->
       <div class="text-center mb-10">
-        <h2 class="text-3xl md:text-5xl font-black text-white mb-4">
+        <h2 class="text-3xl md:text-5xl font-black text-white mb-4 text-balance">
           {{ t('editorPlaylist.myVideos') }}
           <span class="text-editor">{{ t('editorPlaylist.videosHighlight') }}</span>
         </h2>
-        <p class="text-gray-400 text-lg">{{ t('editorPlaylist.browseHighlights') }}</p>
+        <p class="text-gray-400 text-lg text-pretty">{{ t('editorPlaylist.browseHighlights') }}</p>
       </div>
 
       <!-- Loading State -->
@@ -153,7 +153,7 @@ onMounted(() => {
         <!-- Card Principal do Vídeo -->
         <div class="relative group">
           <!-- Card Content -->
-          <Card class="!rounded-3xl !overflow-hidden !p-0 bg-slate-900">
+          <Card class="rounded-3xl! overflow-hidden! p-0! bg-slate-900">
             <template #content>
               <!-- Video Thumbnail Grande -->
               <div
@@ -209,7 +209,7 @@ onMounted(() => {
 
               <!-- Info do Vídeo -->
               <div class="p-6 md:p-8">
-                <h3 class="text-xl md:text-2xl font-bold text-white mb-4">
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-4 text-balance">
                   {{ currentVideo.title }}
                 </h3>
 
@@ -217,7 +217,7 @@ onMounted(() => {
                 <div class="flex items-center justify-between gap-4">
                   <!-- Botão Anterior -->
                   <Button
-                    class="!flex !items-center !gap-2 !px-5 !py-3 !rounded-full !bg-gray-800 hover:!bg-gray-700 !text-white !font-medium !transition-all !duration-300 hover:!scale-105"
+                    class="flex! items-center! gap-2! px-5! py-3! rounded-full! bg-gray-800! hover:bg-gray-700! text-white! font-medium! transition! duration-300! hover:scale-105! active:scale-[0.96]! cursor-pointer"
                     @click="prevVideo"
                   >
                     <i class="pi pi-chevron-left text-lg"></i>
@@ -226,7 +226,7 @@ onMounted(() => {
 
                   <!-- Botão Assistir -->
                   <Button
-                    class="!flex-1 !max-w-xs !flex !items-center !justify-center !gap-3 !px-6 !py-4 !rounded-full !bg-editor hover:!bg-editor/80 !text-white !font-bold !text-lg !transition-all !duration-300 hover:!scale-105 !shadow-lg !shadow-editor/30"
+                    class="flex-1! max-w-xs! flex! items-center! justify-center! gap-3! px-6! py-4! rounded-full! bg-editor! hover:bg-editor/80! text-white! font-bold! text-lg! transition! duration-300! hover:scale-105! active:scale-[0.96]! cursor-pointer shadow-lg! shadow-editor/30!"
                     @click="openPlayerModal(currentVideo)"
                   >
                     <i class="pi pi-play-circle text-xl"></i>
@@ -235,7 +235,7 @@ onMounted(() => {
 
                   <!-- Botão Próximo -->
                   <Button
-                    class="!flex !items-center !gap-2 !px-5 !py-3 !rounded-full !bg-gray-800 hover:!bg-gray-700 !text-white !font-medium !transition-all !duration-300 hover:!scale-105 bor"
+                    class="flex! items-center! gap-2! px-5! py-3! rounded-full! bg-gray-800! hover:bg-gray-700! text-white! font-medium! transition! duration-300! hover:scale-105! active:scale-[0.96]! cursor-pointer border-transparent"
                     @click="nextVideo"
                   >
                     <span class="hidden sm:inline">{{ t('editorPlaylist.next') }}</span>
@@ -252,7 +252,7 @@ onMounted(() => {
           <button
             v-for="(video, index) in playlistVideos"
             :key="video.id"
-            class="transition-all duration-300"
+            class="transition duration-300 cursor-pointer active:scale-[0.96]"
             :class="
               index === currentIndex
                 ? 'w-10 h-3 rounded-full bg-editor'

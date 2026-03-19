@@ -203,12 +203,12 @@ const getTagChipStyle = (tag) => {
 <template>
   <div class="text-center mb-12 animate-slide-up">
     <h2
-      class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent animate-gradient-move"
+      class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent animate-gradient-move text-balance"
     >
       <i class="pi pi-folder text-dev text-2xl animate-bounce-soft"></i>
       {{ t('devProjects.mainTitle') }}
     </h2>
-    <p class="text-gray-400 text-lg animate-fade-in-delayed">
+    <p class="text-gray-400 text-lg animate-fade-in-delayed text-pretty">
       {{ t('devProjects.subtitle') }}
     </p>
   </div>
@@ -218,22 +218,24 @@ const getTagChipStyle = (tag) => {
       v-for="(project, index) in projects"
       :key="index"
       :class="[
-        'project-card group z-99! animate-slide-up hover:scale-101 hover:-translate-y-3 transition-all duration-500! ease-out',
-        projects.length % 2 !== 0 && index === projects.length - 1 ? 'md:col-span-2 md:w-[calc(50%-0.75rem)] md:justify-self-center' : ''
+        'project-card group z-99! animate-slide-up hover:scale-101 active:scale-[0.96] hover:-translate-y-3 transition duration-500! ease-out',
+        projects.length % 2 !== 0 && index === projects.length - 1
+          ? 'md:col-span-2 md:w-[calc(50%-0.75rem)] md:justify-self-center'
+          : '',
       ]"
       :style="getProjectCardStyle(project)"
     >
       <template #header>
         <div class="relative overflow-hidden">
           <div
-            class="h-55 flex items-center justify-center overflow-hidden transition-all duration-300 hover:brightness-110"
+            class="h-55 flex items-center justify-center overflow-hidden transition duration-300 hover:brightness-110"
             :style="{ backgroundColor: project.colors.from + '15' }"
           >
             <Image
               v-if="project.image"
               :src="project.image"
               :alt="project.imageAlt"
-              class="object-fill! group-hover:scale-110 transition-all duration-500! group-hover:brightness-110"
+              class="object-fill! group-hover:scale-110 transition duration-500! group-hover:brightness-110 ring-1 ring-white/10"
             />
             <div v-else class="text-center">
               <i
@@ -259,7 +261,7 @@ const getTagChipStyle = (tag) => {
 
       <template #title>
         <h3
-          class="text-lg font-semibold bg-linear-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent animate-gradient-move"
+          class="text-lg font-semibold bg-linear-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent animate-gradient-move text-balance"
         >
           {{ project.title }}
         </h3>
@@ -267,7 +269,7 @@ const getTagChipStyle = (tag) => {
 
       <template #content>
         <div class="space-y-3">
-          <p class="text-gray-200 text-sm leading-relaxed">
+          <p class="text-gray-200 text-sm leading-relaxed text-pretty">
             {{ project.description }}
           </p>
 

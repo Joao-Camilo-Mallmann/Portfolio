@@ -24,7 +24,7 @@ const creativeProcess = computed(() => [
   {
     title: t('editorTools.step1Title'),
     icon: 'pi-map',
-    color: '#eaa64d',
+    color: 'var(--color-editor)',
     description: t('editorTools.step1Desc'),
     details: [
       { icon: 'pi-comments', text: t('editorTools.step1Detail1') },
@@ -35,7 +35,7 @@ const creativeProcess = computed(() => [
   {
     title: t('editorTools.step2Title'),
     icon: 'pi-sliders-h',
-    color: '#4d91ea',
+    color: 'var(--color-dev)',
     description: t('editorTools.step2Desc'),
     details: [
       { icon: 'pi-scissors', text: t('editorTools.step2Detail1') },
@@ -85,10 +85,10 @@ const creativeProcess = computed(() => [
   <div class="py-6 md:py-16 px-3 md:px-8">
     <!-- Header -->
     <div class="text-center mb-6 md:mb-16">
-      <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-editor">
+      <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-editor text-balance">
         {{ t('editorTools.journeyTitle') }}
       </h2>
-      <p class="text-gray-400 mt-2 md:mt-3 text-base md:text-xl max-w-2xl mx-auto px-2">
+      <p class="text-gray-400 mt-2 md:mt-3 text-base md:text-xl max-w-2xl mx-auto px-2 text-pretty">
         {{ t('editorTools.journeySubtitle') }}
       </p>
     </div>
@@ -97,7 +97,7 @@ const creativeProcess = computed(() => [
     <timeline v-if="!isMobile" :value="creativeProcess" align="alternate" class="custom-timeline">
       <template #marker="slotProps">
         <span
-          class="flex w-16 h-16 items-center justify-center text-white rounded-full z-10 shadow-lg transition-all duration-300 hover:scale-110 border-4"
+          class="flex w-16 h-16 items-center justify-center text-white rounded-full z-10 shadow-lg transition duration-300 hover:scale-110 active:scale-[0.96] cursor-pointer border-4"
           :style="{
             borderColor: slotProps.item.color,
             backgroundColor: '#1f2937',
@@ -111,11 +111,14 @@ const creativeProcess = computed(() => [
       </template>
       <template #content="slotProps">
         <card
-          class="card-timeline p-5 border-2 rounded-xl h-full transition-all duration-300 hover:scale-[1.02]"
+          class="card-timeline p-5 border-2 rounded-xl h-full transition duration-300 hover:scale-[1.02] active:scale-[0.96] cursor-pointer"
           :style="{ '--card-color': slotProps.item.color }"
         >
           <template #title>
-            <h3 class="text-2xl font-bold mb-3" :style="{ color: slotProps.item.color }">
+            <h3
+              class="text-2xl font-bold mb-3 text-balance"
+              :style="{ color: slotProps.item.color }"
+            >
               {{ slotProps.item.title }}
             </h3>
           </template>
@@ -142,13 +145,13 @@ const creativeProcess = computed(() => [
       <card
         v-for="(item, index) in creativeProcess"
         :key="index"
-        class="card-timeline-mobile border-2 rounded-xl mobile-timeline-item"
+        class="card-timeline-mobile border-2 rounded-xl mobile-timeline-item transition duration-300 active:scale-[0.96] cursor-pointer"
         :style="{ '--card-color': item.color }"
       >
         <template #title>
           <div class="flex items-center gap-3 mb-3">
             <div
-              class="flex w-12 h-12 items-center justify-center text-white rounded-full shadow-lg border-2 flex-shrink-0"
+              class="flex w-12 h-12 items-center justify-center text-white rounded-full shadow-lg border-2 shrink-0"
               :style="{
                 borderColor: item.color,
                 backgroundColor: '#1f2937',
@@ -156,7 +159,10 @@ const creativeProcess = computed(() => [
             >
               <i :class="`pi ${item.icon} text-xl`" :style="{ color: item.color }"></i>
             </div>
-            <h3 class="text-lg font-bold leading-tight m-0" :style="{ color: item.color }">
+            <h3
+              class="text-lg font-bold leading-tight m-0 text-balance"
+              :style="{ color: item.color }"
+            >
               {{ item.title }}
             </h3>
           </div>
@@ -168,7 +174,7 @@ const creativeProcess = computed(() => [
           <ul class="list-none p-0 m-0 space-y-2">
             <li v-for="(detail, i) in item.details" :key="i" class="flex items-start gap-2">
               <i
-                :class="`pi ${detail.icon} text-sm mt-0.5 flex-shrink-0`"
+                :class="`pi ${detail.icon} text-sm mt-0.5 shrink-0`"
                 :style="{ color: item.color }"
               ></i>
               <span class="text-gray-400 text-sm leading-relaxed">{{ detail.text }}</span>
@@ -212,7 +218,12 @@ const creativeProcess = computed(() => [
 
 /* Estilos para Timeline Desktop - PrimeVue */
 .custom-timeline :deep(.p-timeline-event-connector) {
-  background: linear-gradient(to bottom, #eaa64d 0%, #4d91ea 50%, #2ecc71 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--color-editor) 0%,
+    var(--color-dev) 50%,
+    #2ecc71 100%
+  );
 }
 
 /* Animações de entrada para mobile */

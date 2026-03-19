@@ -45,8 +45,8 @@ const selectProfile = (profile, path) => {
         <div class="panel-bg-image" :style="{ backgroundImage: `url('${urlDevImg}')` }"></div>
         <div class="panel-content">
           <i class="pi pi-code panel-icon"></i>
-          <h2 class="panel-title">{{ t('splitter.devTitle') }}</h2>
-          <p class="panel-description">
+          <h2 class="panel-title text-balance">{{ t('splitter.devTitle') }}</h2>
+          <p class="panel-description text-pretty">
             {{ t('splitter.devDescription') }}
           </p>
           <div class="panel-action">
@@ -70,8 +70,8 @@ const selectProfile = (profile, path) => {
         <div class="panel-bg-image" :style="{ backgroundImage: `url('${urlEditorImg}')` }"></div>
         <div class="panel-content">
           <i class="pi pi-video panel-icon"></i>
-          <h2 class="panel-title">{{ t('splitter.editorTitle') }}</h2>
-          <p class="panel-description">
+          <h2 class="panel-title text-balance">{{ t('splitter.editorTitle') }}</h2>
+          <p class="panel-description text-pretty">
             {{ t('splitter.editorDescription') }}
           </p>
           <div class="panel-action">
@@ -110,6 +110,10 @@ const selectProfile = (profile, path) => {
   border: 2px solid transparent;
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+.profile-panel:active {
+  transform: scale(0.98);
 }
 
 .profile-panel:hover {
@@ -157,8 +161,8 @@ const selectProfile = (profile, path) => {
   height: 100%;
   background: linear-gradient(
     0deg,
-    rgba(77, 145, 234, 0.75) 0%,
-    rgba(77, 145, 234, 0.2) 50%,
+    color-mix(in srgb, var(--color-dev) 75%, transparent) 0%,
+    color-mix(in srgb, var(--color-dev) 20%, transparent) 50%,
     rgba(0, 0, 0, 0.05) 100%
   );
   z-index: 1;
@@ -180,8 +184,8 @@ const selectProfile = (profile, path) => {
   height: 100%;
   background: linear-gradient(
     0deg,
-    rgba(234, 166, 77, 0.75) 0%,
-    rgba(234, 166, 77, 0.2) 50%,
+    color-mix(in srgb, var(--color-editor) 75%, transparent) 0%,
+    color-mix(in srgb, var(--color-editor) 20%, transparent) 50%,
     rgba(0, 0, 0, 0.05) 100%
   );
   z-index: 1;

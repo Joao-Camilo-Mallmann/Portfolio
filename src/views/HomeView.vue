@@ -81,7 +81,7 @@ function goToPage(path) {
       <!-- Alternador de Idioma na Home -->
       <div class="flex justify-center mb-8 animate-slide-down">
         <button
-          class="home-locale-toggle group"
+          class="home-locale-toggle group min-h-[40px] px-4 py-2"
           :aria-label="locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
           @click="toggleLocale"
         >
@@ -96,12 +96,12 @@ function goToPage(path) {
             </span>
           </div>
           <i
-            class="pi pi-sync text-sm ml-2 text-gray-500 transition-all duration-500 group-hover:rotate-180 group-hover:text-white"
+            class="pi pi-sync text-sm ml-2 text-gray-500 transition-colors transition-transform duration-500 group-hover:rotate-180 group-hover:text-white"
           ></i>
         </button>
       </div>
 
-      <h1 class="text-2xl font-semibold text-white mb-4 animate-slide-down">
+      <h1 class="text-2xl font-semibold text-white mb-4 animate-slide-down text-balance">
         {{ t('home.aboutMe') }}
       </h1>
 
@@ -126,12 +126,14 @@ function goToPage(path) {
           class="animate-slide-left card-hover-glow hover:scale-102 transition-transform duration-300"
         >
           <card
-            class="border-l-4 !h-full border-dev !transition-all !duration-300 hover:shadow-2xl text-gray-300"
+            class="border-l-4 !h-full border-dev !transition-colors transition-transform !duration-300 hover:shadow-2xl text-gray-300"
           >
             <template #header>
               <header class="flex items-center justify-center gap-2 p-4">
                 <i class="pi pi-desktop text-xl text-dev" aria-hidden="true"></i>
-                <h2 class="text-lg font-semibold text-dev m-0">{{ t('home.devTitle') }}</h2>
+                <h2 class="text-lg font-semibold text-dev m-0 text-balance">
+                  {{ t('home.devTitle') }}
+                </h2>
               </header>
             </template>
             <template #content>
@@ -143,7 +145,7 @@ function goToPage(path) {
             <template #footer>
               <br />
               <button
-                class="w-full !bg-transparent !border-0 !text-dev !font-semibold !py-3 !px-6 hover:!text-dev/80 !justify-end !transition-all !duration-300 hover:!scale-105 hover:!translate-x-2 flex items-center gap-2"
+                class="w-full !bg-transparent !border-0 !text-dev !font-semibold !py-3 !px-6 hover:!text-dev/80 !justify-end !transition-colors transition-transform !duration-300 hover:!scale-105 hover:!translate-x-2 flex items-center gap-2"
                 :aria-label="t('home.devButtonAria')"
                 @click="goToPage('/dev')"
               >
@@ -159,12 +161,14 @@ function goToPage(path) {
           class="animate-slide-right card-hover-glow hover:scale-102 transition-transform duration-300"
         >
           <card
-            class="border-l-4 border-editor !transition-all !duration-300 hover:shadow-2xl text-gray-300"
+            class="border-l-4 border-editor !transition-colors transition-transform !duration-300 hover:shadow-2xl text-gray-300"
           >
             <template #header>
               <header class="flex items-center justify-center gap-2 p-4">
                 <i class="pi pi-video text-xl text-editor" aria-hidden="true"></i>
-                <h2 class="text-lg font-semibold text-editor m-0">{{ t('home.editorTitle') }}</h2>
+                <h2 class="text-lg font-semibold text-editor m-0 text-balance">
+                  {{ t('home.editorTitle') }}
+                </h2>
               </header>
             </template>
             <template #content>
@@ -188,7 +192,7 @@ function goToPage(path) {
             </template>
             <template #footer>
               <button
-                class="w-full !bg-transparent !border-0 !text-editor !font-semibold !py-3 !px-6 hover:!text-editor/80 !justify-end !transition-all !duration-300 hover:!scale-105 hover:!translate-x-2 flex items-center gap-2"
+                class="w-full !bg-transparent !border-0 !text-editor !font-semibold !py-3 !px-6 hover:!text-editor/80 !justify-end !transition-colors transition-transform !duration-300 hover:!scale-105 hover:!translate-x-2 flex items-center gap-2"
                 :aria-label="t('home.editorButtonAria')"
                 @click="goToPage('/editor')"
               >
@@ -209,7 +213,7 @@ function goToPage(path) {
                 class="pi pi-star text-xl text-yellow-400 animate-spin-slow"
                 aria-hidden="true"
               ></i>
-              <h2 class="text-white font-semibold">{{ t('home.philosophyTitle') }}</h2>
+              <h2 class="text-white font-semibold text-balance">{{ t('home.philosophyTitle') }}</h2>
               <i
                 class="pi pi-star text-xl text-yellow-400 animate-spin-slow"
                 aria-hidden="true"

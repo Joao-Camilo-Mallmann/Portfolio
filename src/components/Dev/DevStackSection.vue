@@ -206,11 +206,13 @@ const techCategories = computed(() => [
   <Card class="overflow-hidden card-hover animate-slide-down">
     <template #header>
       <div class="text-center p-6 pb-0">
-        <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
+        <h3
+          class="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2 text-balance"
+        >
           <i class="pi pi-code text-dev"></i>
           {{ t('devStack.title') }}
         </h3>
-        <p class="text-gray-400">{{ t('devStack.subtitle') }}</p>
+        <p class="text-gray-400 text-pretty">{{ t('devStack.subtitle') }}</p>
       </div>
     </template>
     <template #content>
@@ -219,7 +221,7 @@ const techCategories = computed(() => [
           v-for="category in techCategories"
           :key="category.header"
           :legend="category.header"
-          class="bg-linear-to-tl! to-dev/10! fieldset-hover"
+          class="bg-linear-to-tl! to-dev/10! fieldset-hover active:scale-[0.96]"
         >
           <template #legend>
             <div
@@ -234,7 +236,7 @@ const techCategories = computed(() => [
             <div
               v-for="(tech, idx) in category.technologies"
               :key="tech.name"
-              class="tech-item-modern group animate-slide-up"
+              class="tech-item-modern group animate-slide-up active:scale-[0.96] cursor-pointer"
               :style="{ animationDelay: 0.08 * idx + 's' }"
             >
               <div class="flex items-center gap-3">
