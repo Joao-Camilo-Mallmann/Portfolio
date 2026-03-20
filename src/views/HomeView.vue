@@ -31,7 +31,11 @@ useHead({
     },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: 'https://joao-camilo-mallmann.com/' },
-    { property: 'og:image', content: 'https://joao-camilo-mallmann.com/favicon.ico' },
+    {
+      property: 'og:image',
+      content:
+        'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=crop',
+    },
     {
       property: 'og:locale',
       content: computed(() => (locale.value === 'pt-BR' ? 'pt_BR' : 'en_US')),

@@ -23,7 +23,17 @@ useHead({
     { property: 'og:description', content: () => t('editor.ogDescription') },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: 'https://joao-camilo-mallmann.com/editor' },
+    {
+      property: 'og:image',
+      content:
+        'https://images.unsplash.com/photo-1574717025058-2f8737d2e2b7?q=80&w=687&auto=format&fit=crop',
+    },
     { name: 'twitter:card', content: 'summary_large_image' },
+    {
+      name: 'twitter:image',
+      content:
+        'https://images.unsplash.com/photo-1574717025058-2f8737d2e2b7?q=80&w=687&auto=format&fit=crop',
+    },
     { name: 'twitter:title', content: () => t('editor.twitterTitle') },
     { name: 'twitter:description', content: () => t('editor.twitterDescription') },
   ],
@@ -33,7 +43,7 @@ useHead({
 
 <template>
   <main
-    class="page-transition min-h-screen !bg-gradient-to-br !to-[#eaa64d]/10 relative overflow-hidden"
+    class="page-transition min-h-screen bg-linear-to-br! to-editor/10! relative overflow-hidden"
     role="main"
     :aria-label="t('editor.ariaLabel')"
   >
@@ -56,7 +66,7 @@ useHead({
       <you-tube-channel-panel />
 
       <panel
-        class="!bg-transparent !border-0 !shadow-none text-gray-200 px-4 lg:px-16 p-4 md:p-8"
+        class="bg-transparent! border-0! shadow-none! text-gray-200 px-4 lg:px-16 p-4 md:p-8"
         role="region"
         aria-labelledby="portfolio-heading"
       >
@@ -69,7 +79,7 @@ useHead({
             {{ t('editor.portfolioHeading') }}
           </h1>
           <divider
-            class="!w-24 md:!w-32 !h-1.5 !mx-auto !bg-gradient-to-r !from-[#eaa64d] !to-yellow-200/60 !rounded-full !mb-6 !shadow-lg !border-0"
+            class="w-24! md:w-32! h-1.5! mx-auto! bg-linear-to-r! from-editor! to-yellow-200/60! rounded-full! mb-6! shadow-lg! border-0!"
           />
           <p
             class="text-gray-300 text-lg md:text-2xl px-2 md:px-4 font-medium leading-relaxed max-w-3xl mx-auto"
