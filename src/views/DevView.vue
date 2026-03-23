@@ -19,7 +19,17 @@ useHead({
     { property: 'og:description', content: () => t('dev.ogDescription') },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: 'https://joao-camilo-mallmann.com/dev' },
+    {
+      property: 'og:image',
+      content:
+        'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=crop',
+    },
     { name: 'twitter:card', content: 'summary_large_image' },
+    {
+      name: 'twitter:image',
+      content:
+        'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=crop',
+    },
     { name: 'twitter:title', content: () => t('dev.twitterTitle') },
     { name: 'twitter:description', content: () => t('dev.twitterDescription') },
   ],
@@ -29,7 +39,7 @@ useHead({
 
 <template>
   <main
-    class="page-transition !bg-gradient-to-b !to-[#4d91ea]/10 relative overflow-hidden"
+    class="page-transition bg-linear-to-b! to-dev/10! relative overflow-hidden"
     role="main"
     :aria-label="t('dev.ariaLabel')"
   >
@@ -49,13 +59,13 @@ useHead({
     </section>
 
     <!-- Projetos - Layout em Cards Compactos -->
-    <section aria-labelledby="projects-heading" class="w-4/5 mx-auto px-4 mb-16 !z-99">
+    <section aria-labelledby="projects-heading" class="w-4/5 mx-auto px-4 mb-16 z-99!">
       <dev-projects-section />
     </section>
 
     <p class="text-center text-gray-400 text-sm mt-4 mb-0 px-4" role="note">
       {{ t('dev.funText') }}
-      <span class="text-[#4d91ea] font-semibold">{{ t('dev.funAchievement') }}</span>
+      <span class="text-dev font-semibold">{{ t('dev.funAchievement') }}</span>
       {{ t('dev.funBadge') }} <br />
       <span class="text-xs text-gray-500 mt-1 block">
         {{ t('dev.funPS') }}
