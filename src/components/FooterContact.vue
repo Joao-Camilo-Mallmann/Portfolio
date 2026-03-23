@@ -46,8 +46,18 @@ const computedPrimaryColor = computed(() => {
       <!-- Links de contato -->
       <div class="!flex !flex-wrap justify-center gap-3 sm:gap-4 mb-8 px-4">
         <social-media-button
+          platform="github"
+          link="https://github.com/Joao-Camilo-Mallmann"
+          class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
+        />
+        <social-media-button
           platform="linkedin"
           link="https://www.linkedin.com/in/joão-camilo-mallmann/"
+          class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
+        />
+        <social-media-button
+          platform="youtube"
+          link="https://www.youtube.com/@J.C-12"
           class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
         />
         <social-media-button
@@ -55,12 +65,6 @@ const computedPrimaryColor = computed(() => {
           link="mailto:jcamilomallmann@hotmail.com"
           class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
         />
-
-        <!-- <SocialMediaButton
-          platform="whatsapp"
-          link="https://wa.me/5551994461433"
-          class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
-        /> -->
       </div>
 
       <!-- Divider com cor dinâmica -->
