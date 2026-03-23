@@ -13,19 +13,19 @@ const youtubeJCLink = ref(
   <Panel class="!bg-transparent !border-0 !shadow-none mb-6 mt-6">
     <template #header>
       <div class="w-full flex justify-center">
-        <h2 class="text-2xl font-bold text-[#eaa64d] text-balance">
+        <h2 class="text-2xl font-bold text-editor text-balance">
           {{ t('editorChannel.officialChannel') }}
         </h2>
       </div>
     </template>
     <div class="flex flex-col items-center justify-center gap-6 px-2">
       <div class="relative group">
-        <span class="absolute inset-0 rounded-full border-4 border-[#eaa64d] opacity-70"></span>
-        <span class="absolute -inset-2 rounded-full border-2 border-[#eaa64d]/30 opacity-50"></span>
+        <span class="absolute inset-0 rounded-full border-4 border-editor opacity-70"></span>
+        <span class="absolute -inset-2 rounded-full border-2 border-editor/30 opacity-50"></span>
         <img
           :src="youtubeJCLink"
           :alt="t('editorChannel.channelAlt')"
-          class="w-32 h-32 md:w-50 md:h-50 rounded-full border-4 border-[#eaa64d] shadow-2xl relative z-10 bg-white group-hover:scale-105 transition-transform duration-300"
+          class="w-32 h-32 md:w-50 md:h-50 rounded-full border-4 border-editor shadow-2xl relative z-10 bg-white group-hover:scale-105 transition-transform duration-300"
         />
       </div>
       <Button
@@ -36,7 +36,7 @@ const youtubeJCLink = ref(
         target="_blank"
         icon="pi pi-youtube"
         rel="noopener"
-        class="!inline-flex !items-center !gap-3 !px-8 !py-4 md:!px-12 md:!py-5 !rounded-full !bg-gradient-to-r !from-[#eaa64d] !to-[#f0b86e] !text-white !font-extrabold !text-lg md:!text-xl !shadow-xl hover:!shadow-2xl hover:!scale-105 !transition-colors transition-transform !duration-300 !border-2 !border-[#eaa64d]/50"
+        class="!inline-flex !items-center !gap-3 !px-8 !py-4 md:!px-12 md:!py-5 !rounded-full !bg-gradient-to-r !from-editor !to-editor/80 !text-white !font-extrabold !text-lg md:!text-xl !shadow-xl hover:!shadow-2xl hover:!scale-105 !transition-colors transition-transform !duration-300 !border-2 !border-editor/50"
       />
     </div>
   </Panel>

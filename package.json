@@ -9,7 +9,6 @@
     "postbuild": "cp dist/index.html dist/404.html && mkdir -p dist/dev dist/editor && cp dist/dev.html dist/dev/index.html && cp dist/editor.html dist/editor/index.html",
     "preview": "vite preview",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/",
     "deploy": "bun run build"
   },
   "dependencies": {

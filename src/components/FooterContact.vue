@@ -28,7 +28,7 @@ const computedPrimaryColor = computed(() => {
 </script>
 
 <template>
-  <footer class="mt-16 border-t border-white/10 bg-black/30 backdrop-blur-sm !z-99">
+  <footer class="mt-16 border-t border-white/10 bg-black/30 backdrop-blur-sm z-99!">
     <div class="max-w-6xl mx-auto p-6 md:p-8 flex flex-col items-center">
       <!-- Seção principal -->
       <div class="text-center mb-8">
@@ -44,26 +44,26 @@ const computedPrimaryColor = computed(() => {
       </div>
 
       <!-- Links de contato -->
-      <div class="!flex !flex-wrap justify-center gap-3 sm:gap-4 mb-8 px-4">
+      <div class="flex! flex-wrap! justify-center gap-3 sm:gap-4 mb-8 px-4">
         <social-media-button
           platform="github"
           link="https://github.com/Joao-Camilo-Mallmann"
-          class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
+          class="flex-1 sm:flex-none min-w-0 max-w-35 sm:max-w-none"
         />
         <social-media-button
           platform="linkedin"
           link="https://www.linkedin.com/in/joão-camilo-mallmann/"
-          class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
+          class="flex-1 sm:flex-none min-w-0 max-w-35 sm:max-w-none"
         />
         <social-media-button
           platform="youtube"
           link="https://www.youtube.com/@J.C-12"
-          class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
+          class="flex-1 sm:flex-none min-w-0 max-w-35 sm:max-w-none"
         />
         <social-media-button
           platform="email"
           link="mailto:jcamilomallmann@hotmail.com"
-          class="flex-1 sm:flex-none min-w-0 max-w-[140px] sm:max-w-none"
+          class="flex-1 sm:flex-none min-w-0 max-w-35 sm:max-w-none"
         />
       </div>
 
@@ -98,7 +98,7 @@ footer {
   footer :deep(.social-media-btn) {
     min-width: auto;
     flex: 1;
-    max-width: 140px;
+    max-width: 8.75rem; /* 140px */
   }
 }
 </style>

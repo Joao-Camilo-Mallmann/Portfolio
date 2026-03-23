@@ -85,7 +85,7 @@ function goToPage(path) {
       <!-- Alternador de Idioma na Home -->
       <div class="flex justify-center mb-8 animate-slide-down">
         <button
-          class="home-locale-toggle group min-h-[40px] px-4 py-2"
+          class="home-locale-toggle group min-h-10 px-4 py-2"
           :aria-label="locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
           @click="toggleLocale"
         >
@@ -448,7 +448,13 @@ function goToPage(path) {
   left: -100%;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #4d91ea, #eaa64d, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-dev),
+    var(--color-editor),
+    transparent
+  );
   animation: borderGlow 3s linear infinite;
 }
 

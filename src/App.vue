@@ -127,7 +127,7 @@ body.no-scroll {
 .circle-1 {
   width: 300px;
   height: 300px;
-  background: linear-gradient(45deg, #4d91ea, #eaa64d);
+  background: linear-gradient(45deg, var(--color-dev), var(--color-editor));
   top: -100px;
   left: -100px;
   animation-delay: 0s;
@@ -136,7 +136,7 @@ body.no-scroll {
 .circle-2 {
   width: 200px;
   height: 200px;
-  background: linear-gradient(45deg, #eaa64d, #4d91ea);
+  background: linear-gradient(45deg, var(--color-editor), var(--color-dev));
   bottom: -50px;
   right: -50px;
   animation-delay: 2s;
@@ -145,7 +145,7 @@ body.no-scroll {
 .circle-3 {
   width: 150px;
   height: 150px;
-  background: linear-gradient(45deg, #4d91ea, #22c55e);
+  background: linear-gradient(45deg, var(--color-dev), var(--color-editor));
   top: 50%;
   right: 10%;
   animation-delay: 4s;

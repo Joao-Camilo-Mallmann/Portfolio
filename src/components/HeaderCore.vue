@@ -40,7 +40,7 @@ function closeMobileMenu() {
 
         <!-- Menu Mobile Button -->
         <button
-          class="md:hidden text-gray-300 hover:text-white active:scale-[0.96] min-w-[40px] min-h-[40px] flex items-center justify-center rounded-lg transition duration-300"
+          class="md:hidden text-gray-300 hover:text-white active:scale-[0.96] min-w-10 min-h-10 flex items-center justify-center rounded-lg transition duration-300"
           @click="toggleMobileMenu"
         >
           <i class="pi pi-bars text-lg"></i>
@@ -50,21 +50,21 @@ function closeMobileMenu() {
         <nav class="hidden md:flex items-center gap-4">
           <router-link
             to="/"
-            class="text-gray-300 hover:text-white hover:-translate-y-1 active:scale-[0.96] transition duration-300 px-3 py-2 min-h-[40px] rounded-lg hover:bg-white/10 hover:shadow-lg flex items-center gap-2 group"
+            class="text-gray-300 hover:text-white hover:-translate-y-1 active:scale-[0.96] transition duration-300 px-3 py-2 min-h-10 rounded-lg hover:bg-white/10 hover:shadow-lg flex items-center gap-2 group"
           >
             <i class="pi pi-home text-sm transition-transform duration-300"></i>
             <span>{{ t('header.home') }}</span>
           </router-link>
           <router-link
             to="/dev"
-            class="text-gray-300 hover:text-dev hover:-translate-y-1 active:scale-[0.96] transition duration-300 px-3 py-2 min-h-[40px] rounded-lg hover:bg-dev/10 hover:shadow-lg hover:shadow-dev/20 flex items-center gap-2 group"
+            class="text-gray-300 hover:text-dev hover:-translate-y-1 active:scale-[0.96] transition duration-300 px-3 py-2 min-h-10 rounded-lg hover:bg-dev/10 hover:shadow-lg hover:shadow-dev/20 flex items-center gap-2 group"
           >
             <i class="pi pi-code text-sm transition-transform duration-300"></i>
             <span>{{ t('header.dev') }}</span>
           </router-link>
           <router-link
             to="/editor"
-            class="text-gray-300 hover:text-editor hover:-translate-y-1 active:scale-[0.96] transition duration-300 px-3 py-2 min-h-[40px] rounded-lg hover:bg-editor/10 hover:shadow-lg hover:shadow-editor/20 flex items-center gap-2 group"
+            class="text-gray-300 hover:text-editor hover:-translate-y-1 active:scale-[0.96] transition duration-300 px-3 py-2 min-h-10 rounded-lg hover:bg-editor/10 hover:shadow-lg hover:shadow-editor/20 flex items-center gap-2 group"
           >
             <i class="pi pi-video text-sm transition-transform duration-300"></i>
             <span>{{ t('header.editor') }}</span>

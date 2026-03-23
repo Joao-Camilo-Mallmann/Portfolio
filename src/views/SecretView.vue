@@ -71,7 +71,7 @@ onMounted(async () => {
 
     <div class="grow flex items-center justify-center relative z-10 px-4">
       <div
-        class="max-w-3xl w-full bg-black/80 border border-[#22c55e]/30 rounded-lg p-8 shadow-[0_0_50px_rgba(34,197,94,0.2)] backdrop-blur-sm"
+        class="max-w-3xl w-full bg-black/80 border border-[#22c55e]/30 rounded-lg p-8 shadow-2xl shadow-green-500/20 backdrop-blur-sm"
       >
         <!-- Terminal Output -->
         <div class="font-mono text-sm md:text-base mb-8 space-y-2">
@@ -124,7 +124,7 @@ onMounted(async () => {
 
             <div class="pt-8">
               <button
-                class="px-8 py-3 bg-green-400 text-black font-bold rounded hover:bg-green-500 transition-colors shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)]"
+                class="px-8 py-3 bg-green-400 text-black font-bold rounded hover:bg-green-500 transition-colors shadow-lg shadow-green-500/40 hover:shadow-xl hover:shadow-green-500/60"
                 @click="router.push('/')"
               >
                 VOLTAR À REALIDADE

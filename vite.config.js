@@ -13,7 +13,7 @@ export default defineConfig({
     vue(),
     tailwindcss(),
     vueDevTools({
-      launchEditor:'antigravity'
+      launchEditor: 'antigravity',
     }),
     Components({
       resolvers: [PrimeVueResolver()],

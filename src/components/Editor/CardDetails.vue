@@ -259,15 +259,15 @@ const { t } = useI18n()
 }
 
 .custom-tabs >>> .p-tab[data-active='true'] {
-  color: #eaa64d !important; /* editor color */
+  color: var(--color-editor) !important; /* editor color */
 }
 
 .custom-tabs >>> .p-tab:hover {
-  color: #eaa64d !important; /* editor color */
+  color: var(--color-editor) !important; /* editor color */
 }
 
 .custom-tabs >>> .p-tablist .p-ink-bar {
-  background-color: #eaa64d !important; /* editor color */
+  background-color: var(--color-editor) !important; /* editor color */
   height: 3px;
 }
 

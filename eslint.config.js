@@ -1,5 +1,5 @@
 import js from '@eslint/js'
-import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import prettierConfig from '@vue/eslint-config-prettier'
 import pluginVue from 'eslint-plugin-vue'
 import { defineConfig, globalIgnores } from 'eslint/config'
 import globals from 'globals'
@@ -64,16 +64,8 @@ export default defineConfig([
 
       // Relaxar regras que conflitam com o projeto
       'vue/multi-word-component-names': 'off',
-      'vue/max-attributes-per-line': 'off',
-      'vue/singleline-html-element-content-newline': 'off',
-      'vue/html-self-closing': [
-        'error',
-        {
-          html: { void: 'always', normal: 'never', component: 'always' },
-        },
-      ],
     },
   },
 
-  skipFormatting,
+  prettierConfig,
 ])
