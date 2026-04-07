@@ -62,7 +62,7 @@ const computedPrimaryColor = computed(() => {
         />
         <social-media-button
           platform="discord"
-          link="https://discord.com/users/jcamilo12"
+          link="https://discord.com/users/740010338136621227"
           class="flex-1 sm:flex-none min-w-0 max-w-35 sm:max-w-none"
         />
         <social-media-button
