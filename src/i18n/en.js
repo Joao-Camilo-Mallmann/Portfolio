@@ -19,6 +19,7 @@ export default {
     whatsapp: 'WhatsApp',
     email: 'Email',
     curriculo: 'Resume',
+    discord: 'Discord',
   },
 
   seo: {

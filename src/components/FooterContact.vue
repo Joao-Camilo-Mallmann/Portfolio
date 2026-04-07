@@ -61,6 +61,11 @@ const computedPrimaryColor = computed(() => {
           class="flex-1 sm:flex-none min-w-0 max-w-35 sm:max-w-none"
         />
         <social-media-button
+          platform="discord"
+          link="https://discord.com/users/jcamilo12"
+          class="flex-1 sm:flex-none min-w-0 max-w-35 sm:max-w-none"
+        />
+        <social-media-button
           platform="email"
           link="mailto:jcamilomallmann@hotmail.com"
           class="flex-1 sm:flex-none min-w-0 max-w-35 sm:max-w-none"

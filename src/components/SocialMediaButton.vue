@@ -7,7 +7,9 @@ const props = defineProps({
     type: String,
     required: true,
     validator: (value) =>
-      ['linkedin', 'github', 'youtube', 'whatsapp', 'email', 'curriculo'].includes(value),
+      ['linkedin', 'github', 'youtube', 'whatsapp', 'email', 'curriculo', 'discord'].includes(
+        value,
+      ),
   },
   link: {
     type: String,
@@ -65,6 +67,13 @@ const platformConfig = {
       hover: '#3a6bbf',
     },
   },
+  discord: {
+    icon: 'pi pi-discord',
+    colors: {
+      primary: '#5865F2',
+      hover: '#4752C4',
+    },
+  },
 }
 
 const platformIcon = computed(() => {
@@ -82,8 +91,6 @@ const platformClass = computed(() => {
 const openLink = () => {
   if (props.platform === 'email') {
     window.location.href = props.link
-  } else if (props.platform === 'curriculo') {
-    window.open('public/Currículo.pdf', '_blank')
   } else {
     window.open(props.link, '_blank')
   }
@@ -197,6 +204,16 @@ const openLink = () => {
 .social-button.curriculo:hover {
   background-color: #3a6bbf;
   border-color: #3a6bbf;
+}
+
+.social-button.discord {
+  background-color: #5865f2;
+  border-color: #5865f2;
+}
+
+.social-button.discord:hover {
+  background-color: #4752c4;
+  border-color: #4752c4;
 }
 
 /* Responsive Design */
