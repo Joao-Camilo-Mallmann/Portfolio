@@ -2,12 +2,24 @@
 import FooterContact from '@/components/FooterContact.vue'
 import HomeSplitter from '@/components/HomeSplitter.vue'
 import { useI18n } from '@/composables/useI18n'
+import { useScrollReveal } from '@/composables/useScrollReveal'
 import { useHead } from '@unhead/vue'
-import { computed } from 'vue'
+import { computed, nextTick, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const { t, locale, toggleLocale } = useI18n()
+const { initObserver, registerParallax } = useScrollReveal()
+
+// Refs para parallax
+const floatingRef = ref(null)
+const circle1 = ref(null)
+const circle2 = ref(null)
+const circle3 = ref(null)
+const square1 = ref(null)
+const square2 = ref(null)
+const profileRef = ref(null)
+const mainRef = ref(null)
 
 useHead({
   title: computed(() => t('seo.homeTitle')),
@@ -54,23 +66,42 @@ useHead({
 function goToPage(path) {
   router.push(path)
 }
+
+onMounted(() => {
+  nextTick(() => {
+    // Registrar parallax nos elementos de fundo (velocidades diferentes = profundidade)
+    registerParallax(circle1.value, -0.15, 'y')
+    registerParallax(circle2.value, -0.25, 'y')
+    registerParallax(circle3.value, -0.1, 'y')
+    registerParallax(square1.value, -0.2, 'y')
+    registerParallax(square2.value, -0.12, 'y')
+    registerParallax(profileRef.value, -0.06, 'y')
+
+    // Inicializar IntersectionObserver para scroll-reveal
+    initObserver(mainRef.value)
+  })
+})
 </script>
 
 <template>
-  <main class="page-transition min-h-screen relative overflow-hidden">
-    <!-- Elementos de fundo animados -->
-    <div class="floating-elements" aria-hidden="true">
-      <div class="floating-circle circle-1"></div>
-      <div class="floating-circle circle-2"></div>
-      <div class="floating-circle circle-3"></div>
-      <div class="floating-square square-1"></div>
-      <div class="floating-square square-2"></div>
+  <main ref="mainRef" class="page-transition min-h-screen relative overflow-hidden">
+    <!-- Elementos de fundo animados com parallax -->
+    <div ref="floatingRef" class="floating-elements" aria-hidden="true">
+      <div ref="circle1" class="floating-circle circle-1 parallax-layer"></div>
+      <div ref="circle2" class="floating-circle circle-2 parallax-layer"></div>
+      <div ref="circle3" class="floating-circle circle-3 parallax-layer"></div>
+      <div ref="square1" class="floating-square square-1 parallax-layer"></div>
+      <div ref="square2" class="floating-square square-2 parallax-layer"></div>
     </div>
 
     <home-splitter />
 
-    <section class="flex justify-center sm:-mt-4 md:-mt-20 relative z-10">
-      <header class="profile-container">
+    <!-- Profile — scroll-reveal com scale -->
+    <section
+      data-scroll-reveal="scale"
+      class="flex justify-center sm:-mt-4 md:-mt-20 relative z-10"
+    >
+      <header ref="profileRef" class="profile-container parallax-layer">
         <img
           src="https://avatars.githubusercontent.com/u/94570639"
           alt="Foto de perfil de João Camilo Mallmann"
@@ -81,9 +112,9 @@ function goToPage(path) {
       </header>
     </section>
 
-    <section class="text-gray-200 max-w-3xl mx-auto p-8 mt-4 text-center animate-fade-in">
-      <!-- Alternador de Idioma na Home -->
-      <div class="flex justify-center mb-8 animate-slide-down">
+    <section class="text-gray-200 max-w-3xl mx-auto p-8 mt-4 text-center">
+      <!-- Alternador de Idioma na Home — slide down -->
+      <div data-scroll-reveal="down" class="flex justify-center mb-8">
         <button
           class="home-locale-toggle group min-h-10 px-4 py-2"
           :aria-label="locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
@@ -105,12 +136,13 @@ function goToPage(path) {
         </button>
       </div>
 
-      <h1 class="text-2xl font-semibold text-white mb-4 animate-slide-down text-balance">
+      <!-- Título — slide up -->
+      <h1 data-scroll-reveal="up" class="text-2xl font-semibold text-white mb-4 text-balance">
         {{ t('home.aboutMe') }}
       </h1>
 
-      <!-- Apresentação Principal -->
-      <article class="mb-4 animate-slide-up">
+      <!-- Apresentação Principal — fade up -->
+      <article data-scroll-reveal="up" class="mb-4">
         <card class="border border-white/10 text-gray-300">
           <template #content>
             <p class="text-base leading-7 text-gray-300 m-0">
@@ -123,11 +155,11 @@ function goToPage(path) {
         </card>
       </article>
 
-      <!-- Seções de Habilidades -->
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+      <!-- Seções de Habilidades — cada card com direção diferente -->
+      <section data-scroll-reveal="fade" class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
         <!-- Seção Software Developer | Frontend Specialist -->
         <article
-          class="animate-slide-left card-hover-glow hover:scale-102 transition-transform duration-300"
+          class="scroll-reveal-child card-hover-glow hover:scale-102 transition-transform duration-300"
         >
           <card
             class="border-l-4 !h-full border-dev !transition-colors transition-transform !duration-300 hover:shadow-2xl text-gray-300"
@@ -162,7 +194,7 @@ function goToPage(path) {
 
         <!-- Seção Editor de Vídeo -->
         <article
-          class="animate-slide-right card-hover-glow hover:scale-102 transition-transform duration-300"
+          class="scroll-reveal-child card-hover-glow hover:scale-102 transition-transform duration-300"
         >
           <card
             class="border-l-4 border-editor !transition-colors transition-transform !duration-300 hover:shadow-2xl text-gray-300"
@@ -208,11 +240,11 @@ function goToPage(path) {
         </article>
       </section>
 
-      <!-- Conclusão -->
-      <article class="mt-4 animate-fade-in-delayed conclusion-card">
+      <!-- Conclusão — slide up com stagger nos filhos -->
+      <article data-scroll-reveal="up" class="mt-4 conclusion-card">
         <card class="border border-white/10 text-gray-300">
           <template #header>
-            <header class="flex items-center justify-center gap-3 p-4">
+            <header class="flex items-center justify-center gap-3 p-4 scroll-reveal-child">
               <i
                 class="pi pi-star text-xl text-yellow-400 animate-spin-slow"
                 aria-hidden="true"
@@ -225,7 +257,7 @@ function goToPage(path) {
             </header>
           </template>
           <template #content>
-            <div class="relative overflow-hidden">
+            <div class="relative overflow-hidden scroll-reveal-child">
               <p class="text-gray-300 leading-relaxed m-0 relative z-10">
                 <span class="text-dev font-semibold">{{ t('home.philosophyCreativity') }}</span>
                 {{ ' ' }}
@@ -247,15 +279,15 @@ function goToPage(path) {
                 >.
               </p>
               <div class="flex justify-center flex-wrap mt-4 gap-4">
-                <div class="flex items-center gap-2 text-sm text-gray-400">
+                <div class="flex items-center gap-2 text-sm text-gray-400 scroll-reveal-child">
                   <i class="pi pi-code text-dev" aria-hidden="true"></i>
                   <span>{{ t('home.tagTechnology') }}</span>
                 </div>
-                <div class="flex items-center gap-2 text-sm text-gray-400">
+                <div class="flex items-center gap-2 text-sm text-gray-400 scroll-reveal-child">
                   <i class="pi pi-video text-editor" aria-hidden="true"></i>
                   <span>{{ t('home.tagCreativity') }}</span>
                 </div>
-                <div class="flex items-center gap-2 text-sm text-gray-400">
+                <div class="flex items-center gap-2 text-sm text-gray-400 scroll-reveal-child">
                   <i class="pi pi-heart text-red-400 animate-heartbeat" aria-hidden="true"></i>
                   <span>{{ t('home.tagDedication') }}</span>
                 </div>
@@ -266,8 +298,10 @@ function goToPage(path) {
       </article>
     </section>
 
-    <!-- Footer Padrão -->
-    <footer-contact primary-color="#ffffff" :cta-text="t('footer.ctaDefault')" />
+    <!-- Footer Padrão — slide up -->
+    <div data-scroll-reveal="up">
+      <footer-contact primary-color="#ffffff" :cta-text="t('footer.ctaDefault')" />
+    </div>
   </main>
 </template>
 

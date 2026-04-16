@@ -29,10 +29,13 @@ const selectProfile = (profile, path) => {
 
 <template>
   <div class="splitter-container">
-    <Splitter class="profile-splitter component" :class="{ animating: isAnimating }">
-      <Splitterpanel
+    <div
+      class="profile-splitter component flex flex-col md:flex-row w-full!"
+      :class="{ animating: isAnimating }"
+    >
+      <div
         :class="[
-          'profile-panel',
+          'profile-panel w-full md:w-1/2 min-w-1/2',
           'dev-panel',
           {
             selected: selectedPanel === 'dev',
@@ -54,10 +57,10 @@ const selectProfile = (profile, path) => {
             <i class="pi pi-arrow-right action-arrow"></i>
           </div>
         </div>
-      </Splitterpanel>
-      <Splitterpanel
+      </div>
+      <div
         :class="[
-          'profile-panel',
+          'profile-panel w-full md:w-1/2 min-w-1/2',
           'editor-panel',
           {
             selected: selectedPanel === 'editor',
@@ -79,8 +82,8 @@ const selectProfile = (profile, path) => {
             <i class="pi pi-arrow-right action-arrow"></i>
           </div>
         </div>
-      </Splitterpanel>
-    </Splitter>
+      </div>
+    </div>
   </div>
 </template>
 

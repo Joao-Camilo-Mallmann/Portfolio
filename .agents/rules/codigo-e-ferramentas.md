@@ -11,9 +11,11 @@ description: Padrões de código, formatação, configuração Vite/BUN e versio
 
 ## Animações
 
-- Use as classes predefinidas em `animations.css`: `animate-fade-in`, `animate-slide-up`, `animate-bounce-soft`, etc.
+- **Scroll-Reveal (Lenis):** Para animações ativadas por scroll, use o composable `useScrollReveal` com atributos `data-scroll-reveal` e `.scroll-reveal-child`. Ver regras completas em `scroll-e-animacoes.md`.
+- **Animações de entrada (page-load):** Use as classes predefinidas em `animations.css`: `animate-fade-in`, `animate-slide-up`, `animate-bounce-soft`, etc.
+- **Animações de interação (hover/click):** Use classes Tailwind (`hover:scale-105`, `active:scale-[0.96]`).
 - Para animações sequenciais, use delays com `animation-delay` ou classes `animate-delay-*`.
-- Mantenha as animações suaves e profissionais, evitando efeitos excessivos.
+- **NÃO misture** animações de scroll-reveal com classes CSS legadas no mesmo elemento.
 
 # Vite Configuração
 

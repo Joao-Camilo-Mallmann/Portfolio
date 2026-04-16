@@ -527,6 +527,115 @@
 }
 
 /* ========================================
+   SCROLL-REVEAL — Frame-by-frame Scroll
+   ========================================
+   
+   Sistema de animações ativadas por scroll usando IntersectionObserver.
+   Funciona em conjunto com o composable `useScrollReveal.js`.
+   
+   COMO FUNCIONA:
+   1. Elementos com `data-scroll-reveal` iniciam ocultos (opacity: 0 + transform).
+   2. Quando o IntersectionObserver detecta que entraram na viewport,
+      a classe `.scroll-reveal--visible` é adicionada via JS.
+   3. A transição CSS faz o elemento "aparecer" suavemente.
+   4. Filhos com `.scroll-reveal-child` recebem delays escalonados (100ms/filho).
+   
+   INTEGRAÇÃO COM LENIS:
+   - O Lenis (smooth scroll) fornece scroll interpolado, fazendo com que
+     os triggers do IntersectionObserver sejam mais suaves e previsíveis.
+   - Elementos com `.parallax-layer` recebem transforms via JS no callback
+     `on('scroll')` do Lenis, criando profundidade.
+   
+   EASING:
+   - cubic-bezier(0.16, 1, 0.3, 1) — "ease-out expo": saída muito suave,
+     dá sensação premium de desaceleração natural.
+   
+   USO NO TEMPLATE:
+     <section data-scroll-reveal="up">...</section>
+     <div data-scroll-reveal="fade">
+       <div class="scroll-reveal-child">Item 1</div>
+       <div class="scroll-reveal-child">Item 2</div>
+     </div>
+   
+   VALORES SUPORTADOS:
+     "up"    → translateY(60px)  → desliza de baixo para cima
+     "down"  → translateY(-40px) → desliza de cima para baixo
+     "left"  → translateX(-60px) → desliza da esquerda
+     "right" → translateX(60px)  → desliza da direita
+     "scale" → scale(0.85)       → escala de 85% para 100%
+     "fade"  → somente opacidade → sem movimento, apenas fade
+   ======================================== */
+
+/* Estado base: elementos escondidos aguardando o scroll */
+[data-scroll-reveal] {
+  opacity: 0;
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* --- Direções de entrada --- */
+
+[data-scroll-reveal='up'] {
+  transform: translate3d(0, 60px, 0);
+}
+
+[data-scroll-reveal='down'] {
+  transform: translate3d(0, -40px, 0);
+}
+
+[data-scroll-reveal='left'] {
+  transform: translate3d(-60px, 0, 0);
+}
+
+[data-scroll-reveal='right'] {
+  transform: translate3d(60px, 0, 0);
+}
+
+[data-scroll-reveal='scale'] {
+  transform: scale(0.85);
+}
+
+[data-scroll-reveal='fade'] {
+  /* Só opacidade, sem translate */
+  transform: none;
+}
+
+/* --- Estado revelado — reseta para posição natural --- */
+[data-scroll-reveal].scroll-reveal--visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* --- Crianças com stagger ---
+   Filhos dentro de seções reveal que recebem delays escalonados.
+   O composable `useScrollReveal.js` aplica `transitionDelay` incremental
+   de 100ms por filho ao revelar o pai. */
+.scroll-reveal-child {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal-child--visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* --- Parallax layer ---
+   Classe auxiliar para elementos que recebem transforms via JS
+   no callback `on('scroll')` do Lenis.
+   - `will-change: transform` → hint para GPU compositing
+   - `backface-visibility: hidden` → evita flickering em transforms 3D */
+.parallax-layer {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ========================================
    RESPONSIVIDADE E ACESSIBILIDADE
    ======================================== */
 
@@ -545,6 +654,24 @@
   .animate-bounce-soft {
     animation: none !important;
   }
+
+  /* Desativar scroll-reveal para reduce-motion */
+  [data-scroll-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .scroll-reveal-child {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .parallax-layer {
+    will-change: auto !important;
+    transform: none !important;
+  }
 }
 
 /* Responsividade para animações em dispositivos móveis */
@@ -552,5 +679,22 @@
   .animate-float,
   .animate-panel-float {
     animation-duration: 6s; /* Mais lento em mobile */
+  }
+
+  /* Reduzir distância do reveal em mobile para evitar layout shift */
+  [data-scroll-reveal='up'] {
+    transform: translate3d(0, 30px, 0);
+  }
+
+  [data-scroll-reveal='down'] {
+    transform: translate3d(0, -20px, 0);
+  }
+
+  [data-scroll-reveal='left'] {
+    transform: translate3d(-30px, 0, 0);
+  }
+
+  [data-scroll-reveal='right'] {
+    transform: translate3d(30px, 0, 0);
   }
 }

@@ -16,14 +16,16 @@ const openChannel = () => {
 <template>
   <div class="relative mb-8 mx-4">
     <div class="text-center mb-6 relative">
-      <h2 class="relative text-2xl md:text-3xl font-extrabold mb-3 text-balance">
+      <h2
+        class="relative text-2xl md:text-3xl font-extrabold mb-3 text-balance scroll-reveal-child"
+      >
         <span
           class="bg-linear-to-r from-editor via-yellow-400 to-[#f0b86e] bg-clip-text text-transparent drop-shadow-lg"
         >
           {{ t('editorCreative.title') }}
         </span>
       </h2>
-      <div class="relative inline-block">
+      <div class="relative inline-block scroll-reveal-child">
         <div
           class="absolute inset-0 bg-linear-to-r from-editor/40 to-yellow-500/40 blur-sm rounded-full opacity-70"
         ></div>
@@ -37,8 +39,8 @@ const openChannel = () => {
       </div>
     </div>
 
-    <Panel
-      class="bg-black/70! border-2! border-editor/30! rounded-2xl! shadow-xl! relative backdrop-blur-sm overflow-hidden cursor-pointer hover:border-editor/50! transition! duration-300! max-w-4xl mx-auto animate-panel-float active:scale-[0.96]!"
+    <div
+      class="bg-black/70 border border-editor/30 rounded-2xl shadow-xl relative backdrop-blur-sm overflow-hidden cursor-pointer hover:border-editor/50 transition duration-300 max-w-4xl mx-auto active:scale-[0.96] scroll-reveal-child"
       @click="openChannel"
     >
       <div class="absolute inset-0 pointer-events-none">
@@ -64,9 +66,6 @@ const openChannel = () => {
               class="w-25 h-25 md:w-24 md:h-24 rounded-full border-4 border-editor shadow-2xl"
             />
           </div>
-          <div
-            class="absolute -inset-2 border-2 border-editor/40 rounded-full animate-spin-slow"
-          ></div>
         </div>
         <div class="flex-1 ml-6 d-flex flex-col justify-center items-center">
           <h3 class="text-lg md:text-xl font-bold text-editor mb-2 text-balance">OFurry</h3>
@@ -83,10 +82,10 @@ const openChannel = () => {
           </span>
         </div>
       </div>
-    </Panel>
+    </div>
   </div>
 </template>
 
 <style scoped>
-/* Todas as animações estão agora centralizadas no main.css */
+/* Todas as animações estão agora centralizadas via scroll-reveal no parent */
 </style>

@@ -16,31 +16,13 @@ function randomPercent(min, max) {
   return `${randomBetween(min, max)}%`
 }
 
-function randomAnimation() {
-  const animations = ['float', 'bounce', 'pulse', 'wiggle', 'rotate', 'fade']
-  return animations[Math.floor(Math.random() * animations.length)]
-}
+// Scale randomizada — partículas pequenas e sutis
+const randSize = Math.round(randomBetween(4, 14))
+const randOpacity = randomBetween(0.15, 0.45)
+const randAnimationDuration = randomBetween(6, 14)
+const randAnimationDelay = randomBetween(0, 5)
 
-function randomTranslateClassFn() {
-  // 40% chance de aplicar translate-y-1/2 ou -translate-y-1/2 ou -translate-x-1/2
-  const options = [
-    '',
-    '-translate-y-1/2',
-    '-translate-x-1/2',
-    '-translate-x-1/2 -translate-y-1/2',
-    'translate-x-1/2',
-    'translate-x-1/2 -translate-y-1/2',
-  ]
-  return options[Math.floor(Math.random() * options.length)]
-}
-
-// Only randomize once per instance
-const randSize = Math.round(randomBetween(8, 24))
-const randAnim = randomAnimation()
-const randOpacity = randomBetween(0.4, 0.85)
-const randAnimationDelay = randomBetween(0, 3)
-
-// Random position: pick top/bottom and left/right randomly
+// Posição aleatória
 let top, bottom, left, right
 if (Math.random() > 0.5) {
   top = randomPercent(0, 90)
@@ -57,9 +39,6 @@ if (Math.random() > 0.5) {
   left = undefined
 }
 
-// Random translate utility class
-const randTranslateClass = randomTranslateClassFn()
-
 const colorClass = computed(() => {
   const c = props.color
   if (c === 'yellow') return 'bg-yellow-400'
@@ -69,35 +48,10 @@ const colorClass = computed(() => {
   if (c === 'beige') return 'bg-[#f0b86e]'
   return c
 })
-
-const animationClass = computed(() => {
-  switch (randAnim) {
-    case 'pulse':
-      return 'animate-pulse'
-    case 'wiggle':
-      return 'animate-wiggle'
-    case 'rotate':
-      return 'animate-rotate'
-    case 'fade':
-      return 'animate-fade'
-    default:
-      return 'animate-bounce'
-  }
-})
-
-const opacityClass = computed(() => {
-  return `opacity-[${randOpacity}]`
-})
 </script>
 <template>
   <div
-    :class="[
-      'absolute rounded-full pointer-events-none',
-      colorClass,
-      animationClass,
-      opacityClass,
-      randTranslateClass,
-    ]"
+    :class="['absolute rounded-full pointer-events-none dot-ambient', colorClass]"
     :style="{
       width: randSize + 'px',
       height: randSize + 'px',
@@ -106,57 +60,33 @@ const opacityClass = computed(() => {
       top: top,
       bottom: bottom,
       zIndex: -1000,
+      opacity: randOpacity,
+      animationDuration: randAnimationDuration + 's',
       animationDelay: randAnimationDelay + 's',
     }"
   ></div>
 </template>
 <style scoped>
-@keyframes wiggle {
+/* Animação sutil de pulso — apenas opacidade para mínimo impacto visual.
+   Sem transforms para evitar conflito com parallax do Lenis. */
+@keyframes dot-pulse {
   0%,
   100% {
-    transform: rotate(-3deg) translateY(0);
-  }
-  25% {
-    transform: rotate(3deg) translateY(-5px);
-  }
-  75% {
-    transform: rotate(-3deg) translateY(5px);
-  }
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg) scale(1);
+    opacity: var(--dot-min-opacity, 0.1);
   }
   50% {
-    transform: rotate(180deg) scale(1.1);
-  }
-  100% {
-    transform: rotate(360deg) scale(1);
+    opacity: var(--dot-max-opacity, 0.4);
   }
 }
 
-@keyframes fade {
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: scale(0.8);
+.dot-ambient {
+  animation: dot-pulse ease-in-out infinite;
+}
+
+/* Respeitar preferência do usuário */
+@media (prefers-reduced-motion: reduce) {
+  .dot-ambient {
+    animation: none;
   }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-.animate-wiggle {
-  animation: wiggle 4s ease-in-out infinite;
-}
-
-.animate-rotate {
-  animation: rotate 8s linear infinite;
-}
-
-.animate-fade {
-  animation: fade 5s ease-in-out infinite;
 }
 </style>

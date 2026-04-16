@@ -111,7 +111,7 @@ const creativeProcess = computed(() => [
       </template>
       <template #content="slotProps">
         <card
-          class="card-timeline p-5 border-2 rounded-xl h-full transition duration-300 hover:scale-[1.02] active:scale-[0.96] cursor-pointer"
+          class="card-timeline scroll-reveal-child p-5 border-2 rounded-xl h-full transition duration-300 hover:scale-[1.02] active:scale-[0.96] cursor-pointer"
           :style="{ '--card-color': slotProps.item.color }"
         >
           <template #title>
@@ -145,7 +145,7 @@ const creativeProcess = computed(() => [
       <card
         v-for="(item, index) in creativeProcess"
         :key="index"
-        class="card-timeline-mobile border-2 rounded-xl mobile-timeline-item transition duration-300 active:scale-[0.96] cursor-pointer"
+        class="card-timeline-mobile scroll-reveal-child border-2 rounded-xl transition duration-300 active:scale-[0.96] cursor-pointer"
         :style="{ '--card-color': item.color }"
       >
         <template #title>
@@ -224,33 +224,5 @@ const creativeProcess = computed(() => [
     var(--color-dev) 50%,
     #2ecc71 100%
   );
-}
-
-/* Animações de entrada para mobile */
-@keyframes mobile-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Aplicar animação aos cards mobile */
-.mobile-timeline-item {
-  animation: mobile-fade-in 0.6s ease-out forwards;
-  opacity: 0;
-}
-
-.mobile-timeline-item:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.mobile-timeline-item:nth-child(2) {
-  animation-delay: 0.3s;
-}
-.mobile-timeline-item:nth-child(3) {
-  animation-delay: 0.5s;
 }
 </style>

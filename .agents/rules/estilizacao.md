@@ -46,3 +46,5 @@ description: Regras de estilização com Tailwind CSS v4, PrimeVue e sistema de 
   - `--animate-pulse-slower`: pulso lento e suave
 - Use classes Tailwind: `animate-fade-in-up`, `animate-bounce-in`, `animate-pulse-slower`
 - Keyframes correspondentes são definidos no mesmo arquivo para manutenção fácil
+- **Lenis CSS:** Importado em `main.js` via `import 'lenis/dist/lenis.css'` — provê estilos base para smooth scroll (height, overflow, prevent). Ver `scroll-e-animacoes.md` para documentação completa.
+

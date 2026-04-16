@@ -8,11 +8,16 @@ import YouTubeChannelPanel from '@/components/Editor/YouTubeChannelPanel.vue'
 import FooterContact from '@/components/FooterContact.vue'
 import HeaderCore from '@/components/HeaderCore.vue'
 import { useI18n } from '@/composables/useI18n'
+import { useScrollReveal } from '@/composables/useScrollReveal'
 import { useHead } from '@unhead/vue'
-import Divider from 'primevue/divider'
-import Panel from 'primevue/panel'
+import { nextTick, onMounted, ref } from 'vue'
 
 const { t } = useI18n()
+const { initObserver, registerParallax } = useScrollReveal()
+
+const containerRef = ref(null)
+const bgOrb1 = ref(null)
+const bgOrb2 = ref(null)
 
 useHead({
   title: () => t('editor.seoTitle'),
@@ -39,50 +44,71 @@ useHead({
   ],
   link: [{ rel: 'canonical', href: 'https://joao-camilo-mallmann.com/editor' }],
 })
+
+onMounted(() => {
+  nextTick(() => {
+    // Iniciar scroll-reveal em todas as seções da página
+    initObserver(containerRef.value)
+
+    // Parallax nos orbs decorativos de fundo
+    registerParallax(bgOrb1.value, -0.12, 'y')
+    registerParallax(bgOrb2.value, -0.18, 'y')
+  })
+})
 </script>
 
 <template>
   <main
+    ref="containerRef"
     class="page-transition min-h-screen bg-linear-to-br! to-editor/10! relative overflow-hidden"
     role="main"
     :aria-label="t('editor.ariaLabel')"
   >
     <header-core />
 
-    <!-- Elementos decorativos animados -->
+    <!-- Elementos decorativos (dots) — ficam como partículas estáticas/sutis -->
     <template v-for="i in 20" :key="i">
       <animated-dot color="yellow" />
       <animated-dot color="gold" />
     </template>
 
+    <!-- Orbs de fundo com parallax -->
     <div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
       <div
-        class="absolute bottom-10 right-1/4 w-56 h-56 bg-white/5 rounded-full blur-xl animate-pulse-slower"
+        ref="bgOrb1"
+        class="parallax-layer absolute top-20 left-1/4 w-72 h-72 bg-editor/8 rounded-full blur-3xl"
+      ></div>
+      <div
+        ref="bgOrb2"
+        class="parallax-layer absolute bottom-10 right-1/4 w-56 h-56 bg-white/5 rounded-full blur-xl"
         style="mix-blend-mode: lighten"
       ></div>
     </div>
 
     <section class="pt-20 md:pt-24">
-      <you-tube-channel-panel />
+      <!-- Canal YouTube — revela de cima -->
+      <div data-scroll-reveal="up">
+        <you-tube-channel-panel />
+      </div>
 
-      <panel
-        class="bg-transparent! border-0! shadow-none! text-gray-200 px-4 lg:px-16 p-4 md:p-8"
+      <!-- Cabeçalho do portfólio -->
+      <div
+        class="bg-transparent border-0 shadow-none text-gray-200 px-4 lg:px-16 p-4 md:p-8"
         role="region"
         aria-labelledby="portfolio-heading"
       >
-        <!-- Cabeçalho principal da seção -->
-        <header class="text-center mb-12 px-2">
+        <header class="text-center mb-12 px-2" data-scroll-reveal="up">
           <h1
             id="portfolio-heading"
-            class="text-3xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg"
+            class="text-3xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg scroll-reveal-child"
           >
             {{ t('editor.portfolioHeading') }}
           </h1>
-          <divider
-            class="w-24! md:w-32! h-1.5! mx-auto! bg-linear-to-r! from-editor! to-yellow-200/60! rounded-full! mb-6! shadow-lg! border-0!"
+          <hr
+            class="w-24 md:w-32 h-1.5 mx-auto bg-linear-to-r from-editor to-yellow-200/60 rounded-full mb-6 shadow-lg border-0 scroll-reveal-child"
           />
           <p
-            class="text-gray-300 text-lg md:text-2xl px-2 md:px-4 font-medium leading-relaxed max-w-3xl mx-auto"
+            class="text-gray-300 text-lg md:text-2xl px-2 md:px-4 font-medium leading-relaxed max-w-3xl mx-auto scroll-reveal-child"
           >
             {{ t('editor.portfolioDescription') }}
             <strong class="text-editor font-bold">Adobe Premiere Pro</strong>,
@@ -90,30 +116,34 @@ useHead({
             <strong class="text-editor font-bold">After Effects</strong>
           </p>
         </header>
-      </panel>
+      </div>
 
-      <!-- Seção da Playlist do YouTube -->
-      <section aria-labelledby="playlist-heading">
+      <!-- Playlist do YouTube — revela com scale -->
+      <section aria-labelledby="playlist-heading" data-scroll-reveal="scale">
         <h2 id="playlist-heading" class="sr-only text-balance">
           {{ t('editor.playlistHeading') }}
         </h2>
         <playlist-section />
       </section>
 
-      <!-- Seção de ferramentas -->
-      <section class="px-4 lg:px-16" aria-labelledby="tools-heading">
+      <!-- Seção de ferramentas — revela da esquerda -->
+      <section class="px-4 lg:px-16" aria-labelledby="tools-heading" data-scroll-reveal="left">
         <h2 id="tools-heading" class="sr-only text-balance">{{ t('editor.toolsHeading') }}</h2>
         <tools-section />
       </section>
 
-      <!-- Seção sobre habilidades -->
-      <section class="mb-8 max-w-4xl mx-auto px-4" aria-labelledby="skills-heading">
+      <!-- Seção sobre habilidades — revela de baixo -->
+      <section
+        class="mb-8 max-w-4xl mx-auto px-4"
+        aria-labelledby="skills-heading"
+        data-scroll-reveal="up"
+      >
         <h2 id="skills-heading" class="sr-only text-balance">{{ t('editor.skillsHeading') }}</h2>
         <card-details />
       </section>
 
-      <!-- Seção do canal criativo -->
-      <section aria-labelledby="creative-channel-heading">
+      <!-- Canal criativo — revela com fade -->
+      <section aria-labelledby="creative-channel-heading" data-scroll-reveal="up">
         <h2 id="creative-channel-heading" class="sr-only text-balance">
           {{ t('editor.creativeChannelHeading') }}
         </h2>
@@ -121,8 +151,12 @@ useHead({
       </section>
     </section>
 
-    <!-- Nota informativa sobre animações -->
-    <p class="text-center text-gray-400 text-sm mt-4 mb-0 px-4" role="note">
+    <!-- Nota informativa -->
+    <p
+      class="text-center text-gray-400 text-sm mt-4 mb-0 px-4"
+      role="note"
+      data-scroll-reveal="fade"
+    >
       {{ t('editor.funText') }}
       <span class="text-editor">{{ t('editor.funHighlight') }}</span>
       {{ t('editor.funEnd') }}

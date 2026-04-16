@@ -214,79 +214,74 @@ const getTagChipStyle = (tag) => {
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
-    <Card
+    <div
       v-for="(project, index) in projects"
       :key="index"
       :class="[
-        'project-card group z-99! animate-slide-up hover:scale-101 active:scale-[0.96] hover:-translate-y-3 transition duration-500! ease-out',
+        'project-card group z-99 animate-slide-up hover:scale-[1.01] active:scale-[0.96] hover:-translate-y-3 transition duration-500 ease-out flex flex-col',
         projects.length % 2 !== 0 && index === projects.length - 1
           ? 'md:col-span-2 md:w-[calc(50%-0.75rem)] md:justify-self-center'
           : '',
       ]"
       :style="getProjectCardStyle(project)"
     >
-      <template #header>
-        <div class="relative overflow-hidden">
-          <div
-            class="h-55 flex items-center justify-center overflow-hidden transition duration-300 hover:brightness-110"
-            :style="{ backgroundColor: project.colors.from + '15' }"
-          >
-            <Image
-              v-if="project.image"
-              :src="project.image"
-              :alt="project.imageAlt"
-              class="object-fill! group-hover:scale-110 transition duration-500! group-hover:brightness-110 ring-1 ring-white/10"
-            />
-            <div v-else class="text-center">
-              <i
-                class="pi pi-user-edit text-3xl mb-1 animate-heartbeat"
-                :style="{ color: project.colors.from }"
-              ></i>
-              <p class="text-xs font-medium" :style="{ color: project.colors.from }">
-                {{ t('devProjects.thisPortfolio') }}
-              </p>
-            </div>
-          </div>
-
-          <div class="absolute top-3 right-3">
-            <Chip
-              :label="getStatusLabel(project.statusType)"
-              :icon="project.statusType === 'public' ? 'pi pi-globe' : 'pi pi-lock'"
-              :class="project.statusType === 'public' ? 'bg-green-500!' : 'bg-orange-500!'"
-              class="text-white! px-2 py-1 rounded-full backdrop-blur-sm text-xs font-semibold"
-            />
+      <div class="relative overflow-hidden">
+        <div
+          class="h-55 flex items-center justify-center overflow-hidden transition duration-300 hover:brightness-110"
+          :style="{ backgroundColor: project.colors.from + '15' }"
+        >
+          <img
+            v-if="project.image"
+            :src="project.image"
+            :alt="project.imageAlt"
+            class="w-full h-full object-cover group-hover:scale-110 transition duration-500 group-hover:brightness-110 ring-1 ring-white/10"
+          />
+          <div v-else class="text-center">
+            <i
+              class="pi pi-user-edit text-3xl mb-1 animate-heartbeat"
+              :style="{ color: project.colors.from }"
+            ></i>
+            <p class="text-xs font-medium" :style="{ color: project.colors.from }">
+              {{ t('devProjects.thisPortfolio') }}
+            </p>
           </div>
         </div>
-      </template>
 
-      <template #title>
+        <div class="absolute top-3 right-3">
+          <span
+            :class="[
+              project.statusType === 'public' ? 'bg-green-500' : 'bg-orange-500',
+              'text-white px-2 py-1 rounded-full backdrop-blur-sm text-xs font-semibold flex items-center gap-1 shadow-sm',
+            ]"
+          >
+            <i :class="project.statusType === 'public' ? 'pi pi-globe' : 'pi pi-lock'"></i>
+            {{ getStatusLabel(project.statusType) }}
+          </span>
+        </div>
+      </div>
+      <div class="p-5 flex-1 flex flex-col">
         <h3
-          class="text-lg font-semibold bg-linear-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent animate-gradient-move text-balance"
+          class="text-lg font-semibold bg-linear-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent animate-gradient-move text-balance mb-2"
         >
           {{ project.title }}
         </h3>
-      </template>
-
-      <template #content>
-        <div class="space-y-3">
+        <div class="space-y-3 flex-1">
           <p class="text-gray-200 text-sm leading-relaxed text-pretty">
             {{ project.description }}
           </p>
 
           <div class="flex flex-wrap gap-1">
-            <Chip
+            <span
               v-for="tag in project.tags"
               :key="tag.label"
-              :label="tag.label"
               class="text-xs px-2 py-1 rounded animate-slide-left hover:scale-105 transition-transform duration-200"
               :style="getTagChipStyle(tag)"
-            />
+            >
+              {{ tag.label }}
+            </span>
           </div>
         </div>
-      </template>
-
-      <template #footer>
-        <div class="flex items-center justify-between pt-2">
+        <div class="flex items-center justify-between pt-4 mt-auto">
           <div class="flex items-center gap-2">
             <i
               :class="getDevStatusIcon(project.devStatusType)"
@@ -299,23 +294,21 @@ const getTagChipStyle = (tag) => {
           </div>
 
           <div class="flex gap-1">
-            <Button
+            <button
               v-for="link in project.links.slice(0, 2)"
               :key="link.url"
-              :icon="link.icon"
-              size="small"
-              :severity="link.type === 'secondary' ? 'secondary' : 'primary'"
-              :outlined="link.type === 'secondary'"
-              class="p-2! border-none!"
+              class="p-2 border-none rounded-md bg-gray-800/50 hover:bg-gray-700/50 transition-colors text-white cursor-pointer"
               @click="openLink(link.url)"
-            />
+            >
+              <i :class="link.icon"></i>
+            </button>
             <span v-if="project.links.length === 0" class="text-xs text-orange-400 px-2 py-1">
               {{ t('devProjects.restricted') }}
             </span>
           </div>
         </div>
-      </template>
-    </Card>
+      </div>
+    </div>
   </div>
 </template>
 

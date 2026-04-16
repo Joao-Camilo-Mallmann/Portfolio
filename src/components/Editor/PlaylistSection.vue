@@ -116,23 +116,24 @@ onMounted(() => {
   <section class="w-full py-16 md:py-24 relative overflow-visible">
     <!-- Background Effects -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-editor/10 rounded-full blur-3xl"></div>
       <div
-        class="absolute top-0 left-1/4 w-96 h-96 bg-editor/10 rounded-full blur-3xl animate-pulse"
-      ></div>
-      <div
-        class="absolute bottom-0 right-1/4 w-80 h-80 bg-yellow-500/10 rounded-full blur-3xl animate-pulse"
-        style="animation-delay: 1s"
+        class="absolute bottom-0 right-1/4 w-80 h-80 bg-yellow-500/10 rounded-full blur-3xl"
       ></div>
     </div>
 
     <div class="max-w-5xl mx-auto px-4 md:px-6 relative z-10">
       <!-- Header Simples -->
       <div class="text-center mb-10">
-        <h2 class="text-3xl md:text-5xl font-black text-white mb-4 text-balance">
+        <h2
+          class="text-3xl md:text-5xl font-black text-white mb-4 text-balance scroll-reveal-child"
+        >
           {{ t('editorPlaylist.myVideos') }}
           <span class="text-editor">{{ t('editorPlaylist.videosHighlight') }}</span>
         </h2>
-        <p class="text-gray-400 text-lg text-pretty">{{ t('editorPlaylist.browseHighlights') }}</p>
+        <p class="text-gray-400 text-lg text-pretty scroll-reveal-child">
+          {{ t('editorPlaylist.browseHighlights') }}
+        </p>
       </div>
 
       <!-- Loading State -->
@@ -151,100 +152,96 @@ onMounted(() => {
       <!-- Video Slider Grande -->
       <div v-else>
         <!-- Card Principal do Vídeo -->
-        <div class="relative group">
-          <!-- Card Content -->
-          <Card class="rounded-3xl! overflow-hidden! p-0! bg-slate-900">
-            <template #content>
-              <!-- Video Thumbnail Grande -->
+        <div class="relative group scroll-reveal-child">
+          <div class="rounded-3xl overflow-hidden bg-slate-900 shadow-xl border border-gray-800/50">
+            <div
+              class="relative aspect-video cursor-pointer"
+              @click="openPlayerModal(currentVideo)"
+            >
+              <img
+                :src="currentVideo.thumbnail"
+                :alt="currentVideo.title"
+                class="w-full h-full object-cover"
+                @error="handleImageError($event, currentVideo.id)"
+              />
+
+              <!-- Overlay escuro -->
               <div
-                class="relative aspect-video cursor-pointer"
-                @click="openPlayerModal(currentVideo)"
-              >
-                <img
-                  :src="currentVideo.thumbnail"
-                  :alt="currentVideo.title"
-                  class="w-full h-full object-cover"
-                  @error="handleImageError($event, currentVideo.id)"
-                />
+                class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300"
+              ></div>
 
-                <!-- Overlay escuro -->
+              <!-- Play Button Central Grande -->
+              <div class="absolute inset-0 flex items-center justify-center">
                 <div
-                  class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300"
-                ></div>
-
-                <!-- Play Button Central Grande -->
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div
-                    class="w-20 h-20 md:w-28 md:h-28 rounded-full bg-editor/90 backdrop-blur-sm flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-2xl shadow-editor/50"
+                  class="w-20 h-20 md:w-28 md:h-28 rounded-full bg-editor/90 backdrop-blur-sm flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-2xl shadow-editor/50"
+                >
+                  <svg
+                    class="w-10 h-10 md:w-14 md:h-14 text-white ml-1 md:ml-2"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
                   >
-                    <svg
-                      class="w-10 h-10 md:w-14 md:h-14 text-white ml-1 md:ml-2"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-
-                <!-- Badge do número -->
-                <div
-                  class="absolute top-4 left-4 px-4 py-2 rounded-full bg-editor text-white text-sm font-bold"
-                >
-                  {{ currentIndex + 1 }} / {{ playlistVideos.length }}
-                </div>
-
-                <!-- Badge YouTube -->
-                <div
-                  class="absolute top-4 right-4 px-3 py-2 rounded-full bg-red-600 text-white text-sm font-bold flex items-center gap-2"
-                >
-                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M23.498 6.186a2.994 2.994 0 0 0-2.107-2.117C19.228 3.5 12 3.5 12 3.5s-7.228 0-9.391.569A2.994 2.994 0 0 0 .502 6.186C0 8.36 0 12 0 12s0 3.64.502 5.814a2.994 2.994 0 0 0 2.107 2.117C4.772 20.5 12 20.5 12 20.5s7.228 0 9.391-.569a2.994 2.994 0 0 0 2.107-2.117C24 15.64 24 12 24 12s0-3.64-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-                    />
+                    <path d="M8 5v14l11-7z" />
                   </svg>
-                  YouTube
                 </div>
               </div>
 
-              <!-- Info do Vídeo -->
-              <div class="p-6 md:p-8">
-                <h3 class="text-xl md:text-2xl font-bold text-white mb-4 text-balance">
-                  {{ currentVideo.title }}
-                </h3>
-
-                <!-- Navegação -->
-                <div class="flex items-center justify-between gap-4">
-                  <!-- Botão Anterior -->
-                  <Button
-                    class="flex! items-center! gap-2! px-5! py-3! rounded-full! bg-gray-800! hover:bg-gray-700! text-white! font-medium! transition! duration-300! hover:scale-105! active:scale-[0.96]! cursor-pointer"
-                    @click="prevVideo"
-                  >
-                    <i class="pi pi-chevron-left text-lg"></i>
-                    <span class="hidden sm:inline">{{ t('editorPlaylist.previous') }}</span>
-                  </Button>
-
-                  <!-- Botão Assistir -->
-                  <Button
-                    class="flex-1! max-w-xs! flex! items-center! justify-center! gap-3! px-6! py-4! rounded-full! bg-editor! hover:bg-editor/80! text-white! font-bold! text-lg! transition! duration-300! hover:scale-105! active:scale-[0.96]! cursor-pointer shadow-lg! shadow-editor/30!"
-                    @click="openPlayerModal(currentVideo)"
-                  >
-                    <i class="pi pi-play-circle text-xl"></i>
-                    <span>{{ t('editorPlaylist.watch') }}</span>
-                  </Button>
-
-                  <!-- Botão Próximo -->
-                  <Button
-                    class="flex! items-center! gap-2! px-5! py-3! rounded-full! bg-gray-800! hover:bg-gray-700! text-white! font-medium! transition! duration-300! hover:scale-105! active:scale-[0.96]! cursor-pointer border-transparent"
-                    @click="nextVideo"
-                  >
-                    <span class="hidden sm:inline">{{ t('editorPlaylist.next') }}</span>
-                    <i class="pi pi-chevron-right text-lg"></i>
-                  </Button>
-                </div>
+              <!-- Badge do número -->
+              <div
+                class="absolute top-4 left-4 px-4 py-2 rounded-full bg-editor text-white text-sm font-bold"
+              >
+                {{ currentIndex + 1 }} / {{ playlistVideos.length }}
               </div>
-            </template>
-          </Card>
+
+              <!-- Badge YouTube -->
+              <div
+                class="absolute top-4 right-4 px-3 py-2 rounded-full bg-red-600 text-white text-sm font-bold flex items-center gap-2"
+              >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M23.498 6.186a2.994 2.994 0 0 0-2.107-2.117C19.228 3.5 12 3.5 12 3.5s-7.228 0-9.391.569A2.994 2.994 0 0 0 .502 6.186C0 8.36 0 12 0 12s0 3.64.502 5.814a2.994 2.994 0 0 0 2.107 2.117C4.772 20.5 12 20.5 12 20.5s7.228 0 9.391-.569a2.994 2.994 0 0 0 2.107-2.117C24 15.64 24 12 24 12s0-3.64-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                  />
+                </svg>
+                YouTube
+              </div>
+            </div>
+
+            <!-- Info do Vídeo -->
+            <div class="p-6 md:p-8">
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-4 text-balance">
+                {{ currentVideo.title }}
+              </h3>
+
+              <!-- Navegação -->
+              <div class="flex items-center justify-between gap-4">
+                <!-- Botão Anterior -->
+                <button
+                  class="flex items-center gap-2 px-5 py-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white font-medium transition duration-300 hover:scale-105 active:scale-[0.96] cursor-pointer"
+                  @click="prevVideo"
+                >
+                  <i class="pi pi-chevron-left text-lg"></i>
+                  <span class="hidden sm:inline">{{ t('editorPlaylist.previous') }}</span>
+                </button>
+
+                <!-- Botão Assistir -->
+                <button
+                  class="flex-1 max-w-xs flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-editor hover:bg-editor/80 text-white font-bold text-lg transition duration-300 hover:scale-105 active:scale-[0.96] cursor-pointer shadow-lg shadow-editor/30"
+                  @click="openPlayerModal(currentVideo)"
+                >
+                  <i class="pi pi-play-circle text-xl"></i>
+                  <span>{{ t('editorPlaylist.watch') }}</span>
+                </button>
+
+                <!-- Botão Próximo -->
+                <button
+                  class="flex items-center gap-2 px-5 py-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white font-medium transition duration-300 hover:scale-105 active:scale-[0.96] cursor-pointer border-transparent"
+                  @click="nextVideo"
+                >
+                  <span class="hidden sm:inline">{{ t('editorPlaylist.next') }}</span>
+                  <i class="pi pi-chevron-right text-lg"></i>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Indicadores (dots) -->
@@ -278,46 +275,55 @@ onMounted(() => {
     </div>
 
     <!-- Modal Player -->
-    <Dialog
-      v-model:visible="playerModalVisible"
-      :header="selectedVideo?.title || 'Player'"
-      modal
-      dismissable-mask
-      :style="{ width: '95vw', maxWidth: '1200px' }"
-      :pt="{
-        root: {
-          class:
-            'bg-gray-950! backdrop-blur-2xl! border! border-editor/20! rounded-3xl! overflow-hidden!',
-        },
-        header: {
-          class:
-            'bg-transparent! text-white! border-b! border-gray-800/50! px-6! py-4! text-lg! font-bold!',
-        },
-        content: { class: 'bg-transparent! p-0!' },
-        closeButton: { class: 'text-gray-400! hover:text-editor!' },
-      }"
-      @hide="stopVideo"
+    <div
+      v-if="playerModalVisible"
+      class="fixed inset-0 z-[100] flex items-center justify-center p-4"
     >
-      <div class="aspect-video w-full bg-black">
-        <iframe
-          v-if="selectedVideo"
-          :src="`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1&rel=0&modestbranding=1`"
-          class="w-full h-full"
-          frameborder="0"
-          allow="
-            accelerometer;
-            autoplay;
-            clipboard-write;
-            encrypted-media;
-            gyroscope;
-            picture-in-picture;
-            web-share;
-          "
-          allowfullscreen
-          title="YouTube Video Player"
-        ></iframe>
+      <!-- Backdrop -->
+      <div
+        class="absolute inset-0 bg-gray-950/80 backdrop-blur-sm"
+        @click="stopVideo(); playerModalVisible = false"
+      ></div>
+
+      <!-- Modal Content -->
+      <div
+        class="relative w-full max-w-[1200px] bg-gray-950 border border-editor/20 rounded-3xl overflow-hidden shadow-2xl flex flex-col z-10 mx-auto"
+      >
+        <!-- Header -->
+        <div
+          class="flex items-center justify-between px-6 py-4 border-b border-gray-800/50 bg-transparent"
+        >
+          <h3 class="text-white text-lg font-bold">{{ selectedVideo?.title || 'Player' }}</h3>
+          <button
+            class="text-gray-400 hover:text-editor transition-colors cursor-pointer p-2"
+            @click="stopVideo(); playerModalVisible = false"
+          >
+            <i class="pi pi-times"></i>
+          </button>
+        </div>
+
+        <!-- Content -->
+        <div class="aspect-video w-full bg-black p-0">
+          <iframe
+            v-if="selectedVideo"
+            :src="`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1&rel=0&modestbranding=1`"
+            class="w-full h-full"
+            frameborder="0"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+            "
+            allowfullscreen
+            title="YouTube Video Player"
+          ></iframe>
+        </div>
       </div>
-    </Dialog>
+    </div>
   </section>
 </template>
 

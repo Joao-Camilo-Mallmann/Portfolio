@@ -203,66 +203,63 @@ const techCategories = computed(() => [
 </script>
 
 <template>
-  <Card class="overflow-hidden card-hover animate-slide-down">
-    <template #header>
-      <div class="text-center p-6 pb-0">
-        <h3
-          class="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2 text-balance"
-        >
-          <i class="pi pi-code text-dev"></i>
-          {{ t('devStack.title') }}
-        </h3>
-        <p class="text-gray-400 text-pretty">{{ t('devStack.subtitle') }}</p>
-      </div>
-    </template>
-    <template #content>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Fieldset
-          v-for="category in techCategories"
-          :key="category.header"
-          :legend="category.header"
-          class="bg-linear-to-tl! to-dev/10! fieldset-hover active:scale-[0.96]"
-        >
-          <template #legend>
-            <div
-              class="flex items-center gap-2 text-white font-semibold text-sm px-3 py-1 bg-gray-800/60 rounded-full"
-            >
-              <i :class="category.icon" class="text-dev"></i>
-              <span>{{ category.header }}</span>
-            </div>
-          </template>
+  <div
+    class="overflow-hidden card-hover animate-slide-down bg-gray-900/50 border border-gray-800 rounded-xl"
+  >
+    <div class="text-center p-6 pb-0">
+      <h3
+        class="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2 text-balance"
+      >
+        <i class="pi pi-code text-dev"></i>
+        {{ t('devStack.title') }}
+      </h3>
+      <p class="text-gray-400 text-pretty">{{ t('devStack.subtitle') }}</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
+      <fieldset
+        v-for="category in techCategories"
+        :key="category.header"
+        class="bg-linear-to-tl to-dev/10 fieldset-hover active:scale-[0.96] border border-gray-700/50 rounded-lg p-0"
+      >
+        <legend class="mx-4 px-1">
+          <div
+            class="flex items-center gap-2 text-white font-semibold text-sm px-3 py-1 bg-gray-800/80 rounded-full border border-gray-700/50"
+          >
+            <i :class="category.icon" class="text-dev"></i>
+            <span>{{ category.header }}</span>
+          </div>
+        </legend>
 
-          <div class="grid grid-cols-1 gap-3 p-4">
-            <div
-              v-for="(tech, idx) in category.technologies"
-              :key="tech.name"
-              class="tech-item-modern group animate-slide-up active:scale-[0.96] cursor-pointer"
-              :style="{ animationDelay: 0.08 * idx + 's' }"
-            >
-              <div class="flex items-center gap-3">
-                <div class="tech-icon-container">
-                  <img
-                    v-if="tech.image && !tech.image.includes('/img/')"
-                    :src="tech.image"
-                    :alt="tech.name"
-                    class="w-8 h-9 object-contain"
-                    @error="(e) => (e.target.style.display = 'none')"
-                  />
-                  <i v-else :class="tech.icon" class="text-lg" :style="{ color: tech.color }"></i>
-                </div>
-                <div class="flex-1">
-                  <span class="text-gray-200 text-sm font-medium">{{ tech.name }}</span>
-                </div>
+        <div class="grid grid-cols-1 gap-3 p-4">
+          <div
+            v-for="(tech, idx) in category.technologies"
+            :key="tech.name"
+            class="tech-item-modern group animate-slide-up active:scale-[0.96] cursor-pointer"
+            :style="{ animationDelay: 0.08 * idx + 's' }"
+          >
+            <div class="flex items-center gap-3">
+              <div class="tech-icon-container">
+                <img
+                  v-if="tech.image && !tech.image.includes('/img/')"
+                  :src="tech.image"
+                  :alt="tech.name"
+                  class="w-8 h-9 object-contain"
+                  @error="(e) => (e.target.style.display = 'none')"
+                />
+                <i v-else :class="tech.icon" class="text-lg" :style="{ color: tech.color }"></i>
               </div>
-              <div class="tech-skill-bar">
-                <div class="tech-skill-fill" :style="{ backgroundColor: tech.color }"></div>
+              <div class="flex-1">
+                <span class="text-gray-200 text-sm font-medium">{{ tech.name }}</span>
               </div>
+            </div>
+            <div class="tech-skill-bar">
+              <div class="tech-skill-fill" :style="{ backgroundColor: tech.color }"></div>
             </div>
           </div>
-        </Fieldset>
-      </div>
-    </template>
-  </Card>
+        </div>
+      </fieldset>
+    </div>
+  </div>
 </template>
 
 <style scoped>

@@ -40,10 +40,12 @@ const handleKeydown = (e) => {
 watch(
   isLoading,
   (newValue) => {
-    if (newValue) {
-      document.body.classList.add('no-scroll')
-    } else {
-      document.body.classList.remove('no-scroll')
+    if (typeof document !== 'undefined') {
+      if (newValue) {
+        document.body.classList.add('no-scroll')
+      } else {
+        document.body.classList.remove('no-scroll')
+      }
     }
   },
   { immediate: true },
