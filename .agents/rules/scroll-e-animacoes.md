@@ -4,7 +4,7 @@ description: Sistema de scroll suave (Lenis), parallax e scroll-reveal do projet
 
 # Scroll Suave e Animações de Scroll
 
-O projeto utiliza o **Lenis.js** como engine de smooth scroll, combinado com um sistema próprio de **parallax** e **scroll-reveal** via `IntersectionObserver`.
+O projeto utiliza o **Lenis.js** como engine de smooth scroll e o **@vueuse/motion** para os reveals e transições de entrada.
 
 ## Dependência: Lenis.js
 
@@ -17,22 +17,22 @@ O projeto utiliza o **Lenis.js** como engine de smooth scroll, combinado com um 
 
 ```javascript
 new Lenis({
-  lerp: 0.1,          // Interpolação linear (0 = instantâneo, 1 = sem suavização)
-  smoothWheel: true,   // Suaviza scroll de roda do mouse
-  syncTouch: false,    // false = mantém scroll nativo em touch/mobile (mais natural)
-  autoRaf: true,       // Lenis gerencia seu próprio requestAnimationFrame loop
+  lerp: 0.1, // Interpolação linear (0 = instantâneo, 1 = sem suavização)
+  smoothWheel: true, // Suaviza scroll de roda do mouse
+  syncTouch: false, // false = mantém scroll nativo em touch/mobile (mais natural)
+  autoRaf: true, // Lenis gerencia seu próprio requestAnimationFrame loop
 })
 ```
 
 ### API do Lenis (Referência rápida)
 
-| Método/Prop       | Descrição                                               |
-|-------------------|---------------------------------------------------------|
+| Método/Prop              | Descrição                                                                 |
+| ------------------------ | ------------------------------------------------------------------------- |
 | `lenis.on('scroll', cb)` | Callback a cada frame. Recebe `{ scroll, velocity, direction, progress }` |
-| `lenis.scrollTo(target)` | Scroll programático para elemento/posição               |
-| `lenis.stop()`    | Pausa o smooth scroll                                    |
-| `lenis.start()`   | Retoma o smooth scroll                                   |
-| `lenis.destroy()` | Limpa listeners e cancela rAF. **Obrigatório no unmount** |
+| `lenis.scrollTo(target)` | Scroll programático para elemento/posição                                 |
+| `lenis.stop()`           | Pausa o smooth scroll                                                     |
+| `lenis.start()`          | Retoma o smooth scroll                                                    |
+| `lenis.destroy()`        | Limpa listeners e cancela rAF. **Obrigatório no unmount**                 |
 
 ### Opções avançadas disponíveis (não usadas atualmente)
 
@@ -57,114 +57,54 @@ new Lenis({
 
 **Arquivo:** `src/composables/useScrollReveal.js`
 
-Composable Vue que orquestra as 3 funcionalidades. Cada view que precisa de scroll-reveal deve usá-lo.
+Composable Vue responsável apenas pelo smooth scroll com Lenis. Os reveals visuais ficam no Motion.
 
 ### Como usar
 
 ```vue
 <script setup>
 import { useScrollReveal } from '@/composables/useScrollReveal'
-import { nextTick, onMounted, ref } from 'vue'
 
-const { initObserver, registerParallax } = useScrollReveal()
-const containerRef = ref(null)
-const bgElement = ref(null)
-
-onMounted(() => {
-  nextTick(() => {
-    initObserver(containerRef.value)
-    registerParallax(bgElement.value, -0.15, 'y')
-  })
-})
+useScrollReveal()
 </script>
 
 <template>
-  <main ref="containerRef">
-    <div ref="bgElement" class="parallax-layer">Background</div>
-    <section data-scroll-reveal="up">Conteúdo revelado ao scroll</section>
+  <main>
+    <section v-motion-scroll-visible>Conteúdo revelado ao scroll</section>
   </main>
 </template>
 ```
 
 ### API retornada
 
-| Retorno            | Tipo             | Descrição                                                  |
-|--------------------|------------------|------------------------------------------------------------|
-| `scrollY`          | `Ref<number>`    | Posição Y do scroll em pixels (reativo)                    |
-| `lenis`            | `ShallowRef`     | Instância do Lenis (null antes do mount)                   |
-| `initObserver(el)` | `Function`       | Inicia IntersectionObserver para `[data-scroll-reveal]`    |
-| `registerParallax` | `Function`       | Registra elemento DOM para parallax                        |
+| Retorno   | Tipo          | Descrição                                |
+| --------- | ------------- | ---------------------------------------- |
+| `scrollY` | `Ref<number>` | Posição Y do scroll em pixels (reativo)  |
+| `lenis`   | `ShallowRef`  | Instância do Lenis (null antes do mount) |
 
-## Scroll-Reveal (CSS)
+## Motion de Scroll
 
-**Arquivo CSS:** `src/assets/animations.css` (seção SCROLL-REVEAL)
-
-### Atributo `data-scroll-reveal`
-
-Elementos com esse atributo iniciam ocultos e são revelados ao entrar na viewport.
-
-| Valor    | Efeito                          | Transform inicial          |
-|----------|---------------------------------|----------------------------|
-| `"up"`   | Desliza de baixo para cima      | `translateY(60px)`         |
-| `"down"` | Desliza de cima para baixo      | `translateY(-40px)`        |
-| `"left"` | Desliza da esquerda             | `translateX(-60px)`        |
-| `"right"`| Desliza da direita              | `translateX(60px)`         |
-| `"scale"`| Escala de 85% para 100%         | `scale(0.85)`              |
-| `"fade"` | Apenas opacidade (sem movimento)| `none`                     |
-
-### Stagger com `scroll-reveal-child`
-
-Filhos com classe `.scroll-reveal-child` recebem delays escalonados automaticamente (100ms por filho) quando o pai com `data-scroll-reveal` é revelado.
-
-```html
-<div data-scroll-reveal="up">
-  <div class="scroll-reveal-child">Aparece 1º (0ms)</div>
-  <div class="scroll-reveal-child">Aparece 2º (100ms)</div>
-  <div class="scroll-reveal-child">Aparece 3º (200ms)</div>
-</div>
-```
-
-### Easing
-
-O easing usado é `cubic-bezier(0.16, 1, 0.3, 1)` — "ease-out expo": saída muito suave com sensação premium de desaceleração natural.
-
-## Parallax
-
-Elementos registrados via `registerParallax()` se movem em velocidades diferentes durante o scroll. Usa `translate3d()` para aceleração GPU.
-
-### Velocidades recomendadas
-
-| Camada          | Velocidade | Efeito                    |
-|-----------------|-----------|---------------------------|
-| Fundo distante  | `-0.25`   | Move muito mais lento     |
-| Fundo médio     | `-0.15`   | Move mais lento           |
-| Fundo próximo   | `-0.08`   | Move levemente mais lento |
-| Conteúdo        | `0`       | Velocidade normal         |
-| Primeiro plano  | `+0.10`   | Move levemente mais rápido|
-
-### Classe CSS `.parallax-layer`
-
-Adicionar em elementos que recebem parallax. Ativa `will-change: transform` e `backface-visibility: hidden`.
+- Use `v-motion-scroll-visible` para revelar conteúdo quando entrar na viewport.
+- Use delays por seção com `:delay` apenas quando houver uma hierarquia clara.
+- Não recrie o antigo sistema de `data-scroll-reveal` ou parallax em CSS.
 
 ## Acessibilidade
 
-- **`prefers-reduced-motion: reduce`** → Lenis NÃO é inicializado, parallax desabilitado, scroll-reveal mostra tudo visível sem animação.
-- **Mobile (< 768px)** → Distâncias de reveal são reduzidas pela metade (CSS) para evitar layout shift.
+- **`prefers-reduced-motion: reduce`** → Lenis NÃO é inicializado e o conteúdo deve permanecer legível sem dependência de animação.
 - **Touch** → `syncTouch: false` mantém scroll nativo em dispositivos touch.
 
 ## Onde o sistema está ativo
 
-| View/Componente         | Scroll-Reveal | Parallax | Notas                              |
-|-------------------------|:---:|:---:|----------------------------------------------|
-| `HomeView.vue`          | ✅  | ✅  | Orbs de fundo, foto perfil, todas as seções   |
-| `EditorView.vue`        | ✅  | ✅  | Orbs de fundo, seções c/ stagger nos filhos   |
-| `DevView.vue`           | ❌  | ❌  | Usa animações CSS legadas (a migrar futuramente) |
+| View/Component   | Motion Scroll | Lenis | Notas                              |
+| ---------------- | :-----------: | :---: | ---------------------------------- |
+| `HomeView.vue`   |      ✅       |  ✅   | Seções principais e foto de perfil |
+| `EditorView.vue` |      ✅       |  ✅   | Seções principais e cards          |
+| `DevView.vue`    |      ✅       |  ✅   | Revels e transições de seção       |
 
 ## Regras para futuros desenvolvimentos
 
-1. **Novas views** → Usar `useScrollReveal()` em vez de classes CSS legadas (`animate-slide-up` etc.)
-2. **Novos componentes** → Adicionar `data-scroll-reveal` no wrapper ou `scroll-reveal-child` nos itens
-3. **Parallax** → Manter velocidades entre `-0.3` e `+0.3` para efeitos sutis
-4. **Cleanup** → O composable faz `destroy()` automático no `onUnmounted`
-5. **Não duplicar Lenis** → Apenas uma instância por view (o composable já garante isso)
-6. **Animações de interação** (hover, tab switch, modais) → Manter com CSS/Tailwind, não misturar com scroll-reveal
+1. **Novas views** → Usar `useScrollReveal()` para Lenis e `v-motion-scroll-visible` para revelar conteúdo.
+2. **Novos componentes** → Se o bloco precisa aparecer ao entrar na viewport, aplique a diretiva de Motion no wrapper.
+3. **Cleanup** → O composable faz `destroy()` automático no `onUnmounted`.
+4. **Não duplicar Lenis** → Apenas uma instância por view (o composable já garante isso).
+5. **Animações de interação** (hover, tab switch, modais) → Manter com CSS/Tailwind, não misturar com scroll-reveal.

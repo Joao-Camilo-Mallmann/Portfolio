@@ -204,26 +204,29 @@ const techCategories = computed(() => [
 
 <template>
   <div
-    class="overflow-hidden card-hover animate-slide-down bg-gray-900/50 border border-gray-800 rounded-xl"
+    v-motion
+    class="overflow-hidden bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl z-99"
+    :initial="{ opacity: 0, y: 16 }"
+    :enter="{ opacity: 1, y: 0, transition: { duration: 400, ease: [0.16, 1, 0.3, 1] } }"
   >
     <div class="text-center p-6 pb-0">
       <h3
-        class="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2 text-balance"
+        class="text-2xl font-bold text-fg mb-2 flex items-center justify-center gap-2 text-balance tracking-wide"
       >
         <i class="pi pi-code text-dev"></i>
         {{ t('devStack.title') }}
       </h3>
-      <p class="text-gray-400 text-pretty">{{ t('devStack.subtitle') }}</p>
+      <p class="text-fg-muted text-pretty tracking-wide">{{ t('devStack.subtitle') }}</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
       <fieldset
         v-for="category in techCategories"
         :key="category.header"
-        class="bg-linear-to-tl to-dev/10 fieldset-hover active:scale-[0.96] border border-gray-700/50 rounded-lg p-0"
+        class="bg-surface-100 border border-border rounded-xl p-0"
       >
         <legend class="mx-4 px-1">
           <div
-            class="flex items-center gap-2 text-white font-semibold text-sm px-3 py-1 bg-gray-800/80 rounded-full border border-gray-700/50"
+            class="flex items-center gap-2 text-fg font-semibold text-sm px-3 py-1 bg-surface-card rounded-full border border-border shadow-sm ring-1 ring-inset ring-white/5"
           >
             <i :class="category.icon" class="text-dev"></i>
             <span>{{ category.header }}</span>
@@ -234,26 +237,42 @@ const techCategories = computed(() => [
           <div
             v-for="(tech, idx) in category.technologies"
             :key="tech.name"
-            class="tech-item-modern group animate-slide-up active:scale-[0.96] cursor-pointer"
-            :style="{ animationDelay: 0.08 * idx + 's' }"
+            v-motion
+            class="tech-item group transition-opacity duration-300 cursor-pointer p-3 border border-border rounded-lg bg-transparent flex items-center gap-3 relative overflow-hidden"
+            :initial="{ opacity: 0, y: 8 }"
+            :enter="{
+              opacity: 1,
+              y: 0,
+              transition: { delay: 50 * idx, duration: 300, ease: [0.16, 1, 0.3, 1] },
+            }"
+            :hovered="{ opacity: 0.7 }"
+            :tapped="{ opacity: 0.5 }"
           >
-            <div class="flex items-center gap-3">
-              <div class="tech-icon-container">
-                <img
-                  v-if="tech.image && !tech.image.includes('/img/')"
-                  :src="tech.image"
-                  :alt="tech.name"
-                  class="w-8 h-9 object-contain"
-                  @error="(e) => (e.target.style.display = 'none')"
-                />
-                <i v-else :class="tech.icon" class="text-lg" :style="{ color: tech.color }"></i>
-              </div>
-              <div class="flex-1">
-                <span class="text-gray-200 text-sm font-medium">{{ tech.name }}</span>
-              </div>
+            <div
+              class="tech-icon-container flex items-center justify-center w-10 h-10 rounded-md bg-surface-card border border-border"
+            >
+              <img
+                v-if="tech.image && !tech.image.includes('/img/')"
+                :src="tech.image"
+                :alt="tech.name"
+                class="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-110"
+                @error="(e) => (e.target.style.display = 'none')"
+              />
+              <i
+                v-else
+                :class="tech.icon"
+                class="text-lg transition-transform duration-300 group-hover:scale-110"
+                :style="{ color: tech.color }"
+              ></i>
             </div>
-            <div class="tech-skill-bar">
-              <div class="tech-skill-fill" :style="{ backgroundColor: tech.color }"></div>
+            <div class="flex-1">
+              <span class="text-fg-muted text-sm font-medium tracking-wide">{{ tech.name }}</span>
+              <div class="tech-skill-bar h-1 bg-surface-card rounded-sm mt-2 overflow-hidden">
+                <div
+                  class="tech-skill-fill h-full rounded-sm transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] w-0"
+                  :style="{ backgroundColor: tech.color, '--fill-width': '85%' }"
+                ></div>
+              </div>
             </div>
           </div>
         </div>
@@ -263,65 +282,7 @@ const techCategories = computed(() => [
 </template>
 
 <style scoped>
-.tech-item-modern {
-  background: rgba(30, 41, 59, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
-  padding: 0.75rem;
-  transition:
-    background 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.tech-item-modern:hover {
-  will-change: transform;
-  background: rgba(30, 41, 59, 0.5);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateX(4px);
-}
-
-.tech-item-modern:not(:hover) {
-  will-change: auto;
-}
-
-.tech-icon-container {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    background 0.3s ease,
-    transform 0.3s ease;
-}
-
-.tech-item-modern:hover .tech-icon-container {
-  background: rgba(255, 255, 255, 0.15);
-  transform: scale(1.1);
-}
-
-/* Barra de skill animada - específica para tecnologias */
-.tech-skill-bar {
-  height: 3px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  margin-top: 0.5rem;
-  overflow: hidden;
-}
-
-.tech-skill-fill {
-  height: 100%;
-  width: 0;
-  border-radius: 2px;
-  transition: width 1.5s ease-in-out;
-}
-
-.tech-item-modern:hover .tech-skill-fill {
-  width: 85%;
+.tech-skill-bar:hover .tech-skill-fill {
+  width: var(--fill-width, 85%);
 }
 </style>

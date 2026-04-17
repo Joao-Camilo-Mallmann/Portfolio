@@ -68,17 +68,9 @@ onUnmounted(() => {
   <!-- Loading Screen -->
   <Transition name="loading-fade">
     <div v-if="isLoading" class="loading-screen">
-      <!-- Animated background elements -->
-      <div class="loading-bg-circle circle-1"></div>
-      <div class="loading-bg-circle circle-2"></div>
-      <div class="loading-bg-circle circle-3"></div>
-
       <div class="loading-content">
-        <!-- Animated dots loader -->
-        <div class="loading-dots">
-          <span class="dot dot-1"></span>
-          <span class="dot dot-2"></span>
-          <span class="dot dot-3"></span>
+        <div class="loading-mark">
+          <span class="loading-mark-dot"></span>
         </div>
 
         <p class="loading-text">{{ t('loading') }}</p>
@@ -118,51 +110,6 @@ body.no-scroll {
   overflow: hidden;
 }
 
-/* Animated background circles */
-.loading-bg-circle {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.1;
-  animation: float 6s ease-in-out infinite;
-}
-
-.circle-1 {
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(45deg, var(--color-dev), var(--color-editor));
-  top: -100px;
-  left: -100px;
-  animation-delay: 0s;
-}
-
-.circle-2 {
-  width: 200px;
-  height: 200px;
-  background: linear-gradient(45deg, var(--color-editor), var(--color-dev));
-  bottom: -50px;
-  right: -50px;
-  animation-delay: 2s;
-}
-
-.circle-3 {
-  width: 150px;
-  height: 150px;
-  background: linear-gradient(45deg, var(--color-dev), var(--color-editor));
-  top: 50%;
-  right: 10%;
-  animation-delay: 4s;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-20px) scale(1.05);
-  }
-}
-
 .loading-content {
   display: flex;
   flex-direction: column;
@@ -171,75 +118,22 @@ body.no-scroll {
   z-index: 1;
 }
 
-/* Logo with pulse animation */
-.loading-logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+.loading-mark {
+  width: 72px;
+  height: 72px;
+  border-radius: 9999px;
   background: linear-gradient(135deg, #4d91ea 0%, #1e40af 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: pulse-glow 2s ease-in-out infinite;
   box-shadow: 0 0 30px rgba(77, 145, 234, 0.4);
 }
 
-.logo-icon {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: white;
-  letter-spacing: -0.05em;
-}
-
-@keyframes pulse-glow {
-  0%,
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 30px rgba(77, 145, 234, 0.4);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 50px rgba(77, 145, 234, 0.6);
-  }
-}
-
-/* Animated dots */
-.loading-dots {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #4d91ea, #eaa64d);
-  animation: bounce 1.4s ease-in-out infinite;
-}
-
-.dot-1 {
-  animation-delay: 0s;
-}
-
-.dot-2 {
-  animation-delay: 0.2s;
-}
-
-.dot-3 {
-  animation-delay: 0.4s;
-}
-
-@keyframes bounce {
-  0%,
-  80%,
-  100% {
-    transform: scale(0.6);
-    opacity: 0.5;
-  }
-  40% {
-    transform: scale(1);
-    opacity: 1;
-  }
+.loading-mark-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .loading-text {
@@ -248,17 +142,6 @@ body.no-scroll {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  animation: fade-pulse 2s ease-in-out infinite;
-}
-
-@keyframes fade-pulse {
-  0%,
-  100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
 }
 
 /* Loading Fade Transition - smoother */

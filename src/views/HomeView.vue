@@ -2,24 +2,14 @@
 import FooterContact from '@/components/FooterContact.vue'
 import HomeSplitter from '@/components/HomeSplitter.vue'
 import { useI18n } from '@/composables/useI18n'
-import { useScrollReveal } from '@/composables/useScrollReveal'
 import { useHead } from '@unhead/vue'
-import { computed, nextTick, onMounted, ref } from 'vue'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const { t, locale, toggleLocale } = useI18n()
-const { initObserver, registerParallax } = useScrollReveal()
 
 // Refs para parallax
-const floatingRef = ref(null)
-const circle1 = ref(null)
-const circle2 = ref(null)
-const circle3 = ref(null)
-const square1 = ref(null)
-const square2 = ref(null)
-const profileRef = ref(null)
-const mainRef = ref(null)
 
 useHead({
   title: computed(() => t('seo.homeTitle')),
@@ -66,42 +56,15 @@ useHead({
 function goToPage(path) {
   router.push(path)
 }
-
-onMounted(() => {
-  nextTick(() => {
-    // Registrar parallax nos elementos de fundo (velocidades diferentes = profundidade)
-    registerParallax(circle1.value, -0.15, 'y')
-    registerParallax(circle2.value, -0.25, 'y')
-    registerParallax(circle3.value, -0.1, 'y')
-    registerParallax(square1.value, -0.2, 'y')
-    registerParallax(square2.value, -0.12, 'y')
-    registerParallax(profileRef.value, -0.06, 'y')
-
-    // Inicializar IntersectionObserver para scroll-reveal
-    initObserver(mainRef.value)
-  })
-})
 </script>
 
 <template>
-  <main ref="mainRef" class="page-transition min-h-screen relative overflow-hidden">
-    <!-- Elementos de fundo animados com parallax -->
-    <div ref="floatingRef" class="floating-elements" aria-hidden="true">
-      <div ref="circle1" class="floating-circle circle-1 parallax-layer"></div>
-      <div ref="circle2" class="floating-circle circle-2 parallax-layer"></div>
-      <div ref="circle3" class="floating-circle circle-3 parallax-layer"></div>
-      <div ref="square1" class="floating-square square-1 parallax-layer"></div>
-      <div ref="square2" class="floating-square square-2 parallax-layer"></div>
-    </div>
-
+  <main class="page-transition min-h-screen relative overflow-hidden">
     <home-splitter />
 
-    <!-- Profile — scroll-reveal com scale -->
-    <section
-      data-scroll-reveal="scale"
-      class="flex justify-center sm:-mt-4 md:-mt-20 relative z-10"
-    >
-      <header ref="profileRef" class="profile-container parallax-layer">
+    <!-- Profile — v-motion -->
+    <section v-motion-scroll-visible class="flex justify-center sm:-mt-4 md:-mt-20 relative z-10">
+      <header class="profile-container">
         <img
           src="https://avatars.githubusercontent.com/u/94570639"
           alt="Foto de perfil de João Camilo Mallmann"
@@ -112,11 +75,11 @@ onMounted(() => {
       </header>
     </section>
 
-    <section class="text-gray-200 max-w-3xl mx-auto p-8 mt-4 text-center">
-      <!-- Alternador de Idioma na Home — slide down -->
-      <div data-scroll-reveal="down" class="flex justify-center mb-8">
+    <section class="max-w-5xl mx-auto p-8 mt-4 text-center">
+      <!-- Alternador de Idioma na Home -->
+      <div v-motion-scroll-visible class="flex justify-center mb-8">
         <button
-          class="home-locale-toggle group min-h-10 px-4 py-2"
+          class="home-locale-toggle group shadow-sm ring-1 ring-inset ring-white/20 rounded-full min-h-10 px-6 py-2 transition-opacity duration-300 hover:opacity-60"
           :aria-label="locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
           @click="toggleLocale"
         >
@@ -124,253 +87,186 @@ onMounted(() => {
             <span class="text-xl transition-transform duration-300 group-hover:scale-110">
               {{ locale === 'pt-BR' ? '🇺🇸' : '🇧🇷' }}
             </span>
-            <span
-              class="font-medium tracking-wide text-sm text-gray-300 group-hover:text-white transition-colors"
-            >
+            <span class="font-medium tracking-wide text-sm text-fg transition-colors">
               {{ locale === 'pt-BR' ? 'View in English' : 'Ver em Português' }}
             </span>
           </div>
           <i
-            class="pi pi-sync text-sm ml-2 text-gray-500 transition-colors transition-transform duration-500 group-hover:rotate-180 group-hover:text-white"
+            class="pi pi-sync text-sm ml-2 text-gray-500 transition-[color,transform] duration-500 group-hover:rotate-180 group-hover:text-white"
           ></i>
         </button>
       </div>
 
-      <!-- Título — slide up -->
-      <h1 data-scroll-reveal="up" class="text-2xl font-semibold text-white mb-4 text-balance">
+      <!-- Título -->
+      <h1
+        v-motion-scroll-visible
+        :delay="100"
+        class="text-2xl font-semibold text-white mb-4 text-balance"
+      >
         {{ t('home.aboutMe') }}
       </h1>
 
-      <!-- Apresentação Principal — fade up -->
-      <article data-scroll-reveal="up" class="mb-4">
-        <card class="border border-white/10 text-gray-300">
-          <template #content>
-            <p class="text-base leading-7 text-gray-300 m-0">
-              {{ t('home.greeting') }}
-              <strong class="text-white typing-effect">João Camilo Mallmann</strong>,
-              {{ t('home.role') }}<br />
-              {{ t('home.passion') }}
-            </p>
-          </template>
-        </card>
+      <!-- Apresentação Principal -->
+      <article v-motion-scroll-visible :delay="200" class="mb-4">
+        <div
+          class="bg-surface-100 border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl p-6 text-fg"
+        >
+          <div class="text-base leading-relaxed m-0 text-fg tracking-wide">
+            {{ t('home.greeting') }}
+            <strong class="text-white typing-effect">João Camilo Mallmann</strong>,
+            {{ t('home.role') }}<br />
+            {{ t('home.passion') }}
+          </div>
+        </div>
       </article>
 
-      <!-- Seções de Habilidades — cada card com direção diferente -->
-      <section data-scroll-reveal="fade" class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+      <!-- Seções de Habilidades -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
         <!-- Seção Software Developer | Frontend Specialist -->
         <article
-          class="scroll-reveal-child card-hover-glow hover:scale-102 transition-transform duration-300"
+          v-motion-scroll-visible
+          v-motion
+          :delay="300"
+          :hovered="{ opacity: 0.6 }"
+          :tapped="{ opacity: 0.4 }"
+          class="transition-opacity duration-300 cursor-pointer"
         >
-          <card
-            class="border-l-4 !h-full border-dev !transition-colors transition-transform !duration-300 hover:shadow-2xl text-gray-300"
+          <div
+            class="bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl border-l-4 border-l-dev h-full flex flex-col"
           >
-            <template #header>
-              <header class="flex items-center justify-center gap-2 p-4">
-                <i class="pi pi-desktop text-xl text-dev" aria-hidden="true"></i>
-                <h2 class="text-lg font-semibold text-dev m-0 text-balance">
-                  {{ t('home.devTitle') }}
-                </h2>
-              </header>
-            </template>
-            <template #content>
-              <p class="text-gray-300 leading-relaxed m-0">
+            <header class="flex items-center justify-center gap-2 p-4">
+              <i class="pi pi-desktop text-xl text-dev" aria-hidden="true"></i>
+              <h2 class="text-lg font-semibold text-dev m-0 text-balance">
+                {{ t('home.devTitle') }}
+              </h2>
+            </header>
+            <div class="p-4 grow">
+              <p class="text-fg-muted tracking-wide leading-relaxed m-0">
                 {{ t('home.devDescription') }}
               </p>
-            </template>
+            </div>
 
-            <template #footer>
-              <br />
+            <div class="p-4 mt-auto">
               <button
-                class="w-full !bg-transparent !border-0 !text-dev !font-semibold !py-3 !px-6 hover:!text-dev/80 !justify-end !transition-colors transition-transform !duration-300 hover:!scale-105 hover:!translate-x-2 flex items-center gap-2"
+                class="w-full bg-transparent border-0 text-dev font-semibold py-3 px-6 justify-end flex items-center gap-2 transition-opacity duration-300 hover:opacity-60"
                 :aria-label="t('home.devButtonAria')"
                 @click="goToPage('/dev')"
               >
                 <span>{{ t('home.devButton') }}</span>
                 <i class="pi pi-arrow-right"></i>
               </button>
-            </template>
-          </card>
+            </div>
+          </div>
         </article>
 
         <!-- Seção Editor de Vídeo -->
         <article
-          class="scroll-reveal-child card-hover-glow hover:scale-102 transition-transform duration-300"
+          v-motion-scroll-visible
+          v-motion
+          :delay="400"
+          :hovered="{ opacity: 0.6 }"
+          :tapped="{ opacity: 0.4 }"
+          class="transition-opacity duration-300 cursor-pointer"
         >
-          <card
-            class="border-l-4 border-editor !transition-colors transition-transform !duration-300 hover:shadow-2xl text-gray-300"
+          <div
+            class="bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl border-l-4 border-l-editor h-full flex flex-col"
           >
-            <template #header>
-              <header class="flex items-center justify-center gap-2 p-4">
-                <i class="pi pi-video text-xl text-editor" aria-hidden="true"></i>
-                <h2 class="text-lg font-semibold text-editor m-0 text-balance">
-                  {{ t('home.editorTitle') }}
-                </h2>
-              </header>
-            </template>
-            <template #content>
-              <p class="text-gray-300 leading-relaxed m-0">
+            <header class="flex items-center justify-center gap-2 p-4">
+              <i class="pi pi-video text-xl text-editor" aria-hidden="true"></i>
+              <h2 class="text-lg font-semibold text-editor m-0 text-balance">
+                {{ t('home.editorTitle') }}
+              </h2>
+            </header>
+            <div class="p-4 grow">
+              <p class="text-fg-muted tracking-wide leading-relaxed m-0">
                 <span class="text-editor font-semibold">{{ t('home.editorCreation') }}</span>
                 {{ ' ' }}
                 <template v-if="locale === 'pt-BR'">
-                  com <span class="text-white font-semibold">Adobe Premiere Pro</span>,
-                  <span class="text-white font-semibold">Photoshop</span> e
-                  <span class="text-white font-semibold">After Effects</span>. Especializado em
-                  vídeos institucionais, comerciais e conteúdo para redes sociais.
+                  com <span class="text-fg font-semibold">Adobe Premiere Pro</span>,
+                  <span class="text-fg font-semibold">Photoshop</span> e
+                  <span class="text-fg font-semibold">After Effects</span>. Especializado em vídeos
+                  institucionais, comerciais e conteúdo para redes sociais.
                 </template>
                 <template v-else>
-                  with <span class="text-white font-semibold">Adobe Premiere Pro</span>,
-                  <span class="text-white font-semibold">Photoshop</span> and
-                  <span class="text-white font-semibold">After Effects</span>. Specialized in
+                  with <span class="text-fg font-semibold">Adobe Premiere Pro</span>,
+                  <span class="text-fg font-semibold">Photoshop</span> and
+                  <span class="text-fg font-semibold">After Effects</span>. Specialized in
                   institutional, commercial videos and social media content.
                 </template>
               </p>
-              <br />
-            </template>
-            <template #footer>
+            </div>
+            <div class="p-4 mt-auto">
               <button
-                class="w-full !bg-transparent !border-0 !text-editor !font-semibold !py-3 !px-6 hover:!text-editor/80 !justify-end !transition-colors transition-transform !duration-300 hover:!scale-105 hover:!translate-x-2 flex items-center gap-2"
+                class="w-full bg-transparent border-0 text-editor font-semibold py-3 px-6 justify-end flex items-center gap-2 transition-opacity duration-300 hover:opacity-60"
                 :aria-label="t('home.editorButtonAria')"
                 @click="goToPage('/editor')"
               >
                 <span>{{ t('home.editorButton') }}</span>
                 <i class="pi pi-play"></i>
               </button>
-            </template>
-          </card>
+            </div>
+          </div>
         </article>
       </section>
 
-      <!-- Conclusão — slide up com stagger nos filhos -->
-      <article data-scroll-reveal="up" class="mt-4 conclusion-card">
-        <card class="border border-white/10 text-gray-300">
-          <template #header>
-            <header class="flex items-center justify-center gap-3 p-4 scroll-reveal-child">
-              <i
-                class="pi pi-star text-xl text-yellow-400 animate-spin-slow"
-                aria-hidden="true"
-              ></i>
-              <h2 class="text-white font-semibold text-balance">{{ t('home.philosophyTitle') }}</h2>
-              <i
-                class="pi pi-star text-xl text-yellow-400 animate-spin-slow"
-                aria-hidden="true"
-              ></i>
-            </header>
-          </template>
-          <template #content>
-            <div class="relative overflow-hidden scroll-reveal-child">
-              <p class="text-gray-300 leading-relaxed m-0 relative z-10">
-                <span class="text-dev font-semibold">{{ t('home.philosophyCreativity') }}</span>
-                {{ ' ' }}
-                <template v-if="locale === 'pt-BR'">com</template>
-                <template v-else>with</template>
-                {{ ' ' }}
-                <span class="text-editor font-semibold">{{ t('home.philosophyVision') }}</span>
-                {{ ' ' }} {{ t('home.philosophyDelivery') }} {{ ' ' }}
-                <span class="text-white font-semibold">{{ t('home.philosophyInterfaces') }}</span>
-                {{ ' ' }}
-                <template v-if="locale === 'pt-BR'">ou produzindo</template>
-                <template v-else>or producing</template>
-                {{ ' ' }}
-                <span class="text-white font-semibold">{{ t('home.philosophyContent') }}</span
-                >, {{ t('home.philosophyFocus') }} {{ ' ' }}
-                <span
-                  class="text-gradient bg-gradient-to-r from-dev to-editor bg-clip-text text-transparent font-bold"
-                  >{{ t('home.philosophyExcellence') }}</span
-                >.
-              </p>
-              <div class="flex justify-center flex-wrap mt-4 gap-4">
-                <div class="flex items-center gap-2 text-sm text-gray-400 scroll-reveal-child">
-                  <i class="pi pi-code text-dev" aria-hidden="true"></i>
-                  <span>{{ t('home.tagTechnology') }}</span>
-                </div>
-                <div class="flex items-center gap-2 text-sm text-gray-400 scroll-reveal-child">
-                  <i class="pi pi-video text-editor" aria-hidden="true"></i>
-                  <span>{{ t('home.tagCreativity') }}</span>
-                </div>
-                <div class="flex items-center gap-2 text-sm text-gray-400 scroll-reveal-child">
-                  <i class="pi pi-heart text-red-400 animate-heartbeat" aria-hidden="true"></i>
-                  <span>{{ t('home.tagDedication') }}</span>
-                </div>
+      <!-- Conclusão -->
+      <article v-motion-scroll-visible :delay="500" class="mt-4">
+        <div
+          class="bg-surface-100 border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl text-fg"
+        >
+          <header class="flex items-center justify-center gap-3 p-6">
+            <i class="pi pi-star text-xl text-yellow-400" aria-hidden="true"></i>
+            <h2 class="text-white font-semibold text-balance">{{ t('home.philosophyTitle') }}</h2>
+            <i class="pi pi-star text-xl text-yellow-400" aria-hidden="true"></i>
+          </header>
+          <div class="relative overflow-hidden p-6 pt-0">
+            <p class="text-fg-muted leading-relaxed m-0 relative z-10 tracking-wide">
+              <span class="text-dev font-semibold">{{ t('home.philosophyCreativity') }}</span>
+              {{ ' ' }}
+              <template v-if="locale === 'pt-BR'">com</template>
+              <template v-else>with</template>
+              {{ ' ' }}
+              <span class="text-editor font-semibold">{{ t('home.philosophyVision') }}</span>
+              {{ ' ' }} {{ t('home.philosophyDelivery') }} {{ ' ' }}
+              <span class="text-white font-semibold">{{ t('home.philosophyInterfaces') }}</span>
+              {{ ' ' }}
+              <template v-if="locale === 'pt-BR'">ou produzindo</template>
+              <template v-else>or producing</template>
+              {{ ' ' }}
+              <span class="text-white font-semibold">{{ t('home.philosophyContent') }}</span
+              >, {{ t('home.philosophyFocus') }} {{ ' ' }}
+              <span
+                class="text-gradient bg-linear-to-r from-dev to-editor bg-clip-text text-transparent font-bold"
+                >{{ t('home.philosophyExcellence') }}</span
+              >.
+            </p>
+            <div class="flex justify-center flex-wrap mt-4 gap-4">
+              <div class="flex items-center gap-2 text-sm text-fg-muted">
+                <i class="pi pi-code text-dev" aria-hidden="true"></i>
+                <span>{{ t('home.tagTechnology') }}</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-fg-muted">
+                <i class="pi pi-video text-editor" aria-hidden="true"></i>
+                <span>{{ t('home.tagCreativity') }}</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-fg-muted">
+                <i class="pi pi-heart text-red-400" aria-hidden="true"></i>
+                <span>{{ t('home.tagDedication') }}</span>
               </div>
             </div>
-          </template>
-        </card>
+          </div>
+        </div>
       </article>
     </section>
 
-    <!-- Footer Padrão — slide up -->
-    <div data-scroll-reveal="up">
+    <!-- Footer Padrão -->
+    <div v-motion-scroll-visible :delay="100">
       <footer-contact primary-color="#ffffff" :cta-text="t('footer.ctaDefault')" />
     </div>
   </main>
 </template>
 
 <style scoped>
-/* Elementos flutuantes de fundo */
-.floating-elements {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.floating-circle {
-  position: absolute;
-  border-radius: 50%;
-  background: linear-gradient(45deg, rgba(77, 145, 234, 0.1), rgba(234, 166, 77, 0.1));
-  animation: float 6s ease-in-out infinite;
-}
-
-.floating-square {
-  position: absolute;
-  background: linear-gradient(45deg, rgba(234, 166, 77, 0.08), rgba(77, 145, 234, 0.08));
-  transform: rotate(45deg);
-  animation: floatReverse 8s ease-in-out infinite;
-}
-
-.circle-1 {
-  width: 60px;
-  height: 60px;
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.circle-2 {
-  width: 80px;
-  height: 80px;
-  top: 60%;
-  right: 15%;
-  animation-delay: 2s;
-}
-
-.circle-3 {
-  width: 40px;
-  height: 40px;
-  top: 80%;
-  left: 20%;
-  animation-delay: 4s;
-}
-
-.square-1 {
-  width: 50px;
-  height: 50px;
-  top: 30%;
-  right: 10%;
-  animation-delay: 1s;
-}
-
-.square-2 {
-  width: 30px;
-  height: 30px;
-  top: 70%;
-  right: 30%;
-  animation-delay: 3s;
-}
-
 /* Animação da foto de perfil */
 .profile-container {
   position: relative;
@@ -417,86 +313,6 @@ onMounted(() => {
   overflow: hidden;
 }
 
-.typing-effect::after {
-  content: '|';
-  animation: blink 1s infinite;
-  margin-left: 2px;
-}
-
-/* Hover glow para cards */
-.card-hover-glow {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.card-hover-glow::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.5s;
-  z-index: 1;
-}
-
-.card-hover-glow:hover::before {
-  left: 100%;
-}
-
-/* Container dos botões sociais com animação escalonada */
-.social-buttons-container > * {
-  animation: slideInScale 0.6s ease-out forwards;
-  opacity: 0;
-  transform: translateY(20px) scale(0.8);
-}
-
-.social-buttons-container > *:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.social-buttons-container > *:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.social-buttons-container > *:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.social-buttons-container > *:nth-child(4) {
-  animation-delay: 0.4s;
-}
-.social-buttons-container > *:nth-child(5) {
-  animation-delay: 0.5s;
-}
-
-/* Card de conclusão especial */
-.conclusion-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.conclusion-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--color-dev),
-    var(--color-editor),
-    transparent
-  );
-  animation: borderGlow 3s linear infinite;
-}
-
-.text-gradient {
-  background-size: 200% 200%;
-  animation: gradientShift 3s ease-in-out infinite;
-}
-
 /* Toggle de Idioma na Home */
 .home-locale-toggle {
   display: flex;
@@ -507,7 +323,12 @@ onMounted(() => {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
   border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
 }
 
@@ -519,23 +340,6 @@ onMounted(() => {
     0 8px 25px -6px rgba(0, 0, 0, 0.4),
     inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
-
-.home-locale-toggle:active {
-  transform: translateY(0) scale(0.98);
-}
-
-/* Animações personalizadas únicas do HomeView */
-
-@keyframes floatReverse {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(45deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(225deg);
-  }
-}
-
 @keyframes pulse {
   0% {
     transform: translate(-50%, -50%) scale(0.8);
@@ -547,73 +351,10 @@ onMounted(() => {
   }
 }
 
-@keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  51%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes slideInScale {
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes borderGlow {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-@keyframes gradientShift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Classes de animação específicas */
-.animate-pulse-soft {
-  animation: pulseSoft 3s ease-in-out infinite;
-}
-
-/* Animações específicas do componente */
-
-@keyframes pulseSoft {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-/* Responsividade para animações */
+/* Responsividade para os círculos da foto */
 @media (max-width: 768px) {
-  .floating-circle,
-  .floating-square {
-    display: none;
-  }
-
   .pulse-ring,
   .pulse-ring-2 {
-    display: none;
-  }
-
-  .card-hover-glow::before {
     display: none;
   }
 }

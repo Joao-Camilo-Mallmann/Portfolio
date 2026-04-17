@@ -7,13 +7,10 @@ import ToolsSection from '@/components/Editor/ToolsSection.vue'
 import YouTubeChannelPanel from '@/components/Editor/YouTubeChannelPanel.vue'
 import FooterContact from '@/components/FooterContact.vue'
 import HeaderCore from '@/components/HeaderCore.vue'
-import { useI18n } from '@/composables/useI18n'
-import { useScrollReveal } from '@/composables/useScrollReveal'
+import { ref } from 'vue'
 import { useHead } from '@unhead/vue'
-import { nextTick, onMounted, ref } from 'vue'
-
+import { useI18n } from '@/composables/useI18n'
 const { t } = useI18n()
-const { initObserver, registerParallax } = useScrollReveal()
 
 const containerRef = ref(null)
 const bgOrb1 = ref(null)
@@ -44,23 +41,12 @@ useHead({
   ],
   link: [{ rel: 'canonical', href: 'https://joao-camilo-mallmann.com/editor' }],
 })
-
-onMounted(() => {
-  nextTick(() => {
-    // Iniciar scroll-reveal em todas as seções da página
-    initObserver(containerRef.value)
-
-    // Parallax nos orbs decorativos de fundo
-    registerParallax(bgOrb1.value, -0.12, 'y')
-    registerParallax(bgOrb2.value, -0.18, 'y')
-  })
-})
 </script>
 
 <template>
   <main
     ref="containerRef"
-    class="page-transition min-h-screen bg-linear-to-br! to-editor/10! relative overflow-hidden"
+    class="page-transition min-h-screen relative overflow-hidden"
     role="main"
     :aria-label="t('editor.ariaLabel')"
   >
@@ -86,29 +72,27 @@ onMounted(() => {
     </div>
 
     <section class="pt-20 md:pt-24">
-      <!-- Canal YouTube — revela de cima -->
-      <div data-scroll-reveal="up">
+      <!-- Canal YouTube -->
+      <div v-motion-scroll-visible>
         <you-tube-channel-panel />
       </div>
 
       <!-- Cabeçalho do portfólio -->
       <div
-        class="bg-transparent border-0 shadow-none text-gray-200 px-4 lg:px-16 p-4 md:p-8"
+        class="bg-transparent border-0 shadow-none text-fg px-4 lg:px-16 p-4 md:p-8"
         role="region"
         aria-labelledby="portfolio-heading"
       >
-        <header class="text-center mb-12 px-2" data-scroll-reveal="up">
+        <header v-motion-scroll-visible class="text-center mb-12 px-2" :delay="100">
           <h1
             id="portfolio-heading"
-            class="text-3xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg scroll-reveal-child"
+            class="text-3xl md:text-6xl font-extrabold text-fg mb-6 drop-shadow-lg"
           >
             {{ t('editor.portfolioHeading') }}
           </h1>
-          <hr
-            class="w-24 md:w-32 h-1.5 mx-auto bg-linear-to-r from-editor to-yellow-200/60 rounded-full mb-6 shadow-lg border-0 scroll-reveal-child"
-          />
+          <hr class="w-24 md:w-32 h-1.5 mx-auto bg-editor rounded-full mb-6 shadow-lg border-0" />
           <p
-            class="text-gray-300 text-lg md:text-2xl px-2 md:px-4 font-medium leading-relaxed max-w-3xl mx-auto scroll-reveal-child"
+            class="text-fg-muted tracking-wide text-lg md:text-2xl px-2 md:px-4 font-medium leading-relaxed max-w-3xl mx-auto"
           >
             {{ t('editor.portfolioDescription') }}
             <strong class="text-editor font-bold">Adobe Premiere Pro</strong>,
@@ -118,32 +102,38 @@ onMounted(() => {
         </header>
       </div>
 
-      <!-- Playlist do YouTube — revela com scale -->
-      <section aria-labelledby="playlist-heading" data-scroll-reveal="scale">
+      <!-- Playlist do YouTube -->
+      <section v-motion-scroll-visible aria-labelledby="playlist-heading" :delay="200">
         <h2 id="playlist-heading" class="sr-only text-balance">
           {{ t('editor.playlistHeading') }}
         </h2>
         <playlist-section />
       </section>
 
-      <!-- Seção de ferramentas — revela da esquerda -->
-      <section class="px-4 lg:px-16" aria-labelledby="tools-heading" data-scroll-reveal="left">
+      <!-- Seção de ferramentas -->
+      <section
+        v-motion-scroll-visible
+        class="px-4 lg:px-16"
+        aria-labelledby="tools-heading"
+        :delay="300"
+      >
         <h2 id="tools-heading" class="sr-only text-balance">{{ t('editor.toolsHeading') }}</h2>
         <tools-section />
       </section>
 
-      <!-- Seção sobre habilidades — revela de baixo -->
+      <!-- Seção sobre habilidades -->
       <section
+        v-motion-scroll-visible
         class="mb-8 max-w-4xl mx-auto px-4"
         aria-labelledby="skills-heading"
-        data-scroll-reveal="up"
+        :delay="400"
       >
         <h2 id="skills-heading" class="sr-only text-balance">{{ t('editor.skillsHeading') }}</h2>
         <card-details />
       </section>
 
-      <!-- Canal criativo — revela com fade -->
-      <section aria-labelledby="creative-channel-heading" data-scroll-reveal="up">
+      <!-- Canal criativo -->
+      <section v-motion-scroll-visible aria-labelledby="creative-channel-heading" :delay="500">
         <h2 id="creative-channel-heading" class="sr-only text-balance">
           {{ t('editor.creativeChannelHeading') }}
         </h2>
@@ -153,9 +143,10 @@ onMounted(() => {
 
     <!-- Nota informativa -->
     <p
-      class="text-center text-gray-400 text-sm mt-4 mb-0 px-4"
+      v-motion-scroll-visible
+      class="text-center text-fg-muted text-sm mt-4 mb-0 px-4 tracking-wide"
       role="note"
-      data-scroll-reveal="fade"
+      :delay="600"
     >
       {{ t('editor.funText') }}
       <span class="text-editor">{{ t('editor.funHighlight') }}</span>

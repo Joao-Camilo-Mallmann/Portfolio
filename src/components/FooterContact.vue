@@ -93,12 +93,6 @@ const computedPrimaryColor = computed(() => {
 </template>
 
 <style scoped>
-/* Animação de entrada */
-footer {
-  animation: slideUpFooter 0.8s ease-out;
-}
-
-/* Responsividade para os botões sociais */
 @media (max-width: 768px) {
   footer :deep(.social-media-btn) {
     min-width: auto;

@@ -183,14 +183,6 @@ const getDevStatusColor = (statusType) => {
   }
 }
 
-const getProjectCardStyle = (project) => {
-  return {
-    background: `linear-gradient(135deg, ${project.colors.from}80, ${project.colors.to}40)`,
-    borderColor: `${project.colors.from}60`,
-    borderWidth: '1px',
-  }
-}
-
 const getTagChipStyle = (tag) => {
   return {
     backgroundColor: `${tag.color}33`,
@@ -201,14 +193,19 @@ const getTagChipStyle = (tag) => {
 </script>
 
 <template>
-  <div class="text-center mb-12 animate-slide-up">
+  <div
+    v-motion
+    class="text-center mb-12"
+    :initial="{ opacity: 0, y: 16 }"
+    :enter="{ opacity: 1, y: 0 }"
+  >
     <h2
-      class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent animate-gradient-move text-balance"
+      class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent text-balance"
     >
-      <i class="pi pi-folder text-dev text-2xl animate-bounce-soft"></i>
+      <i class="pi pi-folder text-dev text-2xl"></i>
       {{ t('devProjects.mainTitle') }}
     </h2>
-    <p class="text-gray-400 text-lg animate-fade-in-delayed text-pretty">
+    <p class="text-fg-muted text-lg text-pretty tracking-wide">
       {{ t('devProjects.subtitle') }}
     </p>
   </div>
@@ -217,13 +214,15 @@ const getTagChipStyle = (tag) => {
     <div
       v-for="(project, index) in projects"
       :key="index"
+      v-motion
       :class="[
-        'project-card group z-99 animate-slide-up hover:scale-[1.01] active:scale-[0.96] hover:-translate-y-3 transition duration-500 ease-out flex flex-col',
+        'bg-surface-card shadow-sm ring-1 ring-inset ring-white/5 border border-border rounded-2xl z-99 flex flex-col transition-opacity duration-300 cursor-pointer',
         projects.length % 2 !== 0 && index === projects.length - 1
-          ? 'md:col-span-2 md:w-[calc(50%-0.75rem)] md:justify-self-center'
+          ? 'md:col-span-2 md:w-full md:max-w-2xl md:justify-self-center'
           : '',
       ]"
-      :style="getProjectCardStyle(project)"
+      :hovered="{ opacity: 0.6 }"
+      :tapped="{ opacity: 0.4 }"
     >
       <div class="relative overflow-hidden">
         <div
@@ -237,10 +236,7 @@ const getTagChipStyle = (tag) => {
             class="w-full h-full object-cover group-hover:scale-110 transition duration-500 group-hover:brightness-110 ring-1 ring-white/10"
           />
           <div v-else class="text-center">
-            <i
-              class="pi pi-user-edit text-3xl mb-1 animate-heartbeat"
-              :style="{ color: project.colors.from }"
-            ></i>
+            <i class="pi pi-user-edit text-3xl mb-1" :style="{ color: project.colors.from }"></i>
             <p class="text-xs font-medium" :style="{ color: project.colors.from }">
               {{ t('devProjects.thisPortfolio') }}
             </p>
@@ -261,12 +257,12 @@ const getTagChipStyle = (tag) => {
       </div>
       <div class="p-5 flex-1 flex flex-col">
         <h3
-          class="text-lg font-semibold bg-linear-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent animate-gradient-move text-balance mb-2"
+          class="text-lg font-semibold bg-linear-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent text-balance mb-2"
         >
           {{ project.title }}
         </h3>
         <div class="space-y-3 flex-1">
-          <p class="text-gray-200 text-sm leading-relaxed text-pretty">
+          <p class="text-fg-muted text-sm leading-relaxed text-pretty tracking-wide">
             {{ project.description }}
           </p>
 
@@ -274,7 +270,10 @@ const getTagChipStyle = (tag) => {
             <span
               v-for="tag in project.tags"
               :key="tag.label"
-              class="text-xs px-2 py-1 rounded animate-slide-left hover:scale-105 transition-transform duration-200"
+              v-motion
+              class="text-xs px-2 py-1 rounded transition-colors duration-200"
+              :hovered="{ scale: 1.05 }"
+              :tapped="{ scale: 0.95 }"
               :style="getTagChipStyle(tag)"
             >
               {{ tag.label }}
@@ -288,7 +287,7 @@ const getTagChipStyle = (tag) => {
               :style="{ color: getDevStatusColor(project.devStatusType) }"
               class="text-sm"
             ></i>
-            <span class="text-xs text-gray-400">{{
+            <span class="text-xs text-fg-muted">{{
               getDevStatusLabel(project.devStatusType)
             }}</span>
           </div>
@@ -297,7 +296,10 @@ const getTagChipStyle = (tag) => {
             <button
               v-for="link in project.links.slice(0, 2)"
               :key="link.url"
-              class="p-2 border-none rounded-md bg-gray-800/50 hover:bg-gray-700/50 transition-colors text-white cursor-pointer"
+              v-motion
+              class="p-2 border border-border rounded-md bg-transparent hover:opacity-80 transition-opacity text-fg cursor-pointer"
+              :hovered="{ opacity: 0.6 }"
+              :tapped="{ opacity: 0.4 }"
               @click="openLink(link.url)"
             >
               <i :class="link.icon"></i>
@@ -312,41 +314,4 @@ const getTagChipStyle = (tag) => {
   </div>
 </template>
 
-<style scoped>
-/* Project Cards - específico para projetos */
-.project-card {
-  border-radius: 0.75rem;
-  overflow: hidden;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  position: relative;
-}
-
-.project-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: inherit;
-  opacity: 0.1;
-  transition: opacity 0.3s ease;
-}
-
-.project-card:hover::before {
-  opacity: 0.2;
-}
-
-.animate-gradient-move {
-  background-size: 200% 200%;
-  animation: gradientMove 4s ease-in-out infinite;
-}
-
-@keyframes gradientMove {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-</style>
+<style scoped></style>

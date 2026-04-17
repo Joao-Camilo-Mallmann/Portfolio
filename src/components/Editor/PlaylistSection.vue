@@ -99,6 +99,11 @@ const openPlayerModal = (video) => {
   playerModalVisible.value = true
 }
 
+const closePlayerModal = () => {
+  stopVideo()
+  playerModalVisible.value = false
+}
+
 const stopVideo = () => {
   selectedVideo.value = null
 }
@@ -114,33 +119,26 @@ onMounted(() => {
 
 <template>
   <section class="w-full py-16 md:py-24 relative overflow-visible">
-    <!-- Background Effects -->
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div class="absolute top-0 left-1/4 w-96 h-96 bg-editor/10 rounded-full blur-3xl"></div>
-      <div
-        class="absolute bottom-0 right-1/4 w-80 h-80 bg-yellow-500/10 rounded-full blur-3xl"
-      ></div>
-    </div>
+    <!-- Background Effects Removed for Raycast Theme -->
 
     <div class="max-w-5xl mx-auto px-4 md:px-6 relative z-10">
       <!-- Header Simples -->
       <div class="text-center mb-10">
-        <h2
-          class="text-3xl md:text-5xl font-black text-white mb-4 text-balance scroll-reveal-child"
-        >
+        <h2 class="text-3xl md:text-5xl font-black text-fg mb-4 text-balance tracking-wide">
           {{ t('editorPlaylist.myVideos') }}
           <span class="text-editor">{{ t('editorPlaylist.videosHighlight') }}</span>
         </h2>
-        <p class="text-gray-400 text-lg text-pretty scroll-reveal-child">
+        <p class="text-fg-muted text-lg text-pretty tracking-wide">
           {{ t('editorPlaylist.browseHighlights') }}
         </p>
       </div>
 
       <!-- Loading State -->
       <div v-if="loading" class="flex justify-center items-center py-32">
-        <div
-          class="w-16 h-16 border-4 border-editor/20 border-t-editor rounded-full animate-spin"
-        ></div>
+        <div class="flex flex-col items-center gap-3 text-fg-muted tracking-wide">
+          <div class="w-3 h-3 rounded-full bg-editor"></div>
+          <p>{{ t('loading') }}</p>
+        </div>
       </div>
 
       <!-- Error State -->
@@ -152,8 +150,10 @@ onMounted(() => {
       <!-- Video Slider Grande -->
       <div v-else>
         <!-- Card Principal do Vídeo -->
-        <div class="relative group scroll-reveal-child">
-          <div class="rounded-3xl overflow-hidden bg-slate-900 shadow-xl border border-gray-800/50">
+        <div class="relative group">
+          <div
+            class="rounded-2xl overflow-hidden bg-surface-card shadow-sm ring-1 ring-inset ring-white/5 border border-border"
+          >
             <div
               class="relative aspect-video cursor-pointer"
               @click="openPlayerModal(currentVideo)"
@@ -205,9 +205,8 @@ onMounted(() => {
               </div>
             </div>
 
-            <!-- Info do Vídeo -->
             <div class="p-6 md:p-8">
-              <h3 class="text-xl md:text-2xl font-bold text-white mb-4 text-balance">
+              <h3 class="text-xl md:text-2xl font-bold text-fg mb-4 text-balance tracking-wide">
                 {{ currentVideo.title }}
               </h3>
 
@@ -215,7 +214,10 @@ onMounted(() => {
               <div class="flex items-center justify-between gap-4">
                 <!-- Botão Anterior -->
                 <button
-                  class="flex items-center gap-2 px-5 py-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white font-medium transition duration-300 hover:scale-105 active:scale-[0.96] cursor-pointer"
+                  v-motion
+                  class="flex items-center gap-2 px-5 py-3 rounded-full bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 text-fg font-medium transition-opacity duration-300 cursor-pointer"
+                  :hovered="{ opacity: 0.8 }"
+                  :tapped="{ opacity: 0.6 }"
                   @click="prevVideo"
                 >
                   <i class="pi pi-chevron-left text-lg"></i>
@@ -224,7 +226,10 @@ onMounted(() => {
 
                 <!-- Botão Assistir -->
                 <button
-                  class="flex-1 max-w-xs flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-editor hover:bg-editor/80 text-white font-bold text-lg transition duration-300 hover:scale-105 active:scale-[0.96] cursor-pointer shadow-lg shadow-editor/30"
+                  v-motion
+                  class="flex-1 max-w-xs flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-editor text-white font-bold text-lg transition-opacity duration-300 cursor-pointer shadow-sm ring-1 ring-inset ring-white/20"
+                  :hovered="{ opacity: 0.8 }"
+                  :tapped="{ opacity: 0.6 }"
                   @click="openPlayerModal(currentVideo)"
                 >
                   <i class="pi pi-play-circle text-xl"></i>
@@ -233,7 +238,10 @@ onMounted(() => {
 
                 <!-- Botão Próximo -->
                 <button
-                  class="flex items-center gap-2 px-5 py-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white font-medium transition duration-300 hover:scale-105 active:scale-[0.96] cursor-pointer border-transparent"
+                  v-motion
+                  class="flex items-center gap-2 px-5 py-3 rounded-full bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 text-fg font-medium transition-opacity duration-300 cursor-pointer"
+                  :hovered="{ opacity: 0.8 }"
+                  :tapped="{ opacity: 0.6 }"
                   @click="nextVideo"
                 >
                   <span class="hidden sm:inline">{{ t('editorPlaylist.next') }}</span>
@@ -249,11 +257,14 @@ onMounted(() => {
           <button
             v-for="(video, index) in playlistVideos"
             :key="video.id"
-            class="transition duration-300 cursor-pointer active:scale-[0.96]"
+            v-motion
+            class="transition-opacity duration-300 cursor-pointer"
+            :hovered="{ opacity: 0.8 }"
+            :tapped="{ opacity: 0.6 }"
             :class="
               index === currentIndex
                 ? 'w-10 h-3 rounded-full bg-editor'
-                : 'w-3 h-3 rounded-full bg-gray-700 hover:bg-gray-600'
+                : 'w-3 h-3 rounded-full bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5'
             "
             @click="goToVideo(index)"
           ></button>
@@ -265,7 +276,7 @@ onMounted(() => {
             :href="playlistUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-gray-400 hover:text-editor transition-colors duration-300"
+            class="inline-flex items-center gap-2 text-fg-muted hover:opacity-80 transition-opacity duration-300"
           >
             <span>{{ t('editorPlaylist.fullPlaylist') }}</span>
             <i class="pi pi-external-link"></i>
@@ -275,35 +286,32 @@ onMounted(() => {
     </div>
 
     <!-- Modal Player -->
-    <div
-      v-if="playerModalVisible"
-      class="fixed inset-0 z-[100] flex items-center justify-center p-4"
-    >
+    <div v-if="playerModalVisible" class="fixed inset-0 z-100 flex items-center justify-center p-4">
       <!-- Backdrop -->
       <div
         class="absolute inset-0 bg-gray-950/80 backdrop-blur-sm"
-        @click="stopVideo(); playerModalVisible = false"
+        @click="(stopVideo(), (playerModalVisible = false))"
       ></div>
 
       <!-- Modal Content -->
       <div
-        class="relative w-full max-w-[1200px] bg-gray-950 border border-editor/20 rounded-3xl overflow-hidden shadow-2xl flex flex-col z-10 mx-auto"
+        class="relative w-full max-w-7xl bg-surface-100 border border-border rounded-2xl overflow-hidden shadow-sm ring-1 ring-inset ring-white/5 flex flex-col z-10 mx-auto"
       >
         <!-- Header -->
         <div
-          class="flex items-center justify-between px-6 py-4 border-b border-gray-800/50 bg-transparent"
+          class="flex items-center justify-between px-6 py-4 border-b border-border bg-transparent"
         >
-          <h3 class="text-white text-lg font-bold">{{ selectedVideo?.title || 'Player' }}</h3>
+          <h3 class="text-fg text-lg font-bold">{{ selectedVideo?.title || 'Player' }}</h3>
           <button
-            class="text-gray-400 hover:text-editor transition-colors cursor-pointer p-2"
-            @click="stopVideo(); playerModalVisible = false"
+            class="text-fg-muted hover:opacity-80 transition-opacity cursor-pointer p-2"
+            @click="closePlayerModal"
           >
             <i class="pi pi-times"></i>
           </button>
         </div>
 
         <!-- Content -->
-        <div class="aspect-video w-full bg-black p-0">
+        <div class="w-full bg-black p-0">
           <iframe
             v-if="selectedVideo"
             :src="`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1&rel=0&modestbranding=1`"

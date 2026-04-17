@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@import './animations.css';
 
 /* ========================================
    TEMA - Cores Semânticas do Projeto
@@ -9,42 +8,13 @@
   --color-dev: #4d91ea;
   --color-editor: #eaa64d;
 
-  /* Animações customizadas */
-  --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
-  --animate-bounce-in: bounce-in 0.8s ease-out forwards;
-  --animate-pulse-slower: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* ========================================
-   KEYFRAMES - Animações Customizadas
-   ======================================== */
-@keyframes fade-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes bounce-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.3) rotate(-10deg);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05) rotate(2deg);
-  }
-  70% {
-    transform: scale(0.9) rotate(-1deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
+  /* Theme Colors */
+  --color-bg: #121212;
+  --color-surface-100: #1e1e1e; /* Cinza neutro suave */
+  --color-surface-card: #2d2d2d; /* Elevação perceptível */
+  --color-fg: #f5f5f5; /* Branco menos agressivo */
+  --color-fg-muted: #a0a0a0; /* Cinza médio para leitura */
+  --color-border: rgba(255, 255, 255, 0.06);
 }
 
 /* ========================================
@@ -56,6 +26,20 @@
   }
 
   body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family:
+      'Inter',
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-feature-settings:
+      'calt' 1,
+      'kern' 1,
+      'liga' 1,
+      'ss03' 1;
+    letter-spacing: 0.2px;
+    font-weight: 500;
     opacity: 1;
     transition: opacity 0.1s ease-in-out;
     -webkit-font-smoothing: antialiased;

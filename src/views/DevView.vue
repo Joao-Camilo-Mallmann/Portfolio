@@ -39,7 +39,7 @@ useHead({
 
 <template>
   <main
-    class="page-transition bg-linear-to-b! to-dev/10! relative overflow-hidden"
+    class="page-transition relative overflow-hidden"
     role="main"
     :aria-label="t('dev.ariaLabel')"
   >
@@ -50,24 +50,39 @@ useHead({
     <header-core />
 
     <!-- Sobre Mim - Layout Compacto -->
-    <section id="about" class="max-w-7xl mx-auto px-4 space-y-16 mb-20 mt-32">
+    <section
+      id="about"
+      v-motion-scroll-visible
+      class="max-w-7xl mx-auto px-4 space-y-16 mb-20 mt-32"
+      :delay="100"
+    >
       <dev-profile-card />
     </section>
 
-    <section class="max-w-6xl mx-auto px-4 mb-20">
+    <section v-motion-scroll-visible class="max-w-6xl mx-auto px-4 mb-20" :delay="200">
       <dev-stack-section />
     </section>
 
     <!-- Projetos - Layout em Cards Compactos -->
-    <section aria-labelledby="projects-heading" class="w-4/5 mx-auto px-4 mb-16 z-99!">
+    <section
+      v-motion-scroll-visible
+      aria-labelledby="projects-heading"
+      class="w-4/5 mx-auto px-4 mb-16 z-99!"
+      :delay="300"
+    >
       <dev-projects-section />
     </section>
 
-    <p class="text-center text-gray-400 text-sm mt-4 mb-0 px-4" role="note">
+    <p
+      v-motion-scroll-visible
+      class="text-center text-fg-muted text-sm mt-4 mb-0 px-4 tracking-wide"
+      role="note"
+      :delay="400"
+    >
       {{ t('dev.funText') }}
       <span class="text-dev font-semibold">{{ t('dev.funAchievement') }}</span>
       {{ t('dev.funBadge') }} <br />
-      <span class="text-xs text-gray-500 mt-1 block">
+      <span class="text-xs text-fg-muted mt-1 block opacity-70">
         {{ t('dev.funPS') }}
       </span>
     </p>

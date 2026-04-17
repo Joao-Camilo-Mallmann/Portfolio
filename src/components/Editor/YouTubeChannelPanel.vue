@@ -21,16 +21,22 @@ const youtubeJCLink = ref(
         <span class="absolute inset-0 rounded-full border-4 border-editor opacity-70"></span>
         <span class="absolute -inset-2 rounded-full border-2 border-editor/30 opacity-50"></span>
         <img
+          v-motion
           :src="youtubeJCLink"
           :alt="t('editorChannel.channelAlt')"
-          class="w-32 h-32 md:w-50 md:h-50 rounded-full border-4 border-editor shadow-2xl relative z-10 bg-white group-hover:scale-105 transition-transform duration-300"
+          class="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-editor shadow-sm ring-1 ring-inset ring-white/10 relative z-10 bg-white transition-opacity duration-300"
+          :hovered="{ opacity: 0.8 }"
+          :tapped="{ opacity: 0.6 }"
         />
       </div>
       <a
+        v-motion
         href="https://www.youtube.com/@J.C-12"
         target="_blank"
         rel="noopener"
-        class="inline-flex items-center gap-3 px-8 py-4 md:px-12 md:py-5 rounded-full bg-linear-to-r from-editor to-editor/80 text-white font-extrabold text-lg md:text-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-editor/50 cursor-pointer"
+        class="inline-flex items-center gap-3 px-8 py-4 md:px-12 md:py-5 rounded-full bg-editor shadow-sm ring-1 ring-inset ring-white/20 text-white font-extrabold text-lg md:text-xl transition-opacity duration-300 border border-editor/50 cursor-pointer"
+        :hovered="{ opacity: 0.8 }"
+        :tapped="{ opacity: 0.6 }"
       >
         <i class="pi pi-youtube"></i>
         {{ t('editorChannel.ctaButton') }}

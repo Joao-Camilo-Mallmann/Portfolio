@@ -19,8 +19,6 @@ function randomPercent(min, max) {
 // Scale randomizada — partículas pequenas e sutis
 const randSize = Math.round(randomBetween(4, 14))
 const randOpacity = randomBetween(0.15, 0.45)
-const randAnimationDuration = randomBetween(6, 14)
-const randAnimationDelay = randomBetween(0, 5)
 
 // Posição aleatória
 let top, bottom, left, right
@@ -51,7 +49,7 @@ const colorClass = computed(() => {
 </script>
 <template>
   <div
-    :class="['absolute rounded-full pointer-events-none dot-ambient', colorClass]"
+    :class="['absolute rounded-full pointer-events-none', colorClass]"
     :style="{
       width: randSize + 'px',
       height: randSize + 'px',
@@ -61,32 +59,11 @@ const colorClass = computed(() => {
       bottom: bottom,
       zIndex: -1000,
       opacity: randOpacity,
-      animationDuration: randAnimationDuration + 's',
-      animationDelay: randAnimationDelay + 's',
     }"
   ></div>
 </template>
 <style scoped>
-/* Animação sutil de pulso — apenas opacidade para mínimo impacto visual.
-   Sem transforms para evitar conflito com parallax do Lenis. */
-@keyframes dot-pulse {
-  0%,
-  100% {
-    opacity: var(--dot-min-opacity, 0.1);
-  }
-  50% {
-    opacity: var(--dot-max-opacity, 0.4);
-  }
-}
-
-.dot-ambient {
-  animation: dot-pulse ease-in-out infinite;
-}
-
 /* Respeitar preferência do usuário */
 @media (prefers-reduced-motion: reduce) {
-  .dot-ambient {
-    animation: none;
-  }
 }
 </style>
