@@ -8,7 +8,7 @@ const activeTab = ref(0)
 
 <template>
   <div
-    class="bg-surface-card border border-border rounded-2xl shadow-sm ring-1 ring-inset ring-white/5 overflow-hidden transition-opacity duration-300"
+    class=" border border-border rounded-2xl shadow-sm ring-1 ring-inset ring-white/5 overflow-hidden transition-opacity duration-300"
   >
     <div class="custom-tabs w-full">
       <!-- Tab List -->
@@ -113,7 +113,7 @@ const activeTab = ref(0)
               <!-- Premiere Pro -->
               <div
                 v-motion
-                class="group flex flex-col items-center gap-2 p-3 rounded-xl transition-all duration-300 hover:bg-surface-card hover:border-border hover:shadow-sm hover:ring-1 hover:ring-inset hover:ring-white/5 border border-transparent cursor-pointer"
+                class="group flex flex-col items-center gap-2 p-3 rounded-xl transition-all duration-300 hover: hover:border-border hover:shadow-sm hover:ring-1 hover:ring-inset hover:ring-white/5 border border-transparent cursor-pointer"
                 :tapped="{ opacity: 0.6 }"
               >
                 <div
@@ -130,7 +130,7 @@ const activeTab = ref(0)
               <!-- After Effects -->
               <div
                 v-motion
-                class="group flex flex-col items-center gap-2 p-3 rounded-xl transition-all duration-300 hover:bg-surface-card hover:border-border hover:shadow-sm hover:ring-1 hover:ring-inset hover:ring-white/5 border border-transparent cursor-pointer"
+                class="group flex flex-col items-center gap-2 p-3 rounded-xl transition-all duration-300 hover: hover:border-border hover:shadow-sm hover:ring-1 hover:ring-inset hover:ring-white/5 border border-transparent cursor-pointer"
                 :tapped="{ opacity: 0.6 }"
               >
                 <div
@@ -147,7 +147,7 @@ const activeTab = ref(0)
               <!-- Photoshop -->
               <div
                 v-motion
-                class="group flex flex-col items-center gap-2 p-3 rounded-xl transition-all duration-300 hover:bg-surface-card hover:border-border hover:shadow-sm hover:ring-1 hover:ring-inset hover:ring-white/5 border border-transparent cursor-pointer"
+                class="group flex flex-col items-center gap-2 p-3 rounded-xl transition-all duration-300 hover: hover:border-border hover:shadow-sm hover:ring-1 hover:ring-inset hover:ring-white/5 border border-transparent cursor-pointer"
                 :tapped="{ opacity: 0.6 }"
               >
                 <div

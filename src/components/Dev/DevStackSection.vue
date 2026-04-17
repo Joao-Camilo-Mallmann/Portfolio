@@ -205,7 +205,7 @@ const techCategories = computed(() => [
 <template>
   <div
     v-motion
-    class="overflow-hidden bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl z-99"
+    class="overflow-hidden border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl z-99"
     :initial="{ opacity: 0, y: 16 }"
     :enter="{ opacity: 1, y: 0, transition: { duration: 400, ease: [0.16, 1, 0.3, 1] } }"
   >
@@ -222,11 +222,11 @@ const techCategories = computed(() => [
       <fieldset
         v-for="category in techCategories"
         :key="category.header"
-        class="bg-surface-100 border border-border rounded-xl p-0"
+        class="border border-border rounded-xl p-0"
       >
         <legend class="mx-4 px-1">
           <div
-            class="flex items-center gap-2 text-fg font-semibold text-sm px-3 py-1 bg-surface-card rounded-full border border-border shadow-sm ring-1 ring-inset ring-white/5"
+            class="flex items-center gap-2 text-fg font-semibold text-sm px-3 py-1 rounded-full border border-border shadow-sm ring-1 ring-inset ring-white/5"
           >
             <i :class="category.icon" class="text-dev"></i>
             <span>{{ category.header }}</span>
@@ -249,7 +249,7 @@ const techCategories = computed(() => [
             :tapped="{ opacity: 0.5 }"
           >
             <div
-              class="tech-icon-container flex items-center justify-center w-10 h-10 rounded-md bg-surface-card border border-border"
+              class="tech-icon-container flex items-center justify-center w-10 h-10 rounded-md border border-border"
             >
               <img
                 v-if="tech.image && !tech.image.includes('/img/')"
@@ -267,7 +267,7 @@ const techCategories = computed(() => [
             </div>
             <div class="flex-1">
               <span class="text-fg-muted text-sm font-medium tracking-wide">{{ tech.name }}</span>
-              <div class="tech-skill-bar h-1 bg-surface-card rounded-sm mt-2 overflow-hidden">
+              <div class="tech-skill-bar h-1 rounded-sm mt-2 overflow-hidden">
                 <div
                   class="tech-skill-fill h-full rounded-sm transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] w-0"
                   :style="{ backgroundColor: tech.color, '--fill-width': '85%' }"

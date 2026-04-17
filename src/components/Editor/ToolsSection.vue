@@ -100,7 +100,7 @@ const creativeProcess = computed(() => [
       <template #marker="slotProps">
         <span
           v-motion
-          class="flex w-16 h-16 items-center justify-center text-fg rounded-full z-10 shadow-sm ring-1 ring-inset ring-white/5 transition-opacity duration-300 cursor-pointer border-4 bg-surface-card"
+          class="flex w-16 h-16 items-center justify-center text-fg rounded-full z-10 shadow-sm ring-1 ring-inset ring-white/5 transition-opacity duration-300 cursor-pointer border-4 "
           :hovered="{ opacity: 0.8 }"
           :tapped="{ opacity: 0.6 }"
           :style="{
@@ -116,7 +116,7 @@ const creativeProcess = computed(() => [
       <template #content="slotProps">
         <div
           v-motion
-          class="bg-surface-card shadow-sm ring-1 ring-inset ring-white/5 p-5 border border-border rounded-2xl h-full transition-opacity duration-300 cursor-pointer text-left"
+          class=" shadow-sm ring-1 ring-inset ring-white/5 p-5 border border-border rounded-2xl h-full transition-opacity duration-300 cursor-pointer text-left"
           :hovered="{ opacity: 0.8 }"
           :tapped="{ opacity: 0.6 }"
         >
@@ -148,13 +148,13 @@ const creativeProcess = computed(() => [
         v-for="(item, index) in creativeProcess"
         :key="index"
         v-motion
-        class="bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl p-5 transition-opacity duration-300 cursor-pointer text-left"
+        class=" border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl p-5 transition-opacity duration-300 cursor-pointer text-left"
         :hovered="{ opacity: 0.8 }"
         :tapped="{ opacity: 0.6 }"
       >
         <div class="flex items-center gap-3 mb-3">
           <div
-            class="flex w-12 h-12 items-center justify-center text-fg rounded-full shadow-sm ring-1 ring-inset ring-white/5 border-2 shrink-0 bg-surface-card"
+            class="flex w-12 h-12 items-center justify-center text-fg rounded-full shadow-sm ring-1 ring-inset ring-white/5 border-2 shrink-0 "
             :style="{
               borderColor: item.color,
             }"

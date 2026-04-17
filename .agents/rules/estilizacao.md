@@ -9,7 +9,7 @@ description: Regras de estilização com Tailwind CSS v4, PrimeVue e sistema de 
 - Sempre que possível use os componentes do PrimeVue para consistência visual.
 - O projeto utiliza `tailwindcss-primeui` e não depende de `tailwind.config.js`.
 - **Regra principal:** os tokens globais vivem em `src/assets/main.css` via `@theme`. Não crie utilitários customizados para sombra, borda ou superfície quando Tailwind já oferecer equivalente.
-- Prefira classes nativas como `shadow-sm`, `shadow-lg`, `ring-1`, `ring-inset`, `border`, `border-border`, `bg-surface-100`, `bg-surface-card` e `text-fg-muted`.
+- Prefira classes nativas como `shadow-sm`, `shadow-lg`, `ring-1`, `ring-inset`, `border`, `border-border`, e `text-fg-muted`.
 - Evite estilos globais fora de `main.css`.
 - Evite usar `<style>` sem `scoped` em componentes para não vazar estilos.
 
@@ -26,7 +26,7 @@ description: Regras de estilização com Tailwind CSS v4, PrimeVue e sistema de 
 - **Desenvolvedor:** `text-dev`, `bg-dev`, `border-dev`, `hover:text-dev`, `group-hover:text-dev`, etc.
 - **Editor:** `text-editor`, `bg-editor`, `border-editor`, `hover:text-editor`, `group-hover:text-editor`, etc.
 - **Variações de Opacidade:** `bg-dev/20`, `border-editor/50`, `text-dev/80`, etc.
-- **Superfícies semânticas:** `bg-surface-100`, `bg-surface-card`, `border-border`, `text-fg`, `text-fg-muted`.
+- **Superfícies semânticas:** `, `, `border-border`, `text-fg`, `text-fg-muted`.
 - **CSS Variables:** Para uso em JavaScript ou CSS inline: `var(--color-dev)`, `var(--color-editor)`
 
 ### Regras de Cores

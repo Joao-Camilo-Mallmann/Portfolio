@@ -109,7 +109,7 @@ function goToPage(path) {
       <!-- Apresentação Principal -->
       <article v-motion-scroll-visible :delay="200" class="mb-4">
         <div
-          class="bg-surface-100 border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl p-6 text-fg"
+          class="order border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl p-6 text-fg"
         >
           <div class="text-base leading-relaxed m-0 text-fg tracking-wide">
             {{ t('home.greeting') }}
@@ -123,16 +123,9 @@ function goToPage(path) {
       <!-- Seções de Habilidades -->
       <section class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
         <!-- Seção Software Developer | Frontend Specialist -->
-        <article
-          v-motion-scroll-visible
-          v-motion
-          :delay="300"
-          :hovered="{ opacity: 0.6 }"
-          :tapped="{ opacity: 0.4 }"
-          class="transition-opacity duration-300 cursor-pointer"
-        >
+        <article v-motion-scroll-visible :delay="300" class="duration-300 cursor-pointer">
           <div
-            class="bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl border-l-4 border-l-dev h-full flex flex-col"
+            class="border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl border-l-4 border-l-dev h-full flex flex-col"
           >
             <header class="flex items-center justify-center gap-2 p-4">
               <i class="pi pi-desktop text-xl text-dev" aria-hidden="true"></i>
@@ -160,16 +153,9 @@ function goToPage(path) {
         </article>
 
         <!-- Seção Editor de Vídeo -->
-        <article
-          v-motion-scroll-visible
-          v-motion
-          :delay="400"
-          :hovered="{ opacity: 0.6 }"
-          :tapped="{ opacity: 0.4 }"
-          class="transition-opacity duration-300 cursor-pointer"
-        >
+        <article v-motion-scroll-visible :delay="400" class="duration-300 cursor-pointer">
           <div
-            class="bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl border-l-4 border-l-editor h-full flex flex-col"
+            class="border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl border-l-4 border-l-editor h-full flex flex-col"
           >
             <header class="flex items-center justify-center gap-2 p-4">
               <i class="pi pi-video text-xl text-editor" aria-hidden="true"></i>
@@ -212,7 +198,7 @@ function goToPage(path) {
       <!-- Conclusão -->
       <article v-motion-scroll-visible :delay="500" class="mt-4">
         <div
-          class="bg-surface-100 border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl text-fg"
+          class="border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl text-fg"
         >
           <header class="flex items-center justify-center gap-3 p-6">
             <i class="pi pi-star text-xl text-yellow-400" aria-hidden="true"></i>

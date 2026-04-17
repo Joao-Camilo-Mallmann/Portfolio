@@ -152,7 +152,7 @@ onMounted(() => {
         <!-- Card Principal do Vídeo -->
         <div class="relative group">
           <div
-            class="rounded-2xl overflow-hidden bg-surface-card shadow-sm ring-1 ring-inset ring-white/5 border border-border"
+            class="rounded-2xl overflow-hidden hadow-sm ring-1 ring-inset ring-white/5 border border-border"
           >
             <div
               class="relative aspect-video cursor-pointer"
@@ -215,7 +215,7 @@ onMounted(() => {
                 <!-- Botão Anterior -->
                 <button
                   v-motion
-                  class="flex items-center gap-2 px-5 py-3 rounded-full bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 text-fg font-medium transition-opacity duration-300 cursor-pointer"
+                  class="flex items-center gap-2 px-5 py-3 rounded-fullborder border-border shadow-sm ring-1 ring-inset ring-white/5 text-fg font-medium transition-opacity duration-300 cursor-pointer"
                   :hovered="{ opacity: 0.8 }"
                   :tapped="{ opacity: 0.6 }"
                   @click="prevVideo"
@@ -239,7 +239,7 @@ onMounted(() => {
                 <!-- Botão Próximo -->
                 <button
                   v-motion
-                  class="flex items-center gap-2 px-5 py-3 rounded-full bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 text-fg font-medium transition-opacity duration-300 cursor-pointer"
+                  class="flex items-center gap-2 px-5 py-3 rounded-full order border-border shadow-sm ring-1 ring-inset ring-white/5 text-fg font-medium transition-opacity duration-300 cursor-pointer"
                   :hovered="{ opacity: 0.8 }"
                   :tapped="{ opacity: 0.6 }"
                   @click="nextVideo"
@@ -264,7 +264,7 @@ onMounted(() => {
             :class="
               index === currentIndex
                 ? 'w-10 h-3 rounded-full bg-editor'
-                : 'w-3 h-3 rounded-full bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5'
+                : 'w-3 h-3 rounded-full  border border-border shadow-sm ring-1 ring-inset ring-white/5'
             "
             @click="goToVideo(index)"
           ></button>
@@ -295,7 +295,7 @@ onMounted(() => {
 
       <!-- Modal Content -->
       <div
-        class="relative w-full max-w-7xl bg-surface-100 border border-border rounded-2xl overflow-hidden shadow-sm ring-1 ring-inset ring-white/5 flex flex-col z-10 mx-auto"
+        class="relative w-full max-w-7xlborder border-border rounded-2xl overflow-hidden shadow-sm ring-1 ring-inset ring-white/5 flex flex-col z-10 mx-auto"
       >
         <!-- Header -->
         <div

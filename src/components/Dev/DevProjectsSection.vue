@@ -216,7 +216,7 @@ const getTagChipStyle = (tag) => {
       :key="index"
       v-motion
       :class="[
-        'bg-surface-card shadow-sm ring-1 ring-inset ring-white/5 border border-border rounded-2xl z-99 flex flex-col transition-opacity duration-300 cursor-pointer',
+        ' shadow-sm ring-1 ring-inset ring-white/5 border border-border rounded-2xl z-99 flex flex-col transition-opacity duration-300 cursor-pointer',
         projects.length % 2 !== 0 && index === projects.length - 1
           ? 'md:col-span-2 md:w-full md:max-w-2xl md:justify-self-center'
           : '',

@@ -40,7 +40,7 @@ const softSkills = computed(() => [
       :enter="{ opacity: 1, y: 0 }"
     >
       <div
-        class="h-full profile-card-special smooth-blue-border bg-surface-100 shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl overflow-hidden p-6 border border-border"
+        class="h-full profile-card-special smooth-blue-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl overflow-hidden p-6 border border-border"
       >
         <div class="flex flex-col items-center pb-0">
           <div class="avatar-container">
@@ -68,7 +68,7 @@ const softSkills = computed(() => [
             <div class="grid grid-cols-1 gap-2">
               <div
                 v-motion
-                class="flex items-center gap-2 text-xs text-fg-muted p-2 rounded-md bg-surface-card border border-border hover:opacity-80 transition-opacity duration-200 cursor-pointer"
+                class="flex items-center gap-2 text-xs text-fg-muted p-2 rounded-md border border-border hover:opacity-80 transition-opacity duration-200 cursor-pointer"
                 :hovered="{ opacity: 0.6 }"
                 :tapped="{ opacity: 0.4 }"
               >
@@ -77,7 +77,7 @@ const softSkills = computed(() => [
               </div>
               <div
                 v-motion
-                class="flex items-center gap-2 text-xs text-fg-muted p-2 rounded-md bg-surface-card border border-border hover:opacity-80 transition-opacity duration-200 cursor-pointer"
+                class="flex items-center gap-2 text-xs text-fg-muted p-2 rounded-md border border-border hover:opacity-80 transition-opacity duration-200 cursor-pointer"
                 :hovered="{ opacity: 0.6 }"
                 :tapped="{ opacity: 0.4 }"
               >
@@ -86,7 +86,7 @@ const softSkills = computed(() => [
               </div>
               <div
                 v-motion
-                class="flex items-center gap-2 text-xs text-fg-muted p-2 rounded-md bg-surface-card border border-border hover:opacity-80 transition-opacity duration-200 cursor-pointer"
+                class="flex items-center gap-2 text-xs text-fg-muted p-2 rounded-md border border-border hover:opacity-80 transition-opacity duration-200 cursor-pointer"
                 :hovered="{ opacity: 0.6 }"
                 :tapped="{ opacity: 0.4 }"
               >
@@ -95,7 +95,7 @@ const softSkills = computed(() => [
               </div>
               <div
                 v-motion
-                class="flex items-center gap-2 text-xs text-fg-muted p-2 rounded-md bg-surface-card border border-border hover:opacity-80 transition-opacity duration-200 cursor-pointer"
+                class="flex items-center gap-2 text-xs text-fg-muted p-2 rounded-md border border-border hover:opacity-80 transition-opacity duration-200 cursor-pointer"
                 :hovered="{ opacity: 0.6 }"
                 :tapped="{ opacity: 0.4 }"
               >
@@ -116,7 +116,7 @@ const softSkills = computed(() => [
                 v-for="skill in softSkills"
                 :key="skill.label"
                 v-motion
-                class="flex items-center gap-2 text-xs text-fg-muted bg-surface-card border border-border rounded-md p-2 hover:opacity-80 transition-opacity duration-200 cursor-pointer"
+                class="flex items-center gap-2 text-xs text-fg-muted border border-border rounded-md p-2 hover:opacity-80 transition-opacity duration-200 cursor-pointer"
                 :hovered="{ opacity: 0.6 }"
                 :tapped="{ opacity: 0.4 }"
               >
@@ -137,7 +137,7 @@ const softSkills = computed(() => [
       :enter="{ opacity: 1, y: 0 }"
     >
       <div
-        class="h-full card-hover smooth-blue-border bg-surface-100 shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl overflow-hidden p-6 border border-border"
+        class="h-full card-hover smooth-blue-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl overflow-hidden p-6 border border-border"
       >
         <div class="pb-6">
           <h3 class="text-xl font-bold flex items-center gap-2 text-dev">
@@ -173,7 +173,7 @@ const softSkills = computed(() => [
               {{ t('devProfile.professionalExperience') }}
             </h4>
             <div
-              class="relative bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-xl p-5 space-y-4 transition-opacity duration-300 border-l-4 border-l-dev hover:opacity-80"
+              class="relative border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-xl p-5 space-y-4 transition-opacity duration-300 border-l-4 border-l-dev hover:opacity-80"
             >
               <div class="flex items-center justify-between">
                 <div>
@@ -232,7 +232,7 @@ const softSkills = computed(() => [
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div
                 v-motion
-                class="bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-xl p-4 flex items-center gap-4 transition-opacity duration-300 cursor-pointer"
+                class="border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-xl p-4 flex items-center gap-4 transition-opacity duration-300 cursor-pointer"
                 :hovered="{ opacity: 0.6 }"
                 :tapped="{ opacity: 0.4 }"
               >
@@ -248,7 +248,7 @@ const softSkills = computed(() => [
               </div>
               <div
                 v-motion
-                class="bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-xl p-4 flex items-center gap-4 transition-opacity duration-300 cursor-pointer"
+                class="border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-xl p-4 flex items-center gap-4 transition-opacity duration-300 cursor-pointer"
                 :hovered="{ opacity: 0.6 }"
                 :tapped="{ opacity: 0.4 }"
               >
@@ -264,7 +264,7 @@ const softSkills = computed(() => [
               </div>
               <div
                 v-motion
-                class="bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-xl p-4 flex items-center gap-4 transition-opacity duration-300 cursor-pointer"
+                class="border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-xl p-4 flex items-center gap-4 transition-opacity duration-300 cursor-pointer"
                 :hovered="{ opacity: 0.6 }"
                 :tapped="{ opacity: 0.4 }"
               >
@@ -280,7 +280,7 @@ const softSkills = computed(() => [
               </div>
               <div
                 v-motion
-                class="bg-surface-card border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-xl p-4 flex items-center gap-4 transition-opacity duration-300 cursor-pointer"
+                class="border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-xl p-4 flex items-center gap-4 transition-opacity duration-300 cursor-pointer"
                 :hovered="{ opacity: 0.6 }"
                 :tapped="{ opacity: 0.4 }"
               >
