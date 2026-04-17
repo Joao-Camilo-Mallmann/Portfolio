@@ -23,7 +23,7 @@ const openChannel = () => {
       </h2>
       <div class="relative inline-block">
         <p
-          class="relative text-fg-muted text-base md:text-lg font-medium px-6 py-2  rounded-full border border-border tracking-wide"
+          class="relative text-fg-muted text-base md:text-lg font-medium px-6 py-2 rounded-full border border-border tracking-wide"
         >
           {{ t('editorCreative.subtitle') }}
           <span class="text-editor font-bold">{{ t('editorCreative.subtitleHighlight') }}</span>
@@ -34,7 +34,7 @@ const openChannel = () => {
 
     <div
       v-motion
-      class=" border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl relative overflow-hidden cursor-pointer hover:opacity-80 transition-opacity duration-300 max-w-4xl mx-auto"
+      class="border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl relative overflow-hidden cursor-pointer hover:opacity-80 transition-opacity duration-300 max-w-4xl mx-auto"
       :hovered="{ opacity: 0.8 }"
       :tapped="{ opacity: 0.6 }"
       @click="openChannel"
@@ -42,7 +42,7 @@ const openChannel = () => {
       <div class="relative z-10 flex items-center justify-between p-6 d-flex md:flex-row flex-col">
         <div class="relative">
           <div
-            class="relative  rounded-full p-2 border border-border shadow-sm ring-1 ring-inset ring-white/5"
+            class="relative rounded-full p-2 border border-border shadow-sm ring-1 ring-inset ring-white/5"
           >
             <img
               :src="youtubeOFurryLink"

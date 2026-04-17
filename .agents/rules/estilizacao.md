@@ -1,13 +1,12 @@
 ---
-description: Regras de estilização com Tailwind CSS v4, PrimeVue e sistema de cores semântico
+description: Regras de estilização com Tailwind CSS v4 e sistema de cores semântico
 ---
 
 # 2. Estilização
 
 - A estilização é feita primariamente com Tailwind CSS v4.
 - **Preferência por Tailwind:** Priorize sempre classes utilitárias do Tailwind no template. Use `<style scoped>` apenas quando o Tailwind não resolver bem o caso.
-- Sempre que possível use os componentes do PrimeVue para consistência visual.
-- O projeto utiliza `tailwindcss-primeui` e não depende de `tailwind.config.js`.
+- O projeto não depende de `tailwind.config.js`.
 - **Regra principal:** os tokens globais vivem em `src/assets/main.css` via `@theme`. Não crie utilitários customizados para sombra, borda ou superfície quando Tailwind já oferecer equivalente.
 - Prefira classes nativas como `shadow-sm`, `shadow-lg`, `ring-1`, `ring-inset`, `border`, `border-border`, e `text-fg-muted`.
 - Evite estilos globais fora de `main.css`.
@@ -40,7 +39,7 @@ description: Regras de estilização com Tailwind CSS v4, PrimeVue e sistema de 
 
 ## Animações e Motion
 
-- Para scroll suave, o projeto usa Lenis e Motion via `@vueuse/motion`.
+- O padrão de animação do projeto é `@vueuse/motion`.
 - Os reveals de página usam `v-motion-scroll-visible`.
 - Evite criar uma segunda camada de animações CSS globais para o mesmo efeito.
 - Animações de interação devem preferir `transition-opacity`, `transition-transform` e estados do Motion/Tailwind.

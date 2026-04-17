@@ -203,86 +203,87 @@ const techCategories = computed(() => [
 </script>
 
 <template>
-  <div
-    v-motion
-    class="overflow-hidden border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl z-99"
-    :initial="{ opacity: 0, y: 16 }"
-    :enter="{ opacity: 1, y: 0, transition: { duration: 400, ease: [0.16, 1, 0.3, 1] } }"
-  >
-    <div class="text-center p-6 pb-0">
-      <h3
-        class="text-2xl font-bold text-fg mb-2 flex items-center justify-center gap-2 text-balance tracking-wide"
+  <div>
+    <!-- Heading da seção -->
+    <div
+      v-motion
+      class="text-center mb-10"
+      :initial="{ opacity: 0, y: 16 }"
+      :enter="{ opacity: 1, y: 0, transition: { duration: 400, ease: [0.16, 1, 0.3, 1] } }"
+    >
+      <h2
+        class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent text-balance"
       >
-        <i class="pi pi-code text-dev"></i>
+        <i class="pi pi-code text-dev text-2xl"></i>
         {{ t('devStack.title') }}
-      </h3>
-      <p class="text-fg-muted text-pretty tracking-wide">{{ t('devStack.subtitle') }}</p>
+      </h2>
+      <p class="text-fg-muted text-lg text-pretty tracking-wide">
+        {{ t('devStack.subtitle') }}
+      </p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
-      <fieldset
-        v-for="category in techCategories"
-        :key="category.header"
-        class="border border-border rounded-xl p-0"
-      >
-        <legend class="mx-4 px-1">
-          <div
-            class="flex items-center gap-2 text-fg font-semibold text-sm px-3 py-1 rounded-full border border-border shadow-sm ring-1 ring-inset ring-white/5"
-          >
-            <i :class="category.icon" class="text-dev"></i>
-            <span>{{ category.header }}</span>
-          </div>
-        </legend>
 
-        <div class="grid grid-cols-1 gap-3 p-4">
+    <!-- Grid de categorias -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div
+        v-for="(category, catIdx) in techCategories"
+        :key="category.header"
+        v-motion
+        class="border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl p-5"
+        :initial="{ opacity: 0, y: 16 }"
+        :enter="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: catIdx * 80, duration: 400, ease: [0.16, 1, 0.3, 1] },
+        }"
+      >
+        <!-- Header da categoria -->
+        <div class="flex items-center gap-2 mb-4">
+          <i :class="category.icon" class="text-dev text-sm"></i>
+          <h4 class="text-fg font-semibold text-sm tracking-wide">{{ category.header }}</h4>
+        </div>
+
+        <!-- Tech items -->
+        <div class="grid grid-cols-1 gap-2.5">
           <div
             v-for="(tech, idx) in category.technologies"
             :key="tech.name"
             v-motion
-            class="tech-item group transition-opacity duration-300 cursor-pointer p-3 border border-border rounded-lg bg-transparent flex items-center gap-3 relative overflow-hidden"
-            :initial="{ opacity: 0, y: 8 }"
+            class="group flex items-center gap-3 p-2.5 rounded-lg border border-transparent hover:border-border transition-colors duration-200"
+            :initial="{ opacity: 0, y: 6 }"
             :enter="{
               opacity: 1,
               y: 0,
-              transition: { delay: 50 * idx, duration: 300, ease: [0.16, 1, 0.3, 1] },
+              transition: { delay: catIdx * 80 + idx * 50, duration: 250, ease: [0.16, 1, 0.3, 1] },
             }"
-            :hovered="{ opacity: 0.7 }"
-            :tapped="{ opacity: 0.5 }"
           >
             <div
-              class="tech-icon-container flex items-center justify-center w-10 h-10 rounded-md border border-border"
+              class="flex items-center justify-center w-9 h-9 rounded-lg border border-border shrink-0"
             >
               <img
                 v-if="tech.image && !tech.image.includes('/img/')"
                 :src="tech.image"
                 :alt="tech.name"
-                class="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-110"
+                class="w-5 h-5 object-contain transition-transform duration-300 group-hover:scale-110"
+                loading="lazy"
                 @error="(e) => (e.target.style.display = 'none')"
               />
               <i
                 v-else
                 :class="tech.icon"
-                class="text-lg transition-transform duration-300 group-hover:scale-110"
+                class="text-base transition-transform duration-300 group-hover:scale-110"
                 :style="{ color: tech.color }"
               ></i>
             </div>
-            <div class="flex-1">
-              <span class="text-fg-muted text-sm font-medium tracking-wide">{{ tech.name }}</span>
-              <div class="tech-skill-bar h-1 rounded-sm mt-2 overflow-hidden">
-                <div
-                  class="tech-skill-fill h-full rounded-sm transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] w-0"
-                  :style="{ backgroundColor: tech.color, '--fill-width': '85%' }"
-                ></div>
-              </div>
-            </div>
+            <span
+              class="text-fg-muted text-sm font-medium tracking-wide group-hover:text-fg transition-colors duration-200"
+            >
+              {{ tech.name }}
+            </span>
           </div>
         </div>
-      </fieldset>
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-.tech-skill-bar:hover .tech-skill-fill {
-  width: var(--fill-width, 85%);
-}
-</style>
+<style scoped></style>

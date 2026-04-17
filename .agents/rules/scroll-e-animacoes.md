@@ -1,110 +1,60 @@
 ---
-description: Sistema de scroll suave (Lenis), parallax e scroll-reveal do projeto
+description: Padrão de animações com VueUse Motion no projeto
 ---
 
-# Scroll Suave e Animações de Scroll
+# Motion e Animações
 
-O projeto utiliza o **Lenis.js** como engine de smooth scroll e o **@vueuse/motion** para os reveals e transições de entrada.
+O projeto utiliza **@vueuse/motion** como base de animações de entrada, scroll e microinterações.
 
-## Dependência: Lenis.js
+## Biblioteca padrão
 
-- **Pacote:** `lenis` (npm)
-- **CSS:** Importado globalmente em `main.js` → `import 'lenis/dist/lenis.css'`
-- **Docs oficiais:** https://github.com/darkroomengineering/lenis
-- **Import:** `import Lenis from 'lenis'` (não usar `@studio-freight/lenis`, está deprecado)
+- **Pacote:** `@vueuse/motion`
+- **Import recomendado:** `import { useMotion } from '@vueuse/motion'`
+- **Diretivas recomendadas:** `v-motion` e `v-motion-scroll-visible`
 
-### Opções do Lenis (Configuração atual)
+## Regras de uso
 
-```javascript
-new Lenis({
-  lerp: 0.1, // Interpolação linear (0 = instantâneo, 1 = sem suavização)
-  smoothWheel: true, // Suaviza scroll de roda do mouse
-  syncTouch: false, // false = mantém scroll nativo em touch/mobile (mais natural)
-  autoRaf: true, // Lenis gerencia seu próprio requestAnimationFrame loop
-})
-```
+1. **Animações de entrada**: usar `v-motion` com `initial` e `enter`.
+2. **Reveal por viewport**: usar `v-motion-scroll-visible` no wrapper do bloco.
+3. **Animações contínuas**: usar `useMotion` com `repeat: Infinity` e `repeatType: 'mirror'` para loops sutis.
+4. **Hierarquia visual**: aplicar `:delay` apenas quando houver sequência clara de leitura.
+5. **Evitar duplicidade**: não criar sistema paralelo de animação global em CSS para efeitos já cobertos por Motion.
 
-### API do Lenis (Referência rápida)
-
-| Método/Prop              | Descrição                                                                 |
-| ------------------------ | ------------------------------------------------------------------------- |
-| `lenis.on('scroll', cb)` | Callback a cada frame. Recebe `{ scroll, velocity, direction, progress }` |
-| `lenis.scrollTo(target)` | Scroll programático para elemento/posição                                 |
-| `lenis.stop()`           | Pausa o smooth scroll                                                     |
-| `lenis.start()`          | Retoma o smooth scroll                                                    |
-| `lenis.destroy()`        | Limpa listeners e cancela rAF. **Obrigatório no unmount**                 |
-
-### Opções avançadas disponíveis (não usadas atualmente)
-
-```javascript
-// Referência — NÃO ativar sem necessidade
-{
-  duration: 1.2,                    // Duração fixa (substitui lerp)
-  easing: (t) => Math.min(1, ...),  // Curva de easing customizada
-  orientation: 'vertical',          // 'vertical' | 'horizontal'
-  syncTouchLerp: 0.075,             // Lerp para inércia em touch
-  touchInertiaExponent: 1.7,        // Força da inércia touch
-  wheelMultiplier: 1,               // Multiplicador de scroll do mouse
-  touchMultiplier: 1,               // Multiplicador de scroll touch
-  infinite: false,                  // Scroll infinito (loop)
-  overscroll: true,                 // Simula CSS overscroll-behavior
-  prevent: (node) => false,         // Prevenir scroll em elementos específicos
-  autoResize: true,                 // Redimensionar automaticamente via ResizeObserver
-}
-```
-
-## Composable: `useScrollReveal`
-
-**Arquivo:** `src/composables/useScrollReveal.js`
-
-Composable Vue responsável apenas pelo smooth scroll com Lenis. Os reveals visuais ficam no Motion.
-
-### Como usar
+## Exemplo rápido
 
 ```vue
 <script setup>
-import { useScrollReveal } from '@/composables/useScrollReveal'
+import { ref } from 'vue'
+import { useMotion } from '@vueuse/motion'
 
-useScrollReveal()
+const cardRef = ref(null)
+
+useMotion(cardRef, {
+  initial: { opacity: 0, y: 24 },
+  enter: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 500,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+})
 </script>
 
 <template>
-  <main>
-    <section v-motion-scroll-visible>Conteúdo revelado ao scroll</section>
-  </main>
+  <section ref="cardRef" v-motion-scroll-visible>Conteudo animado com Motion</section>
 </template>
 ```
 
-### API retornada
-
-| Retorno   | Tipo          | Descrição                                |
-| --------- | ------------- | ---------------------------------------- |
-| `scrollY` | `Ref<number>` | Posição Y do scroll em pixels (reativo)  |
-| `lenis`   | `ShallowRef`  | Instância do Lenis (null antes do mount) |
-
-## Motion de Scroll
-
-- Use `v-motion-scroll-visible` para revelar conteúdo quando entrar na viewport.
-- Use delays por seção com `:delay` apenas quando houver uma hierarquia clara.
-- Não recrie o antigo sistema de `data-scroll-reveal` ou parallax em CSS.
-
 ## Acessibilidade
 
-- **`prefers-reduced-motion: reduce`** → Lenis NÃO é inicializado e o conteúdo deve permanecer legível sem dependência de animação.
-- **Touch** → `syncTouch: false` mantém scroll nativo em dispositivos touch.
-
-## Onde o sistema está ativo
-
-| View/Component   | Motion Scroll | Lenis | Notas                              |
-| ---------------- | :-----------: | :---: | ---------------------------------- |
-| `HomeView.vue`   |      ✅       |  ✅   | Seções principais e foto de perfil |
-| `EditorView.vue` |      ✅       |  ✅   | Seções principais e cards          |
-| `DevView.vue`    |      ✅       |  ✅   | Revels e transições de seção       |
+- Respeitar **`prefers-reduced-motion: reduce`** em animações contínuas.
+- O conteúdo deve permanecer legível sem depender da animação para compreensão.
 
 ## Regras para futuros desenvolvimentos
 
-1. **Novas views** → Usar `useScrollReveal()` para Lenis e `v-motion-scroll-visible` para revelar conteúdo.
-2. **Novos componentes** → Se o bloco precisa aparecer ao entrar na viewport, aplique a diretiva de Motion no wrapper.
-3. **Cleanup** → O composable faz `destroy()` automático no `onUnmounted`.
-4. **Não duplicar Lenis** → Apenas uma instância por view (o composable já garante isso).
-5. **Animações de interação** (hover, tab switch, modais) → Manter com CSS/Tailwind, não misturar com scroll-reveal.
+1. **Novas views**: aplicar Motion diretamente nos blocos principais.
+2. **Novos componentes**: usar `v-motion-scroll-visible` quando o bloco entra na viewport.
+3. **Interações (hover/click)**: priorizar Tailwind (`transition-opacity`, `transition-transform`, `active:scale-[0.96]`) e complementar com Motion quando necessário.
+4. **Consistência**: usar curvas e tempos coerentes (`ease: [0.16, 1, 0.3, 1]` como baseline).

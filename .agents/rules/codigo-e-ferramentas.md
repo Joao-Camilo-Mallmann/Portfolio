@@ -11,7 +11,7 @@ description: Padrões de código, formatação, configuração Vite/BUN e versio
 
 ## Animações
 
-- **Scroll-Reveal:** Para animações ativadas por scroll, use `v-motion-scroll-visible` ou o composable `useScrollReveal` quando precisar apenas do smooth scroll com Lenis.
+- **Scroll-Reveal:** Para animações ativadas por scroll, use `v-motion-scroll-visible`.
 - **Animações de entrada:** prefira `@vueuse/motion` e as diretivas já registradas no app.
 - **Animações de interação (hover/click):** use classes Tailwind (`hover:scale-105`, `active:scale-[0.96]`, `transition-opacity`, `transition-transform`).
 - Não crie uma segunda camada de CSS animation global para os mesmos efeitos já cobertos por Motion.
@@ -24,7 +24,6 @@ description: Padrões de código, formatação, configuração Vite/BUN e versio
 - O arquivo `vite.config.js` usa os seguintes plugins essenciais:
   - `@vitejs/plugin-vue` - Suporte Vue 3
   - `@tailwindcss/vite` - Tailwind CSS v4
-  - `unplugin-vue-components/vite` - Auto-import de componentes PrimeVue
   - `vite-plugin-vue-devtools` - DevTools Vue
 - Configurações de build incluem hash nos assets para cache busting.
 - HMR está configurado com overlay para erros.

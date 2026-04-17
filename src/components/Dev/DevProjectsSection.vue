@@ -155,10 +155,6 @@ const getDevStatusLabel = (devStatusType) => {
   }
 }
 
-const openLink = (url) => {
-  window.open(url, '_blank', 'noopener,noreferrer')
-}
-
 const getDevStatusIcon = (statusType) => {
   switch (statusType) {
     case 'completed':
@@ -197,7 +193,7 @@ const getTagChipStyle = (tag) => {
     v-motion
     class="text-center mb-12"
     :initial="{ opacity: 0, y: 16 }"
-    :enter="{ opacity: 1, y: 0 }"
+    :enter="{ opacity: 1, y: 0, transition: { duration: 400, ease: [0.16, 1, 0.3, 1] } }"
   >
     <h2
       class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent text-balance"
@@ -210,30 +206,37 @@ const getTagChipStyle = (tag) => {
     </p>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <div
       v-for="(project, index) in projects"
       :key="index"
       v-motion
       :class="[
-        ' shadow-sm ring-1 ring-inset ring-white/5 border border-border rounded-2xl z-99 flex flex-col transition-opacity duration-300 cursor-pointer',
+        'group shadow-sm ring-1 ring-inset ring-white/5 border border-border rounded-2xl flex flex-col',
+        'hover:border-dev/20 hover:shadow-[0_0_24px_-4px_rgba(77,145,234,0.15)] transition-[border-color,box-shadow] duration-300',
         projects.length % 2 !== 0 && index === projects.length - 1
           ? 'md:col-span-2 md:w-full md:max-w-2xl md:justify-self-center'
           : '',
       ]"
-      :hovered="{ opacity: 0.6 }"
-      :tapped="{ opacity: 0.4 }"
+      :initial="{ opacity: 0, y: 20 }"
+      :enter="{
+        opacity: 1,
+        y: 0,
+        transition: { delay: index * 120, duration: 400, ease: [0.16, 1, 0.3, 1] },
+      }"
     >
-      <div class="relative overflow-hidden">
+      <!-- Imagem do projeto -->
+      <div class="relative overflow-hidden rounded-t-[15px]">
         <div
-          class="h-55 flex items-center justify-center overflow-hidden transition duration-300 hover:brightness-110"
-          :style="{ backgroundColor: project.colors.from + '15' }"
+          class="h-56 md:h-64 flex items-center justify-center overflow-hidden"
+          :style="{ backgroundColor: project.colors.from + '12' }"
         >
           <img
             v-if="project.image"
             :src="project.image"
             :alt="project.imageAlt"
-            class="w-full h-full object-cover group-hover:scale-110 transition duration-500 group-hover:brightness-110 ring-1 ring-white/10"
+            class="w-full h-full object-cover brightness-[0.92] group-hover:brightness-105 group-hover:scale-[1.02] transition-[filter,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] outline-1 outline-white/5"
+            loading="lazy"
           />
           <div v-else class="text-center">
             <i class="pi pi-user-edit text-3xl mb-1" :style="{ color: project.colors.from }"></i>
@@ -243,68 +246,81 @@ const getTagChipStyle = (tag) => {
           </div>
         </div>
 
+        <!-- Badge de status -->
         <div class="absolute top-3 right-3">
           <span
             :class="[
-              project.statusType === 'public' ? 'bg-green-500' : 'bg-orange-500',
-              'text-white px-2 py-1 rounded-full backdrop-blur-sm text-xs font-semibold flex items-center gap-1 shadow-sm',
+              project.statusType === 'public'
+                ? 'bg-green-500/80 backdrop-blur-sm'
+                : 'bg-orange-500/80 backdrop-blur-sm',
+              'text-white px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-sm',
             ]"
           >
-            <i :class="project.statusType === 'public' ? 'pi pi-globe' : 'pi pi-lock'"></i>
+            <i
+              :class="project.statusType === 'public' ? 'pi pi-globe' : 'pi pi-lock'"
+              class="text-[10px]"
+            ></i>
             {{ getStatusLabel(project.statusType) }}
           </span>
         </div>
       </div>
+
+      <!-- Conteúdo do card -->
       <div class="p-5 flex-1 flex flex-col">
-        <h3
-          class="text-lg font-semibold bg-linear-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent text-balance mb-2"
-        >
+        <h3 class="text-lg font-semibold text-fg text-balance mb-2">
           {{ project.title }}
         </h3>
+
         <div class="space-y-3 flex-1">
           <p class="text-fg-muted text-sm leading-relaxed text-pretty tracking-wide">
             {{ project.description }}
           </p>
 
-          <div class="flex flex-wrap gap-1">
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-1.5">
             <span
               v-for="tag in project.tags"
               :key="tag.label"
-              v-motion
-              class="text-xs px-2 py-1 rounded transition-colors duration-200"
-              :hovered="{ scale: 1.05 }"
-              :tapped="{ scale: 0.95 }"
+              class="text-xs px-2 py-0.5 rounded-full transition-colors duration-200"
               :style="getTagChipStyle(tag)"
             >
               {{ tag.label }}
             </span>
           </div>
         </div>
-        <div class="flex items-center justify-between pt-4 mt-auto">
+
+        <!-- Footer do card -->
+        <div class="flex items-center justify-between pt-4 mt-auto border-t border-border/50">
           <div class="flex items-center gap-2">
             <i
               :class="getDevStatusIcon(project.devStatusType)"
               :style="{ color: getDevStatusColor(project.devStatusType) }"
-              class="text-sm"
+              class="text-xs"
             ></i>
-            <span class="text-xs text-fg-muted">{{
-              getDevStatusLabel(project.devStatusType)
-            }}</span>
+            <span class="text-xs text-fg-muted tabular-nums">
+              {{ getDevStatusLabel(project.devStatusType) }} · {{ project.year }}
+            </span>
           </div>
 
-          <div class="flex gap-1">
-            <button
+          <div class="flex gap-1.5">
+            <a
               v-for="link in project.links.slice(0, 2)"
               :key="link.url"
               v-motion
-              class="p-2 border border-border rounded-md bg-transparent hover:opacity-80 transition-opacity text-fg cursor-pointer"
-              :hovered="{ opacity: 0.6 }"
-              :tapped="{ opacity: 0.4 }"
-              @click="openLink(link.url)"
+              :href="link.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              :aria-label="link.label"
+              :title="link.label"
+              class="p-2 min-w-10 min-h-10 flex items-center justify-center border border-border rounded-lg bg-transparent text-fg hover:border-dev/30 hover:text-dev transition-colors duration-200 cursor-pointer"
+              :tapped="{ scale: 0.96 }"
             >
-              <i :class="link.icon"></i>
-            </button>
-            <span v-if="project.links.length === 0" class="text-xs text-orange-400 px-2 py-1">
+              <i :class="link.icon" class="text-sm"></i>
+            </a>
+            <span
+              v-if="project.links.length === 0"
+              class="text-xs text-orange-400 px-2 py-1 self-center"
+            >
               {{ t('devProjects.restricted') }}
             </span>
           </div>

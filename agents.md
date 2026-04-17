@@ -10,8 +10,8 @@ Este documento é o índice central das regras e convenções do projeto. Cada s
 | 2   | Estilização (Tailwind v4, Cores, Animações) | [estilizacao.md](.agents/rules/estilizacao.md)                         |
 | 3   | Código, Ferramentas e Configuração          | [codigo-e-ferramentas.md](.agents/rules/codigo-e-ferramentas.md)       |
 | 4   | Acessibilidade e SEO                        | [acessibilidade-e-seo.md](.agents/rules/acessibilidade-e-seo.md)       |
-| 5   | PrimeVue e i18n                             | [primevue-e-i18n.md](.agents/rules/primevue-e-i18n.md)                 |
-| 6   | Scroll e Animações                          | [scroll-e-animacoes.md](.agents/rules/scroll-e-animacoes.md)           |
+| 5   | i18n                                        | [i18n.md](.agents/rules/i18n.md)                                       |
+| 6   | Motion e Animações                          | [scroll-e-animacoes.md](.agents/rules/scroll-e-animacoes.md)           |
 | 7   | Polimento de Interface (UI/UX)              | [polimento-ui.md](.agents/rules/polimento-ui.md)                       |
 
 ---
