@@ -11,10 +11,10 @@ description: Padrões de código, formatação, configuração Vite/BUN e versio
 
 ## Animações
 
-- **Scroll-Reveal:** Para animações ativadas por scroll, use `v-motion-scroll-visible`.
-- **Animações de entrada:** prefira `@vueuse/motion` e as diretivas já registradas no app.
-- **Animações de interação (hover/click):** use classes Tailwind (`hover:scale-105`, `active:scale-[0.96]`, `transition-opacity`, `transition-transform`).
-- Não crie uma segunda camada de CSS animation global para os mesmos efeitos já cobertos por Motion.
+- **Scroll-Reveal:** use `v-motion-scroll-visible` por padrao.
+- **Animações de entrada:** use `@vueuse/motion` com `v-motion` (`initial` + `enter`).
+- **Animações de interação (hover/click):** use variantes `hovered` e `tapped` do Motion; complemente com Tailwind quando necessario.
+- Evite duplicar sistemas de animacao: prefira Motion em vez de keyframes locais no componente.
 
 # Vite Configuração
 

@@ -37,9 +37,9 @@ description: Regras de estilização com Tailwind CSS v4 e sistema de cores sem�
 - ⚠️ **EVITE:** criar utilitários customizados de sombra/borda em componentes ou em `main.css`.
 - ✅ **PERMITIDO:** use classes nativas do Tailwind e combine com as cores temáticas quando precisar de profundidade (`shadow-sm`, `shadow-lg`, `ring-1`, `ring-inset`, `border-border`).
 
-## Animações e Motion
+## Animacoes
 
-- O padrão de animação do projeto é `@vueuse/motion`.
-- Os reveals de página usam `v-motion-scroll-visible`.
-- Evite criar uma segunda camada de animações CSS globais para o mesmo efeito.
-- Animações de interação devem preferir `transition-opacity`, `transition-transform` e estados do Motion/Tailwind.
+- O padrao de animacao do projeto e `@vueuse/motion`.
+- Reveals de pagina devem usar `v-motion-scroll-visible`.
+- Evite criar keyframes locais para efeitos que o Motion cobre.
+- Animacoes de interacao devem priorizar variantes do Motion (`hovered`, `tapped`) e transicoes utilitarias quando necessario.
