@@ -31,7 +31,7 @@ Sou um profissional focado na interseção entre **desenvolvimento frontend** e 
   <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D" alt="Vue.js" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
   <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite" />
-  <img src="https://img.shields.io/badge/PrimeVue-1E88E5?style=for-the-badge&logo=primevideo&logoColor=white" alt="PrimeVue" />
+  <img src="https://img.shields.io/badge/VueUse_Motion-111827?style=for-the-badge&logo=vue.js&logoColor=4FC08D" alt="VueUse Motion" />
   <img src="https://img.shields.io/badge/Bun-000000?style=for-the-badge&logo=bun&logoColor=white" alt="Bun" />
 </div>
 

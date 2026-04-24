@@ -203,128 +203,87 @@ const techCategories = computed(() => [
 </script>
 
 <template>
-  <Card class="overflow-hidden card-hover animate-slide-down">
-    <template #header>
-      <div class="text-center p-6 pb-0">
-        <h3
-          class="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2 text-balance"
-        >
-          <i class="pi pi-code text-dev"></i>
-          {{ t('devStack.title') }}
-        </h3>
-        <p class="text-gray-400 text-pretty">{{ t('devStack.subtitle') }}</p>
-      </div>
-    </template>
-    <template #content>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Fieldset
-          v-for="category in techCategories"
-          :key="category.header"
-          :legend="category.header"
-          class="bg-linear-to-tl! to-dev/10! fieldset-hover active:scale-[0.96]"
-        >
-          <template #legend>
-            <div
-              class="flex items-center gap-2 text-white font-semibold text-sm px-3 py-1 bg-gray-800/60 rounded-full"
-            >
-              <i :class="category.icon" class="text-dev"></i>
-              <span>{{ category.header }}</span>
-            </div>
-          </template>
+  <div>
+    <!-- Heading da seção -->
+    <div
+      v-motion
+      class="text-center mb-10"
+      :initial="{ opacity: 0, y: 16 }"
+      :enter="{ opacity: 1, y: 0, transition: { duration: 400, ease: [0.16, 1, 0.3, 1] } }"
+    >
+      <h2
+        class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent text-balance"
+      >
+        <i class="pi pi-code text-dev text-2xl"></i>
+        {{ t('devStack.title') }}
+      </h2>
+      <p class="text-fg-muted text-lg text-pretty tracking-wide">
+        {{ t('devStack.subtitle') }}
+      </p>
+    </div>
 
-          <div class="grid grid-cols-1 gap-3 p-4">
+    <!-- Grid de categorias -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div
+        v-for="(category, catIdx) in techCategories"
+        :key="category.header"
+        v-motion
+        class="border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl p-5"
+        :initial="{ opacity: 0, y: 16 }"
+        :enter="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: catIdx * 80, duration: 400, ease: [0.16, 1, 0.3, 1] },
+        }"
+      >
+        <!-- Header da categoria -->
+        <div class="flex items-center gap-2 mb-4">
+          <i :class="category.icon" class="text-dev text-sm"></i>
+          <h4 class="text-fg font-semibold text-sm tracking-wide">{{ category.header }}</h4>
+        </div>
+
+        <!-- Tech items -->
+        <div class="grid grid-cols-1 gap-2.5">
+          <div
+            v-for="(tech, idx) in category.technologies"
+            :key="tech.name"
+            v-motion
+            class="group flex items-center gap-3 p-2.5 rounded-lg border border-transparent hover:border-border transition-colors duration-200"
+            :initial="{ opacity: 0, y: 6 }"
+            :enter="{
+              opacity: 1,
+              y: 0,
+              transition: { delay: catIdx * 80 + idx * 50, duration: 250, ease: [0.16, 1, 0.3, 1] },
+            }"
+          >
             <div
-              v-for="(tech, idx) in category.technologies"
-              :key="tech.name"
-              class="tech-item-modern group animate-slide-up active:scale-[0.96] cursor-pointer"
-              :style="{ animationDelay: 0.08 * idx + 's' }"
+              class="flex items-center justify-center w-9 h-9 rounded-lg border border-border shrink-0"
             >
-              <div class="flex items-center gap-3">
-                <div class="tech-icon-container">
-                  <img
-                    v-if="tech.image && !tech.image.includes('/img/')"
-                    :src="tech.image"
-                    :alt="tech.name"
-                    class="w-8 h-9 object-contain"
-                    @error="(e) => (e.target.style.display = 'none')"
-                  />
-                  <i v-else :class="tech.icon" class="text-lg" :style="{ color: tech.color }"></i>
-                </div>
-                <div class="flex-1">
-                  <span class="text-gray-200 text-sm font-medium">{{ tech.name }}</span>
-                </div>
-              </div>
-              <div class="tech-skill-bar">
-                <div class="tech-skill-fill" :style="{ backgroundColor: tech.color }"></div>
-              </div>
+              <img
+                v-if="tech.image && !tech.image.includes('/img/')"
+                :src="tech.image"
+                :alt="tech.name"
+                class="w-5 h-5 object-contain transition-transform duration-300 group-hover:scale-110"
+                loading="lazy"
+                @error="(e) => (e.target.style.display = 'none')"
+              />
+              <i
+                v-else
+                :class="tech.icon"
+                class="text-base transition-transform duration-300 group-hover:scale-110"
+                :style="{ color: tech.color }"
+              ></i>
             </div>
+            <span
+              class="text-fg-muted text-sm font-medium tracking-wide group-hover:text-fg transition-colors duration-200"
+            >
+              {{ tech.name }}
+            </span>
           </div>
-        </Fieldset>
+        </div>
       </div>
-    </template>
-  </Card>
+    </div>
+  </div>
 </template>
 
-<style scoped>
-.tech-item-modern {
-  background: rgba(30, 41, 59, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
-  padding: 0.75rem;
-  transition:
-    background 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.tech-item-modern:hover {
-  will-change: transform;
-  background: rgba(30, 41, 59, 0.5);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateX(4px);
-}
-
-.tech-item-modern:not(:hover) {
-  will-change: auto;
-}
-
-.tech-icon-container {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    background 0.3s ease,
-    transform 0.3s ease;
-}
-
-.tech-item-modern:hover .tech-icon-container {
-  background: rgba(255, 255, 255, 0.15);
-  transform: scale(1.1);
-}
-
-/* Barra de skill animada - específica para tecnologias */
-.tech-skill-bar {
-  height: 3px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  margin-top: 0.5rem;
-  overflow: hidden;
-}
-
-.tech-skill-fill {
-  height: 100%;
-  width: 0;
-  border-radius: 2px;
-  transition: width 1.5s ease-in-out;
-}
-
-.tech-item-modern:hover .tech-skill-fill {
-  width: 85%;
-}
-</style>
+<style scoped></style>

@@ -18,6 +18,10 @@ export default {
     funAchievement: 'Achievement Unlocked:',
     funBadge: '"Visitante Corajoso" 😎',
     funPS: 'PS: Se encontrou algum bug, foi feature não documentada 🐛✨',
+    heroGreeting: 'Olá, eu sou',
+    heroName: 'João Camilo',
+    ctaProjects: 'Ver Projetos',
+    ctaGithub: 'GitHub',
   },
 
   // Dev Profile Card

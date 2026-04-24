@@ -19,6 +19,11 @@ onUnmounted(() => {
 })
 
 const isMobile = computed(() => windowWidth.value < 1024)
+const expandedMobileIndex = ref(0)
+
+const toggleMobileItem = (index) => {
+  expandedMobileIndex.value = expandedMobileIndex.value === index ? -1 : index
+}
 
 const creativeProcess = computed(() => [
   {
@@ -82,25 +87,42 @@ const creativeProcess = computed(() => [
 </script>
 
 <template>
-  <div class="py-6 md:py-16 px-3 md:px-8">
-    <!-- Header -->
-    <div class="text-center mb-6 md:mb-16">
-      <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-editor text-balance">
+  <div class="py-8 md:py-16 px-3 md:px-8 relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <div class="absolute top-4 left-[8%] w-56 h-56 rounded-full bg-editor/7 blur-3xl"></div>
+      <div class="absolute bottom-4 right-[8%] w-64 h-64 rounded-full bg-dev/6 blur-3xl"></div>
+    </div>
+
+    <div
+      v-motion
+      class="text-center mb-6 md:mb-16 relative"
+      :initial="{ opacity: 0, y: 14 }"
+      :enter="{ opacity: 1, y: 0, transition: { duration: 420, ease: [0.16, 1, 0.3, 1] } }"
+    >
+      <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-fg text-balance tracking-wide">
         {{ t('editorTools.journeyTitle') }}
       </h2>
-      <p class="text-gray-400 mt-2 md:mt-3 text-base md:text-xl max-w-2xl mx-auto px-2 text-pretty">
+      <p
+        class="text-fg-muted mt-2 md:mt-3 text-base md:text-xl max-w-2xl mx-auto px-2 text-pretty tracking-wide"
+      >
         {{ t('editorTools.journeySubtitle') }}
       </p>
     </div>
 
-    <!-- Timeline para Desktop -->
-    <timeline v-if="!isMobile" :value="creativeProcess" align="alternate" class="custom-timeline">
+    <timeline
+      v-if="!isMobile"
+      :value="creativeProcess"
+      align="alternate"
+      class="custom-timeline relative"
+    >
       <template #marker="slotProps">
         <span
-          class="flex w-16 h-16 items-center justify-center text-white rounded-full z-10 shadow-lg transition duration-300 hover:scale-110 active:scale-[0.96] cursor-pointer border-4"
+          v-motion
+          class="flex w-16 h-16 items-center justify-center text-fg rounded-full z-10 shadow-sm ring-1 ring-inset ring-white/5 transition-[transform,opacity] duration-300 cursor-pointer border-4 bg-surface-100"
+          :hovered="{ opacity: 0.9, scale: 1.05 }"
+          :tapped="{ opacity: 0.75, scale: 0.96 }"
           :style="{
             borderColor: slotProps.item.color,
-            backgroundColor: '#1f2937',
           }"
         >
           <i
@@ -110,147 +132,143 @@ const creativeProcess = computed(() => [
         </span>
       </template>
       <template #content="slotProps">
-        <card
-          class="card-timeline p-5 border-2 rounded-xl h-full transition duration-300 hover:scale-[1.02] active:scale-[0.96] cursor-pointer"
-          :style="{ '--card-color': slotProps.item.color }"
+        <div
+          v-motion
+          class="shadow-sm ring-1 ring-inset ring-white/5 p-5 border border-border rounded-2xl h-full transition-[transform,opacity,border-color] duration-300 cursor-pointer text-left bg-surface-100/80"
+          :hovered="{ opacity: 0.95, y: -4 }"
+          :tapped="{ opacity: 0.8, y: 0 }"
         >
-          <template #title>
-            <h3
-              class="text-2xl font-bold mb-3 text-balance"
-              :style="{ color: slotProps.item.color }"
-            >
-              {{ slotProps.item.title }}
-            </h3>
-          </template>
-          <template #content>
-            <p class="text-gray-300 leading-relaxed m-0 mb-4">
-              {{ slotProps.item.description }}
-            </p>
-            <ul class="list-none p-0 m-0 space-y-3">
-              <li v-for="(detail, i) in slotProps.item.details" :key="i" class="flex items-center">
-                <i
-                  :class="`pi ${detail.icon} mr-3 text-lg`"
-                  :style="{ color: slotProps.item.color }"
-                ></i>
-                <span class="text-gray-400">{{ detail.text }}</span>
-              </li>
-            </ul>
-          </template>
-        </card>
+          <h3
+            class="text-2xl font-bold mb-3 text-balance tracking-wide"
+            :style="{ color: slotProps.item.color }"
+          >
+            {{ slotProps.item.title }}
+          </h3>
+          <p class="text-fg-muted leading-relaxed m-0 mb-4 tracking-wide">
+            {{ slotProps.item.description }}
+          </p>
+          <ul class="list-none p-0 m-0 space-y-3">
+            <li v-for="(detail, i) in slotProps.item.details" :key="i" class="flex items-center">
+              <i
+                :class="`pi ${detail.icon} mr-3 text-lg`"
+                :style="{ color: slotProps.item.color }"
+              ></i>
+              <span class="text-fg-muted tracking-wide">{{ detail.text }}</span>
+            </li>
+          </ul>
+
+          <div v-if="slotProps.item.software?.length" class="mt-4 pt-4 border-t border-border/70">
+            <div class="flex flex-wrap gap-2">
+              <div
+                v-for="software in slotProps.item.software"
+                :key="software.name"
+                class="flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-border bg-black/20"
+              >
+                <img
+                  :src="software.icon"
+                  :alt="software.name"
+                  class="w-4 h-4 rounded-sm object-cover"
+                  loading="lazy"
+                />
+                <span class="text-xs text-fg-muted tracking-wide">{{ software.name }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </template>
     </timeline>
 
-    <!-- Timeline para Mobile e Tablet -->
     <div class="block lg:hidden space-y-6">
-      <card
+      <div
         v-for="(item, index) in creativeProcess"
         :key="index"
-        class="card-timeline-mobile border-2 rounded-xl mobile-timeline-item transition duration-300 active:scale-[0.96] cursor-pointer"
-        :style="{ '--card-color': item.color }"
+        v-motion
+        class="border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-2xl p-5 transition-[transform,opacity,border-color] duration-300 cursor-pointer text-left bg-surface-100/70"
+        :hovered="{ opacity: 0.95, y: -3 }"
+        :tapped="{ opacity: 0.8, y: 0 }"
       >
-        <template #title>
-          <div class="flex items-center gap-3 mb-3">
+        <button
+          class="w-full flex items-center justify-between gap-3 mb-3 text-left"
+          @click="toggleMobileItem(index)"
+        >
+          <div class="flex items-center gap-3">
             <div
-              class="flex w-12 h-12 items-center justify-center text-white rounded-full shadow-lg border-2 shrink-0"
+              class="flex w-12 h-12 items-center justify-center text-fg rounded-full shadow-sm ring-1 ring-inset ring-white/5 border-2 shrink-0"
               :style="{
                 borderColor: item.color,
-                backgroundColor: '#1f2937',
               }"
             >
               <i :class="`pi ${item.icon} text-xl`" :style="{ color: item.color }"></i>
             </div>
             <h3
-              class="text-lg font-bold leading-tight m-0 text-balance"
+              class="text-lg font-bold leading-tight m-0 text-balance tracking-wide"
               :style="{ color: item.color }"
             >
               {{ item.title }}
             </h3>
           </div>
-        </template>
-        <template #content>
-          <p class="text-gray-300 text-sm leading-relaxed m-0 mb-3">
-            {{ item.description }}
-          </p>
-          <ul class="list-none p-0 m-0 space-y-2">
-            <li v-for="(detail, i) in item.details" :key="i" class="flex items-start gap-2">
-              <i
-                :class="`pi ${detail.icon} text-sm mt-0.5 shrink-0`"
-                :style="{ color: item.color }"
-              ></i>
-              <span class="text-gray-400 text-sm leading-relaxed">{{ detail.text }}</span>
-            </li>
-          </ul>
-        </template>
-      </card>
+          <i
+            class="pi pi-chevron-down text-fg-muted transition-transform duration-300"
+            :class="expandedMobileIndex === index ? 'rotate-180' : ''"
+          ></i>
+        </button>
+
+        <transition name="mobile-expand">
+          <div v-if="expandedMobileIndex === index">
+            <p class="text-fg-muted text-sm leading-relaxed m-0 mb-3 tracking-wide">
+              {{ item.description }}
+            </p>
+            <ul class="list-none p-0 m-0 space-y-2">
+              <li v-for="(detail, i) in item.details" :key="i" class="flex items-start gap-2">
+                <i
+                  :class="`pi ${detail.icon} text-sm mt-0.5 shrink-0`"
+                  :style="{ color: item.color }"
+                ></i>
+                <span class="text-fg-muted text-sm leading-relaxed tracking-wide">{{
+                  detail.text
+                }}</span>
+              </li>
+            </ul>
+
+            <div v-if="item.software?.length" class="mt-4 pt-4 border-t border-border/70">
+              <div class="flex flex-wrap gap-2">
+                <div
+                  v-for="software in item.software"
+                  :key="software.name"
+                  class="flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-border bg-black/20"
+                >
+                  <img
+                    :src="software.icon"
+                    :alt="software.name"
+                    class="w-4 h-4 rounded-sm object-cover"
+                    loading="lazy"
+                  />
+                  <span class="text-xs text-fg-muted tracking-wide">{{ software.name }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-/* Estilos para Timeline Desktop */
-.card-timeline {
-  border-color: var(--card-color);
-  box-shadow: 0 0 15px color-mix(in srgb, var(--card-color) 20%, transparent);
-}
-
-.card-timeline:hover {
-  box-shadow: 0 0 30px color-mix(in srgb, var(--card-color) 40%, transparent);
-}
-
-/* Estilos para Timeline Mobile */
-.card-timeline-mobile {
-  border-color: var(--card-color);
-  box-shadow: 0 0 10px color-mix(in srgb, var(--card-color) 20%, transparent);
-  backdrop-filter: blur(10px);
-}
-
-.card-timeline-mobile :deep(.p-card-body) {
-  padding: 1.25rem;
-}
-
-.card-timeline-mobile :deep(.p-card-content) {
-  padding: 0;
-}
-
-.card-timeline-mobile :deep(.p-card-title) {
-  margin-bottom: 0;
-}
-
-/* Estilos para Timeline Desktop - PrimeVue */
 .custom-timeline :deep(.p-timeline-event-connector) {
-  background: linear-gradient(
-    to bottom,
-    var(--color-editor) 0%,
-    var(--color-dev) 50%,
-    #2ecc71 100%
-  );
+  background: color-mix(in srgb, var(--color-border) 80%, transparent);
 }
 
-/* Animações de entrada para mobile */
-@keyframes mobile-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.mobile-expand-enter-active,
+.mobile-expand-leave-active {
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
-/* Aplicar animação aos cards mobile */
-.mobile-timeline-item {
-  animation: mobile-fade-in 0.6s ease-out forwards;
+.mobile-expand-enter-from,
+.mobile-expand-leave-to {
   opacity: 0;
-}
-
-.mobile-timeline-item:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.mobile-timeline-item:nth-child(2) {
-  animation-delay: 0.3s;
-}
-.mobile-timeline-item:nth-child(3) {
-  animation-delay: 0.5s;
+  transform: translateY(-4px);
 }
 </style>

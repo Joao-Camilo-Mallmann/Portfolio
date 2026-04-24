@@ -6,27 +6,27 @@ description: Padrões de código, formatação, configuração Vite/BUN e versio
 
 - O código deve ser formatado utilizando o Prettier, seguindo as regras do arquivo `.prettierrc.json`.
 - Os comentários no código devem ser escritos em português.
-- Utilize classes de animação do `animations.css` sempre que possível, em vez de criar novas animações dentro dos componentes.
 - Para ícones, prefira SVG inline ou componentes dedicados com fallbacks adequados.
+- Evite criar estilos globais novos fora de `src/assets/main.css`.
 
 ## Animações
 
-- Use as classes predefinidas em `animations.css`: `animate-fade-in`, `animate-slide-up`, `animate-bounce-soft`, etc.
-- Para animações sequenciais, use delays com `animation-delay` ou classes `animate-delay-*`.
-- Mantenha as animações suaves e profissionais, evitando efeitos excessivos.
+- **Scroll-Reveal:** use `v-motion-scroll-visible` por padrao.
+- **Animações de entrada:** use `@vueuse/motion` com `v-motion` (`initial` + `enter`).
+- **Animações de interação (hover/click):** use variantes `hovered` e `tapped` do Motion; complemente com Tailwind quando necessario.
+- Evite duplicar sistemas de animacao: prefira Motion em vez de keyframes locais no componente.
 
 # Vite Configuração
 
 - Sempre use **BUN** e não NPM para gerenciamento de pacotes.
 - O projeto usa Tailwind CSS v4 com o plugin `@tailwindcss/vite`.
-- **IMPORTANTE:** Não existe arquivo `tailwind.config.js` - toda configuração Tailwind é feita via CSS com `@theme`
+- **IMPORTANTE:** Não existe arquivo `tailwind.config.js` - toda configuração Tailwind é feita via CSS com `@theme`.
 - O arquivo `vite.config.js` usa os seguintes plugins essenciais:
   - `@vitejs/plugin-vue` - Suporte Vue 3
   - `@tailwindcss/vite` - Tailwind CSS v4
-  - `unplugin-vue-components/vite` - Auto-import de componentes PrimeVue
   - `vite-plugin-vue-devtools` - DevTools Vue
-- Configurações de build incluem hash nos assets para cache busting
-- HMR está configurado com overlay para erros
+- Configurações de build incluem hash nos assets para cache busting.
+- HMR está configurado com overlay para erros.
 - Não adicione plugins desnecessários ao Vite.
 
 # Git e Versionamento

@@ -117,8 +117,6 @@ const doDeny = () => {
 }
 </script>
 <template>
-  <div class="scanline" aria-hidden="true" />
-
   <main
     class="page-transition relative isolate flex min-h-screen flex-col overflow-hidden bg-linear-to-b from-black via-zinc-950 to-black pt-8 sm:pt-10"
   >
@@ -145,7 +143,7 @@ const doDeny = () => {
               <div
                 class="mb-3 flex items-center gap-2 text-[0.7rem] tracking-[0.2em] text-violet-500/80"
               >
-                <span class="h-2 w-2 animate-pulse rounded-full bg-violet-500/70"></span>
+                <span class="h-2 w-2 rounded-full bg-violet-500/70"></span>
                 <span>SECRET_TERMINAL — MODO INVESTIGAÇÃO</span>
               </div>
 
@@ -166,7 +164,7 @@ const doDeny = () => {
                   ]"
                 >
                   <span class="mr-2 opacity-30">&gt;</span>
-                  {{ line.text }}<span v-if="line.loading" class="animate-pulse">_</span>
+                  {{ line.text }}<span v-if="line.loading">_</span>
                 </div>
               </div>
             </div>
@@ -174,7 +172,7 @@ const doDeny = () => {
             <!-- Consent -->
             <div
               v-if="showConsent"
-              class="animate-fade-in rounded-xl border border-red-500/30 bg-red-950/20 p-5 space-y-4"
+              class="rounded-xl border border-red-500/30 bg-red-950/20 p-5 space-y-4"
             >
               <p class="font-mono text-sm text-red-400 tracking-wide">
                 // TRANSMISSÃO PRESTES A OCORRER — AUTORIZA O ENVIO DOS DADOS ACIMA?
@@ -198,7 +196,7 @@ const doDeny = () => {
             <!-- Result -->
             <div
               v-if="showResult"
-              class="animate-fade-in rounded-xl border border-violet-700/30 bg-black/70 p-5 font-mono text-xs leading-8 sm:text-sm text-violet-300"
+              class="rounded-xl border border-violet-700/30 bg-black/70 p-5 font-mono text-xs leading-8 sm:text-sm text-violet-300"
             >
               <p class="text-base font-bold mb-1">💀 FOI MAL CHEFE</p>
               <p>😂 Tanto faz se você clicou em PERMITIR ou NEGAR.</p>
@@ -211,7 +209,7 @@ const doDeny = () => {
 
               <div class="pt-5">
                 <button
-                  class="min-h-10 rounded-lg bg-violet-600 px-8 py-3 font-bold text-white shadow-lg shadow-violet-900/50 transition duration-300 hover:bg-violet-500 active:scale-[0.96]"
+                  class="min-h-10 rounded-lg bg-violet-600 px-8 py-3 font-bold text-white shadow-lg shadow-violet-900/50 transition duration-300 hover:bg-violet-500"
                   @click="router.push('/')"
                 >
                   😭 VOLTAR À REALIDADE
@@ -225,86 +223,4 @@ const doDeny = () => {
   </main>
 </template>
 
-<style scoped>
-@keyframes glitch-1 {
-  0%,
-  100% {
-    clip-path: inset(0 0 95% 0);
-    transform: translate(-2px, 0);
-  }
-  25% {
-    clip-path: inset(30% 0 50% 0);
-    transform: translate(2px, 0);
-  }
-  50% {
-    clip-path: inset(60% 0 20% 0);
-    transform: translate(-1px, 0);
-  }
-  75% {
-    clip-path: inset(80% 0 5% 0);
-    transform: translate(1px, 0);
-  }
-}
-@keyframes glitch-2 {
-  0%,
-  100% {
-    clip-path: inset(50% 0 30% 0);
-    transform: translate(2px, 0);
-  }
-  33% {
-    clip-path: inset(10% 0 70% 0);
-    transform: translate(-2px, 0);
-  }
-  66% {
-    clip-path: inset(75% 0 10% 0);
-    transform: translate(1px, 0);
-  }
-}
-@keyframes scanline {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100vh);
-  }
-}
-
-.glitch-wrap {
-  position: relative;
-  display: inline-block;
-}
-.glitch-wrap::before,
-.glitch-wrap::after {
-  content: attr(data-text);
-  position: absolute;
-  inset: 0;
-  font: inherit;
-  color: inherit;
-}
-.glitch-wrap::before {
-  color: #a78bfa;
-  animation: glitch-1 2.5s infinite steps(1);
-}
-.glitch-wrap::after {
-  color: #f43f5e;
-  animation: glitch-2 2.5s infinite steps(1);
-  animation-delay: 0.1s;
-}
-
-.scanline {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  overflow: hidden;
-}
-.scanline::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: linear-gradient(transparent, rgba(255, 255, 255, 0.03), transparent);
-  animation: scanline 4s linear infinite;
-}
-</style>
+<style scoped></style>
