@@ -1,6 +1,6 @@
 <script setup>
 import { useI18n } from '@/composables/useI18n'
-import { ref, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const { t, locale, toggleLocale } = useI18n()
 
@@ -39,7 +39,7 @@ onUnmounted(() => {
     }"
     :class="[
       'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
-      isScrolled
+      isScrolled || mobileMenuOpen
         ? 'bg-[#07080a]/80 backdrop-blur-md border-b border-white/10 py-2'
         : 'bg-transparent border-b border-transparent py-4',
     ]"

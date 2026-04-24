@@ -8,6 +8,7 @@ description: Padrões de código, formatação, configuração Vite/BUN e versio
 - Os comentários no código devem ser escritos em português.
 - Para ícones, prefira SVG inline ou componentes dedicados com fallbacks adequados.
 - Evite criar estilos globais novos fora de `src/assets/main.css`.
+- Manter o padrão de qualidade atual das entregas: soluções completas, limpas e com validação antes de finalizar.
 
 ## Animações
 
@@ -34,3 +35,4 @@ description: Padrões de código, formatação, configuração Vite/BUN e versio
 - Use commits semânticos e descritivos.
 - Mantenha o código organizado e bem comentado.
 - Teste sempre as mudanças antes de fazer commit.
+- Fluxo mínimo obrigatório de validação: executar `bun run build` após mudanças relevantes de UI/estrutura.

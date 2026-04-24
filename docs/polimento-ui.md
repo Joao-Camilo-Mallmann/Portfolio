@@ -6,6 +6,13 @@ description: Princípios de polimento de interface (UI/UX) - tipografia, sombras
 
 - **OBRIGATÓRIO:** Aplicar os princípios do design de interações para que a interface não pareça amadora, através das regras abaixo:
 
+## Baseline de Qualidade Atual
+
+- Manter o padrão visual das últimas entregas: interfaces com personalidade, contraste intencional e hierarquia clara.
+- Cards de destaque devem ter presença visual real (luz/glow suave, borda/ring consistente e feedback de interação perceptível).
+- Evitar visual “genérico”; cada bloco principal deve ter uma intenção estética clara.
+- Toda animação precisa parecer polida: entrada com propósito, hover/tap legível e ritmo coerente.
+
 ## Tipografia Escrita
 
 - **LEIA o /make-interfaces-feel-better.md** para entender os princípios.

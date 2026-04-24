@@ -24,6 +24,7 @@ O projeto usa `@vueuse/motion` como padrao de animacao. **Prioridade: efeitos cr
 4. **Desempenho:** priorizar `transform` e `opacity`; evitar animar `width`, `height`, `left` e `top`.
 5. **Stagger com intencao:** usar delays curtos (~80-100ms) para criar cascata de leitura.
 6. **Reduced motion:** sempre `@media (prefers-reduced-motion: reduce)` em tudo que anima.
+7. **Sem loading bloqueante na entrada:** a aplicacao deve abrir direto no conteudo; evite overlays de loading que travem a experiencia inicial.
 
 ---
 
