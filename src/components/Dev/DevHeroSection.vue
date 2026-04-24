@@ -420,7 +420,6 @@ watch(roleText, () => {
               <div class="rounded-2xl border border-white/6 bg-white/3 p-4">
                 <p class="text-[11px] uppercase tracking-[0.24em] text-fg-muted">current role</p>
                 <p class="mt-2 text-sm text-fg">{{ t('devProfile.jobTitle') }}</p>
-                <p class="mt-1 text-xs text-fg-muted">{{ t('devProfile.jobCompany') }}</p>
               </div>
 
               <div class="rounded-2xl border border-white/6 bg-white/3 p-4">

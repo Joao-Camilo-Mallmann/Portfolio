@@ -80,6 +80,9 @@ export default {
   devProjects: {
     mainTitle: 'Principais Projetos',
     subtitle: 'Alguns dos meus trabalhos mais relevantes',
+    relevantBadge: 'Projetos em Destaque',
+    primaryFeatured: 'Projeto Principal',
+    relevantFeatured: 'Mais Relevante',
     thisPortfolio: 'Este Portfólio',
     public: 'Público',
     private: 'Privado',
@@ -110,12 +113,23 @@ export default {
     project5Alt: 'Ícone do Dashboard Industrial',
     project5Desc:
       'Solução full stack para monitoramento em tempo real de máquina industrial com simulação assíncrona, painéis React e API REST NodeJS robusta. Inclui SQLite embutido e Tailwind CSS v4.',
+    moreProjectsHint: 'Quer ver mais projetos completos, experimentos e cases reais?',
+    moreProjectsCta: 'Ver Mais Projetos no GitHub',
   },
 
   // Dev Stack
   devStack: {
     title: 'Stack Tecnológico',
     subtitle: 'Principais tecnologias que utilizo no desenvolvimento',
-    databases: 'Bancos de Dados',
+    categories: {
+      core: 'Core & Linguagens',
+      frontend: 'Ecossistema Frontend',
+      design: 'UI & Design Systems',
+      backend: 'Runtime & Backend',
+      devops: 'DevOps & Cloud',
+      databases: 'Bancos de Dados',
+      testing: 'Testes & Qualidade',
+      aiTools: 'AI & Ferramentas',
+    },
   },
 }

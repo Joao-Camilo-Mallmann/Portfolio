@@ -65,11 +65,6 @@ useHead({
       <dev-profile-card />
     </section>
 
-    <!-- Stack Tecnológico -->
-    <section v-motion-scroll-visible class="max-w-6xl mx-auto px-4 mb-32" :delay="100">
-      <dev-stack-section />
-    </section>
-
     <!-- Projetos -->
     <section
       id="projects"
@@ -79,6 +74,11 @@ useHead({
       :delay="100"
     >
       <dev-projects-section />
+    </section>
+
+    <!-- Stack Tecnológico -->
+    <section v-motion-scroll-visible class="max-w-6xl mx-auto px-4 mb-32" :delay="100">
+      <dev-stack-section />
     </section>
 
     <!-- Fun text -->
