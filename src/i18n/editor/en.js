@@ -16,11 +16,20 @@ export default {
       'Professional audiovisual editing with Adobe Premiere Pro and After Effects.',
     portfolioHeading: 'Editing Portfolio',
     portfolioDescription: 'Professional audiovisual creation with',
+    leadIntro:
+      'If you want more retention, stronger authority, and better video performance, I turn your idea into content with rhythm, identity, and a clear focus on',
+    leadIntroHighlight: 'real business conversion.',
     and: 'and',
     playlistHeading: 'Video Playlist',
     toolsHeading: 'Work Tools',
+    thumbMakerHeading: 'Thumb Maker',
     skillsHeading: 'Skills and Experience',
     creativeChannelHeading: 'Creative Channel',
+    footerCtaTitle: 'Contact call to action',
+    footerCtaLead:
+      'Ready to level up your videos with strategic editing and high-impact thumbnails? Let’s talk and build a custom plan for',
+    footerCtaLeadHighlight: 'your next project.',
+    footerCtaButton: 'I want to turn my content into results',
     funText: 'Press',
     funHighlight: ' F5 or reload the page and watch the dots ballet!',
     funEnd: "They get so lost that even I don't know where they'll end up",
@@ -33,11 +42,37 @@ export default {
     tabTools: 'Tools',
     aboutTitle: 'Video Editor & Content Creator',
     aboutDescription:
-      'With over 3 years of experience, I transform ideas into impactful visual narratives. My passion is telling stories that captivate, engage and deliver results, using the best tools and techniques in the market.',
+      'With over 3 years of experience, I transform ideas into visual narratives that increase retention and strengthen brand positioning. I work with a creative performance mindset: right pacing, message clarity, and professional finishing.',
+    aboutLead:
+      'I handle the process from concept to final delivery so you can publish with confidence and consistency, without wasting time on rework.',
+    aboutLeadHighlight: 'You bring the vision, I bring the strategic execution.',
     skillEditing: 'Video Editing',
     skillColorGrading: 'Color Grading',
     skillStorytelling: 'Storytelling',
+    skillRetention: 'Pacing and Audience Retention',
+    skillStrategy: 'Creative Direction for Content',
     skillExperience: 'Experience (+3 Years)',
+  },
+
+  // Editor Thumb Maker
+  editorThumb: {
+    badge: 'Thumb Maker',
+    title: 'Thumbnails designed for clicks and positioning',
+    subtitle:
+      'It is not just about looking nice. Every thumbnail is planned to spark curiosity, reinforce your identity, and improve click-through rate in your niche.',
+    card1Title: 'High-impact concept',
+    card1Desc: 'Visual hook definition with fast readability to stand out in the feed.',
+    card2Title: 'Consistent visual identity',
+    card2Desc: 'Style aligned with your brand to build instant recognition on your channel.',
+    card3Title: 'Strategic variations',
+    card3Desc: 'Composition and hierarchy options to test angles and improve performance.',
+    sliderTitle: 'Thumb Playlist',
+    sliderSubtitle: 'A dedicated showcase to present thumbnail ideas in a slider format.',
+    prev: 'Previous',
+    next: 'Next',
+    ctaHint:
+      'I can deliver a single thumbnail or a recurring package with visual consistency and creative direction for',
+    ctaHighlight: 'your content calendar.',
   },
 
   // Editor YouTube Channel

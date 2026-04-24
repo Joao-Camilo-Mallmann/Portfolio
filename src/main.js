@@ -5,7 +5,6 @@ import { routes, scrollBehavior, setupRouterGuards } from './router'
 
 import { MotionPlugin } from '@vueuse/motion'
 
-import 'lenis/dist/lenis.css'
 import 'primeicons/primeicons.css'
 import './assets/main.css'
 

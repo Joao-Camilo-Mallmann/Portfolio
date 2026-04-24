@@ -109,74 +109,134 @@ const creativeProcess = computed(() => [
       </p>
     </div>
 
-    <timeline
-      v-if="!isMobile"
-      :value="creativeProcess"
-      align="alternate"
-      class="custom-timeline relative"
-    >
-      <template #marker="slotProps">
-        <span
-          v-motion
-          class="flex w-16 h-16 items-center justify-center text-fg rounded-full z-10 shadow-sm ring-1 ring-inset ring-white/5 transition-[transform,opacity] duration-300 cursor-pointer border-4 bg-surface-100"
-          :hovered="{ opacity: 0.9, scale: 1.05 }"
-          :tapped="{ opacity: 0.75, scale: 0.96 }"
-          :style="{
-            borderColor: slotProps.item.color,
-          }"
-        >
-          <i
-            :class="`pi ${slotProps.item.icon} text-3xl`"
-            :style="{ color: slotProps.item.color }"
-          ></i>
-        </span>
-      </template>
-      <template #content="slotProps">
-        <div
-          v-motion
-          class="shadow-sm ring-1 ring-inset ring-white/5 p-5 border border-border rounded-2xl h-full transition-[transform,opacity,border-color] duration-300 cursor-pointer text-left bg-surface-100/80"
-          :hovered="{ opacity: 0.95, y: -4 }"
-          :tapped="{ opacity: 0.8, y: 0 }"
-        >
-          <h3
-            class="text-2xl font-bold mb-3 text-balance tracking-wide"
-            :style="{ color: slotProps.item.color }"
-          >
-            {{ slotProps.item.title }}
-          </h3>
-          <p class="text-fg-muted leading-relaxed m-0 mb-4 tracking-wide">
-            {{ slotProps.item.description }}
-          </p>
-          <ul class="list-none p-0 m-0 space-y-3">
-            <li v-for="(detail, i) in slotProps.item.details" :key="i" class="flex items-center">
-              <i
-                :class="`pi ${detail.icon} mr-3 text-lg`"
-                :style="{ color: slotProps.item.color }"
-              ></i>
-              <span class="text-fg-muted tracking-wide">{{ detail.text }}</span>
-            </li>
-          </ul>
+    <div v-if="!isMobile" class="relative mx-auto max-w-6xl">
+      <div
+        aria-hidden="true"
+        class="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-border/70 lg:block"
+      ></div>
 
-          <div v-if="slotProps.item.software?.length" class="mt-4 pt-4 border-t border-border/70">
-            <div class="flex flex-wrap gap-2">
-              <div
-                v-for="software in slotProps.item.software"
-                :key="software.name"
-                class="flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-border bg-black/20"
+      <div
+        v-for="(item, index) in creativeProcess"
+        :key="item.title"
+        class="relative mb-7 last:mb-0"
+      >
+        <div class="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-start lg:gap-6">
+          <div class="min-h-1">
+            <div
+              v-if="index % 2 === 0"
+              v-motion
+              :initial="{ opacity: 0, x: -24 }"
+              :visible-once="{
+                opacity: 1,
+                x: 0,
+                transition: { type: 'spring', stiffness: 170, damping: 16 },
+              }"
+              class="shadow-sm ring-1 ring-inset ring-white/5 p-5 border border-border rounded-2xl h-full transition-[transform,opacity,border-color] duration-300 cursor-pointer text-left bg-surface-100/80"
+              :hovered="{ opacity: 0.95, y: -4 }"
+              :tapped="{ opacity: 0.8, y: 0 }"
+            >
+              <h3
+                class="text-2xl font-bold mb-3 text-balance tracking-wide"
+                :style="{ color: item.color }"
               >
-                <img
-                  :src="software.icon"
-                  :alt="software.name"
-                  class="w-4 h-4 rounded-sm object-cover"
-                  loading="lazy"
-                />
-                <span class="text-xs text-fg-muted tracking-wide">{{ software.name }}</span>
+                {{ item.title }}
+              </h3>
+              <p class="text-fg-muted leading-relaxed m-0 mb-4 tracking-wide">
+                {{ item.description }}
+              </p>
+              <ul class="list-none p-0 m-0 space-y-3">
+                <li v-for="(detail, i) in item.details" :key="i" class="flex items-center">
+                  <i :class="`pi ${detail.icon} mr-3 text-lg`" :style="{ color: item.color }"></i>
+                  <span class="text-fg-muted tracking-wide">{{ detail.text }}</span>
+                </li>
+              </ul>
+              <div v-if="item.software?.length" class="mt-4 pt-4 border-t border-border/70">
+                <div class="flex flex-wrap gap-2">
+                  <div
+                    v-for="software in item.software"
+                    :key="software.name"
+                    class="flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-border bg-black/20"
+                  >
+                    <img
+                      :src="software.icon"
+                      :alt="software.name"
+                      class="w-4 h-4 rounded-sm object-cover"
+                      loading="lazy"
+                    />
+                    <span class="text-xs text-fg-muted tracking-wide">{{ software.name }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <span
+            v-motion
+            :initial="{ opacity: 0, scale: 0.85 }"
+            :visible-once="{
+              opacity: 1,
+              scale: 1,
+              transition: { type: 'spring', stiffness: 220, damping: 15 },
+            }"
+            class="flex w-16 h-16 items-center justify-center text-fg rounded-full z-10 shadow-sm ring-1 ring-inset ring-white/5 transition-[transform,opacity] duration-300 cursor-pointer border-4 bg-surface-100"
+            :hovered="{ opacity: 0.9, scale: 1.05 }"
+            :tapped="{ opacity: 0.75, scale: 0.96 }"
+            :style="{ borderColor: item.color }"
+          >
+            <i :class="`pi ${item.icon} text-3xl`" :style="{ color: item.color }"></i>
+          </span>
+
+          <div class="min-h-1">
+            <div
+              v-if="index % 2 === 1"
+              v-motion
+              :initial="{ opacity: 0, x: 24 }"
+              :visible-once="{
+                opacity: 1,
+                x: 0,
+                transition: { type: 'spring', stiffness: 170, damping: 16 },
+              }"
+              class="shadow-sm ring-1 ring-inset ring-white/5 p-5 border border-border rounded-2xl h-full transition-[transform,opacity,border-color] duration-300 cursor-pointer text-left bg-surface-100/80"
+              :hovered="{ opacity: 0.95, y: -4 }"
+              :tapped="{ opacity: 0.8, y: 0 }"
+            >
+              <h3
+                class="text-2xl font-bold mb-3 text-balance tracking-wide"
+                :style="{ color: item.color }"
+              >
+                {{ item.title }}
+              </h3>
+              <p class="text-fg-muted leading-relaxed m-0 mb-4 tracking-wide">
+                {{ item.description }}
+              </p>
+              <ul class="list-none p-0 m-0 space-y-3">
+                <li v-for="(detail, i) in item.details" :key="i" class="flex items-center">
+                  <i :class="`pi ${detail.icon} mr-3 text-lg`" :style="{ color: item.color }"></i>
+                  <span class="text-fg-muted tracking-wide">{{ detail.text }}</span>
+                </li>
+              </ul>
+              <div v-if="item.software?.length" class="mt-4 pt-4 border-t border-border/70">
+                <div class="flex flex-wrap gap-2">
+                  <div
+                    v-for="software in item.software"
+                    :key="software.name"
+                    class="flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-border bg-black/20"
+                  >
+                    <img
+                      :src="software.icon"
+                      :alt="software.name"
+                      class="w-4 h-4 rounded-sm object-cover"
+                      loading="lazy"
+                    />
+                    <span class="text-xs text-fg-muted tracking-wide">{{ software.name }}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </template>
-    </timeline>
+      </div>
+    </div>
 
     <div class="block lg:hidden space-y-6">
       <div
@@ -255,10 +315,6 @@ const creativeProcess = computed(() => [
 </template>
 
 <style scoped>
-.custom-timeline :deep(.p-timeline-event-connector) {
-  background: color-mix(in srgb, var(--color-border) 80%, transparent);
-}
-
 .mobile-expand-enter-active,
 .mobile-expand-leave-active {
   transition:
