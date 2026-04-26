@@ -8,19 +8,22 @@ const activeThumb = ref(0)
 
 const thumbPlaylist = [
   {
-    title: 'Thumb - Storytelling Emocional',
-    image: 'https://i.ytimg.com/vi/Ml0e7RQDI-M/maxresdefault.jpg',
-    fallback: 'https://i.ytimg.com/vi/Ml0e7RQDI-M/hqdefault.jpg',
+    title: 'VOCÊ tem até 2030, antes de se arrepender...',
+    image: 'https://i.ytimg.com/vi/UptGuUMaYMs/maxresdefault.jpg',
+    fallback: 'https://i.ytimg.com/vi/UptGuUMaYMs/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=UptGuUMaYMs',
   },
   {
-    title: 'Thumb - Conteudo Relacionamento',
-    image: 'https://i.ytimg.com/vi/ZMThOw1ItTk/maxresdefault.jpg',
-    fallback: 'https://i.ytimg.com/vi/ZMThOw1ItTk/hqdefault.jpg',
+    title: 'Você Ama… Mas Talvez Na Linguagem Errada',
+    image: 'https://i.ytimg.com/vi/s7bjysMoHYQ/maxresdefault.jpg',
+    fallback: 'https://i.ytimg.com/vi/s7bjysMoHYQ/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=s7bjysMoHYQ',
   },
   {
-    title: 'Thumb - Video Gamer',
-    image: 'https://i.ytimg.com/vi/aMDvPpkbHxg/maxresdefault.jpg',
-    fallback: 'https://i.ytimg.com/vi/aMDvPpkbHxg/hqdefault.jpg',
+    title: 'Por que Você Já Tem TUDO para Ser Feliz',
+    image: 'https://i.ytimg.com/vi/q2kZZujRofs/maxresdefault.jpg',
+    fallback: 'https://i.ytimg.com/vi/q2kZZujRofs/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=q2kZZujRofs',
   },
 ]
 
@@ -156,23 +159,39 @@ const handleThumbError = (event, fallback) => {
           class="overflow-hidden rounded-2xl border border-border bg-surface-100/70 ring-1 ring-inset ring-white/5"
         >
           <transition name="thumb-fade" mode="out-in">
-            <div :key="currentThumb.title" class="relative aspect-video w-full">
+            <a
+              :key="currentThumb.title"
+              :href="currentThumb.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group/thumb relative block aspect-video w-full"
+              :aria-label="currentThumb.title"
+            >
               <img
                 :src="currentThumb.image"
                 :alt="currentThumb.title"
-                class="h-full w-full object-cover"
+                class="h-full w-full object-cover transition-transform duration-300 group-hover/thumb:scale-[1.02]"
                 loading="lazy"
                 @error="handleThumbError($event, currentThumb.fallback)"
               />
               <div
                 class="absolute inset-0 bg-linear-to-t from-black/65 via-black/10 to-transparent"
               ></div>
+              <div
+                class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover/thumb:opacity-100"
+              >
+                <div
+                  class="flex h-14 w-14 items-center justify-center rounded-full bg-black/60 ring-2 ring-white/30 backdrop-blur-sm"
+                >
+                  <i class="pi pi-play text-xl text-white" />
+                </div>
+              </div>
               <div class="absolute bottom-0 left-0 right-0 p-4 md:p-6">
                 <p class="text-sm font-semibold tracking-wide text-white/95 md:text-base">
                   {{ currentThumb.title }}
                 </p>
               </div>
-            </div>
+            </a>
           </transition>
         </div>
 

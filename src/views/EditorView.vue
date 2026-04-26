@@ -77,8 +77,8 @@ useHead({
         aria-labelledby="portfolio-heading"
       >
         <h1
-          v-motion-scroll-visible
           id="portfolio-heading"
+          v-motion-scroll-visible
           class="text-3xl md:text-6xl font-extrabold text-fg mb-6 drop-shadow-lg"
           :delay="80"
         >
@@ -114,8 +114,8 @@ useHead({
       </section>
 
       <!-- ThumbMaker + CardDetails lado a lado em lg+ -->
-      <div class="mx-auto mt-12 max-w-7xl px-4">
-        <div class="grid grid-cols-1 gap-6 lg:grid-cols-5">
+      <div class="mx-auto mt-12 max-w-7xl px-4 pb-8 md:pb-10">
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-5 lg:items-start">
           <section
             v-motion-scroll-visible
             class="lg:col-span-3"
