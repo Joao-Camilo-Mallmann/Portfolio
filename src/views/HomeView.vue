@@ -161,21 +161,24 @@ function goToPage(path) {
         <div class="card-float">
           <article
             v-motion
-            :initial="{ opacity: 0, x: -50, rotate: -3 }"
+            :initial="{ opacity: 0, x: -60, y: 16, rotate: -4, scale: 0.97 }"
             :visible-once="{
               opacity: 1,
               x: 0,
+              y: 0,
               rotate: 0,
-              transition: { type: 'spring', stiffness: 120, damping: 14 },
+              scale: 1,
+              transition: { type: 'spring', stiffness: 80, damping: 18, mass: 1.1 },
             }"
             :hovered="{
-              y: -6,
-              scale: 1.01,
-              transition: { type: 'keyframes', ease: [0.2, 0, 0, 1], duration: 220 },
+              y: -8,
+              scale: 1.015,
+              transition: { type: 'spring', stiffness: 260, damping: 22 },
             }"
             :tapped="{
-              scale: 0.98,
-              transition: { type: 'keyframes', duration: 140 },
+              scale: 0.97,
+              y: 2,
+              transition: { type: 'spring', stiffness: 400, damping: 28 },
             }"
             class="cursor-pointer"
           >
@@ -211,21 +214,24 @@ function goToPage(path) {
         <div class="card-float-alt">
           <article
             v-motion
-            :initial="{ opacity: 0, x: 50, rotate: 3 }"
+            :initial="{ opacity: 0, x: 60, y: 16, rotate: 4, scale: 0.97 }"
             :visible-once="{
               opacity: 1,
               x: 0,
+              y: 0,
               rotate: 0,
-              transition: { type: 'spring', stiffness: 120, damping: 14, delay: 120 },
+              scale: 1,
+              transition: { type: 'spring', stiffness: 80, damping: 18, mass: 1.1, delay: 140 },
             }"
             :hovered="{
-              y: -6,
-              scale: 1.01,
-              transition: { type: 'keyframes', ease: [0.2, 0, 0, 1], duration: 220 },
+              y: -8,
+              scale: 1.015,
+              transition: { type: 'spring', stiffness: 260, damping: 22 },
             }"
             :tapped="{
-              scale: 0.98,
-              transition: { type: 'keyframes', duration: 140 },
+              scale: 0.97,
+              y: 2,
+              transition: { type: 'spring', stiffness: 400, damping: 28 },
             }"
             class="cursor-pointer"
           >
