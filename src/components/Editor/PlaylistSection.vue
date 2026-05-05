@@ -181,13 +181,87 @@ watch(totalVideos, (count) => {
         </p>
       </div>
 
-      <div v-if="loading" class="flex justify-center items-center py-32">
-        <div class="flex flex-col items-center gap-3 text-fg-muted tracking-wide">
-          <div class="relative w-4 h-4">
-            <div class="absolute inset-0 rounded-full bg-editor/35 animate-ping"></div>
-            <div class="relative w-4 h-4 rounded-full bg-editor"></div>
+      <div v-if="loading" class="playlist-skeleton" aria-busy="true" aria-label="Loading playlist">
+        <div
+          class="rounded-2xl overflow-hidden ring-1 ring-inset ring-white/5 border border-border bg-surface-100"
+        >
+          <!-- Video player skeleton -->
+          <div class="relative aspect-video bg-white/3 overflow-hidden">
+            <div class="skeleton-shimmer"></div>
+
+            <!-- Fake play button -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div
+                class="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white/4 flex items-center justify-center"
+              >
+                <svg
+                  class="w-10 h-10 md:w-14 md:h-14 text-white/6 ml-1 md:ml-2"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Fake counter badge -->
+            <div class="absolute top-4 left-4 w-16 h-8 rounded-full bg-white/4"></div>
+
+            <!-- Fake YouTube badge -->
+            <div class="absolute top-4 right-4 w-24 h-8 rounded-full bg-white/4"></div>
           </div>
-          <p>{{ t('loading') }}</p>
+
+          <!-- Info area skeleton -->
+          <div class="p-6 md:p-8">
+            <!-- Title skeleton -->
+            <div class="mb-3 space-y-2">
+              <div class="relative h-6 w-3/4 rounded-lg bg-white/4 overflow-hidden">
+                <div class="skeleton-shimmer"></div>
+              </div>
+              <div class="relative h-6 w-1/2 rounded-lg bg-white/4 overflow-hidden">
+                <div class="skeleton-shimmer" style="animation-delay: 0.15s"></div>
+              </div>
+            </div>
+
+            <!-- Progress bar skeleton -->
+            <div class="relative w-full h-1.5 rounded-full bg-white/4 mb-6 overflow-hidden">
+              <div class="skeleton-shimmer"></div>
+            </div>
+
+            <!-- Controls skeleton -->
+            <div class="flex items-center justify-between gap-4">
+              <div class="relative h-12 w-28 rounded-full bg-white/4 overflow-hidden">
+                <div class="skeleton-shimmer" style="animation-delay: 0.05s"></div>
+              </div>
+              <div class="relative flex-1 max-w-xs h-14 rounded-full bg-editor/8 overflow-hidden">
+                <div class="skeleton-shimmer" style="animation-delay: 0.1s"></div>
+              </div>
+              <div class="relative h-12 w-28 rounded-full bg-white/4 overflow-hidden">
+                <div class="skeleton-shimmer" style="animation-delay: 0.15s"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dot indicators skeleton -->
+        <div class="flex justify-center gap-2 mt-8">
+          <div
+            v-for="n in 5"
+            :key="`skel-dot-${n}`"
+            class="rounded-full bg-white/4"
+            :class="n === 1 ? 'w-10 h-3' : 'w-3 h-3'"
+          ></div>
+        </div>
+
+        <!-- Thumbnail strip skeleton -->
+        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5 mt-8">
+          <div
+            v-for="n in 6"
+            :key="`skel-thumb-${n}`"
+            class="relative rounded-xl border border-border ring-1 ring-inset ring-white/5 h-16 bg-white/3 overflow-hidden"
+          >
+            <div class="skeleton-shimmer" :style="{ animationDelay: `${n * 0.08}s` }"></div>
+          </div>
         </div>
       </div>
 
@@ -437,5 +511,53 @@ watch(totalVideos, (count) => {
 .modal-fade-enter-from,
 .modal-fade-leave-to {
   opacity: 0;
+}
+
+/* — Skeleton Loading — */
+.playlist-skeleton {
+  animation: skeleton-pulse 2s ease-in-out infinite;
+}
+
+.skeleton-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.04) 60%,
+    transparent 100%
+  );
+  animation: shimmer-sweep 1.8s ease-in-out infinite;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 </style>
