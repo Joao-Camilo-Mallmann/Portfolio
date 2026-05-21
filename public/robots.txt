@@ -9,6 +9,7 @@ Allow: /assets/
 
 # Evitar indexar arquivos desnecessários
 Disallow: /404.html
+Disallow: /*?s=
 
 # Crawl delay para ser gentil com o servidor
 Crawl-delay: 1
