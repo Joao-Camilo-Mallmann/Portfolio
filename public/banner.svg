@@ -1,0 +1,162 @@
+<svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4d91ea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#eaa64d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="scanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4d91ea;stop-opacity:0" />
+      <stop offset="50%" style="stop-color:#4d91ea;stop-opacity:0.12" />
+      <stop offset="100%" style="stop-color:#4d91ea;stop-opacity:0" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    @keyframes glitch1 {
+      0%, 100% { transform: translate(0, 0); opacity: 1; }
+      20% { transform: translate(-2px, 1px); opacity: 0.8; }
+      40% { transform: translate(2px, -1px); opacity: 0.9; }
+      60% { transform: translate(-1px, 2px); opacity: 0.85; }
+      80% { transform: translate(1px, -2px); opacity: 0.95; }
+    }
+    @keyframes glitch2 {
+      0%, 100% { transform: translate(0, 0); clip-path: none; }
+      25% { transform: translate(3px, 0); clip-path: inset(10% 0 60% 0); }
+      50% { transform: translate(-3px, 0); clip-path: inset(40% 0 20% 0); }
+      75% { transform: translate(2px, 0); clip-path: inset(60% 0 5% 0); }
+    }
+    @keyframes scanline {
+      0% { transform: translateY(-200px); }
+      100% { transform: translateY(200px); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+    }
+    @keyframes lineDraw {
+      0% { stroke-dashoffset: 800; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .bg { fill: #0d1117; }
+    .grid-line { stroke: #1a2332; stroke-width: 0.5; }
+    .grid-pulse { animation: pulse 4s ease-in-out infinite; }
+    .main-text {
+      font-family: 'Courier New', 'Fira Code', monospace;
+      font-size: 42px;
+      font-weight: 700;
+      fill: #f0f6fc;
+      filter: url(#glow);
+    }
+    .glitch-layer {
+      font-family: 'Courier New', 'Fira Code', monospace;
+      font-size: 42px;
+      font-weight: 700;
+    }
+    .glitch-blue {
+      fill: #4d91ea;
+      animation: glitch1 3s ease-in-out infinite;
+      opacity: 0.6;
+    }
+    .glitch-orange {
+      fill: #eaa64d;
+      animation: glitch2 3s ease-in-out infinite 0.1s;
+      opacity: 0.5;
+    }
+    .sub-text {
+      font-family: 'Courier New', 'Fira Code', monospace;
+      font-size: 16px;
+      fill: #8b949e;
+      animation: fadeIn 2s ease forwards;
+    }
+    .accent-line {
+      stroke: url(#grad);
+      stroke-width: 2;
+      stroke-dasharray: 800;
+      animation: lineDraw 3s ease forwards;
+    }
+    .scanline-bar {
+      animation: scanline 4s linear infinite;
+    }
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
+      fill: #4d91ea;
+    }
+    .corner-bracket {
+      stroke: #4d91ea;
+      stroke-width: 1.5;
+      fill: none;
+      opacity: 0.5;
+    }
+    .dot-accent {
+      fill: #eaa64d;
+      opacity: 0.6;
+      animation: pulse 3s ease-in-out infinite;
+    }
+  </style>
+
+  <!-- Background -->
+  <rect width="900" height="200" class="bg"/>
+
+  <!-- Grid -->
+  <g class="grid-pulse">
+    <line x1="0" y1="40" x2="900" y2="40" class="grid-line"/>
+    <line x1="0" y1="80" x2="900" y2="80" class="grid-line"/>
+    <line x1="0" y1="120" x2="900" y2="120" class="grid-line"/>
+    <line x1="0" y1="160" x2="900" y2="160" class="grid-line"/>
+    <line x1="150" y1="0" x2="150" y2="200" class="grid-line"/>
+    <line x1="300" y1="0" x2="300" y2="200" class="grid-line"/>
+    <line x1="450" y1="0" x2="450" y2="200" class="grid-line"/>
+    <line x1="600" y1="0" x2="600" y2="200" class="grid-line"/>
+    <line x1="750" y1="0" x2="750" y2="200" class="grid-line"/>
+  </g>
+
+  <!-- Scan line -->
+  <rect x="0" y="0" width="900" height="60" fill="url(#scanGrad)" class="scanline-bar"/>
+
+  <!-- Corner brackets -->
+  <polyline points="20,20 20,40" class="corner-bracket"/>
+  <polyline points="20,20 40,20" class="corner-bracket"/>
+  <polyline points="880,20 880,40" class="corner-bracket"/>
+  <polyline points="860,20 880,20" class="corner-bracket"/>
+  <polyline points="20,180 20,160" class="corner-bracket"/>
+  <polyline points="20,180 40,180" class="corner-bracket"/>
+  <polyline points="880,180 880,160" class="corner-bracket"/>
+  <polyline points="860,180 880,180" class="corner-bracket"/>
+
+  <!-- Accent dots -->
+  <circle cx="45" cy="20" r="2" class="dot-accent"/>
+  <circle cx="855" cy="180" r="2" class="dot-accent"/>
+
+  <!-- Glitch layers -->
+  <text x="450" y="95" text-anchor="middle" class="glitch-layer glitch-blue">J.C // FULL STACK DEV</text>
+  <text x="450" y="95" text-anchor="middle" class="glitch-layer glitch-orange">J.C // FULL STACK DEV</text>
+
+  <!-- Main text -->
+  <text x="450" y="95" text-anchor="middle" class="main-text">J.C // FULL STACK DEV</text>
+
+  <!-- Gradient line -->
+  <line x1="180" y1="115" x2="720" y2="115" class="accent-line"/>
+
+  <!-- Subtitle -->
+  <text x="450" y="145" text-anchor="middle" class="sub-text">
+    <tspan>$ whoami → frontend_specialist | backend_confident</tspan>
+  </text>
+
+  <!-- Blinking cursor -->
+  <rect x="718" y="133" width="8" height="14" class="cursor-blink"/>
+</svg>
