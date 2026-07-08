@@ -76,7 +76,7 @@ function goToPage(path) {
     >
       <header class="profile-container">
         <img
-          src="https://avatars.githubusercontent.com/u/94570639"
+          src="/img/eu.jpg"
           alt="Foto de perfil de João Camilo Mallmann"
           class="profile-image w-40 h-40 object-cover rounded-full shadow-xl border-4 border-black"
         />

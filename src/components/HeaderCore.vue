@@ -53,7 +53,7 @@ onUnmounted(() => {
         >
           <img
             v-motion
-            src="https://avatars.githubusercontent.com/u/94570639"
+            src="/img/eu.jpg"
             alt="João Camilo"
             :hovered="{ scale: 1.03, transition: { type: 'spring', stiffness: 300, damping: 20 } }"
             :tapped="{ scale: 0.97 }"
