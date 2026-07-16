@@ -1,5 +1,5 @@
 <script setup>
-import { useI18n } from '@/composables/useI18n'
+import { useI18n } from '@/composables/useI18n';
 
 const { t } = useI18n()
 
@@ -43,7 +43,7 @@ const tasks = ['jobTask1', 'jobTask2', 'jobTask3', 'jobTask4', 'jobTask5']
       :enter="{ opacity: 1, y: 0, transition: { duration: 400, ease: [0.16, 1, 0.3, 1] } }"
     >
       <h2
-        class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent text-balance"
+        class="text-3xl font-bold mb-3 flex items-center justify-center gap-3 pt-5 bg-linear-to-r from-dev via-blue-400 to-blue-200 bg-clip-text text-transparent text-balance"
       >
         <i class="pi pi-user text-dev text-2xl"></i>
         {{ t('devProfile.experienceTitle') }}
