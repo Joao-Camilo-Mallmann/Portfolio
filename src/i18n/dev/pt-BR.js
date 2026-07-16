@@ -113,6 +113,10 @@ export default {
     project5Alt: 'Ícone do Dashboard Industrial',
     project5Desc:
       'Solução full stack para monitoramento em tempo real de máquina industrial com simulação assíncrona, painéis React e API REST NodeJS robusta. Inclui SQLite embutido e Tailwind CSS v4.',
+    project6Title: 'Better Rich Presence 🎮',
+    project6Alt: 'Screenshot do Better Rich Presence',
+    project6Desc:
+      'Aplicativo desktop para automação de Discord Rich Presence. Detecta a janela ativa em segundo plano usando APIs nativas do Windows via Rust/Tauri e atualiza seu status no Discord em tempo real com baixo consumo de recursos.',
     moreProjectsHint: 'Quer ver mais projetos completos, experimentos e cases reais?',
     moreProjectsCta: 'Ver Mais Projetos no GitHub',
   },

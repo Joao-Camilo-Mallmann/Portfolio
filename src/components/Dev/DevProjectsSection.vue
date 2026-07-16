@@ -68,6 +68,7 @@ const projects = computed(() => [
       },
     ],
   },
+
   {
     title: t('devProjects.project2Title'),
     image: '/img/destinos.png',
@@ -95,6 +96,37 @@ const projects = computed(() => [
         label: t('devProjects.code'),
         icon: 'pi pi-github',
         url: 'https://github.com/JoaoCamiloMallmann/back',
+        type: 'secondary',
+      },
+    ],
+  },
+  {
+    title: t('devProjects.project6Title'),
+    image: '/img/brpd.png',
+    imageAlt: t('devProjects.project6Alt'),
+    description: t('devProjects.project6Desc'),
+    statusType: 'public',
+    devStatusType: 'completed',
+    featuredLevel: 'primary',
+    year: 2026,
+    colors: { from: '#5865f2', to: '#404eed' },
+    tags: [
+      { label: 'Tauri', color: '#2496ed' },
+      { label: 'React.js', color: '#61dafb' },
+      { label: 'Rust', color: '#e05d44' },
+      { label: 'Tailwind v4', color: '#06b6d4' },
+    ],
+    links: [
+      {
+        label: t('devProjects.viewSite'),
+        icon: 'pi pi-external-link',
+        url: 'https://better-discord-rich-presence.netlify.app/',
+        type: 'primary',
+      },
+      {
+        label: t('devProjects.code'),
+        icon: 'pi pi-github',
+        url: 'https://github.com/Joao-Camilo-Mallmann/Better-Rich-Presence-For-Discord',
         type: 'secondary',
       },
     ],

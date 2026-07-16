@@ -70,7 +70,7 @@ useHead({
       id="projects"
       v-motion-scroll-visible
       aria-labelledby="projects-heading"
-      class="max-w-5xl mx-auto px-4 mb-32"
+      class="max-w-7xl mx-auto px-4 mb-32"
       :delay="100"
     >
       <dev-projects-section />
