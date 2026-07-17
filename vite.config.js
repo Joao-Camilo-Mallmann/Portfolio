@@ -11,7 +11,7 @@ export default defineConfig({
     vue(),
     tailwindcss(),
     vueDevTools({
-      launchEditor: 'antigravity-ide',
+      launchEditor: 'code',
     }),
   ],
   resolve: {

@@ -18,15 +18,19 @@ description: Regras de estilização com Tailwind CSS v4 e sistema de cores sem�
 - As cores primárias são definidas no `main.css` usando a diretiva `@theme` do Tailwind CSS v4:
   - `--color-dev: #4d91ea` (azul para portfólio de Desenvolvedor)
   - `--color-editor: #eaa64d` (laranja para portfólio de Editor)
+  - `--color-obsidian: #07080a` (cor de fundo brushed obsidian)
+  - `--color-magenta: #d946ef` (acentos de telemetria cyberpunk)
+  - `--color-cyan-glow: #06b6d4` (linhas e anéis de projeção holográfica)
 - **IMPORTANTE:** Não existe mais o arquivo `tailwind.config.js` - toda configuração é feita via CSS usando `@theme`
 
 ### Classes de Cores e Superfície Permitidas
 
 - **Desenvolvedor:** `text-dev`, `bg-dev`, `border-dev`, `hover:text-dev`, `group-hover:text-dev`, etc.
 - **Editor:** `text-editor`, `bg-editor`, `border-editor`, `hover:text-editor`, `group-hover:text-editor`, etc.
+- **Console & Holograma:** `text-obsidian`, `bg-obsidian`, `text-magenta`, `text-cyan-glow`, `border-cyan-glow/30`, etc.
 - **Variações de Opacidade:** `bg-dev/20`, `border-editor/50`, `text-dev/80`, etc.
 - **Superfícies semânticas:** `, `, `border-border`, `text-fg`, `text-fg-muted`.
-- **CSS Variables:** Para uso em JavaScript ou CSS inline: `var(--color-dev)`, `var(--color-editor)`
+- **CSS Variables:** Para uso em JavaScript ou CSS inline: `var(--color-dev)`, `var(--color-editor)`, `var(--color-obsidian)`, `var(--color-magenta)`, `var(--color-cyan-glow)`
 
 ### Regras de Cores
 
