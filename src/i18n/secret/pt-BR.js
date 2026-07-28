@@ -56,8 +56,9 @@ export default {
     resultDesc2:
       '> Esta demonstração interativa valida capacidades de identificação de renderizador, concorrência de hardware e métricas de tela.',
     resultDesc3:
-      '> Em conformidade com boas práticas de desenvolvimento e privacidade (LGPD), nenhum dado do cliente é mantido ou enviado a servidores externos.',
-    resultNote: '// Ambiente estritamente simulado em tempo de execução no cliente.',
+      '> Transmissão criptografada concluída: seus dados sintéticos de tela e IP foram enviados com sucesso para um servidor de hackers russos na Sibéria.',
+    resultNote:
+      '// Fique tranquilo: ambiente 100% simulado no cliente e nenhum dado real saiu do seu navegador (ou será que saiu? 🇷🇺👀).',
     btnReturn: 'Retornar à página inicial',
   },
 }

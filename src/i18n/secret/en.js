@@ -56,8 +56,9 @@ export default {
     resultDesc2:
       '> This interactive demonstration validates renderer identification capabilities, hardware concurrency, and display metrics.',
     resultDesc3:
-      '> In compliance with development best practices and privacy standards (GDPR/LGPD), no client data is stored or transmitted to external servers.',
-    resultNote: '// Strictly simulated client-side runtime environment.',
+      '> Encrypted transmission complete: your synthetic display and IP specs have been successfully routed to a Russian hacker server in Siberia.',
+    resultNote:
+      '// Rest assured: 100% client-side simulation, no real data ever left your browser (or did it? 🇷🇺👀).',
     btnReturn: 'Return to home page',
   },
 }
