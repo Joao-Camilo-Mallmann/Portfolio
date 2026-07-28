@@ -18,6 +18,8 @@ export default {
     funAchievement: 'Achievement Unlocked:',
     funBadge: '"Visitante Corajoso" 😎',
     funPS: 'PS: Se encontrou algum bug, foi feature não documentada 🐛✨',
+    funKonamiHint:
+      '🎮 E se você usasse o Konami Code em qualquer lugar do site... seria legal ter um easter egg, né? 🤫',
     heroGreeting: 'Olá, eu sou',
     heroName: 'João Camilo',
     ctaProjects: 'Ver Projetos',

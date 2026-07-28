@@ -88,14 +88,11 @@ useHead({
       role="note"
       :delay="100"
     >
-      {{ t('dev.funText') }}
-      <span class="text-dev font-semibold">{{ t('dev.funAchievement') }}</span>
-      {{ t('dev.funBadge') }} <br />
+      <span class="text-dev font-semibold">{{ t('dev.funKonamiHint') }}</span>
       <span class="text-xs text-fg-muted mt-1 block opacity-70">
         {{ t('dev.funPS') }}
       </span>
     </p>
-
     <!-- Rodapé -->
     <footer-contact primary-color="#4d91ea" :cta-text="t('footer.ctaDefault')" />
   </main>
