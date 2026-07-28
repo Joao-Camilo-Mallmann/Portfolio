@@ -39,17 +39,16 @@ export const scrollBehavior = () => {
 // Configuração de navegação (aplicada apenas no cliente)
 export const setupRouterGuards = (router) => {
   // Exemplo de lógica global antes de cada navegação
-  router.beforeEach((to, from, next) => {
+  router.beforeEach((to, from) => {
     // Força a navegação mesmo para a mesma rota (Vue Router 4.2+)
     if (to.fullPath === from.fullPath && to.fullPath !== '/') {
       // Força reload do componente
-      next(false)
       setTimeout(() => {
         router.replace({ path: to.fullPath, query: { reload: Date.now() } })
       }, 0)
-    } else {
-      next()
+      return false
     }
+    return
   })
 }
 

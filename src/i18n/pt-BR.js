@@ -3,6 +3,7 @@
 import ptBRDev from './dev/pt-BR.js'
 import ptBREditor from './editor/pt-BR.js'
 import ptBRHome from './home/pt-BR.js'
+import ptBRSecret from './secret/pt-BR.js'
 
 export default {
   // Seções compartilhadas (footer, social, seo, header, loading)
@@ -49,4 +50,5 @@ export default {
   ...ptBRHome,
   ...ptBRDev,
   ...ptBREditor,
+  ...ptBRSecret,
 }

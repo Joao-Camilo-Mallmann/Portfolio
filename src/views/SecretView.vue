@@ -1,6 +1,11 @@
 <script setup>
 import { useHead } from '@unhead/vue'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useI18n } from '@/composables/useI18n'
+
+const router = useRouter()
+const { t } = useI18n()
 
 const terminalLines = ref([])
 const showConsent = ref(false)
@@ -8,12 +13,12 @@ const showResult = ref(false)
 const fakeIp = ref('')
 
 useHead({
-  title: '???',
+  title: computed(() => t('secret.seoTitle')),
   meta: [{ name: 'robots', content: 'noindex, nofollow' }],
   link: [
     {
       rel: 'icon',
-      href: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❓</text></svg>',
+      href: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>',
     },
   ],
 })
@@ -27,34 +32,34 @@ const getRealData = () => {
   if (typeof navigator === 'undefined') return {}
 
   const ua = navigator.userAgent
-  let browser = 'Desconhecido'
+  let browser = t('secret.browserDefault')
 
-  if (/Edg/.test(ua)) browser = 'Microsoft Edge'
-  else if (/OPR|Opera/.test(ua)) browser = 'Opera'
-  else if (/Chrome/.test(ua)) browser = 'Google Chrome'
-  else if (/Firefox/.test(ua)) browser = 'Mozilla Firefox'
-  else if (/Safari/.test(ua) && !/Chrome/.test(ua)) browser = 'Safari'
+  if (/Edg/.test(ua)) browser = t('secret.browserEdge')
+  else if (/OPR|Opera/.test(ua)) browser = t('secret.browserOpera')
+  else if (/Chrome/.test(ua)) browser = t('secret.browserChrome')
+  else if (/Firefox/.test(ua)) browser = t('secret.browserFirefox')
+  else if (/Safari/.test(ua) && !/Chrome/.test(ua)) browser = t('secret.browserSafari')
 
-  let os = 'Desconhecido'
-  if (/Windows NT 10/.test(ua)) os = 'Windows 10/11'
-  else if (/Mac OS X/.test(ua)) os = 'macOS'
-  else if (/Linux/.test(ua)) os = 'Linux'
-  else if (/Android/.test(ua)) os = 'Android'
-  else if (/iPhone|iPad/.test(ua)) os = 'iOS'
+  let os = t('secret.osDefault')
+  if (/Windows NT 10/.test(ua)) os = t('secret.osWin')
+  else if (/Mac OS X/.test(ua)) os = t('secret.osMac')
+  else if (/Linux/.test(ua)) os = t('secret.osLinux')
+  else if (/Android/.test(ua)) os = t('secret.osAndroid')
+  else if (/iPhone|iPad/.test(ua)) os = t('secret.osIOS')
 
   return {
     browser,
     os,
-    lang: navigator.language || 'N/A',
-    tz: Intl.DateTimeFormat().resolvedOptions().timeZone || 'N/A',
-    res: `${screen.width}×${screen.height}`,
-    cores: navigator.hardwareConcurrency || '?',
-    touch: navigator.maxTouchPoints > 0 ? 'Sim' : 'Não',
-    online: navigator.onLine ? 'Online' : 'Offline',
+    lang: navigator.language || 'pt-BR',
+    tz: Intl.DateTimeFormat().resolvedOptions().timeZone || 'América/São_Paulo',
+    res: `${screen.width}×${screen.height} px`,
+    cores: `${navigator.hardwareConcurrency || 1} ${t('secret.coresUnit')}`,
+    touch: navigator.maxTouchPoints > 0 ? t('secret.touchYes') : t('secret.touchNo'),
+    online: navigator.onLine ? t('secret.statusOnline') : t('secret.statusOffline'),
   }
 }
 
-const typeLine = async (text, delay = 28) => {
+const typeLine = async (text, delay = 20) => {
   return new Promise((resolve) => {
     let currentText = ''
     let i = 0
@@ -82,27 +87,27 @@ onMounted(async () => {
   const d = getRealData()
 
   const sequence = [
-    { text: 'INICIALIZANDO PROTOCOLO SIGILOSO...' },
-    { text: 'ABRINDO CONSOLE RESTRITO...' },
-    { text: 'ATIVANDO MÓDULO DE INVESTIGAÇÃO...' },
-    { text: `[TRACE] IP detectado: ${fakeIp.value}`, cls: 'ok' },
-    { text: `[TRACE] Navegador: ${d.browser}`, cls: 'ok' },
-    { text: `[TRACE] Sistema: ${d.os}`, cls: 'ok' },
-    { text: `[TRACE] Idioma: ${d.lang}`, cls: 'ok' },
-    { text: `[TRACE] Fuso horário: ${d.tz}`, cls: 'ok' },
-    { text: `[TRACE] Resolução: ${d.res}`, cls: 'ok' },
-    { text: `[TRACE] Núcleos de CPU: ${d.cores}`, cls: 'warn' },
-    { text: `[TRACE] Toque: ${d.touch} | Rede: ${d.online}`, cls: 'warn' },
-    { text: '[SISTEMA] Preparando envio para bot externo...', cls: 'err' },
-    { text: '[SISTEMA] Aguardando autorização do usuário.', cls: 'err' },
+    { text: t('secret.seqInit') },
+    { text: t('secret.seqAnalysis') },
+    { text: t('secret.seqHardware') },
+    { text: `${t('secret.seqIp')} ${fakeIp.value}`, cls: 'ok' },
+    { text: `${t('secret.seqBrowser')} ${d.browser}`, cls: 'ok' },
+    { text: `${t('secret.seqOs')} ${d.os}`, cls: 'ok' },
+    { text: `${t('secret.seqLang')} ${d.lang}`, cls: 'ok' },
+    { text: `${t('secret.seqTz')} ${d.tz}`, cls: 'ok' },
+    { text: `${t('secret.seqRes')} ${d.res}`, cls: 'ok' },
+    { text: `${t('secret.seqCores')} ${d.cores}`, cls: 'warn' },
+    { text: `${t('secret.seqTouchInput')} ${d.touch} | ${t('secret.seqStatus')} ${d.online}`, cls: 'warn' },
+    { text: t('secret.seqIntegrity'), cls: 'ok' },
+    { text: t('secret.seqWaitingConsent'), cls: 'warn' },
   ]
 
   for (const line of sequence) {
-    await typeLine(line, 22)
-    await new Promise((r) => setTimeout(r, 160))
+    await typeLine(line, 15)
+    await new Promise((r) => setTimeout(r, 100))
   }
 
-  await new Promise((r) => setTimeout(r, 300))
+  await new Promise((r) => setTimeout(r, 200))
   showConsent.value = true
 })
 
@@ -116,111 +121,106 @@ const doDeny = () => {
   showResult.value = true
 }
 </script>
+
 <template>
   <main
-    class="page-transition relative isolate flex min-h-screen flex-col overflow-hidden bg-linear-to-b from-black via-zinc-950 to-black pt-8 sm:pt-10"
+    class="page-transition relative isolate flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black text-green-500 font-mono p-4 sm:p-8 selection:bg-green-500/30 selection:text-green-200"
   >
-    <section
-      class="relative z-10 flex flex-1 items-start justify-center px-4 pb-8 sm:px-6 sm:pb-10"
-    >
-      <card
-        class="w-full max-w-4xl rounded-2xl border border-violet-900/40 shadow-xl shadow-violet-950/30 backdrop-blur-md"
+    <!-- Grid Background -->
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(0,255,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,0,0.03)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)] pointer-events-none"></div>
+
+    <div class="relative z-10 w-full max-w-3xl border border-green-500/30 bg-black/90 p-4 sm:p-6 shadow-[0_0_20px_rgba(0,255,0,0.15)] backdrop-blur-md rounded-md">
+      <div class="mb-4 flex items-center justify-between border-b border-green-500/30 pb-2 text-xs opacity-70">
+        <span>{{ t('secret.promptUser') }}</span>
+        <span class="animate-pulse">_</span>
+      </div>
+
+      <!-- Terminal Lines -->
+      <div class="min-h-[220px] space-y-1.5 text-sm sm:text-base leading-relaxed tracking-wider">
+        <div
+          v-for="(line, index) in terminalLines"
+          :key="index"
+          :class="[
+            line.cls === 'ok' ? 'text-green-400' : 
+            line.cls === 'warn' ? 'text-yellow-400' : 
+            line.cls === 'err' ? 'text-red-500 font-bold' : 'text-green-500/80',
+          ]"
+        >
+          <span class="mr-2 opacity-50">$</span>
+          <span>{{ line.text }}</span><span v-if="line.loading" class="animate-pulse inline-block w-2 h-4 bg-green-500/80 ml-1 align-middle"></span>
+        </div>
+      </div>
+
+      <!-- Consent -->
+      <div
+        v-if="showConsent"
+        class="mt-6 animate-fade-in space-y-4 border border-green-500/40 bg-green-950/20 p-4 rounded-sm"
       >
-        <template #content>
-          <div class="space-y-6 p-2 sm:p-4">
-            <!-- Título glitch -->
-            <div class="pt-2 text-center">
-              <h1
-                class="glitch-wrap font-mono text-2xl font-black tracking-[0.15em] text-violet-300 sm:text-4xl"
-                data-text="// ACESSO RESTRITO //"
-              >
-                // ACESSO RESTRITO //
-              </h1>
-            </div>
+        <p class="text-green-400 font-bold tracking-wider text-xs sm:text-sm">
+          {{ t('secret.consentPrompt') }}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <button
+            class="group relative w-full border border-green-500/50 bg-black py-2.5 text-green-400 hover:bg-green-500/20 hover:shadow-[0_0_12px_rgba(0,255,0,0.3)] transition-all active:scale-95 text-xs sm:text-sm font-semibold"
+            @click="doAllow"
+          >
+            <span class="opacity-50 mr-1">[</span> {{ t('secret.consentYes') }} <span class="opacity-50 ml-1">]</span>
+          </button>
+          <button
+            class="group relative w-full border border-green-500/30 bg-black py-2.5 text-green-500/70 hover:bg-green-500/10 transition-all active:scale-95 text-xs sm:text-sm font-semibold"
+            @click="doDeny"
+          >
+            <span class="opacity-50 mr-1">[</span> {{ t('secret.consentNo') }} <span class="opacity-50 ml-1">]</span>
+          </button>
+        </div>
+      </div>
 
-            <!-- Terminal -->
-            <div class="rounded-xl border border-violet-900/30 bg-black/80 p-4 shadow-lg sm:p-5">
-              <div
-                class="mb-3 flex items-center gap-2 text-[0.7rem] tracking-[0.2em] text-violet-500/80"
-              >
-                <span class="h-2 w-2 rounded-full bg-violet-500/70"></span>
-                <span>SECRET_TERMINAL — MODO INVESTIGAÇÃO</span>
-              </div>
+      <!-- Result -->
+      <div
+        v-if="showResult"
+        class="mt-6 animate-fade-in border border-green-500/30 bg-black/60 p-4 text-sm sm:text-base leading-relaxed rounded-sm space-y-3"
+      >
+        <p class="text-green-400 font-bold text-base sm:text-lg tracking-wide border-b border-green-500/20 pb-2">
+          {{ t('secret.resultTitle') }}
+        </p>
+        <p class="text-green-300">
+          {{ t('secret.resultDesc1') }}
+        </p>
+        <p class="opacity-90 text-xs sm:text-sm">
+          {{ t('secret.resultDesc2') }}
+        </p>
+        <p class="opacity-80 text-xs sm:text-sm">
+          {{ t('secret.resultDesc3') }}
+        </p>
+        <p class="text-green-500/60 mt-4 text-xs italic">
+          {{ t('secret.resultNote') }}
+        </p>
 
-              <div
-                class="max-h-80 space-y-1.5 overflow-y-auto pr-1 font-mono text-xs tabular-nums sm:text-sm"
-              >
-                <div
-                  v-for="(line, index) in terminalLines"
-                  :key="index"
-                  :class="[
-                    line.cls === 'ok'
-                      ? 'text-emerald-400'
-                      : line.cls === 'warn'
-                        ? 'text-yellow-400'
-                        : line.cls === 'err'
-                          ? 'text-red-400'
-                          : 'text-violet-300/80',
-                  ]"
-                >
-                  <span class="mr-2 opacity-30">&gt;</span>
-                  {{ line.text }}<span v-if="line.loading">_</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Consent -->
-            <div
-              v-if="showConsent"
-              class="rounded-xl border border-red-500/30 bg-red-950/20 p-5 space-y-4"
-            >
-              <p class="font-mono text-sm text-red-400 tracking-wide">
-                // TRANSMISSÃO PRESTES A OCORRER — AUTORIZA O ENVIO DOS DADOS ACIMA?
-              </p>
-              <div class="flex gap-3">
-                <button
-                  class="flex-1 rounded-lg border border-emerald-500/40 bg-emerald-950/30 py-2.5 font-mono text-xs font-bold text-emerald-400 transition hover:bg-emerald-900/40 active:scale-95"
-                  @click="doAllow"
-                >
-                  ▶ PERMITIR ENVIO
-                </button>
-                <button
-                  class="flex-1 rounded-lg border border-red-500/40 bg-red-950/30 py-2.5 font-mono text-xs font-bold text-red-400 transition hover:bg-red-900/40 active:scale-95"
-                  @click="doDeny"
-                >
-                  ✕ NEGAR ACESSO
-                </button>
-              </div>
-            </div>
-
-            <!-- Result -->
-            <div
-              v-if="showResult"
-              class="rounded-xl border border-violet-700/30 bg-black/70 p-5 font-mono text-xs leading-8 sm:text-sm text-violet-300"
-            >
-              <p class="text-base font-bold mb-1">💀 FOI MAL CHEFE</p>
-              <p>😂 Tanto faz se você clicou em PERMITIR ou NEGAR.</p>
-              <p>🤡 Os dois botões fazem a mesma coisa.</p>
-              <p>🕵️ Os dados já tinham sido "coletados" antes de você decidir.</p>
-              <p>📡 Spoiler: não foi enviado nada. (será mesmo?)</p>
-              <p class="mt-2 text-violet-500/50">
-                // você foi zuado com sucesso. parabéns pela exploração 🫡
-              </p>
-
-              <div class="pt-5">
-                <button
-                  class="min-h-10 rounded-lg bg-violet-600 px-8 py-3 font-bold text-white shadow-lg shadow-violet-900/50 transition duration-300 hover:bg-violet-500"
-                  @click="router.push('/')"
-                >
-                  😭 VOLTAR À REALIDADE
-                </button>
-              </div>
-            </div>
-          </div>
-        </template>
-      </card>
-    </section>
+        <div class="pt-4">
+          <button
+            class="group relative inline-flex items-center gap-2 border border-green-500/60 bg-green-950/40 px-5 py-2.5 text-green-400 hover:bg-green-500 hover:text-black transition-all duration-300 rounded font-bold text-xs sm:text-sm"
+            @click="router.push('/')"
+          >
+            <span>&lt; [ RETURN_TO_SYSTEM ] {{ t('secret.btnReturn') }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+::selection {
+  background: rgba(0, 255, 0, 0.3);
+  color: #a7f3d0;
+}
+</style>

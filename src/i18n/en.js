@@ -3,6 +3,7 @@
 import enDev from './dev/en.js'
 import enEditor from './editor/en.js'
 import enHome from './home/en.js'
+import enSecret from './secret/en.js'
 
 export default {
   // Seções compartilhadas (footer, social, seo, header, loading)
@@ -49,4 +50,5 @@ export default {
   ...enHome,
   ...enDev,
   ...enEditor,
+  ...enSecret,
 }

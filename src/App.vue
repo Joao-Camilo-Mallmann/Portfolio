@@ -23,7 +23,7 @@ const handleKeydown = (e) => {
   if (e.key === konamiCode[konamiIndex]) {
     konamiIndex++
     if (konamiIndex === konamiCode.length) {
-      router.push('/secret')
+      router.push('/easter-egg')
       konamiIndex = 0
     }
     return
