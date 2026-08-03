@@ -318,7 +318,7 @@ while (scanning) {
         class="relative w-full aspect-square md:aspect-[4/3] lg:aspect-[1.1/1] flex items-center justify-center overflow-visible z-10"
       >
         <!-- 1. GLOW/HALO PRÓPRIO ATRÁS DA FOTO (com leve parallax) -->
-        <div 
+        <div
           class="absolute inset-0 z-0 flex items-center justify-center opacity-50 mix-blend-screen pointer-events-none transition-transform duration-300 ease-out"
           :style="{ transform: `translate3d(${mouseX * 0.35}px, ${mouseY * 0.35}px, 0)` }"
         >
@@ -326,9 +326,9 @@ while (scanning) {
         </div>
 
         <!-- 4. MICRO-MOVIMENTO (float contínuo via classe animate-portrait-float) -->
-        <div 
-          class="relative z-20 w-[85%] max-w-[360px] md:max-w-[480px] lg:max-w-[550px] aspect-[4/5] animate-portrait-float"
+        <div
           v-motion
+          class="relative z-20 w-[85%] max-w-[360px] md:max-w-[480px] lg:max-w-[550px] aspect-[4/5] animate-portrait-float"
           :initial="{ opacity: 0, scale: 0.95 }"
           :enter="{ opacity: 1, scale: 1, transition: { delay: 300, duration: 800 } }"
         >
@@ -386,33 +386,25 @@ while (scanning) {
 
 /* Smooth fade on edges to integrate into background (Mask) */
 .mask-fade-edges {
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 75%,
-    rgba(0, 0, 0, 0) 100%
-  ),
-  linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 15%,
-    rgba(0, 0, 0, 1) 85%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  mask-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%),
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 15%,
+      rgba(0, 0, 0, 1) 85%,
+      rgba(0, 0, 0, 0) 100%
+    );
   mask-composite: intersect;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 75%,
-    rgba(0, 0, 0, 0) 100%
-  ),
-  linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 15%,
-    rgba(0, 0, 0, 1) 85%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  -webkit-mask-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%),
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 15%,
+      rgba(0, 0, 0, 1) 85%,
+      rgba(0, 0, 0, 0) 100%
+    );
   -webkit-mask-composite: source-in;
 }
 
@@ -509,7 +501,8 @@ while (scanning) {
   animation: portrait-float 6s ease-in-out infinite;
 }
 @keyframes portrait-float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {

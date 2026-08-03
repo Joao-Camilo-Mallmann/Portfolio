@@ -19,7 +19,7 @@ export default {
     funBadge: '"Brave Visitor" 😎',
     funPS: 'PS: If you found a bug, it was an undocumented feature 🐛✨',
     funKonamiHint:
-      '🎮 What if you used the Konami Code anywhere on the site... wouldn\'t it be cool to have an easter egg? 🤫',
+      "🎮 What if you used the Konami Code anywhere on the site... wouldn't it be cool to have an easter egg? 🤫",
     heroGreeting: 'Hey, Im',
     heroName: 'João Camilo',
     ctaProjects: 'View Projects',

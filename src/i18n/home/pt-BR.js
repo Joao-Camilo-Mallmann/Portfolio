@@ -1,46 +1,100 @@
 // Traduções em Português (Brasil) - Home
 export default {
   home: {
-    aboutMe: 'Sobre Mim',
-    greeting: 'Olá! Sou',
-    role: 'Software Developer | Frontend Specialist e editor de vídeo.',
-    passion: 'Minha paixão é criar soluções digitais e conteúdo audiovisual de alta qualidade.',
+    // Hero
+    hero: {
+      name: 'JOÃO CAMILO MALLMANN',
+      title: 'Software Engineer',
+      titleSeparator: '•',
+      titleSecondary: 'Creative Developer',
+      tagline: 'Engineering meets Creativity.',
+      subtitle: 'Eu construo software moderno e crio experiências digitais cinematográficas.',
+      devTitle: 'Desenvolvedor',
+      devDescription:
+        'Projetos de desenvolvimento web, apps e automações. Explore meu portfólio como DEV!',
+      devCta: 'Explorar Projetos',
+      devCtaAria: 'Navegar para página de projetos de desenvolvimento',
+      editorTitle: 'Editor de Vídeo',
+      editorDescription:
+        'Criação audiovisual profissional com Adobe Premiere Pro, Photoshop e After Effects.',
+      editorCta: 'Ver Portfólio',
+      editorCtaAria: 'Navegar para página de portfólio de edição de vídeo',
+      scrollIndicator: 'Role para descobrir',
+      socialAria: 'Links de contato e redes sociais',
+    },
 
-    // Card Desenvolvedor
-    devTitle: 'Software Developer',
-    devDescription:
-      'Especializado em desenvolvimento de aplicações web modernas e responsivas utilizando Vue.js, JavaScript/TypeScript e as melhores práticas do mercado.',
-    devButton: 'Explorar Projetos',
-    devButtonAria: 'Navegar para página de projetos de desenvolvimento',
+    // Storytelling
+    storytelling: {
+      title: 'Beyond the Code.',
+      name: 'João Camilo Mallmann',
+      role: 'Software Engineer • Creative Developer',
+      bio: 'Apaixonado por construir software que combina performance, usabilidade e criatividade. Transformo ideias em produtos digitais que fazem a diferença.',
+    },
 
-    // Card Editor
-    editorTitle: 'Editor de Vídeo',
-    editorCreation: 'Criação audiovisual profissional',
-    editorTools:
-      'com {premiere}, {photoshop} e {afterEffects}. Especializado em vídeos institucionais, comerciais e conteúdo para redes sociais.',
-    editorButton: 'Ver Portfólio',
-    editorButtonAria: 'Navegar para página de portfólio de edição de vídeo',
+    // Stats
+    stats: {
+      years: '4+',
+      yearsLabel: 'Anos',
+      projects: '30+',
+      projectsLabel: 'Projetos',
+      codingHours: '5000+',
+      codingHoursLabel: 'Horas programando',
+      videoProductions: '50+',
+      videoProductionsLabel: 'Produções de vídeo',
+    },
 
-    // Filosofia
-    philosophyTitle: 'Minha Filosofia',
-    philosophyCreativity: 'Combino criatividade técnica',
-    philosophyVision: 'visão estratégica',
-    philosophyDelivery: 'para entregar projetos que superam expectativas. Seja desenvolvendo',
-    philosophyInterfaces: 'interfaces intuitivas',
-    philosophyContent: 'conteúdo audiovisual impactante',
-    philosophyFocus: 'meu foco é sempre a',
-    philosophyExcellence: 'excelência',
+    // Timeline
+    timeline: {
+      title: 'Minha Jornada',
+      year2021: '2021',
+      desc2021: 'Comecei a programar.',
+      year2022: '2022',
+      desc2022: 'Especialização em Frontend.',
+      year2023: '2023',
+      desc2023: 'Experiência profissional.',
+      yearToday: 'Hoje',
+      descToday: 'Construindo produtos que combinam engenharia e criatividade.',
+    },
 
-    // Tags da filosofia
-    tagTechnology: 'Tecnologia',
-    tagCreativity: 'Criatividade',
-    tagDedication: 'Dedicação',
+    // Tech Chips
+    techChips: {
+      title: 'Tech Stack',
+    },
 
-    // Social
-    socialAria: 'Links de contato e redes sociais',
+    // Featured Projects
+    featured: {
+      title: 'Projetos em Destaque',
+      viewAll: 'Ver todos os projetos',
+      viewProject: 'Ver Projeto',
+      projects: {
+        vimasi: {
+          name: 'Vimasi Vedações',
+          description: 'Site institucional com SEO otimizado e design moderno.',
+        },
+        dashboard: {
+          name: 'Industrial Dashboard',
+          description: 'Dashboard industrial em tempo real com React e Node.',
+        },
+        brpd: {
+          name: 'Better Rich Presence',
+          description: 'App desktop multiplataforma com Tauri, React e Rust.',
+        },
+      },
+    },
+
+    // Video Gallery
+    videoGallery: {
+      title: 'Portfólio de Vídeos',
+      viewAll: 'Ver portfólio completo',
+    },
+
+    // Minimal Contact
+    minimalContact: {
+      heading: 'Vamos construir algo juntos.',
+    },
   },
 
-  // Splitter (Home)
+  // Splitter keys preserved for backwards compat
   splitter: {
     devTitle: 'Desenvolvedor',
     devDescription:
