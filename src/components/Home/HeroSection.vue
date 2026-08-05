@@ -353,7 +353,11 @@ const handlePanelClick = (type) => {
 }
 
 .font-sans-default {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 .font-mono-tech {
   font-family: 'Fira Code', monospace;

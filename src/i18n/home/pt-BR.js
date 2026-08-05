@@ -27,8 +27,13 @@ export default {
     storytelling: {
       title: 'Beyond the Code.',
       name: 'João Camilo Mallmann',
-      role: 'Software Engineer • Creative Developer',
-      bio: 'Apaixonado por construir software que combina performance, usabilidade e criatividade. Transformo ideias em produtos digitais que fazem a diferença.',
+      roleDev: 'Software Engineer',
+      roleEditor: 'Content Creator',
+      bio: 'Construo software de alta qualidade e produzo conteúdo visual que torna tecnologia mais acessível e envolvente.',
+      downloadCv: 'Download CV',
+      viewLinkedin: 'View LinkedIn',
+      devBtn: 'Ver Área Dev',
+      editorBtn: 'Ver Área Editor',
     },
 
     // Stats

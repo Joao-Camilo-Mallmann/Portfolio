@@ -5,106 +5,170 @@ const { t, locale, toggleLocale } = useI18n()
 </script>
 
 <template>
-  <section class="w-full bg-bg py-24 px-6 overflow-hidden">
-    <div class="max-w-3xl mx-auto flex flex-col items-center text-center gap-10">
-      <!-- Top: Content -->
-      <div class="flex flex-col items-center text-center">
-        <!-- Language Toggle com Materialização Horizontal -->
+  <section
+    class="w-full bg-bg py-20 sm:py-28 px-6 sm:px-12 overflow-hidden relative border-t border-border/30"
+  >
+    <!-- Ambient Technological Background Glows (Blue + Orange Blend) -->
+    <div
+      class="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-tr from-dev/20 via-cyan-glow/10 to-editor/20 blur-[150px] pointer-events-none opacity-80"
+    />
+
+    <div class="relative z-10 max-w-6xl mx-auto">
+      <!-- Top Bar: Minimalist Language Switcher -->
+      <div
+        v-motion-scroll-visible
+        :initial="{ opacity: 0, y: -10 }"
+        :visible-once="{
+          opacity: 1, 
+          y: 0,
+          transition: { type: 'spring', stiffness: 160, damping: 16 },
+        }"
+        class="flex justify-end mb-8 sm:mb-12"
+      >
         <button
-          v-motion-scroll-visible
-          :initial="{ opacity: 0, scaleX: 0 }"
-          :visible-once="{
-            opacity: 1,
-            scaleX: 1,
-            transition: { type: 'spring', stiffness: 200, damping: 18 },
-          }"
-          class="mb-8 px-4 py-2 rounded-full bg-fg/5 hover:bg-fg/10 border border-border flex items-center gap-2 active:scale-95 transition-colors transition-transform duration-300 min-h-[40px] min-w-[40px]"
+          class="group min-h-10 flex items-center gap-2 px-3 py-2 rounded-lg border border-border/50 text-xs font-mono tracking-widest text-fg-muted hover:border-fg/20 hover:text-fg active:scale-95 transition-colors cursor-pointer"
+          :title="locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
           @click="toggleLocale"
         >
-          <span class="text-sm font-medium text-fg-muted">
-            {{ locale === 'pt-BR' ? '🇧🇷 PT-BR' : '🇺🇸 EN' }}
-          </span>
+          <span class="opacity-60 group-hover:opacity-100 transition-opacity">LANG:</span>
+          <span class="font-bold text-fg">{{ locale === 'pt-BR' ? 'PT-BR' : 'EN' }}</span>
         </button>
+      </div>
 
-        <!-- Título com Slide da Esquerda + Spring -->
-        <h2
+      <!-- Main Layout: 2-Column Split (Photo 4 Cols, Text 8 Cols so Title Dominates) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- LEFT: Photo Container (Reduced ~12% in size, subtle -1.5deg rotation, 2px border, soft glow) -->
+        <div
           v-motion-scroll-visible
-          :initial="{ opacity: 0, x: -35 }"
+          :initial="{ opacity: 0, x: -40, rotate: -3 }"
           :visible-once="{
             opacity: 1,
             x: 0,
-            transition: { type: 'spring', stiffness: 150, damping: 15, delay: 100 },
+            rotate: -1.5,
+            transition: { type: 'spring', stiffness: 130, damping: 15 },
           }"
-          class="text-4xl md:text-6xl font-bold text-fg mb-6 leading-tight"
+          class="lg:col-span-4 flex justify-center lg:justify-start"
         >
-          {{ t('home.storytelling.title') }}
-        </h2>
+          <div class="relative group w-full max-w-[280px] sm:max-w-[310px]">
+            <!-- Subtle Ambient Backdrop Glow Behind Photo -->
+            <div
+              class="absolute -inset-2 rounded-2xl bg-linear-to-tr from-dev/40 via-cyan-glow/20 to-editor/30 opacity-40 group-hover:opacity-75 blur-xl transition-opacity duration-700"
+            />
 
-        <!-- Nome / Função com Cascade Spring -->
-        <div
-          v-motion-scroll-visible
-          :initial="{ opacity: 0, y: 20, scale: 0.95 }"
-          :visible-once="{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            transition: { type: 'spring', stiffness: 170, damping: 15, delay: 200 },
-          }"
-          class="space-y-2 mb-6"
-        >
-          <h3 class="text-2xl font-bold text-fg">
-            {{ t('home.storytelling.name') }}
-          </h3>
-          <p class="text-lg font-medium">
-            <span class="text-dev font-semibold">{{ t('home.hero.title') }}</span>
-            <span class="text-fg-muted mx-2">•</span>
-            <span class="text-editor font-semibold">{{ t('home.hero.titleSecondary') }}</span>
-          </p>
+            <!-- Main Photo Card with 1px Dual Gradient Border (Dev + Editor) -->
+            <div
+              class="relative aspect-[3/4] w-full rounded-2xl p-[1px] bg-linear-to-tr from-dev via-cyan-glow/60 to-editor shadow-[0_0_30px_-5px_rgba(77,145,234,0.25)] group-hover:from-dev group-hover:via-cyan-glow group-hover:to-editor group-hover:shadow-[0_0_40px_-5px_rgba(234,166,77,0.35)] transition-all duration-500"
+            >
+              <div class="relative w-full h-full rounded-[15px] overflow-hidden bg-obsidian">
+                <img
+                  src="/img/eu.jpg"
+                  alt="João Camilo Mallmann"
+                  class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-all duration-700"
+                />
+
+                <!-- Vignette Overlay -->
+                <div
+                  class="absolute inset-0 bg-linear-to-t from-obsidian/95 via-obsidian/20 to-transparent opacity-85"
+                />
+
+                <!-- Clean Monospaced Overlay Accent (Software Engineer / Content Creator) -->
+                <div class="absolute bottom-5 left-5 right-5 flex flex-col gap-0.5">
+                  <p class="text-[11px] font-mono font-bold tracking-widest text-dev uppercase">
+                    SOFTWARE ENGINEER
+                  </p>
+                  <p class="text-xs font-medium text-fg/90 tracking-wide">Content Creator</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Bio com Entrada Suave -->
-        <p
-          v-motion-scroll-visible
-          :initial="{ opacity: 0, y: 20 }"
-          :visible-once="{
-            opacity: 1,
-            y: 0,
-            transition: { type: 'spring', stiffness: 140, damping: 16, delay: 300 },
-          }"
-          class="text-lg text-fg-muted leading-relaxed max-w-2xl"
-        >
-          {{ t('home.storytelling.bio') }}
-        </p>
-      </div>
-
-      <!-- Bottom: Centered Photo com Órbitas Contínuas em CSS & Entrada Spring + Rotação -->
-      <div
-        v-motion-scroll-visible
-        :initial="{ opacity: 0, scale: 0.7, rotate: -6 }"
-        :visible-once="{
-          opacity: 1,
-          scale: 1,
-          rotate: 0,
-          transition: { type: 'spring', stiffness: 180, damping: 14, delay: 380 },
-        }"
-        class="w-full flex justify-center mt-4 relative"
-      >
-        <!-- Orbiting Dots Wrapper -->
-        <div class="relative orbit-wrapper">
-          <!-- Orbiting Dot Dev (Azul) -->
-          <div class="orbit-dot orbit-dot-dev" aria-hidden="true"></div>
-          <!-- Orbiting Dot Editor (Laranja) -->
-          <div class="orbit-dot orbit-dot-editor" aria-hidden="true"></div>
-
-          <!-- Photo Container -->
+        <!-- RIGHT: Typographic Editorial Section (Holds Primary Visual Focus) -->
+        <div class="lg:col-span-8 flex flex-col justify-center space-y-7">
+          <!-- Giant Display Title (Beyond the Code.) -->
           <div
-            class="relative w-64 md:w-80 aspect-square rounded-2xl overflow-hidden shadow-2xl border border-border group transition-all duration-500 hover:border-dev/50 hover:shadow-[0_12px_40px_-12px_rgba(77,145,234,0.3)]"
+            v-motion-scroll-visible
+            :initial="{ opacity: 0, x: 30 }"
+            :visible-once="{
+              opacity: 1,
+              x: 0,
+              transition: { type: 'spring', stiffness: 140, damping: 15, delay: 100 },
+            }"
+            class="space-y-3"
           >
-            <img
-              src="/img/eu.jpg"
-              alt="Joao Camilo Mallmann"
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            <h2
+              class="shimmer-title text-5xl sm:text-6xl lg:text-7xl font-extrabold text-fg tracking-tight leading-none text-balance"
+            >
+              {{ t('home.storytelling.title') }}
+            </h2>
+            <div
+              class="h-1 w-24 rounded-full bg-linear-to-r from-dev via-cyan-glow to-editor origin-left"
             />
+          </div>
+
+          <!-- Name & Role Statement -->
+          <div
+            v-motion-scroll-visible
+            :initial="{ opacity: 0, y: 20 }"
+            :visible-once="{
+              opacity: 1,
+              y: 0,
+              transition: { type: 'spring', stiffness: 160, damping: 15, delay: 200 },
+            }"
+            class="space-y-1.5"
+          >
+            <h3 class="text-2xl sm:text-3xl font-bold text-fg tracking-tight">
+              {{ t('home.storytelling.name') }}
+            </h3>
+            <p class="text-lg sm:text-xl font-medium tracking-wide">
+              <span class="text-dev">{{ t('home.storytelling.roleDev') }}</span>
+              <span class="text-fg-muted mx-2 sm:mx-3 font-light">•</span>
+              <span class="text-editor">{{ t('home.storytelling.roleEditor') }}</span>
+            </p>
+          </div>
+
+          <!-- Bio Text (Stronger Value Proposition) -->
+          <p
+            v-motion-scroll-visible
+            :initial="{ opacity: 0, y: 20 }"
+            :visible-once="{
+              opacity: 1,
+              y: 0,
+              transition: { type: 'spring', stiffness: 140, damping: 16, delay: 300 },
+            }"
+            class="text-lg sm:text-xl text-fg-muted leading-relaxed font-normal max-w-2xl text-pretty"
+          >
+            {{ t('home.storytelling.bio') }}
+          </p>
+
+          <!-- Equal-Weight Action Buttons: [ Dev Page ] & [ Editor Page ] -->
+          <div
+            v-motion-scroll-visible
+            :initial="{ opacity: 0, y: 20 }"
+            :visible-once="{
+              opacity: 1,
+              y: 0,
+              transition: { type: 'spring', stiffness: 180, damping: 14, delay: 400 },
+            }"
+            class="flex flex-wrap items-center gap-4 pt-3"
+          >
+            <!-- Dev Page Button -->
+            <router-link
+              to="/dev"
+              class="group inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-dev hover:bg-dev/90 text-obsidian font-bold text-base shadow-lg shadow-dev/20 hover:shadow-dev/40 transition-all duration-300 active:scale-95 min-h-[44px] flex-1 sm:flex-initial cursor-pointer"
+            >
+              <i class="pi pi-code text-lg group-hover:scale-110 transition-transform"></i>
+              <span>{{ t('home.storytelling.devBtn') }}</span>
+            </router-link>
+
+            <!-- Editor Page Button -->
+            <router-link
+              to="/editor"
+              class="group inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-editor hover:bg-editor/90 text-obsidian font-bold text-base shadow-lg shadow-editor/20 hover:shadow-editor/40 transition-all duration-300 active:scale-95 min-h-11 flex-1 sm:flex-initial cursor-pointer"
+            >
+              <i class="pi pi-video text-lg group-hover:scale-110 transition-transform"></i>
+              <span>{{ t('home.storytelling.editorBtn') }}</span>
+            </router-link>
           </div>
         </div>
       </div>
@@ -113,71 +177,42 @@ const { t, locale, toggleLocale } = useI18n()
 </template>
 
 <style scoped>
-.orbit-wrapper {
-  display: inline-block;
+.shimmer-title {
   position: relative;
+  overflow: hidden;
+  display: inline-block;
 }
 
-.orbit-dot {
+.shimmer-title::after {
+  content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 20;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  animation: shimmer 4.5s ease-in-out infinite;
 }
 
-.orbit-dot-dev {
-  background-color: var(--color-dev);
-  box-shadow: 0 0 12px var(--color-dev);
-  animation: orbit-cw 7s linear infinite;
-  --orbit-radius: 145px;
-}
-
-.orbit-dot-editor {
-  background-color: var(--color-editor);
-  box-shadow: 0 0 12px var(--color-editor);
-  animation: orbit-ccw 9s linear infinite;
-  --orbit-radius: 155px;
-}
-
-@keyframes orbit-cw {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+@keyframes shimmer {
+  0% {
+    left: -60%;
   }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
-  }
-}
-
-@keyframes orbit-ccw {
-  from {
-    transform: translate(-50%, -50%) rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
-  }
-}
-
-@media (min-width: 768px) {
-  .orbit-dot-dev {
-    --orbit-radius: 180px;
-  }
-  .orbit-dot-editor {
-    --orbit-radius: 195px;
+  50%,
+  100% {
+    left: 160%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .orbit-dot {
+  .shimmer-title::after {
     animation: none !important;
-    display: none;
   }
-  .transition-all,
-  .transition-transform,
-  .transition-colors {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
