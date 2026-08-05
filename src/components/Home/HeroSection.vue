@@ -328,6 +328,8 @@ const handlePanelClick = (type) => {
   position: relative;
   overflow: hidden;
   display: inline-block;
+  padding-top: 0.25em;
+  padding-bottom: 0.1em;
 }
 
 .shimmer-title::after {

@@ -1,7 +1,30 @@
 <script setup>
+import { ref } from 'vue'
 import { useI18n } from '@/composables/useI18n'
+import { useParticles } from '@/composables/useParticles'
+import { useMagneticEffect } from '@/composables/useMagneticEffect'
 
 const { t, locale, toggleLocale } = useI18n()
+
+// Particle canvas ref
+const particleCanvas = ref(null)
+useParticles(particleCanvas, { count: 20, mouseRadius: 130, mouseForce: 0.7 })
+
+// Magnetic button refs
+const devBtnRef = ref(null)
+const editorBtnRef = ref(null)
+useMagneticEffect(devBtnRef, {
+  strength: 0.35,
+  radius: 100,
+  glowColor: '77, 145, 234',   // dev blue
+  maxGlowIntensity: 0.5,
+})
+useMagneticEffect(editorBtnRef, {
+  strength: 0.35,
+  radius: 100,
+  glowColor: '234, 166, 77',   // editor orange
+  maxGlowIntensity: 0.5,
+})
 </script>
 
 <template>
@@ -10,7 +33,14 @@ const { t, locale, toggleLocale } = useI18n()
   >
     <!-- Ambient Technological Background Glows (Blue + Orange Blend) -->
     <div
-      class="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-tr from-dev/20 via-cyan-glow/10 to-editor/20 blur-[150px] pointer-events-none opacity-80"
+      class="absolute top-1/2 left-1/2 w-150 h-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-tr from-dev/20 via-cyan-glow/10 to-editor/20 blur-[150px] pointer-events-none opacity-80"
+    />
+
+    <!-- Particle Canvas Layer -->
+    <canvas
+      ref="particleCanvas"
+      class="absolute inset-0 w-full h-full pointer-events-none z-[1]"
+      aria-hidden="true"
     />
 
     <div class="relative z-10 max-w-6xl mx-auto">
@@ -19,7 +49,7 @@ const { t, locale, toggleLocale } = useI18n()
         v-motion-scroll-visible
         :initial="{ opacity: 0, y: -10 }"
         :visible-once="{
-          opacity: 1, 
+          opacity: 1,
           y: 0,
           transition: { type: 'spring', stiffness: 160, damping: 16 },
         }"
@@ -141,7 +171,7 @@ const { t, locale, toggleLocale } = useI18n()
             {{ t('home.storytelling.bio') }}
           </p>
 
-          <!-- Equal-Weight Action Buttons: [ Dev Page ] & [ Editor Page ] -->
+          <!-- Equal-Weight Action Buttons: [ Dev Page ] & [ Editor Page ] with Magnetic Effect -->
           <div
             v-motion-scroll-visible
             :initial="{ opacity: 0, y: 20 }"
@@ -152,19 +182,21 @@ const { t, locale, toggleLocale } = useI18n()
             }"
             class="flex flex-wrap items-center gap-4 pt-3"
           >
-            <!-- Dev Page Button -->
+            <!-- Dev Page Button (Magnetic) -->
             <router-link
+              ref="devBtnRef"
               to="/dev"
-              class="group inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-dev hover:bg-dev/90 text-obsidian font-bold text-base shadow-lg shadow-dev/20 hover:shadow-dev/40 transition-all duration-300 active:scale-95 min-h-[44px] flex-1 sm:flex-initial cursor-pointer"
+              class="magnetic-btn group inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-dev hover:bg-dev/90 text-obsidian font-bold text-base shadow-lg shadow-dev/20 transition-all duration-300 active:scale-95 min-h-[44px] flex-1 sm:flex-initial cursor-pointer will-change-transform"
             >
               <i class="pi pi-code text-lg group-hover:scale-110 transition-transform"></i>
               <span>{{ t('home.storytelling.devBtn') }}</span>
             </router-link>
 
-            <!-- Editor Page Button -->
+            <!-- Editor Page Button (Magnetic) -->
             <router-link
+              ref="editorBtnRef"
               to="/editor"
-              class="group inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-editor hover:bg-editor/90 text-obsidian font-bold text-base shadow-lg shadow-editor/20 hover:shadow-editor/40 transition-all duration-300 active:scale-95 min-h-11 flex-1 sm:flex-initial cursor-pointer"
+              class="magnetic-btn group inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-editor hover:bg-editor/90 text-obsidian font-bold text-base shadow-lg shadow-editor/20 transition-all duration-300 active:scale-95 min-h-11 flex-1 sm:flex-initial cursor-pointer will-change-transform"
             >
               <i class="pi pi-video text-lg group-hover:scale-110 transition-transform"></i>
               <span>{{ t('home.storytelling.editorBtn') }}</span>
@@ -202,6 +234,11 @@ const { t, locale, toggleLocale } = useI18n()
   100% {
     left: 160%;
   }
+}
+
+/* Magnetic buttons: remove default hover shadow to let composable handle glow */
+.magnetic-btn {
+  transition: background-color 0.3s, transform 0.08s ease-out, box-shadow 0.15s ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
