@@ -97,7 +97,10 @@ onMounted(async () => {
     { text: `${t('secret.seqTz')} ${d.tz}`, cls: 'ok' },
     { text: `${t('secret.seqRes')} ${d.res}`, cls: 'ok' },
     { text: `${t('secret.seqCores')} ${d.cores}`, cls: 'warn' },
-    { text: `${t('secret.seqTouchInput')} ${d.touch} | ${t('secret.seqStatus')} ${d.online}`, cls: 'warn' },
+    {
+      text: `${t('secret.seqTouchInput')} ${d.touch} | ${t('secret.seqStatus')} ${d.online}`,
+      cls: 'warn',
+    },
     { text: t('secret.seqIntegrity'), cls: 'ok' },
     { text: t('secret.seqWaitingConsent'), cls: 'warn' },
   ]
@@ -127,10 +130,16 @@ const doDeny = () => {
     class="page-transition relative isolate flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black text-green-500 font-mono p-4 sm:p-8 selection:bg-green-500/30 selection:text-green-200"
   >
     <!-- Grid Background -->
-    <div class="absolute inset-0 bg-[linear-gradient(rgba(0,255,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,0,0.03)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)] pointer-events-none"></div>
+    <div
+      class="absolute inset-0 bg-[linear-gradient(rgba(0,255,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,0,0.03)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)] pointer-events-none"
+    ></div>
 
-    <div class="relative z-10 w-full max-w-3xl border border-green-500/30 bg-black/90 p-4 sm:p-6 shadow-[0_0_20px_rgba(0,255,0,0.15)] backdrop-blur-md rounded-md">
-      <div class="mb-4 flex items-center justify-between border-b border-green-500/30 pb-2 text-xs opacity-70">
+    <div
+      class="relative z-10 w-full max-w-3xl border border-green-500/30 bg-black/90 p-4 sm:p-6 shadow-[0_0_20px_rgba(0,255,0,0.15)] backdrop-blur-md rounded-md"
+    >
+      <div
+        class="mb-4 flex items-center justify-between border-b border-green-500/30 pb-2 text-xs opacity-70"
+      >
         <span>{{ t('secret.promptUser') }}</span>
         <span class="animate-pulse">_</span>
       </div>
@@ -141,13 +150,21 @@ const doDeny = () => {
           v-for="(line, index) in terminalLines"
           :key="index"
           :class="[
-            line.cls === 'ok' ? 'text-green-400' : 
-            line.cls === 'warn' ? 'text-yellow-400' : 
-            line.cls === 'err' ? 'text-red-500 font-bold' : 'text-green-500/80',
+            line.cls === 'ok'
+              ? 'text-green-400'
+              : line.cls === 'warn'
+                ? 'text-yellow-400'
+                : line.cls === 'err'
+                  ? 'text-red-500 font-bold'
+                  : 'text-green-500/80',
           ]"
         >
           <span class="mr-2 opacity-50">$</span>
-          <span>{{ line.text }}</span><span v-if="line.loading" class="animate-pulse inline-block w-2 h-4 bg-green-500/80 ml-1 align-middle"></span>
+          <span>{{ line.text }}</span
+          ><span
+            v-if="line.loading"
+            class="animate-pulse inline-block w-2 h-4 bg-green-500/80 ml-1 align-middle"
+          ></span>
         </div>
       </div>
 
@@ -164,13 +181,15 @@ const doDeny = () => {
             class="group relative w-full border border-green-500/50 bg-black py-2.5 text-green-400 hover:bg-green-500/20 hover:shadow-[0_0_12px_rgba(0,255,0,0.3)] transition-all active:scale-95 text-xs sm:text-sm font-semibold"
             @click="doAllow"
           >
-            <span class="opacity-50 mr-1">[</span> {{ t('secret.consentYes') }} <span class="opacity-50 ml-1">]</span>
+            <span class="opacity-50 mr-1">[</span> {{ t('secret.consentYes') }}
+            <span class="opacity-50 ml-1">]</span>
           </button>
           <button
             class="group relative w-full border border-green-500/30 bg-black py-2.5 text-green-500/70 hover:bg-green-500/10 transition-all active:scale-95 text-xs sm:text-sm font-semibold"
             @click="doDeny"
           >
-            <span class="opacity-50 mr-1">[</span> {{ t('secret.consentNo') }} <span class="opacity-50 ml-1">]</span>
+            <span class="opacity-50 mr-1">[</span> {{ t('secret.consentNo') }}
+            <span class="opacity-50 ml-1">]</span>
           </button>
         </div>
       </div>
@@ -180,7 +199,9 @@ const doDeny = () => {
         v-if="showResult"
         class="mt-6 animate-fade-in border border-green-500/30 bg-black/60 p-4 text-sm sm:text-base leading-relaxed rounded-sm space-y-3"
       >
-        <p class="text-green-400 font-bold text-base sm:text-lg tracking-wide border-b border-green-500/20 pb-2">
+        <p
+          class="text-green-400 font-bold text-base sm:text-lg tracking-wide border-b border-green-500/20 pb-2"
+        >
           {{ t('secret.resultTitle') }}
         </p>
         <p class="text-green-300">
@@ -215,8 +236,14 @@ const doDeny = () => {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 ::selection {

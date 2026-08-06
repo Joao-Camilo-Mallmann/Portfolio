@@ -19,6 +19,7 @@ description: Princípios de polimento de interface (UI/UX) - tipografia, sombras
 - Aplique antialiasing na root do projeto (ex: `antialiased`) para ter textos mais consistentes e nítidos.
 - Números dinâmicos: sempre adicionar `tabular-nums` em componentes com numerais instáveis para prevenir quebras e solavancos da UI.
 - Quebras de título: prefira usar `text-wrap: balance` (para títulos grandes) e `text-wrap: pretty` (para blocos de texto grandes), prevenindo linhas flutuantes (órbitas).
+- Títulos com `shimmer-title` ou `overflow: hidden`: sempre incluir `padding-top` e `padding-bottom` (ex: `padding-top: 0.25em; padding-bottom: 0.1em;`) para que diacríticos e acentos (como o til `~` em "JOÃO") não sejam cortados pelo limite da caixa de texto.
 
 ## Formato, Sombras e Alinhamentos
 

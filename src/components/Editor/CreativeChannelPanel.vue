@@ -70,7 +70,10 @@ const openChannel = () => {
       />
 
       <!-- Shimmer border sweep — CSS loop -->
-      <div class="shimmer-border pointer-events-none absolute inset-0 rounded-2xl" aria-hidden="true" />
+      <div
+        class="shimmer-border pointer-events-none absolute inset-0 rounded-2xl"
+        aria-hidden="true"
+      />
 
       <!-- Content -->
       <div class="relative z-10 flex flex-col items-center gap-6 p-8 md:flex-row">
@@ -78,7 +81,9 @@ const openChannel = () => {
         <div class="relative shrink-0">
           <div class="avatar-pulse absolute inset-0 rounded-full border-2 border-editor/40" />
           <div class="avatar-pulse-delay absolute inset-0 rounded-full border border-editor/20" />
-          <div class="rounded-full border-2 border-editor/50 p-1.5 shadow-[0_0_20px_-4px_var(--color-editor)] transition-shadow duration-500 group-hover:shadow-[0_0_32px_-4px_var(--color-editor)]">
+          <div
+            class="rounded-full border-2 border-editor/50 p-1.5 shadow-[0_0_20px_-4px_var(--color-editor)] transition-shadow duration-500 group-hover:shadow-[0_0_32px_-4px_var(--color-editor)]"
+          >
             <img
               :src="youtubeOFurryLink"
               :alt="t('editorCreative.channelAlt')"
@@ -88,10 +93,14 @@ const openChannel = () => {
         </div>
 
         <!-- Info -->
-        <div class="flex flex-1 flex-col items-center gap-3 text-center md:items-start md:text-left">
+        <div
+          class="flex flex-1 flex-col items-center gap-3 text-center md:items-start md:text-left"
+        >
           <p class="text-pretty text-sm leading-relaxed tracking-wide text-fg-muted md:text-base">
             {{ t('editorCreative.channelDescription') }}
-            <span class="font-semibold text-editor">{{ t('editorCreative.channelHighlight') }}</span>
+            <span class="font-semibold text-editor">{{
+              t('editorCreative.channelHighlight')
+            }}</span>
             {{ t('editorCreative.channelEnd') }}
           </p>
 
@@ -125,8 +134,14 @@ const openChannel = () => {
   animation: orb-float 7s ease-in-out infinite alternate-reverse;
 }
 @keyframes orb-float {
-  from { transform: translate(0, 0) scale(1); opacity: 0.7; }
-  to   { transform: translate(12px, 16px) scale(1.15); opacity: 1; }
+  from {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: translate(12px, 16px) scale(1.15);
+    opacity: 1;
+  }
 }
 
 /* Avatar pulse rings */
@@ -137,9 +152,18 @@ const openChannel = () => {
   animation: ring-pulse 2.8s cubic-bezier(0.4, 0, 0.6, 1) 1.4s infinite;
 }
 @keyframes ring-pulse {
-  0%   { transform: scale(1); opacity: 0.7; }
-  70%  { transform: scale(1.55); opacity: 0; }
-  100% { transform: scale(1.55); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
 }
 
 /* Shimmer border sweep */
@@ -158,13 +182,17 @@ const openChannel = () => {
   );
   opacity: 0.25;
   animation: border-spin 4s linear infinite;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask-composite: xor;
   padding: 1px;
 }
 @keyframes border-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

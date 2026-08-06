@@ -189,7 +189,8 @@ const techCategories = computed(() => [
       },
       {
         name: 'Cypress',
-        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypress/cypress-original.svg',
+        image:
+          'https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/3/cypress-icon-moigrz5nimpd7rsob0bisu.png/cypress-icon-pg9bdlubveoefqouilbg.png',
       },
     ],
   },

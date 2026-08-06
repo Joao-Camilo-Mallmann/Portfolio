@@ -40,7 +40,7 @@ onUnmounted(() => {
     :class="[
       'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
       isScrolled || mobileMenuOpen
-        ? 'bg-[#07080a]/80 backdrop-blur-md border-b border-white/10 py-2'
+        ? 'bg-obsidian/80 backdrop-blur-md border-b border-white/10 py-2'
         : 'bg-transparent border-b border-transparent py-4',
     ]"
   >
@@ -248,9 +248,6 @@ onUnmounted(() => {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.locale-toggle:active {
-}
-
 .locale-flag {
   font-size: 1rem;
   line-height: 1;
@@ -279,8 +276,5 @@ onUnmounted(() => {
 
 .locale-toggle-mobile:hover {
   background: rgba(255, 255, 255, 0.1);
-}
-
-.locale-toggle-mobile:active {
 }
 </style>

@@ -16,7 +16,7 @@ Este documento é o índice central das regras e convenções do projeto. Cada s
 
 ---
 
-**Última atualização:** Julho 2026
+**Última atualização:** Agosto 2026
 **Versão do Tailwind CSS:** v4
 **Versão do Vue:** 3 (Composition API)
 **Gerenciador de Pacotes:** BUN
