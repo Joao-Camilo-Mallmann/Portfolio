@@ -91,7 +91,7 @@ useMagneticEffect(editorBtnRef, {
             >
               <div class="relative w-full h-full rounded-[15px] overflow-hidden bg-obsidian">
                 <img
-                  src="/img/eu.jpg"
+                  src="/img/me_home.jpg"
                   alt="João Camilo Mallmann"
                   class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-all duration-700"
                 />
@@ -103,10 +103,9 @@ useMagneticEffect(editorBtnRef, {
 
                 <!-- Clean Monospaced Overlay Accent (Software Engineer / Content Creator) -->
                 <div class="absolute bottom-5 left-5 right-5 flex flex-col gap-0.5">
-                  <p class="text-[11px] font-mono font-bold tracking-widest text-dev uppercase">
-                    SOFTWARE ENGINEER
+                  <p class="text-[11px] font-mono font-bold tracking-widest uppercase">
+                    Me
                   </p>
-                  <p class="text-xs font-medium text-fg/90 tracking-wide">Content Creator</p>
                 </div>
               </div>
             </div>
