@@ -239,7 +239,7 @@ const scrollToStorytelling = () => {
         y: 0,
         transition: { type: 'spring', stiffness: 120, damping: 16, delay: 50 },
       }"
-      class="panel group relative h-[50dvh] md:h-full flex-1 flex items-center justify-center cursor-pointer overflow-hidden isolate transition-[flex-grow,filter] duration-[720ms] ease-[cubic-bezier(0.4,0,0.2,1)] active:scale-[0.98] md:active:scale-100"
+      class="panel group relative h-[50dvh] md:h-full flex-1 flex items-center justify-center cursor-pointer overflow-hidden isolate transition-[flex-grow,filter] duration-720 ease-in-out active:scale-[0.98] md:active:scale-100"
       :class="[
         hoveredPanel === 'dev'
           ? 'md:flex-[0.6]'
