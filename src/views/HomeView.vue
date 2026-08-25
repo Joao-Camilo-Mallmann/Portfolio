@@ -1,6 +1,7 @@
 <script setup>
 import FooterContact from '@/components/FooterContact.vue'
 import HeroSection from '@/components/Home/HeroSection.vue'
+import SkillCardsSection from '@/components/Home/SkillCardsSection.vue'
 import StorytellingSection from '@/components/Home/StorytellingSection.vue'
 import { useI18n } from '@/composables/useI18n'
 import { useHead } from '@unhead/vue'
@@ -58,6 +59,9 @@ useHead({
 
     <!-- Storytelling — "Beyond the Code." -->
     <storytelling-section />
+
+    <!-- Skill Cards & Philosophy — Two Worlds, One Vision -->
+    <skill-cards-section />
 
     <!-- Footer de Contato Padrão -->
     <div v-motion-scroll-visible :delay="100">

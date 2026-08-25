@@ -36,6 +36,48 @@ export default {
       editorBtn: 'Ver Área Editor',
     },
 
+    // Skill Cards
+    devTitle: 'Software Developer',
+    devDescription:
+      'Especializado em desenvolvimento de aplicações web modernas e responsivas utilizando Vue.js, JavaScript/TypeScript e as melhores práticas do mercado.',
+    devButton: 'Explorar Projetos Dev',
+    devButtonAria: 'Navegar para página de projetos de desenvolvimento',
+    devSkills: [
+      'Vue.js & Nuxt 3',
+      'TypeScript & JS ES6+',
+      'Tailwind CSS v4',
+      'Arquitetura de APIs',
+      'Clean Code & Performance',
+    ],
+
+    editorTitle: 'Editor de Vídeo',
+    editorDescription:
+      'Criação audiovisual profissional com Adobe Premiere Pro, Photoshop e After Effects. Especializado em vídeos institucionais, comerciais e motion graphics.',
+    editorButton: 'Ver Portfólio de Vídeo',
+    editorButtonAria: 'Navegar para página de portfólio de edição de vídeo',
+    editorSkills: [
+      'Adobe Premiere Pro',
+      'Adobe After Effects',
+      'Motion Design & VFX',
+      'Color Grading & Áudio',
+      'Adobe Photoshop',
+    ],
+
+    // Filosofia
+    philosophyTitle: 'Minha Filosofia de Trabalho',
+    philosophyCreativity: 'Combino criatividade técnica',
+    philosophyVision: 'visão estratégica',
+    philosophyDelivery: 'para entregar projetos que superam expectativas. Seja desenvolvendo',
+    philosophyInterfaces: 'interfaces intuitivas',
+    philosophyContent: 'conteúdo audiovisual impactante',
+    philosophyFocus: 'meu foco é sempre a',
+    philosophyExcellence: 'excelência',
+
+    // Tags da filosofia
+    tagTechnology: 'Tecnologia',
+    tagCreativity: 'Criatividade',
+    tagDedication: 'Dedicação',
+
     // Stats
     stats: {
       years: '4+',

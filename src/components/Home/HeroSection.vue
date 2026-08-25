@@ -67,38 +67,88 @@ const handlePanelClick = (type) => {
     router.push(type === 'dev' ? '/dev' : '/editor')
   }, 880)
 }
+
+const scrollToStorytelling = () => {
+  window.scrollTo({
+    top: window.innerHeight,
+    behavior: 'smooth',
+  })
+}
 </script>
 
 <template>
   <section
-    class="relative w-full h-[100dvh] overflow-hidden flex flex-col md:flex-row bg-bg overflow-visible"
+    class="relative w-full h-[100dvh] overflow-hidden flex flex-col md:flex-row bg-bg"
     :class="{ 'opacity-100': isLoaded, 'opacity-0': !isLoaded }"
     style="transition: opacity 0.5s ease"
+    role="region"
+    aria-label="Hero Identity & Portfolio Tracks"
   >
-    <!-- Floating Identity Overlay -->
+    <!-- MOBILE FLOATING IDENTITY OVERLAY (Top of the 100vh viewport) -->
     <div
-      class="absolute inset-0 z-10 pointer-events-none flex flex-col justify-center items-center text-center p-6 mix-blend-normal overflow-visible"
+      v-motion
+      :initial="{ opacity: 0, y: -20 }"
+      :enter="{
+        opacity: 1,
+        y: 0,
+        transition: { type: 'spring', stiffness: 180, damping: 16, delay: 100 },
+      }"
+      class="md:hidden absolute top-0 left-0 right-0 z-20 pointer-events-none flex flex-col items-center text-center px-4 pt-5 pb-3 bg-linear-to-b from-black/80 via-black/40 to-transparent"
     >
-      <!-- Top Left Profile (absolute) -->
-      <div
-        v-motion
-        :initial="{ opacity: 0, scale: 0.5, rotate: -12 }"
-        :enter="{
-          opacity: 1,
-          scale: 1,
-          rotate: 0,
-          transition: { type: 'spring', stiffness: 200, damping: 14, delay: 100 },
-        }"
-        class="absolute top-6 left-6 flex items-center gap-3 pointer-events-auto"
-      >
+      <div class="flex items-center gap-2.5 mb-1 pointer-events-auto">
         <img
           src="/img/eu.jpg"
-          alt="Profile"
-          class="w-12 h-12 rounded-full border-2 border-white/20 shadow-lg object-cover"
+          alt="João Camilo Mallmann"
+          class="w-9 h-9 rounded-full border-2 border-white/20 shadow-md object-cover"
         />
+        <h1
+          class="shimmer-title text-lg sm:text-xl font-extrabold text-white tracking-tight drop-shadow-lg transition-transform duration-150"
+          :class="[currentFontClass, { 'scale-[1.02] text-dev': isCycling }]"
+        >
+          {{ t('home.hero.name') }}
+        </h1>
       </div>
 
-      <!-- Center Identity -->
+      <p
+        class="text-xs font-medium text-white/90 flex items-center gap-1.5 justify-center drop-shadow"
+      >
+        <span class="text-dev font-semibold">{{ t('home.hero.title') }}</span>
+        <span class="text-white/40">{{ t('home.hero.titleSeparator') }}</span>
+        <span class="text-editor font-semibold">{{ t('home.hero.titleSecondary') }}</span>
+      </p>
+
+      <div
+        class="h-px w-20 bg-linear-to-r from-dev/60 via-white/50 to-editor/60 my-1 rounded-full"
+      ></div>
+
+      <p class="text-[11px] sm:text-xs text-white/80 italic tracking-wide drop-shadow">
+        {{ t('home.hero.tagline') }}
+      </p>
+    </div>
+
+    <!-- DESKTOP ONLY: Top Left Profile Photo -->
+    <div
+      v-motion
+      :initial="{ opacity: 0, scale: 0.5, rotate: -12 }"
+      :enter="{
+        opacity: 1,
+        scale: 1,
+        rotate: 0,
+        transition: { type: 'spring', stiffness: 200, damping: 14, delay: 100 },
+      }"
+      class="hidden md:flex absolute top-6 left-6 items-center gap-3 pointer-events-auto z-20"
+    >
+      <img
+        src="/img/eu.jpg"
+        alt="João Camilo Mallmann"
+        class="w-12 h-12 rounded-full border-2 border-white/20 shadow-lg object-cover"
+      />
+    </div>
+
+    <!-- DESKTOP ONLY: Floating Identity Overlay (Centered) -->
+    <div
+      class="hidden md:flex absolute inset-0 z-10 pointer-events-none flex-col justify-center items-center text-center p-6 mix-blend-normal overflow-visible"
+    >
       <div
         class="flex flex-col items-center gap-2 max-w-2xl pointer-events-auto perspective-500 overflow-visible"
       >
@@ -113,7 +163,7 @@ const handlePanelClick = (type) => {
             rotateX: 0,
             transition: { type: 'spring', stiffness: 160, damping: 14, delay: 200 },
           }"
-          class="shimmer-title text-4xl md:text-6xl font-extrabold text-white tracking-tight drop-shadow-2xl transition-all duration-150"
+          class="shimmer-title text-4xl md:text-6xl font-extrabold text-white tracking-tight drop-shadow-2xl transition-transform duration-150"
           :class="[currentFontClass, { 'scale-[1.02] text-dev': isCycling }]"
         >
           {{ t('home.hero.name') }}
@@ -145,7 +195,7 @@ const handlePanelClick = (type) => {
             opacity: 1,
             transition: { type: 'keyframes', ease: [0.16, 1, 0.3, 1], duration: 800, delay: 500 },
           }"
-          class="h-px w-28 bg-gradient-to-r from-dev/60 via-white/50 to-editor/60 my-4 rounded-full origin-center"
+          class="h-px w-28 bg-linear-to-r from-dev/60 via-white/50 to-editor/60 my-4 rounded-full origin-center"
         ></div>
 
         <!-- Tagline com Slide + Spring -->
@@ -172,32 +222,34 @@ const handlePanelClick = (type) => {
             y: 0,
             transition: { type: 'spring', stiffness: 150, damping: 18, delay: 750 },
           }"
-          class="text-sm md:text-base text-white/60 drop-shadow max-w-lg mt-2 leading-relaxed"
+          class="text-sm md:text-base text-white/60 drop-shadow max-w-lg mt-2 leading-relaxed text-pretty"
         >
           {{ t('home.hero.subtitle') }}
         </p>
       </div>
     </div>
 
-    <!-- Left Panel: Developer -->
+    <!-- Top (Mobile: 50dvh) / Left (Desktop: 100vh) Panel: Developer -->
     <div
       v-motion
-      :initial="{ opacity: 0, x: -50, rotate: -2 }"
+      :initial="{ opacity: 0, x: -30, y: -20 }"
       :enter="{
         opacity: 1,
         x: 0,
-        rotate: 0,
+        y: 0,
         transition: { type: 'spring', stiffness: 120, damping: 16, delay: 50 },
       }"
-      class="panel group relative h-[50dvh] md:h-full flex-1 flex items-center justify-center cursor-pointer overflow-hidden isolate transition-[flex-grow,filter] duration-[720ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+      class="panel group relative h-[50dvh] md:h-full flex-1 flex items-center justify-center cursor-pointer overflow-hidden isolate transition-[flex-grow,filter] duration-[720ms] ease-[cubic-bezier(0.4,0,0.2,1)] active:scale-[0.98] md:active:scale-100"
       :class="[
         hoveredPanel === 'dev'
           ? 'md:flex-[0.6]'
           : hoveredPanel === 'editor'
             ? 'md:flex-[0.4]'
             : 'md:flex-[0.5]',
-        activePanel === 'dev' ? 'md:!flex-[1] z-20' : '',
-        activePanel === 'editor' ? 'md:!flex-[0] blur-md grayscale' : '',
+        activePanel === 'dev' ? 'flex-[1] md:!flex-[1] z-20' : '',
+        activePanel === 'editor'
+          ? 'flex-[0] md:!flex-[0] blur-md grayscale pointer-events-none'
+          : '',
       ]"
       @mouseenter="!activePanel && (hoveredPanel = 'dev')"
       @mouseleave="hoveredPanel = null"
@@ -213,33 +265,41 @@ const handlePanelClick = (type) => {
         class="absolute inset-0 bg-black/60 -z-10 group-hover:bg-black/40 transition-colors duration-500"
       ></div>
       <div
-        class="absolute inset-0 bg-radial from-dev/40 to-transparent opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-700"
+        class="absolute inset-0 bg-radial from-dev/40 to-transparent opacity-30 md:opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-700"
       ></div>
 
+      <!-- Panel content positioned comfortably below the mobile top overlay (pt-16 md:pt-0) -->
       <div
-        class="panel-content z-20 flex flex-col items-center text-center p-6 text-shadow pointer-events-auto"
+        class="panel-content z-20 flex flex-col items-center text-center px-4 pt-16 pb-3 md:p-6 text-shadow pointer-events-auto"
       >
         <i
-          class="pi pi-code text-5xl md:text-6xl text-white mb-4 transition-transform transition-colors duration-500 group-hover:-translate-y-2 group-hover:text-dev"
+          class="pi pi-code text-3xl sm:text-4xl md:text-6xl text-dev md:text-white mb-1.5 md:mb-4 transition-transform transition-colors duration-500 md:group-hover:-translate-y-2 md:group-hover:text-dev"
         ></i>
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">
+        <h2 class="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2 text-balance">
           {{ t('home.hero.devTitle') }}
         </h2>
         <p
-          class="text-white/80 max-w-sm md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-opacity transition-transform duration-500 delay-100"
+          class="text-white/80 max-w-sm text-sm md:text-base hidden md:block opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-opacity transition-transform duration-500 delay-100 text-pretty"
         >
           {{ t('home.hero.devDescription') }}
         </p>
         <span
-          class="mt-6 inline-flex items-center gap-2 text-dev font-semibold md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-opacity transition-transform duration-500 delay-200"
+          class="mt-2 md:mt-6 inline-flex items-center gap-1.5 md:gap-2 px-3.5 py-1 md:p-0 rounded-full md:rounded-none bg-dev/15 md:bg-transparent border border-dev/30 md:border-none text-dev font-semibold text-xs md:text-base shadow-sm md:shadow-none md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-opacity transition-transform duration-500 md:delay-200"
         >
           {{ t('home.hero.devCta') }}
-          <i class="pi pi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          <i
+            class="pi pi-arrow-right text-[10px] md:text-sm group-hover:translate-x-1 transition-transform"
+          ></i>
         </span>
       </div>
     </div>
 
-    <!-- Center Divider Line (Desktop) -->
+    <!-- Center Divider Line (Mobile: Horizontal, Desktop: Vertical) -->
+    <div
+      class="md:hidden absolute top-1/2 left-6 right-6 h-px bg-white/20 z-20 -translate-y-1/2 pointer-events-none shadow-[0_0_10px_rgba(255,255,255,0.3)]"
+      :style="{ opacity: activePanel ? '0' : '1' }"
+    ></div>
+
     <div
       class="hidden md:block absolute top-0 bottom-0 w-px bg-white/20 z-20 left-1/2 -translate-x-1/2 pointer-events-none transition-all duration-[720ms] shadow-[0_0_15px_rgba(255,255,255,0.5)]"
       :style="{
@@ -248,25 +308,25 @@ const handlePanelClick = (type) => {
       }"
     ></div>
 
-    <!-- Right Panel: Video Editor -->
+    <!-- Bottom (Mobile: 50dvh) / Right (Desktop: 100vh) Panel: Video Editor -->
     <div
       v-motion
-      :initial="{ opacity: 0, x: 50, rotate: 2 }"
+      :initial="{ opacity: 0, x: 30, y: 20 }"
       :enter="{
         opacity: 1,
         x: 0,
-        rotate: 0,
+        y: 0,
         transition: { type: 'spring', stiffness: 120, damping: 16, delay: 120 },
       }"
-      class="panel group relative h-[50dvh] md:h-full flex-1 flex items-center justify-center cursor-pointer overflow-hidden isolate transition-[flex-grow,filter] duration-[720ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+      class="panel group relative h-[50dvh] md:h-full flex-1 flex items-center justify-center cursor-pointer overflow-hidden isolate transition-[flex-grow,filter] duration-[720ms] ease-[cubic-bezier(0.4,0,0.2,1)] active:scale-[0.98] md:active:scale-100"
       :class="[
         hoveredPanel === 'editor'
           ? 'md:flex-[0.6]'
           : hoveredPanel === 'dev'
             ? 'md:flex-[0.4]'
             : 'md:flex-[0.5]',
-        activePanel === 'editor' ? 'md:!flex-[1] z-20' : '',
-        activePanel === 'dev' ? 'md:!flex-[0] blur-md grayscale' : '',
+        activePanel === 'editor' ? 'flex-[1] md:!flex-[1] z-20' : '',
+        activePanel === 'dev' ? 'flex-[0] md:!flex-[0] blur-md grayscale pointer-events-none' : '',
       ]"
       @mouseenter="!activePanel && (hoveredPanel = 'editor')"
       @mouseleave="hoveredPanel = null"
@@ -282,34 +342,37 @@ const handlePanelClick = (type) => {
         class="absolute inset-0 bg-black/60 -z-10 group-hover:bg-black/40 transition-colors duration-500"
       ></div>
       <div
-        class="absolute inset-0 bg-radial from-editor/40 to-transparent opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-700"
+        class="absolute inset-0 bg-radial from-editor/40 to-transparent opacity-30 md:opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-700"
       ></div>
 
+      <!-- Panel content positioned comfortably above the scroll indicator (pb-12 md:pb-6) -->
       <div
-        class="panel-content z-20 flex flex-col items-center text-center p-6 text-shadow pointer-events-auto"
+        class="panel-content z-20 flex flex-col items-center text-center px-4 pt-3 pb-12 md:p-6 text-shadow pointer-events-auto"
       >
         <i
-          class="pi pi-video text-5xl md:text-6xl text-white mb-4 transition-transform transition-colors duration-500 group-hover:-translate-y-2 group-hover:text-editor"
+          class="pi pi-video text-3xl sm:text-4xl md:text-6xl text-editor md:text-white mb-1.5 md:mb-4 transition-transform transition-colors duration-500 md:group-hover:-translate-y-2 md:group-hover:text-editor"
         ></i>
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">
+        <h2 class="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2 text-balance">
           {{ t('home.hero.editorTitle') }}
         </h2>
         <p
-          class="text-white/80 max-w-sm md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-opacity transition-transform duration-500 delay-100"
+          class="text-white/80 max-w-sm text-sm md:text-base hidden md:block opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-opacity transition-transform duration-500 delay-100 text-pretty"
         >
           {{ t('home.hero.editorDescription') }}
         </p>
         <span
-          class="mt-6 inline-flex items-center gap-2 text-editor font-semibold md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-opacity transition-transform duration-500 delay-200"
+          class="mt-2 md:mt-6 inline-flex items-center gap-1.5 md:gap-2 px-3.5 py-1 md:p-0 rounded-full md:rounded-none bg-editor/15 md:bg-transparent border border-editor/30 md:border-none text-editor font-semibold text-xs md:text-base shadow-sm md:shadow-none md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-opacity transition-transform duration-500 md:delay-200"
         >
           {{ t('home.hero.editorCta') }}
-          <i class="pi pi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          <i
+            class="pi pi-arrow-right text-[10px] md:text-sm group-hover:translate-x-1 transition-transform"
+          ></i>
         </span>
       </div>
     </div>
 
     <!-- Scroll Indicator -->
-    <scroll-indicator class="absolute bottom-20 left-1/2 -translate-x-1/2 z-20" />
+    <scroll-indicator @click="scrollToStorytelling" />
 
     <!-- Floating Socials -->
   </section>

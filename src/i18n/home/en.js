@@ -35,6 +35,48 @@ export default {
       editorBtn: 'Editor Area',
     },
 
+    // Skill Cards
+    devTitle: 'Software Developer',
+    devDescription:
+      'Specialized in developing modern and responsive web applications using Vue.js, JavaScript/TypeScript and industry best practices.',
+    devButton: 'Explore Dev Projects',
+    devButtonAria: 'Navigate to development projects page',
+    devSkills: [
+      'Vue.js & Nuxt 3',
+      'TypeScript & JS ES6+',
+      'Tailwind CSS v4',
+      'API Architecture',
+      'Clean Code & Performance',
+    ],
+
+    editorTitle: 'Video Editor',
+    editorDescription:
+      'Professional audiovisual creation with Adobe Premiere Pro, Photoshop and After Effects. Commercial videos, branding content and motion graphics.',
+    editorButton: 'View Video Portfolio',
+    editorButtonAria: 'Navigate to video editing portfolio page',
+    editorSkills: [
+      'Adobe Premiere Pro',
+      'Adobe After Effects',
+      'Motion Design & VFX',
+      'Color Grading & Audio',
+      'Adobe Photoshop',
+    ],
+
+    // Philosophy
+    philosophyTitle: 'My Work Philosophy',
+    philosophyCreativity: 'I combine technical creativity',
+    philosophyVision: 'strategic vision',
+    philosophyDelivery: 'to deliver projects that exceed expectations. Whether developing',
+    philosophyInterfaces: 'intuitive interfaces',
+    philosophyContent: 'impactful audiovisual content',
+    philosophyFocus: 'my focus is always on',
+    philosophyExcellence: 'excellence',
+
+    // Philosophy tags
+    tagTechnology: 'Technology',
+    tagCreativity: 'Creativity',
+    tagDedication: 'Dedication',
+
     // Stats
     stats: {
       years: '4+',

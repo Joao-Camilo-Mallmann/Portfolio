@@ -25,9 +25,9 @@ export function useParticles(canvasRef, options = {}) {
 
   // Dev blue → Cyan glow → Editor orange
   const colorStops = [
-    { r: 77, g: 145, b: 234 },  // #4d91ea (dev)
-    { r: 6, g: 182, b: 212 },   // #06b6d4 (cyan-glow)
-    { r: 234, g: 166, b: 77 },  // #eaa64d (editor)
+    { r: 77, g: 145, b: 234 }, // #4d91ea (dev)
+    { r: 6, g: 182, b: 212 }, // #06b6d4 (cyan-glow)
+    { r: 234, g: 166, b: 77 }, // #eaa64d (editor)
   ]
 
   function lerpColor(t) {

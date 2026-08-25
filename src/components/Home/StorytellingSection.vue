@@ -16,13 +16,13 @@ const editorBtnRef = ref(null)
 useMagneticEffect(devBtnRef, {
   strength: 0.35,
   radius: 100,
-  glowColor: '77, 145, 234',   // dev blue
+  glowColor: '77, 145, 234', // dev blue
   maxGlowIntensity: 0.5,
 })
 useMagneticEffect(editorBtnRef, {
   strength: 0.35,
   radius: 100,
-  glowColor: '234, 166, 77',   // editor orange
+  glowColor: '234, 166, 77', // editor orange
   maxGlowIntensity: 0.5,
 })
 </script>
@@ -238,7 +238,10 @@ useMagneticEffect(editorBtnRef, {
 
 /* Magnetic buttons: remove default hover shadow to let composable handle glow */
 .magnetic-btn {
-  transition: background-color 0.3s, transform 0.08s ease-out, box-shadow 0.15s ease-out;
+  transition:
+    background-color 0.3s,
+    transform 0.08s ease-out,
+    box-shadow 0.15s ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
