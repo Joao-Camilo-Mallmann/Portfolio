@@ -61,7 +61,7 @@ const socialButtons = [
       </div>
 
       <!-- Links de contato — Cascade spring stagger -->
-      <div class="flex! flex-wrap! justify-center gap-3 sm:gap-4 mb-8 px-4">
+      <div class="flex flex-wrap flex-row justify-center gap-3 sm:gap-4 mb-8 px-4">
         <div
           v-for="(btn, i) in socialButtons"
           :key="btn.platform"
@@ -73,7 +73,7 @@ const socialButtons = [
             scale: 1,
             transition: { type: 'spring', stiffness: 200, damping: 15, delay: i * 80 },
           }"
-          class="flex-1 sm:flex-none min-w-0 max-w-35 sm:max-w-none"
+          class="min-w-0 max-w-100 w-auto "
         >
           <social-media-button :platform="btn.platform" :link="btn.link" />
         </div>
