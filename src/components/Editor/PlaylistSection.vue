@@ -273,8 +273,15 @@ onUnmounted(() => {
         </p>
       </div>
 
-      <div v-if="loading && totalVideos === 0" class="playlist-skeleton" aria-busy="true" aria-label="Loading playlist">
-        <div class="rounded-2xl overflow-hidden ring-1 ring-inset ring-white/5 border border-border bg-surface-100">
+      <div
+        v-if="loading && totalVideos === 0"
+        class="playlist-skeleton"
+        aria-busy="true"
+        aria-label="Loading playlist"
+      >
+        <div
+          class="rounded-2xl overflow-hidden ring-1 ring-inset ring-white/5 border border-border bg-surface-100"
+        >
           <div class="relative aspect-video bg-white/3 overflow-hidden">
             <div class="skeleton-shimmer"></div>
           </div>
@@ -364,11 +371,19 @@ onUnmounted(() => {
             </transition>
 
             <div class="p-6 md:p-8">
-              <h3 class="text-xl md:text-2xl font-bold text-fg mb-3 text-balance tracking-wide min-h-[3.5rem] flex items-center">
+              <h3
+                class="text-xl md:text-2xl font-bold text-fg mb-3 text-balance tracking-wide min-h-[3.5rem] flex items-center"
+              >
                 {{ currentVideo.title }}
               </h3>
 
-              <div class="w-full h-1.5 rounded-full bg-white/5 mb-6 overflow-hidden" role="progressbar" :aria-valuenow="progressPercent" aria-valuemin="0" aria-valuemax="100">
+              <div
+                class="w-full h-1.5 rounded-full bg-white/5 mb-6 overflow-hidden"
+                role="progressbar"
+                :aria-valuenow="progressPercent"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
                 <div
                   class="h-full bg-linear-to-r from-editor/70 to-editor transition-all duration-500 rounded-full"
                   :style="{ width: `${progressPercent}%` }"
@@ -411,7 +426,11 @@ onUnmounted(() => {
         </div>
 
         <!-- Dot indicators with minimum hit areas -->
-        <div class="flex justify-center items-center gap-2 mt-8 flex-wrap" role="tablist" aria-label="Indicadores de Vídeos">
+        <div
+          class="flex justify-center items-center gap-2 mt-8 flex-wrap"
+          role="tablist"
+          aria-label="Indicadores de Vídeos"
+        >
           <button
             v-for="(video, index) in playlistVideos"
             :key="`dot-${video.id}`"
@@ -437,7 +456,7 @@ onUnmounted(() => {
         <div class="mt-8">
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
             <button
-              v-for="(video, index) in playlistVideos.slice(0,5)"
+              v-for="(video, index) in playlistVideos.slice(0, 5)"
               :key="`thumb-${video.id}`"
               type="button"
               :aria-label="`Selecionar: ${video.title}`"
@@ -479,7 +498,9 @@ onUnmounted(() => {
             class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border shadow-sm ring-1 ring-inset ring-white/5 text-fg-muted hover:text-fg hover:border-editor/40 transition-all duration-300 group"
           >
             <span>{{ t('editorPlaylist.fullPlaylist') }}</span>
-            <i class="pi pi-external-link text-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+            <i
+              class="pi pi-external-link text-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            ></i>
           </a>
         </div>
       </div>

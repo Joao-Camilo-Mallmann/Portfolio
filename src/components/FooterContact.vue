@@ -73,7 +73,7 @@ const socialButtons = [
             scale: 1,
             transition: { type: 'spring', stiffness: 200, damping: 15, delay: i * 80 },
           }"
-          class="min-w-0 max-w-100 w-auto "
+          class="min-w-0 max-w-100 w-auto"
         >
           <social-media-button :platform="btn.platform" :link="btn.link" />
         </div>
