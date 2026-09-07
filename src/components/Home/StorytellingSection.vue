@@ -103,9 +103,7 @@ useMagneticEffect(editorBtnRef, {
 
                 <!-- Clean Monospaced Overlay Accent (Software Engineer / Content Creator) -->
                 <div class="absolute bottom-5 left-5 right-5 flex flex-col gap-0.5">
-                  <p class="text-[11px] font-mono font-bold tracking-widest uppercase">
-                    Me
-                  </p>
+                  <p class="text-[11px] font-mono font-bold tracking-widest uppercase">Me</p>
                 </div>
               </div>
             </div>

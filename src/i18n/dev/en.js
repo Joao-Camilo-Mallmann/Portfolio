@@ -106,7 +106,7 @@ export default {
     project3Title: 'Urban Mobility System',
     project3Alt: 'SMU screenshot',
     project3Desc:
-      'Mission-critical platform for real-time monitoring. Event-driven architecture using WebSockets for geospatial data streaming and optimized rendering of thousands of map assets.',
+      'Mission-critical live panel for fleet and field agent monitoring via WebSockets (Pusher). Operational map optimized for high volume of points combining Google Maps, clustering, and Deck.gl heatmaps with Vue 3, TypeScript, Vuetify, and Pinia.',
     project4Title: 'Personal Portfolio (This Site)',
     project4Alt: 'Personal portfolio icon',
     project4Desc:
@@ -118,7 +118,11 @@ export default {
     project6Title: 'Better Rich Presence 🎮',
     project6Alt: 'Better Rich Presence screenshot',
     project6Desc:
-      'Advanced desktop application built with Rust and Tauri that automatically updates your Discord Rich Presence based on your active window. Features low-latency detection, smart priority rules, and minimal system resource usage.',
+      'Lightweight desktop application built with Rust and Tauri with direct Discord RPC/IPC integration. Features a React & TypeScript interface for automatic detection, live preview, and low background resource consumption.',
+    project7Title: 'Vimasi Panel — Industrial Catalog & Inventory 📦',
+    project7Alt: 'Vimasi Panel screenshot',
+    project7Desc:
+      'High-performance SPA built with React, TypeScript, Vite, and Tailwind CSS v4 with an intelligent search engine for 1,500+ industrial items. Includes Python scripts for automated PDF parsing and persistence in Supabase (PostgreSQL, RLS).',
     moreProjectsHint: 'Want to see more complete projects, experiments, and real-world cases?',
     moreProjectsCta: 'See More Projects on GitHub',
   },

@@ -46,6 +46,15 @@ const techCategories = computed(() => [
           'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
       },
       {
+        name: 'Python',
+        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+      },
+      {
+        name: 'Rust',
+        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg',
+        invert: true,
+      },
+      {
         name: 'HTML5',
         image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
       },
@@ -72,33 +81,17 @@ const techCategories = computed(() => [
         image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
       },
       {
+        name: 'Pinia',
+        image: 'https://pinia.vuejs.org/logo.svg',
+      },
+      {
         name: 'Vite',
         image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg',
       },
-    ],
-  },
-  {
-    header: t('devStack.categories.design'),
-    icon: 'pi pi-palette',
-    technologies: [
       {
-        name: 'Vuetify',
-        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuetify/vuetify-original.svg',
-      },
-      {
-        name: 'Tailwind CSS',
+        name: 'WordPress',
         image:
-          'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
-      },
-
-      {
-        name: 'Bootstrap',
-        image:
-          'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
-      },
-      {
-        name: 'PrimeVue',
-        image: 'https://www.primefaces.org/wp-content/uploads/2019/12/primevue-logo.png',
+          'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg',
       },
     ],
   },
@@ -111,6 +104,19 @@ const techCategories = computed(() => [
         image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
       },
       {
+        name: 'Express',
+        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
+        invert: true,
+      },
+      {
+        name: 'Laravel',
+        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg',
+      },
+      {
+        name: 'PHP',
+        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
+      },
+      {
         name: 'Bun',
         image: 'https://bun.sh/logo.svg',
       },
@@ -119,17 +125,13 @@ const techCategories = computed(() => [
         image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/denojs/denojs-original.svg',
       },
       {
-        name: 'PHP',
-        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
+        name: 'WebSockets',
+        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg',
+        invert: true,
       },
       {
         name: 'Java',
         image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
-      },
-      {
-        name: 'WordPress',
-        image:
-          'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg',
       },
     ],
   },
@@ -142,8 +144,13 @@ const techCategories = computed(() => [
         image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
       },
       {
-        name: 'Railway',
-        image: 'https://railway.app/brand/logo-light.png',
+        name: 'GitLab CI',
+        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg',
+      },
+      {
+        name: 'GitHub Actions',
+        image:
+          'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg',
       },
       {
         name: 'Git',
@@ -155,8 +162,40 @@ const techCategories = computed(() => [
         invert: true,
       },
       {
+        name: 'Railway',
+        image: 'https://railway.app/brand/logo-light.png',
+      },
+      {
         name: 'Linux',
         image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',
+      },
+    ],
+  },
+  {
+    header: t('devStack.categories.design'),
+    icon: 'pi pi-palette',
+    technologies: [
+      {
+        name: 'Figma',
+        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
+      },
+      {
+        name: 'Tailwind CSS',
+        image:
+          'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
+      },
+      {
+        name: 'Vuetify',
+        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuetify/vuetify-original.svg',
+      },
+      {
+        name: 'PrimeVue',
+        image: 'https://www.primefaces.org/wp-content/uploads/2019/12/primevue-logo.png',
+      },
+      {
+        name: 'Bootstrap',
+        image:
+          'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
       },
     ],
   },
@@ -168,6 +207,10 @@ const techCategories = computed(() => [
         name: 'PostgreSQL',
         image:
           'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
+      },
+      {
+        name: 'Supabase',
+        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg',
       },
       {
         name: 'MySQL',
@@ -190,7 +233,11 @@ const techCategories = computed(() => [
       {
         name: 'Cypress',
         image:
-          'https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/3/cypress-icon-moigrz5nimpd7rsob0bisu.png/cypress-icon-pg9bdlubveoefqouilbg.png',
+          'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-original.svg',
+      },
+      {
+        name: 'Swagger',
+        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg',
       },
     ],
   },
@@ -199,16 +246,20 @@ const techCategories = computed(() => [
     icon: 'pi pi-sparkles',
     technologies: [
       {
-        name: 'OpenAI API',
+        name: 'Cursor',
+        image: 'https://cdn.simpleicons.org/cursor/white',
+      },
+      {
+        name: 'Claude Code',
+        image: 'https://cdn.simpleicons.org/claude',
+      },
+      {
+        name: 'Codex',
         image: 'https://openai.com/favicon.ico',
       },
       {
         name: 'VSCode',
         image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
-      },
-      {
-        name: 'Figma',
-        image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
       },
     ],
   },
@@ -252,15 +303,15 @@ const techCategories = computed(() => [
         v-for="(category, catIdx) in techCategories"
         :key="category.header"
         v-motion
-        :initial="{ opacity: 0, x: catIdx % 2 === 0 ? -20 : 20, scale: 0.96 }"
+        :initial="{ opacity: 0, y: 20, scale: 0.97 }"
         :visible-once="{
           opacity: 1,
-          x: 0,
+          y: 0,
           scale: 1,
-          transition: { type: 'spring', stiffness: 160, damping: 16, delay: catIdx * 55 },
+          transition: { type: 'spring', stiffness: 160, damping: 16, delay: catIdx * 45 },
         }"
         :class="[
-          'group relative overflow-hidden rounded-2xl border border-border bg-surface-card/25 p-5 ring-1 ring-inset ring-white/5 transition-colors duration-300 hover:border-dev/25',
+          'group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface-card/25 p-5 ring-1 ring-inset ring-white/5 transition-colors duration-300 hover:border-dev/25',
           category.technologies.length >= 6 ? 'md:col-span-2 lg:col-span-2' : '',
         ]"
       >
@@ -278,7 +329,7 @@ const techCategories = computed(() => [
           </div>
           <h4 class="text-sm font-semibold tracking-wide text-fg">{{ category.header }}</h4>
           <span
-            class="ml-auto rounded-md border border-border bg-surface-100 px-1.5 py-0.5 font-mono text-[10px] text-fg-muted/60"
+            class="ml-auto rounded-md border border-border bg-surface-100 px-1.5 py-0.5 font-mono text-[10px] tabular-nums text-fg-muted/60"
           >
             {{ category.technologies.length }}
           </span>
@@ -295,19 +346,22 @@ const techCategories = computed(() => [
               type: 'keyframes',
               ease: [0.16, 1, 0.3, 1],
               duration: 700,
-              delay: catIdx * 55 + 180,
+              delay: catIdx * 45 + 150,
             },
           }"
           class="mb-4 h-px w-full origin-left rounded-full bg-linear-to-r from-dev/25 via-border to-transparent"
         />
 
         <!-- Tech icons grid -->
-        <div class="relative grid gap-2.5" :class="getTechGridClass(category.technologies.length)">
+        <div
+          class="relative my-auto grid gap-2"
+          :class="getTechGridClass(category.technologies.length)"
+        >
           <div
             v-for="(tech, idx) in category.technologies"
             :key="tech.name"
             v-motion
-            :initial="{ opacity: 0, scale: 0.5 }"
+            :initial="{ opacity: 0, scale: 0.6 }"
             :visible-once="{
               opacity: 1,
               scale: 1,
@@ -315,10 +369,10 @@ const techCategories = computed(() => [
                 type: 'spring',
                 stiffness: 280,
                 damping: 14,
-                delay: catIdx * 40 + idx * 65,
+                delay: catIdx * 35 + idx * 45,
               },
             }"
-            class="group/tech flex cursor-default select-none flex-col items-center gap-2 rounded-xl"
+            class="group/tech flex cursor-default select-none flex-col items-center gap-1.5 rounded-xl transition-colors"
             :class="getTechItemClass(category.technologies.length)"
             :title="tech.name"
           >

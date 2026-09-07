@@ -106,7 +106,7 @@ export default {
     project3Title: 'Sistema de Mobilidade Urbana',
     project3Alt: 'Screenshot do SMU',
     project3Desc:
-      'Plataforma de missão crítica para monitoramento em tempo real. Arquitetura orientada a eventos utilizando WebSockets para streaming de dados geoespaciais e renderização otimizada de milhares de ativos no mapa.',
+      'Painel ao vivo de missão crítica para monitoramento de frotas e agentes via WebSockets (Pusher). Mapa operacional otimizado para alto volume de pontos com Google Maps, clustering e heatmaps com Deck.gl em Vue 3, TypeScript, Vuetify e Pinia.',
     project4Title: 'Portfolio Pessoal (Esse Site)',
     project4Alt: 'Ícone do portfólio pessoal',
     project4Desc:
@@ -118,7 +118,11 @@ export default {
     project6Title: 'Better Rich Presence 🎮',
     project6Alt: 'Screenshot do Better Rich Presence',
     project6Desc:
-      'Aplicativo desktop para automação de Discord Rich Presence. Detecta a janela ativa em segundo plano usando APIs nativas do Windows via Rust/Tauri e atualiza seu status no Discord em tempo real com baixo consumo de recursos.',
+      'Aplicação desktop leve desenvolvida em Rust e Tauri com integração direta com Discord RPC/IPC para automação de status. Interface em React e TypeScript para detecção automática, personalização e pré-visualização em tempo real.',
+    project7Title: 'Vimasi Painel — Catálogo & Estoque 📦',
+    project7Alt: 'Screenshot do Painel Vimasi',
+    project7Desc:
+      'SPA em React, TypeScript, Vite e Tailwind CSS v4 com motor de busca inteligente para catálogo de +1.500 itens. Automação em Python para extração de catálogos em PDF e persistência no Supabase (PostgreSQL, RLS).',
     moreProjectsHint: 'Quer ver mais projetos completos, experimentos e cases reais?',
     moreProjectsCta: 'Ver Mais Projetos no GitHub',
   },
