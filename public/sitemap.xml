@@ -1,25 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Página Principal -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Root (Default redirect) -->
   <url>
     <loc>https://joao-camilo-mallmann.com/</loc>
-    <lastmod>2026-05-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://joao-camilo-mallmann.com/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="en-us" href="https://joao-camilo-mallmann.com/en-us/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joao-camilo-mallmann.com/en-us/" />
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- Desenvolvimento Frontend -->
+
+  <!-- Home (Português) -->
   <url>
-    <loc>https://joao-camilo-mallmann.com/dev</loc>
-    <lastmod>2026-05-21</lastmod>
+    <loc>https://joao-camilo-mallmann.com/pt-br/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://joao-camilo-mallmann.com/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="en-us" href="https://joao-camilo-mallmann.com/en-us/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joao-camilo-mallmann.com/en-us/" />
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Home (English) -->
+  <url>
+    <loc>https://joao-camilo-mallmann.com/en-us/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://joao-camilo-mallmann.com/pt-br/" />
+    <xhtml:link rel="alternate" hreflang="en-us" href="https://joao-camilo-mallmann.com/en-us/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joao-camilo-mallmann.com/en-us/" />
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Developer Portfolio (Português) -->
+  <url>
+    <loc>https://joao-camilo-mallmann.com/pt-br/dev</loc>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://joao-camilo-mallmann.com/pt-br/dev" />
+    <xhtml:link rel="alternate" hreflang="en-us" href="https://joao-camilo-mallmann.com/en-us/dev" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joao-camilo-mallmann.com/en-us/dev" />
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-  
-  <!-- Edição de Vídeo -->
+
+  <!-- Developer Portfolio (English) -->
   <url>
-    <loc>https://joao-camilo-mallmann.com/editor</loc>
-    <lastmod>2026-05-21</lastmod>
+    <loc>https://joao-camilo-mallmann.com/en-us/dev</loc>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://joao-camilo-mallmann.com/pt-br/dev" />
+    <xhtml:link rel="alternate" hreflang="en-us" href="https://joao-camilo-mallmann.com/en-us/dev" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joao-camilo-mallmann.com/en-us/dev" />
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Video Editor Portfolio (Português) -->
+  <url>
+    <loc>https://joao-camilo-mallmann.com/pt-br/editor</loc>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://joao-camilo-mallmann.com/pt-br/editor" />
+    <xhtml:link rel="alternate" hreflang="en-us" href="https://joao-camilo-mallmann.com/en-us/editor" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joao-camilo-mallmann.com/en-us/editor" />
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Video Editor Portfolio (English) -->
+  <url>
+    <loc>https://joao-camilo-mallmann.com/en-us/editor</loc>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://joao-camilo-mallmann.com/pt-br/editor" />
+    <xhtml:link rel="alternate" hreflang="en-us" href="https://joao-camilo-mallmann.com/en-us/editor" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joao-camilo-mallmann.com/en-us/editor" />
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

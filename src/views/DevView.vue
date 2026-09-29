@@ -7,34 +7,19 @@ import DevStackSection from '@/components/Dev/DevStackSection.vue'
 import FooterContact from '@/components/FooterContact.vue'
 import HeaderCore from '@/components/HeaderCore.vue'
 import { useI18n } from '@/composables/useI18n'
-import { useHead } from '@unhead/vue'
+import { useSeoHead } from '@/composables/useSeoHead'
 
 const { t } = useI18n()
 
-useHead({
+useSeoHead({
+  path: 'dev',
   title: () => t('dev.seoTitle'),
-  meta: [
-    { name: 'description', content: () => t('dev.seoDescription') },
-    { name: 'keywords', content: () => t('dev.seoKeywords') },
-    { property: 'og:title', content: () => t('dev.ogTitle') },
-    { property: 'og:description', content: () => t('dev.ogDescription') },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://joao-camilo-mallmann.com/dev' },
-    {
-      property: 'og:image',
-      content:
-        'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=crop',
-    },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    {
-      name: 'twitter:image',
-      content:
-        'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=crop',
-    },
-    { name: 'twitter:title', content: () => t('dev.twitterTitle') },
-    { name: 'twitter:description', content: () => t('dev.twitterDescription') },
-  ],
-  link: [{ rel: 'canonical', href: 'https://joao-camilo-mallmann.com/dev' }],
+  description: () => t('dev.seoDescription'),
+  keywords: () => t('dev.seoKeywords'),
+  ogTitle: () => t('dev.ogTitle'),
+  ogDescription: () => t('dev.ogDescription'),
+  twitterTitle: () => t('dev.twitterTitle'),
+  twitterDescription: () => t('dev.twitterDescription'),
 })
 </script>
 

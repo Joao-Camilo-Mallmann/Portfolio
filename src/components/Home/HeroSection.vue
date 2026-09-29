@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import ScrollIndicator from './ScrollIndicator.vue'
 
-const { t } = useI18n()
+const { t, localizedPath } = useI18n()
 const router = useRouter()
 
 const isLoaded = ref(false)
@@ -64,7 +64,7 @@ const handlePanelClick = (type) => {
 
   setTimeout(() => {
     // Navigate to respective route
-    router.push(type === 'dev' ? '/dev' : '/editor')
+    router.push(localizedPath(type === 'dev' ? '/dev' : '/editor'))
   }, 880)
 }
 

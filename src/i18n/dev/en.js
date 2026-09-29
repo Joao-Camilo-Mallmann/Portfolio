@@ -3,17 +3,17 @@ export default {
   // Dev Page
   dev: {
     ariaLabel: 'Development Portfolio',
-    seoTitle: 'Full Stack Developer | Frontend Specialist',
+    seoTitle: 'João Camilo Mallmann | Frontend & Full Stack Developer (Vue.js, React)',
     seoDescription:
-      'João Camilo Mallmann Portfolio. Full Stack Developer specializing in Vue.js and React. Focus on scalable frontend architectures, web performance and user experience.',
+      'João Camilo Mallmann Development Portfolio. Frontend and Full Stack Developer specializing in Vue.js, React and TypeScript. Scalable web architecture and performance.',
     seoKeywords:
-      'full stack developer, frontend specialist, Vue.js, React, software architecture, web performance, senior developer',
-    ogTitle: 'João Camilo Mallmann - Full Stack Developer',
+      'João Camilo Mallmann, frontend developer, full stack developer, Vue.js, React, TypeScript, software architecture, web performance',
+    ogTitle: 'João Camilo Mallmann | Frontend & Full Stack Developer',
     ogDescription:
-      'Full Stack Developer with Frontend focus. Vue.js and React specialist. Scalable architectures and performance.',
-    twitterTitle: 'João Camilo Mallmann - Full Stack Developer',
+      'Frontend and Full Stack Developer specializing in Vue.js, React and TypeScript. Scalable web architecture and performance.',
+    twitterTitle: 'João Camilo Mallmann | Frontend & Full Stack Developer',
     twitterDescription:
-      'Full Stack Developer | Vue.js & React Specialist. Focus on frontend architecture and DX.',
+      'Frontend & Full Stack Developer | Vue.js & React Specialist. Scalable architecture and web performance.',
     funText: '🎉 Congratulations! You survived my portfolio without crashing!',
     funAchievement: 'Achievement Unlocked:',
     funBadge: '"Brave Visitor" 😎',

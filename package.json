@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite-ssg build",
-    "postbuild": "cp dist/index.html dist/404.html && mkdir -p dist/dev dist/editor && cp dist/dev.html dist/dev/index.html && cp dist/editor.html dist/editor/index.html",
+    "postbuild": "cp dist/index.html dist/404.html && mkdir -p dist/dev dist/editor && cp dist/index.html dist/dev/index.html && cp dist/index.html dist/editor/index.html",
     "preview": "vite preview",
     "lint": "eslint . --fix",
     "deploy": "bun run build"
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@tailwindcss/postcss": "^4.3.3",
-    "@unhead/vue": "^3.4.0",
+    "@unhead/vue": "^2.1.2",
     "@vitejs/plugin-vue": "^6.0.8",
     "@vue/eslint-config-prettier": "^10.2.0",
     "autoprefixer": "^10.5.5",

@@ -11,6 +11,12 @@
       "source": "kindy/skills",
       "sourceType": "github",
       "computedHash": "8c8fc1a48e793fbf149971ea2626292710e4232be7efef443c19d3b78014772d"
+    },
+    "seo-audit": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "skillPath": "skills/seo-audit/SKILL.md",
+      "computedHash": "01f9f8a3feb3ea69c6c212d61189c610f96ef2cc363adc27fd314d78254bf6ae"
     }
   }
 }

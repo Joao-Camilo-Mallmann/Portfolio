@@ -9,33 +9,19 @@ import YouTubeChannelPanel from '@/components/Editor/YouTubeChannelPanel.vue'
 import FooterContact from '@/components/FooterContact.vue'
 import HeaderCore from '@/components/HeaderCore.vue'
 import { useI18n } from '@/composables/useI18n'
-import { useHead } from '@unhead/vue'
+import { useSeoHead } from '@/composables/useSeoHead'
+
 const { t } = useI18n()
 
-useHead({
+useSeoHead({
+  path: 'editor',
   title: () => t('editor.seoTitle'),
-  meta: [
-    { name: 'description', content: () => t('editor.seoDescription') },
-    { name: 'keywords', content: () => t('editor.seoKeywords') },
-    { property: 'og:title', content: () => t('editor.ogTitle') },
-    { property: 'og:description', content: () => t('editor.ogDescription') },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://joao-camilo-mallmann.com/editor' },
-    {
-      property: 'og:image',
-      content:
-        'https://images.unsplash.com/photo-1574717025058-2f8737d2e2b7?q=80&w=687&auto=format&fit=crop',
-    },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    {
-      name: 'twitter:image',
-      content:
-        'https://images.unsplash.com/photo-1574717025058-2f8737d2e2b7?q=80&w=687&auto=format&fit=crop',
-    },
-    { name: 'twitter:title', content: () => t('editor.twitterTitle') },
-    { name: 'twitter:description', content: () => t('editor.twitterDescription') },
-  ],
-  link: [{ rel: 'canonical', href: 'https://joao-camilo-mallmann.com/editor' }],
+  description: () => t('editor.seoDescription'),
+  keywords: () => t('editor.seoKeywords'),
+  ogTitle: () => t('editor.ogTitle'),
+  ogDescription: () => t('editor.ogDescription'),
+  twitterTitle: () => t('editor.twitterTitle'),
+  twitterDescription: () => t('editor.twitterDescription'),
 })
 </script>
 

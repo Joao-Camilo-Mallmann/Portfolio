@@ -3,17 +3,17 @@ export default {
   // Dev Page
   dev: {
     ariaLabel: 'Portfólio de Desenvolvimento',
-    seoTitle: 'Full Stack Developer | Frontend Specialist',
+    seoTitle: 'João Camilo Mallmann | Desenvolvedor Frontend & Full Stack (Vue.js, React)',
     seoDescription:
-      'Portfólio de João Camilo Mallmann. Full Stack Developer especializado em Vue.js e React. Foco em arquiteturas frontend escaláveis, performance web e experiência do usuário.',
+      'Portfólio de desenvolvimento de João Camilo Mallmann. Desenvolvedor Frontend e Full Stack especializado em Vue.js, React e TypeScript. Arquiteturas escaláveis e performance.',
     seoKeywords:
-      'full stack developer, frontend specialist, Vue.js, React, arquitetura de software, performance web, desenvolvedor senior',
-    ogTitle: 'João Camilo Mallmann - Full Stack Developer',
+      'João Camilo Mallmann, full stack developer, frontend specialist, Vue.js, React, TypeScript, arquitetura de software, performance web',
+    ogTitle: 'João Camilo Mallmann | Desenvolvedor Frontend & Full Stack',
     ogDescription:
-      'Full Stack Developer com foco em Frontend. Especialista em Vue.js e React. Arquiteturas escaláveis e performance.',
-    twitterTitle: 'João Camilo Mallmann - Full Stack Developer',
+      'Desenvolvedor Frontend e Full Stack especialista em Vue.js, React e TypeScript. Arquiteturas escaláveis e alta performance.',
+    twitterTitle: 'João Camilo Mallmann | Desenvolvedor Frontend & Full Stack',
     twitterDescription:
-      'Full Stack Developer | Especialista Vue.js & React. Foco em arquitetura frontend e DX.',
+      'Desenvolvedor Frontend & Full Stack | Especialista Vue.js & React. Foco em arquitetura e performance.',
     funText: '🎉 Parabéns! Você sobreviveu ao meu portfólio sem crashar!',
     funAchievement: 'Achievement Unlocked:',
     funBadge: '"Visitante Corajoso" 😎',
