@@ -3,17 +3,17 @@ export default {
   // Editor Page
   editor: {
     ariaLabel: 'Audiovisual Editing Portfolio',
-    seoTitle: 'Video Editor',
+    seoTitle: 'João Camilo Mallmann | Professional Video Editor & Motion Designer',
     seoDescription:
-      'João Camilo Mallmann video editing portfolio. Specialist in Adobe Premiere Pro, After Effects and Photoshop. Professional audiovisual creation for YouTube, businesses and social media.',
+      'João Camilo Mallmann video editing portfolio. Specialist in Adobe Premiere Pro, After Effects and Photoshop. High-impact audiovisual creation for YouTube and brands.',
     seoKeywords:
-      'video editor, Adobe Premiere Pro, After Effects, Photoshop, audiovisual editing, YouTube, motion graphics, freelancer Brazil',
-    ogTitle: 'João Camilo Mallmann - Professional Video Editor',
+      'João Camilo Mallmann, video editor, Adobe Premiere Pro, After Effects, Photoshop, audiovisual editing, YouTube, motion graphics, freelance video editor',
+    ogTitle: 'João Camilo Mallmann | Professional Video Editor & Motion Designer',
     ogDescription:
-      'Professional audiovisual creation with Adobe Creative Suite. Videos for YouTube, businesses and social media.',
-    twitterTitle: 'João Camilo Mallmann - Video Editor',
+      'Strategic audiovisual creation with Adobe Creative Suite. Videos for YouTube, businesses and brands by João Camilo Mallmann.',
+    twitterTitle: 'João Camilo Mallmann | Professional Video Editor',
     twitterDescription:
-      'Professional audiovisual editing with Adobe Premiere Pro and After Effects.',
+      'Professional audiovisual editing and motion design with Adobe Premiere Pro and After Effects.',
     portfolioHeading: 'Editing Portfolio',
     portfolioDescription: 'Professional audiovisual creation with',
     leadIntro:

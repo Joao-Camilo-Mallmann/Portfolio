@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import ScrollIndicator from './ScrollIndicator.vue'
 
-const { t } = useI18n()
+const { t, localizedPath } = useI18n()
 const router = useRouter()
 
 const isLoaded = ref(false)
@@ -64,7 +64,7 @@ const handlePanelClick = (type) => {
 
   setTimeout(() => {
     // Navigate to respective route
-    router.push(type === 'dev' ? '/dev' : '/editor')
+    router.push(localizedPath(type === 'dev' ? '/dev' : '/editor'))
   }, 880)
 }
 
@@ -84,7 +84,7 @@ const scrollToStorytelling = () => {
     role="region"
     aria-label="Hero Identity & Portfolio Tracks"
   >
-    <!-- MOBILE FLOATING IDENTITY OVERLAY (Top of the 100vh viewport) -->
+    <!-- MOBILE FLOATING IDENTITY OVERLAY (Compacto e não intrusivo para caber em 100dvh) -->
     <div
       v-motion
       :initial="{ opacity: 0, y: -20 }"
@@ -93,16 +93,16 @@ const scrollToStorytelling = () => {
         y: 0,
         transition: { type: 'spring', stiffness: 180, damping: 16, delay: 100 },
       }"
-      class="md:hidden absolute top-0 left-0 right-0 z-20 pointer-events-none flex flex-col items-center text-center px-4 pt-5 pb-3 bg-linear-to-b from-black/80 via-black/40 to-transparent"
+      class="md:hidden absolute top-0 left-0 right-0 z-30 pointer-events-none flex flex-col items-center text-center px-4 pt-3 pb-2 bg-linear-to-b from-black/85 via-black/40 to-transparent"
     >
-      <div class="flex items-center gap-2.5 mb-1 pointer-events-auto">
+      <div class="flex items-center gap-2 mb-0.5 pointer-events-auto">
         <img
           src="/img/eu.webp"
           alt="João Camilo Mallmann"
-          class="w-9 h-9 rounded-full border-2 border-white/20 shadow-md object-cover"
+          class="w-7 h-7 rounded-full border border-white/30 shadow-md object-cover"
         />
         <h1
-          class="shimmer-title text-lg sm:text-xl font-extrabold text-white tracking-tight drop-shadow-lg transition-transform duration-150"
+          class="shimmer-title text-base sm:text-lg font-extrabold text-white tracking-tight drop-shadow-lg transition-transform duration-150"
           :class="[currentFontClass, { 'scale-[1.02] text-dev': isCycling }]"
         >
           {{ t('home.hero.name') }}
@@ -110,7 +110,7 @@ const scrollToStorytelling = () => {
       </div>
 
       <p
-        class="text-xs font-medium text-white/90 flex items-center gap-1.5 justify-center drop-shadow"
+        class="text-[11px] font-medium text-white/90 flex items-center gap-1.5 justify-center drop-shadow"
       >
         <span class="text-dev font-semibold">{{ t('home.hero.title') }}</span>
         <span class="text-white/40">{{ t('home.hero.titleSeparator') }}</span>
@@ -118,10 +118,10 @@ const scrollToStorytelling = () => {
       </p>
 
       <div
-        class="h-px w-20 bg-linear-to-r from-dev/60 via-white/50 to-editor/60 my-1 rounded-full"
+        class="h-px w-16 bg-linear-to-r from-dev/60 via-white/50 to-editor/60 my-0.5 rounded-full"
       ></div>
 
-      <p class="text-[11px] sm:text-xs text-white/80 italic tracking-wide drop-shadow">
+      <p class="text-[10px] sm:text-[11px] text-white/80 italic tracking-wide drop-shadow">
         {{ t('home.hero.tagline') }}
       </p>
     </div>
@@ -268,14 +268,14 @@ const scrollToStorytelling = () => {
         class="absolute inset-0 bg-radial from-dev/40 to-transparent opacity-30 md:opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-700"
       ></div>
 
-      <!-- Panel content positioned comfortably below the mobile top overlay (pt-16 md:pt-0) -->
+      <!-- Panel content perfeitamente proporcionado para mobile e desktop -->
       <div
         class="panel-content z-20 flex flex-col items-center text-center px-4 pt-16 pb-3 md:p-6 text-shadow pointer-events-auto"
       >
         <i
-          class="pi pi-code text-3xl sm:text-4xl md:text-6xl text-dev md:text-white mb-1.5 md:mb-4 transition-transform transition-colors duration-500 md:group-hover:-translate-y-2 md:group-hover:text-dev"
+          class="pi pi-code text-2xl sm:text-3xl md:text-6xl text-dev md:text-white mb-1 md:mb-4 transition-transform transition-colors duration-500 md:group-hover:-translate-y-2 md:group-hover:text-dev"
         ></i>
-        <h2 class="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2 text-balance">
+        <h2 class="text-lg sm:text-xl md:text-4xl font-bold text-white mb-1 md:mb-2 text-balance">
           {{ t('home.hero.devTitle') }}
         </h2>
         <p
@@ -284,7 +284,7 @@ const scrollToStorytelling = () => {
           {{ t('home.hero.devDescription') }}
         </p>
         <span
-          class="mt-2 md:mt-6 inline-flex items-center gap-1.5 md:gap-2 px-3.5 py-1 md:p-0 rounded-full md:rounded-none bg-dev/15 md:bg-transparent border border-dev/30 md:border-none text-dev font-semibold text-xs md:text-base shadow-sm md:shadow-none md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-opacity transition-transform duration-500 md:delay-200"
+          class="mt-1.5 md:mt-6 inline-flex items-center gap-1.5 md:gap-2 px-3 py-1 md:p-0 rounded-full md:rounded-none bg-dev/20 md:bg-transparent border border-dev/40 md:border-none text-dev font-semibold text-xs sm:text-sm md:text-base shadow-sm md:shadow-none md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-opacity transition-transform duration-500 md:delay-200"
         >
           {{ t('home.hero.devCta') }}
           <i
@@ -294,12 +294,7 @@ const scrollToStorytelling = () => {
       </div>
     </div>
 
-    <!-- Center Divider Line (Mobile: Horizontal, Desktop: Vertical) -->
-    <div
-      class="md:hidden absolute top-1/2 left-6 right-6 h-px bg-white/20 z-20 -translate-y-1/2 pointer-events-none shadow-[0_0_10px_rgba(255,255,255,0.3)]"
-      :style="{ opacity: activePanel ? '0' : '1' }"
-    ></div>
-
+    <!-- Desktop Center Divider Line -->
     <div
       class="hidden md:block absolute top-0 bottom-0 w-px bg-white/20 z-20 left-1/2 -translate-x-1/2 pointer-events-none transition-all duration-[720ms] shadow-[0_0_15px_rgba(255,255,255,0.5)]"
       :style="{
@@ -318,7 +313,7 @@ const scrollToStorytelling = () => {
         y: 0,
         transition: { type: 'spring', stiffness: 120, damping: 16, delay: 120 },
       }"
-      class="panel group relative h-[50dvh] md:h-full flex-1 flex items-center justify-center cursor-pointer overflow-hidden isolate transition-[flex-grow,filter] duration-[720ms] ease-[cubic-bezier(0.4,0,0.2,1)] active:scale-[0.98] md:active:scale-100"
+      class="panel group relative h-[50dvh] md:h-full flex-1 flex items-center justify-center cursor-pointer overflow-hidden isolate transition-[flex-grow,filter] duration-[720ms] ease-[cubic-bezier(0.4,0,0.2,1)] active:scale-[0.98] md:active:scale-100 border-t border-white/10 md:border-t-0"
       :class="[
         hoveredPanel === 'editor'
           ? 'md:flex-[0.6]'
@@ -345,14 +340,14 @@ const scrollToStorytelling = () => {
         class="absolute inset-0 bg-radial from-editor/40 to-transparent opacity-30 md:opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-700"
       ></div>
 
-      <!-- Panel content positioned comfortably above the scroll indicator (pb-12 md:pb-6) -->
+      <!-- Panel content perfeitamente proporcionado para mobile e desktop -->
       <div
-        class="panel-content z-20 flex flex-col items-center text-center px-4 pt-3 pb-12 md:p-6 text-shadow pointer-events-auto"
+        class="panel-content z-20 flex flex-col items-center text-center px-4 pt-2 pb-5 md:p-6 text-shadow pointer-events-auto"
       >
         <i
-          class="pi pi-video text-3xl sm:text-4xl md:text-6xl text-editor md:text-white mb-1.5 md:mb-4 transition-transform transition-colors duration-500 md:group-hover:-translate-y-2 md:group-hover:text-editor"
+          class="pi pi-video text-2xl sm:text-3xl md:text-6xl text-editor md:text-white mb-1 md:mb-4 transition-transform transition-colors duration-500 md:group-hover:-translate-y-2 md:group-hover:text-editor"
         ></i>
-        <h2 class="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2 text-balance">
+        <h2 class="text-lg sm:text-xl md:text-4xl font-bold text-white mb-1 md:mb-2 text-balance">
           {{ t('home.hero.editorTitle') }}
         </h2>
         <p
@@ -361,7 +356,7 @@ const scrollToStorytelling = () => {
           {{ t('home.hero.editorDescription') }}
         </p>
         <span
-          class="mt-2 md:mt-6 inline-flex items-center gap-1.5 md:gap-2 px-3.5 py-1 md:p-0 rounded-full md:rounded-none bg-editor/15 md:bg-transparent border border-editor/30 md:border-none text-editor font-semibold text-xs md:text-base shadow-sm md:shadow-none md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-opacity transition-transform duration-500 md:delay-200"
+          class="mt-1.5 md:mt-6 inline-flex items-center gap-1.5 md:gap-2 px-3 py-1 md:p-0 rounded-full md:rounded-none bg-editor/20 md:bg-transparent border border-editor/40 md:border-none text-editor font-semibold text-xs sm:text-sm md:text-base shadow-sm md:shadow-none md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-opacity transition-transform duration-500 md:delay-200"
         >
           {{ t('home.hero.editorCta') }}
           <i
@@ -371,8 +366,10 @@ const scrollToStorytelling = () => {
       </div>
     </div>
 
-    <!-- Scroll Indicator -->
-    <scroll-indicator @click="scrollToStorytelling" />
+    <!-- Scroll Indicator (visível no desktop em bottom-8) -->
+    <div class="hidden md:block">
+      <scroll-indicator @click="scrollToStorytelling" />
+    </div>
 
     <!-- Floating Socials -->
   </section>

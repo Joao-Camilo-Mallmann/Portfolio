@@ -51,7 +51,7 @@ onUnmounted(() => {
 
 <template>
   <section
-    class="relative pt-32 md:pt-36 pb-16 px-4 max-w-7xl 2xl:max-w-[1400px] mx-auto overflow-hidden min-h-[92vh] flex flex-col justify-between"
+    class="relative pt-24 sm:pt-28 md:pt-36 pb-12 md:pb-16 px-4 sm:px-6 max-w-7xl 2xl:max-w-[1400px] mx-auto overflow-hidden min-h-[auto] lg:min-h-[92vh] flex flex-col justify-between"
   >
     <!-- Scanline overlay (activated on click/hover of the intro panel) -->
     <div
@@ -226,7 +226,7 @@ while (scanning) {
 
     <!-- Main Asymmetric Grid -->
     <div
-      class="relative z-10 grid gap-12 lg:gap-24 lg:grid-cols-[0.9fr_1.1fr] lg:items-center my-auto"
+      class="relative z-10 grid gap-10 lg:gap-24 lg:grid-cols-[0.9fr_1.1fr] lg:items-center my-auto"
     >
       <!-- Left Column: Copy & Actions -->
       <div
@@ -239,62 +239,79 @@ while (scanning) {
         }"
         class="text-left flex flex-col justify-center relative z-10"
       >
-        <h1
-          class="text-6xl md:text-8xl lg:text-[10rem] font-black uppercase tracking-tight text-white leading-[0.85] mb-6 select-none"
-        >
-          <span
-            class="block text-white/70 text-sm md:text-base lg:text-lg font-mono tracking-[0.25em] text-dev mb-2"
-            >HEY, I'M</span
+        <div class="flex items-center gap-3 sm:gap-4 mb-4 md:mb-6 select-none">
+          <!-- Foto Pequena Mobile (< lg) com glow e borda estilizada -->
+          <div
+            v-motion
+            :initial="{ opacity: 0, scale: 0.8 }"
+            :enter="{ opacity: 1, scale: 1, transition: { delay: 200, duration: 600 } }"
+            class="lg:hidden shrink-0 relative"
           >
-          <span
-            class="block text-brushed-metal font-sans font-extrabold normal-case tracking-normal py-2"
-            >{{ t('dev.heroName') }}</span
+            <div class="absolute -inset-1 bg-dev/30 rounded-full blur-xs"></div>
+            <img
+              src="/img/eu.jpg"
+              alt="João Camilo Mallmann"
+              class="relative w-14 h-14 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-dev/60 shadow-md ring-1 ring-white/20"
+            />
+          </div>
+
+          <h1
+            class="text-3xl sm:text-5xl md:text-7xl lg:text-[10rem] font-black uppercase tracking-tight text-white leading-[0.9] sm:leading-[0.85]"
           >
-        </h1>
+            <span
+              class="block text-white/70 text-xs sm:text-sm md:text-base lg:text-lg font-mono tracking-[0.25em] text-dev mb-1 sm:mb-1.5"
+              >HEY, I'M</span
+            >
+            <span
+              class="block text-brushed-metal font-sans font-extrabold normal-case tracking-normal py-0.5 sm:py-1 break-words"
+              >{{ t('dev.heroName') }}</span
+            >
+          </h1>
+        </div>
 
         <div
-          class="flex items-center gap-3 font-mono text-lg md:text-2xl font-bold text-white mb-6 uppercase tracking-wider"
+          class="flex items-center gap-2 md:gap-3 font-mono text-base sm:text-lg md:text-2xl font-bold text-white mb-4 md:mb-6 uppercase tracking-wider"
         >
-          <span class="text-dev font-bold text-xl">&gt;</span>
+          <span class="text-dev font-bold text-lg md:text-xl">&gt;</span>
           <span class="bg-linear-to-r from-white to-gray-400 bg-clip-text text-transparent">{{
             t('devProfile.role')
           }}</span>
         </div>
 
         <p
-          class="max-w-2xl text-fg-muted text-sm md:text-base lg:text-lg leading-relaxed tracking-wide mb-8"
+          class="max-w-2xl text-fg-muted text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed tracking-wide mb-6 md:mb-8"
         >
           {{ t('devProfile.description') }}
         </p>
 
         <!-- Technical Metadata Badges -->
-        <div class="mb-8 flex flex-wrap gap-3">
+        <div class="mb-6 md:mb-8 flex flex-wrap gap-2 md:gap-3">
           <span
-            class="rounded-sm border border-white/5 bg-white/2 px-4 py-1.5 font-mono text-xs md:text-sm uppercase tracking-widest text-gray-400 hover:border-dev/30 hover:text-dev transition-colors duration-200"
+            class="rounded-sm border border-white/5 bg-white/2 px-2.5 py-1 md:px-4 md:py-1.5 font-mono text-[11px] sm:text-xs md:text-sm uppercase tracking-wider md:tracking-widest text-gray-400 hover:border-dev/30 hover:text-dev transition-colors duration-200"
           >
             Vue 3 &amp; React
           </span>
           <span
-            class="rounded-sm border border-white/5 bg-white/2 px-4 py-1.5 font-mono text-xs md:text-sm uppercase tracking-widest text-gray-400 hover:border-dev/30 hover:text-dev transition-colors duration-200"
+            class="rounded-sm border border-white/5 bg-white/2 px-2.5 py-1 md:px-4 md:py-1.5 font-mono text-[11px] sm:text-xs md:text-sm uppercase tracking-wider md:tracking-widest text-gray-400 hover:border-dev/30 hover:text-dev transition-colors duration-200"
           >
             Node.js &amp; TS
           </span>
           <span
-            class="rounded-sm border border-white/5 bg-white/2 px-4 py-1.5 font-mono text-xs md:text-sm uppercase tracking-widest text-gray-400 hover:border-dev/30 hover:text-dev transition-colors duration-200"
+            class="rounded-sm border border-white/5 bg-white/2 px-2.5 py-1 md:px-4 md:py-1.5 font-mono text-[11px] sm:text-xs md:text-sm uppercase tracking-wider md:tracking-widest text-gray-400 hover:border-dev/30 hover:text-dev transition-colors duration-200"
           >
             Postgres &amp; Docker
           </span>
           <span
-            class="rounded-sm border border-white/5 bg-white/2 px-4 py-1.5 font-mono text-xs md:text-sm uppercase tracking-widest text-gray-400 hover:border-dev/30 hover:text-dev transition-colors duration-200"
+            class="rounded-sm border border-white/5 bg-white/2 px-2.5 py-1 md:px-4 md:py-1.5 font-mono text-[11px] sm:text-xs md:text-sm uppercase tracking-wider md:tracking-widest text-gray-400 hover:border-dev/30 hover:text-dev transition-colors duration-200"
           >
             REST APIs &amp; Cloud
           </span>
         </div>
 
         <!-- Actions Buttons -->
-        <div class="flex flex-wrap items-center gap-4">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
           <button
-            class="min-h-12 flex items-center justify-center gap-3 bg-white text-black font-mono text-xs md:text-sm uppercase font-bold tracking-widest px-8 py-4 cursor-pointer hover:bg-dev hover:text-white transition-[background-color,color,box-shadow] duration-300 shadow-[0_4px_12px_rgba(255,255,255,0.1)] hover:shadow-[0_4px_20px_rgba(77,145,234,0.4)]"
+            class="min-h-11 sm:min-h-12 flex items-center justify-center gap-3 bg-white text-black font-mono text-xs md:text-sm uppercase font-bold tracking-widest px-6 sm:px-8 py-3.5 sm:py-4 cursor-pointer hover:bg-dev hover:text-white transition-[background-color,color,box-shadow] duration-300 shadow-[0_4px_12px_rgba(255,255,255,0.1)] hover:shadow-[0_4px_20px_rgba(77,145,234,0.4)]"
             @click="scrollToProjects"
           >
             <i class="pi pi-folder text-sm"></i>
@@ -305,7 +322,7 @@ while (scanning) {
             href="https://github.com/Joao-Camilo-Mallmann"
             target="_blank"
             rel="noopener noreferrer"
-            class="min-h-12 flex items-center justify-center gap-3 bg-transparent text-white font-mono text-xs md:text-sm uppercase font-bold tracking-widest px-8 py-4 border border-white/20 hover:border-dev hover:text-dev hover:bg-dev/5 transition-[border-color,color,background-color] duration-300"
+            class="min-h-11 sm:min-h-12 flex items-center justify-center gap-3 bg-transparent text-white font-mono text-xs md:text-sm uppercase font-bold tracking-widest px-6 sm:px-8 py-3.5 sm:py-4 border border-white/20 hover:border-dev hover:text-dev hover:bg-dev/5 transition-[border-color,color,background-color] duration-300 text-center"
           >
             <i class="pi pi-github text-sm"></i>
             {{ t('dev.ctaGithub').toUpperCase() }}
@@ -313,22 +330,24 @@ while (scanning) {
         </div>
       </div>
 
-      <!-- Right Column: Clean Developer Portrait -->
+      <!-- Right Column: Clean Developer Portrait (Exclusivo Desktop >= lg) -->
       <div
-        class="relative w-full aspect-square md:aspect-[4/3] lg:aspect-[1.1/1] flex items-center justify-center overflow-visible z-10"
+        class="hidden lg:flex relative w-full lg:aspect-[1.1/1] items-center justify-center overflow-visible z-10"
       >
         <!-- 1. GLOW/HALO PRÓPRIO ATRÁS DA FOTO (com leve parallax) -->
         <div
           class="absolute inset-0 z-0 flex items-center justify-center opacity-50 mix-blend-screen pointer-events-none transition-transform duration-300 ease-out"
           :style="{ transform: `translate3d(${mouseX * 0.35}px, ${mouseY * 0.35}px, 0)` }"
         >
-          <div class="w-[60%] aspect-square bg-dev rounded-full blur-[80px] md:blur-[120px]"></div>
+          <div
+            class="w-[80%] md:w-[60%] aspect-square bg-dev rounded-full blur-[60px] md:blur-[120px]"
+          ></div>
         </div>
 
         <!-- 4. MICRO-MOVIMENTO (float contínuo via classe animate-portrait-float) -->
         <div
           v-motion
-          class="relative z-20 w-[85%] max-w-[360px] md:max-w-[480px] lg:max-w-[550px] aspect-[4/5] animate-portrait-float"
+          class="relative z-20 w-[85%] max-w-[280px] sm:max-w-[340px] md:max-w-[480px] lg:max-w-[550px] aspect-[4/5] animate-portrait-float"
           :initial="{ opacity: 0, scale: 0.95 }"
           :enter="{ opacity: 1, scale: 1, transition: { delay: 300, duration: 800 } }"
         >

@@ -1,10 +1,13 @@
 <script setup>
 import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from '@/composables/useI18n'
 import { useParticles } from '@/composables/useParticles'
 import { useMagneticEffect } from '@/composables/useMagneticEffect'
 
-const { t, locale, toggleLocale } = useI18n()
+const { t, isPt, toggleLocale, localizedPath } = useI18n()
+const router = useRouter()
+const route = useRoute()
 
 // Particle canvas ref
 const particleCanvas = ref(null)
@@ -57,11 +60,11 @@ useMagneticEffect(editorBtnRef, {
       >
         <button
           class="group min-h-10 flex items-center gap-2 px-3 py-2 rounded-lg border border-border/50 text-xs font-mono tracking-widest text-fg-muted hover:border-fg/20 hover:text-fg active:scale-95 transition-colors cursor-pointer"
-          :title="locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
-          @click="toggleLocale"
+          :title="isPt ? 'Switch to English' : 'Mudar para Português'"
+          @click="toggleLocale(router, route)"
         >
           <span class="opacity-60 group-hover:opacity-100 transition-opacity">LANG:</span>
-          <span class="font-bold text-fg">{{ locale === 'pt-BR' ? 'PT-BR' : 'EN' }}</span>
+          <span class="font-bold text-fg">{{ isPt ? 'PT-BR' : 'EN' }}</span>
         </button>
       </div>
 
@@ -103,9 +106,7 @@ useMagneticEffect(editorBtnRef, {
 
                 <!-- Clean Monospaced Overlay Accent (Software Engineer / Content Creator) -->
                 <div class="absolute bottom-5 left-5 right-5 flex flex-col gap-0.5">
-                  <p class="text-[11px] font-mono font-bold tracking-widest uppercase">
-                    Me
-                  </p>
+                  <p class="text-[11px] font-mono font-bold tracking-widest uppercase">Me</p>
                 </div>
               </div>
             </div>
@@ -184,7 +185,7 @@ useMagneticEffect(editorBtnRef, {
             <!-- Dev Page Button (Magnetic) -->
             <router-link
               ref="devBtnRef"
-              to="/dev"
+              :to="localizedPath('/dev')"
               class="magnetic-btn group inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-dev hover:bg-dev/90 text-obsidian font-bold text-base shadow-lg shadow-dev/20 transition-all duration-300 active:scale-95 min-h-[44px] flex-1 sm:flex-initial cursor-pointer will-change-transform"
             >
               <i class="pi pi-code text-lg group-hover:scale-110 transition-transform"></i>
@@ -194,7 +195,7 @@ useMagneticEffect(editorBtnRef, {
             <!-- Editor Page Button (Magnetic) -->
             <router-link
               ref="editorBtnRef"
-              to="/editor"
+              :to="localizedPath('/editor')"
               class="magnetic-btn group inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-editor hover:bg-editor/90 text-obsidian font-bold text-base shadow-lg shadow-editor/20 transition-all duration-300 active:scale-95 min-h-11 flex-1 sm:flex-initial cursor-pointer will-change-transform"
             >
               <i class="pi pi-video text-lg group-hover:scale-110 transition-transform"></i>

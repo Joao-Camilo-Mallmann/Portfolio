@@ -1,4 +1,5 @@
 <script setup>
+import { getDefaultLocale } from '@/composables/useI18n'
 import { onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -23,7 +24,7 @@ const handleKeydown = (e) => {
   if (e.key === konamiCode[konamiIndex]) {
     konamiIndex++
     if (konamiIndex === konamiCode.length) {
-      router.push('/easter-egg')
+      router.push(`/${getDefaultLocale()}/easter-egg`)
       konamiIndex = 0
     }
     return

@@ -7,19 +7,65 @@ const githubProfileUrl = 'https://github.com/Joao-Camilo-Mallmann'
 
 const projects = computed(() => [
   {
+    title: t('devProjects.project7Title'),
+    image: '/img/painel-vimasi.webp',
+    imageAlt: t('devProjects.project7Alt'),
+    description: t('devProjects.project7Desc'),
+    statusType: 'public',
+    devStatusType: 'completed',
+    featuredLevel: 'primary',
+    year: 2026,
+    colors: { from: '#0ea5e9', to: '#0284c7' },
+    tags: [
+      { label: 'React', color: '#61dafb' },
+      { label: 'TypeScript', color: '#3178c6' },
+      { label: 'Tailwind v4', color: '#06b6d4' },
+      { label: 'Python', color: '#3776ab' },
+      { label: 'Supabase', color: '#3ecf8e' },
+    ],
+    links: [
+      {
+        label: t('devProjects.code'),
+        icon: 'pi pi-github',
+        url: 'https://github.com/Joao-Camilo-Mallmann/vimasi-painel',
+        type: 'primary',
+      },
+    ],
+  },
+  {
+    title: t('devProjects.project3Title'),
+    image: '/img/smu.webp',
+    imageAlt: t('devProjects.project3Alt'),
+    description: t('devProjects.project3Desc'),
+    statusType: 'private',
+    devStatusType: 'active',
+    featuredLevel: 'secondary',
+    year: 2024,
+    colors: { from: '#8b5cf6', to: '#7c3aed' },
+    tags: [
+      { label: 'Vue.js 3', color: '#42b883' },
+      { label: 'TypeScript', color: '#3178c6' },
+      { label: 'WebSockets', color: '#38bdf8' },
+      { label: 'Deck.gl', color: '#ec4899' },
+      { label: 'Pinia', color: '#9333ea' },
+    ],
+    links: [],
+  },
+
+  {
     title: t('devProjects.project1Title'),
     image: '/img/vimasi.webp',
     imageAlt: t('devProjects.project1Alt'),
     description: t('devProjects.project1Desc'),
     statusType: 'public',
     devStatusType: 'completed',
-    featuredLevel: 'primary',
+    featuredLevel: 'secondary',
     year: 2025,
     colors: { from: '#ff6b35', to: '#f7931e' },
     tags: [
       { label: 'Nuxt', color: '#00DC82' },
       { label: 'Vue.js', color: '#42b883' },
-      { label: 'SEO', color: '#f59e0b' },
+      { label: 'SEO Técnico', color: '#f59e0b' },
       { label: 'JavaScript', color: '#f7df1e' },
     ],
     links: [
@@ -38,6 +84,39 @@ const projects = computed(() => [
     ],
   },
   {
+    title: t('devProjects.project6Title'),
+    image: '/img/brpd.webp',
+    imageAlt: t('devProjects.project6Alt'),
+    description: t('devProjects.project6Desc'),
+    statusType: 'public',
+    devStatusType: 'completed',
+    featuredLevel: 'primary',
+    year: 2026,
+    colors: { from: '#5865f2', to: '#404eed' },
+    tags: [
+      { label: 'Tauri', color: '#2496ed' },
+      { label: 'Rust', color: '#e05d44' },
+      { label: 'React', color: '#61dafb' },
+      { label: 'TypeScript', color: '#3178c6' },
+      { label: 'Discord RPC', color: '#5865f2' },
+    ],
+    links: [
+      {
+        label: t('devProjects.viewSite'),
+        icon: 'pi pi-external-link',
+        url: 'https://better-discord-rich-presence.netlify.app/',
+        type: 'primary',
+      },
+      {
+        label: t('devProjects.code'),
+        icon: 'pi pi-github',
+        url: 'https://github.com/Joao-Camilo-Mallmann/Better-Rich-Presence-For-Discord',
+        type: 'secondary',
+      },
+    ],
+  },
+
+  {
     title: t('devProjects.project5Title'),
     image: '/img/STW.webp',
     imageAlt: t('devProjects.project5Alt'),
@@ -48,7 +127,7 @@ const projects = computed(() => [
     year: 2026,
     colors: { from: '#0284c7', to: '#0369a1' },
     tags: [
-      { label: 'React.js', color: '#61dafb' },
+      { label: 'React', color: '#61dafb' },
       { label: 'Node.js', color: '#339933' },
       { label: 'SQLite', color: '#003b57' },
       { label: 'Tailwind v4', color: '#06b6d4' },
@@ -68,7 +147,6 @@ const projects = computed(() => [
       },
     ],
   },
-
   {
     title: t('devProjects.project2Title'),
     image: '/img/destinos.webp',
@@ -76,7 +154,6 @@ const projects = computed(() => [
     description: t('devProjects.project2Desc'),
     statusType: 'public',
     devStatusType: 'completed',
-    featuredLevel: 'secondary',
     year: 2024,
     colors: { from: '#4285f4', to: '#1e40af' },
     tags: [
@@ -101,54 +178,6 @@ const projects = computed(() => [
     ],
   },
   {
-    title: t('devProjects.project6Title'),
-    image: '/img/brpd.webp',
-    imageAlt: t('devProjects.project6Alt'),
-    description: t('devProjects.project6Desc'),
-    statusType: 'public',
-    devStatusType: 'completed',
-    featuredLevel: 'primary',
-    year: 2026,
-    colors: { from: '#5865f2', to: '#404eed' },
-    tags: [
-      { label: 'Tauri', color: '#2496ed' },
-      { label: 'React.js', color: '#61dafb' },
-      { label: 'Rust', color: '#e05d44' },
-      { label: 'Tailwind v4', color: '#06b6d4' },
-    ],
-    links: [
-      {
-        label: t('devProjects.viewSite'),
-        icon: 'pi pi-external-link',
-        url: 'https://better-discord-rich-presence.netlify.app/',
-        type: 'primary',
-      },
-      {
-        label: t('devProjects.code'),
-        icon: 'pi pi-github',
-        url: 'https://github.com/Joao-Camilo-Mallmann/Better-Rich-Presence-For-Discord',
-        type: 'secondary',
-      },
-    ],
-  },
-  {
-    title: t('devProjects.project3Title'),
-    image: '/img/smu.webp',
-    imageAlt: t('devProjects.project3Alt'),
-    description: t('devProjects.project3Desc'),
-    statusType: 'private',
-    devStatusType: 'wip',
-    year: 2024,
-    colors: { from: '#8b5cf6', to: '#7c3aed' },
-    tags: [
-      { label: 'Vue.js 3', color: '#4fc08d' },
-      { label: 'Pinia', color: '#9333ea' },
-      { label: 'Vuetify', color: '#1976d2' },
-      { label: 'WebSocket', color: '#38bdf8' },
-    ],
-    links: [],
-  },
-  {
     title: t('devProjects.project4Title'),
     image: null,
     imageAlt: t('devProjects.project4Alt'),
@@ -159,8 +188,8 @@ const projects = computed(() => [
     colors: { from: '#10b981', to: '#059669' },
     tags: [
       { label: 'Vue.js 3', color: '#4fc08d' },
-      { label: 'Tailwind', color: '#06b6d4' },
-      { label: 'JavaScript', color: '#f59e0b' },
+      { label: 'Tailwind v4', color: '#06b6d4' },
+      { label: 'CI/CD', color: '#f59e0b' },
     ],
     links: [
       {
@@ -183,20 +212,16 @@ const getFeaturedLabel = (featuredLevel) => {
   return ''
 }
 
-const getProjectCardClass = (project, index, total) => {
+const getProjectCardClass = (project) => {
   if (project.featuredLevel === 'primary') {
-    return 'md:col-span-2 lg:col-span-2 border-dev/25'
+    return 'md:col-span-2 lg:col-span-2 border-dev/30 shadow-md ring-1 ring-dev/20 hover:border-dev/40'
   }
 
   if (project.featuredLevel === 'secondary') {
-    return 'lg:col-span-1'
+    return 'lg:col-span-1 border-border/80 hover:border-dev/30'
   }
 
-  if (total % 2 !== 0 && index === total - 1) {
-    return 'md:col-span-2 md:max-w-2xl md:justify-self-center lg:col-span-1 lg:max-w-none'
-  }
-
-  return ''
+  return 'lg:col-span-1 border-border'
 }
 
 const getProjectMediaClass = (project) => {
@@ -205,7 +230,9 @@ const getProjectMediaClass = (project) => {
 }
 
 const getProjectTitleClass = (project) => {
-  return project.featuredLevel === 'primary' ? 'text-xl md:text-2xl' : 'text-lg'
+  return project.featuredLevel === 'primary'
+    ? 'text-xl md:text-2xl font-bold'
+    : 'text-lg font-semibold'
 }
 
 const getDevStatusLabel = (devStatusType) => {
@@ -304,7 +331,7 @@ const getTagChipStyle = (tag) => {
       :class="[
         'group shadow-sm ring-1 ring-inset ring-white/5 border border-border bg-surface-100/35 rounded-2xl flex flex-col overflow-hidden',
         'hover:border-dev/20 hover:shadow-[0_0_24px_-4px_rgba(77,145,234,0.15)] transition-[border-color,box-shadow] duration-300',
-        getProjectCardClass(project, index, projects.length),
+        getProjectCardClass(project),
       ]"
       :initial="{ opacity: 0, y: 24, scale: 0.97 }"
       :visible-once="{

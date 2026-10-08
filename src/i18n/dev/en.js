@@ -3,17 +3,17 @@ export default {
   // Dev Page
   dev: {
     ariaLabel: 'Development Portfolio',
-    seoTitle: 'Full Stack Developer | Frontend Specialist',
+    seoTitle: 'João Camilo Mallmann | Frontend & Full Stack Developer (Vue.js, React)',
     seoDescription:
-      'João Camilo Mallmann Portfolio. Full Stack Developer specializing in Vue.js and React. Focus on scalable frontend architectures, web performance and user experience.',
+      'João Camilo Mallmann Development Portfolio. Frontend and Full Stack Developer specializing in Vue.js, React and TypeScript. Scalable web architecture and performance.',
     seoKeywords:
-      'full stack developer, frontend specialist, Vue.js, React, software architecture, web performance, senior developer',
-    ogTitle: 'João Camilo Mallmann - Full Stack Developer',
+      'João Camilo Mallmann, frontend developer, full stack developer, Vue.js, React, TypeScript, software architecture, web performance',
+    ogTitle: 'João Camilo Mallmann | Frontend & Full Stack Developer',
     ogDescription:
-      'Full Stack Developer with Frontend focus. Vue.js and React specialist. Scalable architectures and performance.',
-    twitterTitle: 'João Camilo Mallmann - Full Stack Developer',
+      'Frontend and Full Stack Developer specializing in Vue.js, React and TypeScript. Scalable web architecture and performance.',
+    twitterTitle: 'João Camilo Mallmann | Frontend & Full Stack Developer',
     twitterDescription:
-      'Full Stack Developer | Vue.js & React Specialist. Focus on frontend architecture and DX.',
+      'Frontend & Full Stack Developer | Vue.js & React Specialist. Scalable architecture and web performance.',
     funText: '🎉 Congratulations! You survived my portfolio without crashing!',
     funAchievement: 'Achievement Unlocked:',
     funBadge: '"Brave Visitor" 😎',
@@ -106,7 +106,7 @@ export default {
     project3Title: 'Urban Mobility System',
     project3Alt: 'SMU screenshot',
     project3Desc:
-      'Mission-critical platform for real-time monitoring. Event-driven architecture using WebSockets for geospatial data streaming and optimized rendering of thousands of map assets.',
+      'Mission-critical live panel for fleet and field agent monitoring via WebSockets (Pusher). Operational map optimized for high volume of points combining Google Maps, clustering, and Deck.gl heatmaps with Vue 3, TypeScript, Vuetify, and Pinia.',
     project4Title: 'Personal Portfolio (This Site)',
     project4Alt: 'Personal portfolio icon',
     project4Desc:
@@ -118,7 +118,11 @@ export default {
     project6Title: 'Better Rich Presence 🎮',
     project6Alt: 'Better Rich Presence screenshot',
     project6Desc:
-      'Advanced desktop application built with Rust and Tauri that automatically updates your Discord Rich Presence based on your active window. Features low-latency detection, smart priority rules, and minimal system resource usage.',
+      'Lightweight desktop application built with Rust and Tauri with direct Discord RPC/IPC integration. Features a React & TypeScript interface for automatic detection, live preview, and low background resource consumption.',
+    project7Title: 'Vimasi Panel — Industrial Catalog & Inventory 📦',
+    project7Alt: 'Vimasi Panel screenshot',
+    project7Desc:
+      'High-performance SPA built with React, TypeScript, Vite, and Tailwind CSS v4 with an intelligent search engine for 1,500+ industrial items. Includes Python scripts for automated PDF parsing and persistence in Supabase (PostgreSQL, RLS).',
     moreProjectsHint: 'Want to see more complete projects, experiments, and real-world cases?',
     moreProjectsCta: 'See More Projects on GitHub',
   },

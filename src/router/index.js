@@ -1,59 +1,97 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { getDefaultLocale, setLocale } from '../composables/useI18n'
 
 // Definir rotas (exportado para uso no ViteSSG)
 export const routes = [
+  // Redirecionamento dinâmico e inteligente na raiz
   {
     path: '/',
+    name: 'root',
+    component: () => import('../views/RootRedirect.vue'),
+  },
+
+  // Rotas principais localizadas sob prefixo de idioma
+  {
+    path: '/:lang(pt-br|en-us)',
     name: 'home',
     component: () => import('../views/HomeView.vue'),
   },
   {
-    path: '/dev',
+    path: '/:lang(pt-br|en-us)/dev',
     name: 'DevView',
     component: () => import('../views/DevView.vue'),
   },
   {
-    path: '/editor',
+    path: '/:lang(pt-br|en-us)/editor',
     name: 'EditorView',
     component: () => import('../views/EditorView.vue'),
   },
   {
-    path: '/easter-egg',
+    path: '/:lang(pt-br|en-us)/easter-egg',
     name: 'SecretView',
     component: () => import('../views/SecretView.vue'),
   },
-  // Captura todas as rotas não encontradas e redireciona para home
+
+  // Mapeamento de rotas legadas para compatibilidade de URLs e backlinks
+  {
+    path: '/dev',
+    redirect: () => `/${getDefaultLocale()}/dev`,
+  },
+  {
+    path: '/editor',
+    redirect: () => `/${getDefaultLocale()}/editor`,
+  },
+  {
+    path: '/easter-egg',
+    redirect: () => `/${getDefaultLocale()}/easter-egg`,
+  },
+
+  // Captura todas as rotas não encontradas e redireciona para a home no idioma ativo
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
-    redirect: '/',
+    redirect: () => `/${getDefaultLocale()}/`,
   },
 ]
 
 // Scroll behavior (exportado para uso no ViteSSG)
 export const scrollBehavior = () => {
-  // Senão, sempre ir para o topo da página
   return { top: 0, behavior: 'smooth' }
 }
 
-// Configuração de navegação (aplicada apenas no cliente)
+// Configuração de navegação e guards
 export const setupRouterGuards = (router) => {
-  // Exemplo de lógica global antes de cada navegação
-  router.beforeEach((to, from) => {
-    // Força a navegação mesmo para a mesma rota (Vue Router 4.2+)
-    if (to.fullPath === from.fullPath && to.fullPath !== '/') {
-      // Força reload do componente
+  router.beforeEach((to, from, next) => {
+    // Normalização de caixa alta na URL
+    if (to.params.lang) {
+      const lower = to.params.lang.toLowerCase()
+      if (to.params.lang !== lower) {
+        return next({
+          path: to.path.toLowerCase(),
+          replace: true,
+        })
+      }
+      setLocale(lower)
+    }
+
+    // Força a navegação mesmo para a mesma rota se necessário
+    if (
+      to.fullPath === from.fullPath &&
+      to.fullPath !== '/' &&
+      to.fullPath !== '/pt-br' &&
+      to.fullPath !== '/en-us'
+    ) {
       setTimeout(() => {
         router.replace({ path: to.fullPath, query: { reload: Date.now() } })
       }, 0)
       return false
     }
-    return
+
+    next()
   })
 }
 
 // Criar router apenas quando necessário (para uso em modo não-SSG)
-// Não criar durante build SSR para evitar erro "window is not defined"
 let router = null
 
 export default function getRouter() {

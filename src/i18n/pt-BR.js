@@ -24,15 +24,15 @@ export default {
   },
 
   seo: {
-    homeTitle: 'Início',
+    homeTitle: 'João Camilo Mallmann | Desenvolvedor Frontend Vue.js & Editor de Vídeo',
     homeDescription:
       'Portfólio de João Camilo Mallmann - Desenvolvedor Frontend especialista em Vue.js/JavaScript e Editor de Vídeo profissional com Adobe Premiere Pro e After Effects.',
     homeKeywords:
       'João Camilo Mallmann, desenvolvedor frontend, Vue.js, JavaScript, editor de vídeo, Adobe Premiere Pro, portfolio, freelancer Brasil',
-    ogTitle: 'João Camilo Mallmann - Desenvolvedor Frontend & Editor de Vídeo',
+    ogTitle: 'João Camilo Mallmann | Desenvolvedor Frontend & Editor de Vídeo',
     ogDescription:
-      'Portfolio profissional: Desenvolvimento web com Vue.js e edição audiovisual com Adobe Creative Suite.',
-    twitterTitle: 'João Camilo Mallmann - Portfolio',
+      'Portfólio profissional: Desenvolvimento web com Vue.js e edição audiovisual com Adobe Creative Suite.',
+    twitterTitle: 'João Camilo Mallmann | Desenvolvedor Frontend & Editor de Vídeo',
     twitterDescription: 'Desenvolvedor Frontend e Editor de Vídeo profissional.',
   },
 

@@ -3,17 +3,17 @@ export default {
   // Dev Page
   dev: {
     ariaLabel: 'Portfólio de Desenvolvimento',
-    seoTitle: 'Full Stack Developer | Frontend Specialist',
+    seoTitle: 'João Camilo Mallmann | Desenvolvedor Frontend & Full Stack (Vue.js, React)',
     seoDescription:
-      'Portfólio de João Camilo Mallmann. Full Stack Developer especializado em Vue.js e React. Foco em arquiteturas frontend escaláveis, performance web e experiência do usuário.',
+      'Portfólio de desenvolvimento de João Camilo Mallmann. Desenvolvedor Frontend e Full Stack especializado em Vue.js, React e TypeScript. Arquiteturas escaláveis e performance.',
     seoKeywords:
-      'full stack developer, frontend specialist, Vue.js, React, arquitetura de software, performance web, desenvolvedor senior',
-    ogTitle: 'João Camilo Mallmann - Full Stack Developer',
+      'João Camilo Mallmann, full stack developer, frontend specialist, Vue.js, React, TypeScript, arquitetura de software, performance web',
+    ogTitle: 'João Camilo Mallmann | Desenvolvedor Frontend & Full Stack',
     ogDescription:
-      'Full Stack Developer com foco em Frontend. Especialista em Vue.js e React. Arquiteturas escaláveis e performance.',
-    twitterTitle: 'João Camilo Mallmann - Full Stack Developer',
+      'Desenvolvedor Frontend e Full Stack especialista em Vue.js, React e TypeScript. Arquiteturas escaláveis e alta performance.',
+    twitterTitle: 'João Camilo Mallmann | Desenvolvedor Frontend & Full Stack',
     twitterDescription:
-      'Full Stack Developer | Especialista Vue.js & React. Foco em arquitetura frontend e DX.',
+      'Desenvolvedor Frontend & Full Stack | Especialista Vue.js & React. Foco em arquitetura e performance.',
     funText: '🎉 Parabéns! Você sobreviveu ao meu portfólio sem crashar!',
     funAchievement: 'Achievement Unlocked:',
     funBadge: '"Visitante Corajoso" 😎',
@@ -106,7 +106,7 @@ export default {
     project3Title: 'Sistema de Mobilidade Urbana',
     project3Alt: 'Screenshot do SMU',
     project3Desc:
-      'Plataforma de missão crítica para monitoramento em tempo real. Arquitetura orientada a eventos utilizando WebSockets para streaming de dados geoespaciais e renderização otimizada de milhares de ativos no mapa.',
+      'Painel ao vivo de missão crítica para monitoramento de frotas e agentes via WebSockets (Pusher). Mapa operacional otimizado para alto volume de pontos com Google Maps, clustering e heatmaps com Deck.gl em Vue 3, TypeScript, Vuetify e Pinia.',
     project4Title: 'Portfolio Pessoal (Esse Site)',
     project4Alt: 'Ícone do portfólio pessoal',
     project4Desc:
@@ -118,7 +118,11 @@ export default {
     project6Title: 'Better Rich Presence 🎮',
     project6Alt: 'Screenshot do Better Rich Presence',
     project6Desc:
-      'Aplicativo desktop para automação de Discord Rich Presence. Detecta a janela ativa em segundo plano usando APIs nativas do Windows via Rust/Tauri e atualiza seu status no Discord em tempo real com baixo consumo de recursos.',
+      'Aplicação desktop leve desenvolvida em Rust e Tauri com integração direta com Discord RPC/IPC para automação de status. Interface em React e TypeScript para detecção automática, personalização e pré-visualização em tempo real.',
+    project7Title: 'Vimasi Painel — Catálogo & Estoque 📦',
+    project7Alt: 'Screenshot do Painel Vimasi',
+    project7Desc:
+      'SPA em React, TypeScript, Vite e Tailwind CSS v4 com motor de busca inteligente para catálogo de +1.500 itens. Automação em Python para extração de catálogos em PDF e persistência no Supabase (PostgreSQL, RLS).',
     moreProjectsHint: 'Quer ver mais projetos completos, experimentos e cases reais?',
     moreProjectsCta: 'Ver Mais Projetos no GitHub',
   },

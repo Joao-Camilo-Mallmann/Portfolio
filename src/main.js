@@ -22,6 +22,9 @@ export const createApp = ViteSSG(App, { routes, scrollBehavior }, ({ app, router
       },
     },
   })
+  // Aplicar guards de navegação (executado no SSR/SSG e no cliente)
+  setupRouterGuards(router)
+
   // Configurações apenas no cliente
   if (isClient) {
     // Define modo escuro como padrão
@@ -29,8 +32,5 @@ export const createApp = ViteSSG(App, { routes, scrollBehavior }, ({ app, router
 
     // Inicializa internacionalização (restaura idioma do localStorage)
     initI18n()
-
-    // Aplicar guards de navegação
-    setupRouterGuards(router)
   }
 })

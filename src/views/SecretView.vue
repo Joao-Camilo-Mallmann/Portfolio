@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 import { useI18n } from '@/composables/useI18n'
 
 const router = useRouter()
-const { t } = useI18n()
+const { t, localizedPath } = useI18n()
 
 const terminalLines = ref([])
 const showConsent = ref(false)
@@ -220,7 +220,7 @@ const doDeny = () => {
         <div class="pt-4">
           <button
             class="group relative inline-flex items-center gap-2 border border-green-500/60 bg-green-950/40 px-5 py-2.5 text-green-400 hover:bg-green-500 hover:text-black transition-all duration-300 rounded font-bold text-xs sm:text-sm"
-            @click="router.push('/')"
+            @click="router.push(localizedPath('/'))"
           >
             <span>&lt; [ RETURN_TO_SYSTEM ] {{ t('secret.btnReturn') }}</span>
           </button>

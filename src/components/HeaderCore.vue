@@ -1,8 +1,11 @@
 <script setup>
 import { useI18n } from '@/composables/useI18n'
 import { onMounted, onUnmounted, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
-const { t, locale, toggleLocale } = useI18n()
+const { t, isPt, toggleLocale, localizedPath } = useI18n()
+const router = useRouter()
+const route = useRoute()
 
 const mobileMenuOpen = ref(false)
 const isScrolled = ref(false)
@@ -13,6 +16,14 @@ function toggleMobileMenu() {
 
 function closeMobileMenu() {
   mobileMenuOpen.value = false
+}
+
+function handleLocaleToggle() {
+  toggleLocale(router, route)
+}
+
+function navigateHome() {
+  router.push(localizedPath('/'))
 }
 
 const handleScroll = () => {
@@ -47,10 +58,7 @@ onUnmounted(() => {
     <div class="max-w-6xl mx-auto px-4 md:px-6">
       <div class="flex items-center justify-between">
         <!-- Logo/Nome com foto -->
-        <div
-          class="flex items-center gap-2 md:gap-3 group cursor-pointer"
-          @click="$router.push('/')"
-        >
+        <div class="flex items-center gap-2 md:gap-3 group cursor-pointer" @click="navigateHome">
           <img
             v-motion
             src="/img/eu.webp"
@@ -59,11 +67,11 @@ onUnmounted(() => {
             :tapped="{ scale: 0.97 }"
             class="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover ring-1 ring-white/20 transition-colors duration-300"
           />
-          <h1
+          <span
             class="text-white font-semibold text-base md:text-lg group-hover:text-dev transition-colors duration-300"
           >
             João Camilo
-          </h1>
+          </span>
         </div>
 
         <!-- Menu Mobile Button -->
@@ -81,7 +89,7 @@ onUnmounted(() => {
         <nav class="hidden md:flex items-center gap-4">
           <router-link
             v-motion
-            to="/"
+            :to="localizedPath('/')"
             :hovered="{
               scale: 1.03,
               y: -2,
@@ -97,7 +105,7 @@ onUnmounted(() => {
           </router-link>
           <router-link
             v-motion
-            to="/dev"
+            :to="localizedPath('/dev')"
             :hovered="{
               scale: 1.03,
               y: -2,
@@ -113,7 +121,7 @@ onUnmounted(() => {
           </router-link>
           <router-link
             v-motion
-            to="/editor"
+            :to="localizedPath('/editor')"
             :hovered="{
               scale: 1.03,
               y: -2,
@@ -132,18 +140,18 @@ onUnmounted(() => {
           <button
             v-motion
             class="locale-toggle"
-            :aria-label="locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
-            :title="locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
+            :aria-label="isPt ? 'Switch to English' : 'Mudar para Português'"
+            :title="isPt ? 'Switch to English' : 'Mudar para Português'"
             :hovered="{
               scale: 1.03,
               y: -2,
               transition: { type: 'spring', stiffness: 300, damping: 20 },
             }"
             :tapped="{ scale: 0.97 }"
-            @click="toggleLocale"
+            @click="handleLocaleToggle"
           >
-            <span class="locale-flag">{{ locale === 'pt-BR' ? '🇧🇷' : '🇺🇸' }}</span>
-            <span class="locale-label">{{ locale === 'pt-BR' ? 'PT' : 'EN' }}</span>
+            <span class="locale-flag">{{ isPt ? '🇧🇷' : '🇺🇸' }}</span>
+            <span class="locale-label">{{ isPt ? 'PT' : 'EN' }}</span>
           </button>
         </nav>
       </div>
@@ -161,7 +169,7 @@ onUnmounted(() => {
           <nav class="flex flex-col gap-2">
             <router-link
               v-motion
-              to="/"
+              :to="localizedPath('/')"
               :hovered="{ x: 8 }"
               :tapped="{ scale: 0.98 }"
               class="text-gray-300 hover:text-white transition duration-300 px-3 py-3 rounded-lg hover:bg-white/10 hover:shadow-md flex items-center gap-3 group"
@@ -174,7 +182,7 @@ onUnmounted(() => {
             </router-link>
             <router-link
               v-motion
-              to="/dev"
+              :to="localizedPath('/dev')"
               :hovered="{ x: 8 }"
               :tapped="{ scale: 0.98 }"
               class="text-gray-300 hover:text-dev transition duration-300 px-3 py-3 rounded-lg hover:bg-dev/10 hover:shadow-md hover:shadow-dev/20 flex items-center gap-3 group"
@@ -187,7 +195,7 @@ onUnmounted(() => {
             </router-link>
             <router-link
               v-motion
-              to="/editor"
+              :to="localizedPath('/editor')"
               :hovered="{ x: 8 }"
               :tapped="{ scale: 0.98 }"
               class="text-gray-300 hover:text-editor transition duration-300 px-3 py-3 rounded-lg hover:bg-editor/10 hover:shadow-md hover:shadow-editor/20 flex items-center gap-3 group"
@@ -203,13 +211,18 @@ onUnmounted(() => {
             <button
               v-motion
               class="locale-toggle-mobile"
-              :aria-label="locale === 'pt-BR' ? 'Mudar para Português' : 'Switch to English'"
+              :aria-label="isPt ? 'Switch to English' : 'Mudar para Português'"
               :hovered="{ x: 8 }"
               :tapped="{ scale: 0.98 }"
-              @click="toggleLocale"
+              @click="
+                () => {
+                  handleLocaleToggle()
+                  closeMobileMenu()
+                }
+              "
             >
-              <span class="locale-flag text-lg">{{ locale === 'pt-BR' ? '🇺🇸' : '🇧🇷' }}</span>
-              <span class="text-gray-300">{{ locale === 'pt-BR' ? 'English' : 'Português' }}</span>
+              <span class="locale-flag text-lg">{{ isPt ? '🇺🇸' : '🇧🇷' }}</span>
+              <span class="text-gray-300">{{ isPt ? 'English' : 'Português' }}</span>
             </button>
           </nav>
         </div>

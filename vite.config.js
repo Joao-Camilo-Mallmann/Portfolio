@@ -18,6 +18,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
+    dedupe: ['vue', 'vue-router', '@unhead/vue'],
   },
   publicDir: 'public',
   build: {
@@ -33,6 +34,24 @@ export default defineConfig({
     assetsInlineLimit: 0,
     // Copia arquivos públicos para dist
     copyPublicDir: true,
+  },
+  ssgOptions: {
+    script: 'async',
+    formatting: 'minify',
+    dirStyle: 'nested',
+    includedRoutes() {
+      return [
+        '/',
+        '/pt-br',
+        '/pt-br/dev',
+        '/pt-br/editor',
+        '/pt-br/easter-egg',
+        '/en-us',
+        '/en-us/dev',
+        '/en-us/editor',
+        '/en-us/easter-egg',
+      ]
+    },
   },
   server: {
     host: true,
