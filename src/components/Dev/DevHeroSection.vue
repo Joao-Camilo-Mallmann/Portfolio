@@ -334,7 +334,7 @@ while (scanning) {
         >
           <!-- 2 e 3. INTEGRAÇÃO NAS BORDAS (mask) + CONTRASTE E NITIDEZ (editorial-pop) -->
           <img
-            src="/img/me.png"
+            src="/img/me.webp"
             alt="João Camilo Mallmann"
             class="w-full h-full object-cover object-center filter-editorial-pop mask-fade-edges pointer-events-none select-none transition-transform duration-500 group-hover:scale-105"
           />

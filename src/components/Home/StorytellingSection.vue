@@ -91,7 +91,7 @@ useMagneticEffect(editorBtnRef, {
             >
               <div class="relative w-full h-full rounded-[15px] overflow-hidden bg-obsidian">
                 <img
-                  src="/img/me_home.jpg"
+                  src="/img/me_home.webp"
                   alt="João Camilo Mallmann"
                   class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-all duration-700"
                 />

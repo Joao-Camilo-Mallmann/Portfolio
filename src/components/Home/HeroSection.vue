@@ -97,7 +97,7 @@ const scrollToStorytelling = () => {
     >
       <div class="flex items-center gap-2.5 mb-1 pointer-events-auto">
         <img
-          src="/img/eu.jpg"
+          src="/img/eu.webp"
           alt="João Camilo Mallmann"
           class="w-9 h-9 rounded-full border-2 border-white/20 shadow-md object-cover"
         />
@@ -139,7 +139,7 @@ const scrollToStorytelling = () => {
       class="hidden md:flex absolute top-6 left-6 items-center gap-3 pointer-events-auto z-20"
     >
       <img
-        src="/img/eu.jpg"
+        src="/img/eu.webp"
         alt="João Camilo Mallmann"
         class="w-12 h-12 rounded-full border-2 border-white/20 shadow-lg object-cover"
       />

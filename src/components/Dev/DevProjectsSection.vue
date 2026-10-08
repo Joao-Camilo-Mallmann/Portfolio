@@ -8,7 +8,7 @@ const githubProfileUrl = 'https://github.com/Joao-Camilo-Mallmann'
 const projects = computed(() => [
   {
     title: t('devProjects.project1Title'),
-    image: '/img/vimasi.png',
+    image: '/img/vimasi.webp',
     imageAlt: t('devProjects.project1Alt'),
     description: t('devProjects.project1Desc'),
     statusType: 'public',
@@ -39,7 +39,7 @@ const projects = computed(() => [
   },
   {
     title: t('devProjects.project5Title'),
-    image: '/img/STW.png',
+    image: '/img/STW.webp',
     imageAlt: t('devProjects.project5Alt'),
     description: t('devProjects.project5Desc'),
     statusType: 'public',
@@ -71,7 +71,7 @@ const projects = computed(() => [
 
   {
     title: t('devProjects.project2Title'),
-    image: '/img/destinos.png',
+    image: '/img/destinos.webp',
     imageAlt: t('devProjects.project2Alt'),
     description: t('devProjects.project2Desc'),
     statusType: 'public',
@@ -102,7 +102,7 @@ const projects = computed(() => [
   },
   {
     title: t('devProjects.project6Title'),
-    image: '/img/brpd.png',
+    image: '/img/brpd.webp',
     imageAlt: t('devProjects.project6Alt'),
     description: t('devProjects.project6Desc'),
     statusType: 'public',
@@ -133,7 +133,7 @@ const projects = computed(() => [
   },
   {
     title: t('devProjects.project3Title'),
-    image: '/img/smu.png',
+    image: '/img/smu.webp',
     imageAlt: t('devProjects.project3Alt'),
     description: t('devProjects.project3Desc'),
     statusType: 'private',
