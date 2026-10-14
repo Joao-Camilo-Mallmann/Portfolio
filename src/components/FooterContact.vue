@@ -1,5 +1,6 @@
 <script setup>
 import { useI18n } from '@/composables/useI18n'
+import { useWhatsApp } from '@/composables/useWhatsApp'
 import { computed } from 'vue'
 import SocialMediaButton from './SocialMediaButton.vue'
 
@@ -19,6 +20,7 @@ const props = defineProps({
 })
 
 const { t } = useI18n()
+const { whatsappLink } = useWhatsApp()
 
 const currentYear = computed(() => new Date().getFullYear())
 
@@ -26,13 +28,20 @@ const computedPrimaryColor = computed(() => {
   return props.variant === 'editor' ? 'var(--color-editor)' : 'var(--color-dev)'
 })
 
-const socialButtons = [
+const baseSocialButtons = [
   { platform: 'github', link: 'https://github.com/Joao-Camilo-Mallmann' },
   { platform: 'linkedin', link: 'https://www.linkedin.com/in/joão-camilo-mallmann/' },
   { platform: 'youtube', link: 'https://www.youtube.com/@J.C-12' },
   { platform: 'discord', link: 'https://discord.com/users/740010338136621227' },
   { platform: 'email', link: 'mailto:jcamilomallmann@hotmail.com' },
 ]
+
+// Na página de editor o WhatsApp é o canal principal de contato
+const socialButtons = computed(() =>
+  props.variant === 'editor'
+    ? [{ platform: 'whatsapp', link: whatsappLink('general') }, ...baseSocialButtons]
+    : baseSocialButtons,
+)
 </script>
 
 <template>

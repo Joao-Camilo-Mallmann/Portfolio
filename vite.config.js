@@ -45,10 +45,12 @@ export default defineConfig({
         '/pt-br',
         '/pt-br/dev',
         '/pt-br/editor',
+        '/pt-br/editor/projetos',
         '/pt-br/easter-egg',
         '/en-us',
         '/en-us/dev',
         '/en-us/editor',
+        '/en-us/editor/projetos',
         '/en-us/easter-egg',
       ]
     },

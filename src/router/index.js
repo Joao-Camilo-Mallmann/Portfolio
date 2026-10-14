@@ -27,6 +27,11 @@ export const routes = [
     component: () => import('../views/EditorView.vue'),
   },
   {
+    path: '/:lang(pt-br|en-us)/editor/projetos',
+    name: 'EditorProjectsView',
+    component: () => import('../views/EditorProjectsView.vue'),
+  },
+  {
     path: '/:lang(pt-br|en-us)/easter-egg',
     name: 'SecretView',
     component: () => import('../views/SecretView.vue'),
@@ -40,6 +45,10 @@ export const routes = [
   {
     path: '/editor',
     redirect: () => `/${getDefaultLocale()}/editor`,
+  },
+  {
+    path: '/editor/projetos',
+    redirect: () => `/${getDefaultLocale()}/editor/projetos`,
   },
   {
     path: '/easter-egg',
