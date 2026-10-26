@@ -1,143 +1,84 @@
 // Traduções em Português (Brasil) - Home
 export default {
   home: {
-    // Hero
+    ariaLabel: 'Página inicial do portfólio',
+
+    // Hero: nome + split Dev / Editor
     hero: {
-      name: 'JOÃO CAMILO MALLMANN',
-      title: 'Software Engineer',
-      titleSeparator: '•',
-      titleSecondary: 'Creative Developer',
-      tagline: 'Engineering meets Creativity.',
-      subtitle: 'Eu construo software moderno e crio experiências digitais cinematográficas.',
-      devTitle: 'Desenvolvedor',
-      devDescription:
-        'Projetos de desenvolvimento web, apps e automações. Explore meu portfólio como DEV!',
-      devCta: 'Explorar Projetos',
-      devCtaAria: 'Navegar para página de projetos de desenvolvimento',
-      editorTitle: 'Editor de Vídeo',
-      editorDescription:
-        'Criação audiovisual profissional com Adobe Premiere Pro, Photoshop e After Effects.',
-      editorCta: 'Ver Portfólio',
-      editorCtaAria: 'Navegar para página de portfólio de edição de vídeo',
-      scrollIndicator: 'Role para descobrir',
-      socialAria: 'Links de contato e redes sociais',
-    },
-
-    // Storytelling
-    storytelling: {
-      title: 'Beyond the Code.',
-      name: 'João Camilo Mallmann',
+      nameFirst: 'João Camilo',
+      nameLast: 'Mallmann',
       roleDev: 'Software Engineer',
-      roleEditor: 'Content Creator',
-      bio: 'Construo software de alta qualidade e produzo conteúdo visual que torna tecnologia mais acessível e envolvente.',
-      downloadCv: 'Download CV',
-      viewLinkedin: 'View LinkedIn',
-      devBtn: 'Ver Área Dev',
-      editorBtn: 'Ver Área Editor',
-    },
-
-    // Skill Cards
-    devTitle: 'Software Developer',
-    devDescription:
-      'Especializado em desenvolvimento de aplicações web modernas e responsivas utilizando Vue.js, JavaScript/TypeScript e as melhores práticas do mercado.',
-    devButton: 'Explorar Projetos Dev',
-    devButtonAria: 'Navegar para página de projetos de desenvolvimento',
-    devSkills: [
-      'Vue.js & Nuxt 3',
-      'TypeScript & JS ES6+',
-      'Tailwind CSS v4',
-      'Arquitetura de APIs',
-      'Clean Code & Performance',
-    ],
-
-    editorTitle: 'Editor de Vídeo',
-    editorDescription:
-      'Criação audiovisual profissional com Adobe Premiere Pro, Photoshop e After Effects. Especializado em vídeos institucionais, comerciais e motion graphics.',
-    editorButton: 'Ver Portfólio de Vídeo',
-    editorButtonAria: 'Navegar para página de portfólio de edição de vídeo',
-    editorSkills: [
-      'Adobe Premiere Pro',
-      'Adobe After Effects',
-      'Motion Design & VFX',
-      'Color Grading & Áudio',
-      'Adobe Photoshop',
-    ],
-
-    // Filosofia
-    philosophyTitle: 'Minha Filosofia de Trabalho',
-    philosophyCreativity: 'Combino criatividade técnica',
-    philosophyVision: 'visão estratégica',
-    philosophyDelivery: 'para entregar projetos que superam expectativas. Seja desenvolvendo',
-    philosophyInterfaces: 'interfaces intuitivas',
-    philosophyContent: 'conteúdo audiovisual impactante',
-    philosophyFocus: 'meu foco é sempre a',
-    philosophyExcellence: 'excelência',
-
-    // Tags da filosofia
-    tagTechnology: 'Tecnologia',
-    tagCreativity: 'Criatividade',
-    tagDedication: 'Dedicação',
-
-    // Stats
-    stats: {
-      years: '4+',
-      yearsLabel: 'Anos',
-      projects: '30+',
-      projectsLabel: 'Projetos',
-      codingHours: '5000+',
-      codingHoursLabel: 'Horas programando',
-      videoProductions: '50+',
-      videoProductionsLabel: 'Produções de vídeo',
-    },
-
-    // Timeline
-    timeline: {
-      title: 'Minha Jornada',
-      year2021: '2021',
-      desc2021: 'Comecei a programar.',
-      year2022: '2022',
-      desc2022: 'Especialização em Frontend.',
-      year2023: '2023',
-      desc2023: 'Experiência profissional.',
-      yearToday: 'Hoje',
-      descToday: 'Construindo produtos que combinam engenharia e criatividade.',
-    },
-
-    // Tech Chips
-    techChips: {
-      title: 'Tech Stack',
-    },
-
-    // Featured Projects
-    featured: {
-      title: 'Projetos em Destaque',
-      viewAll: 'Ver todos os projetos',
-      viewProject: 'Ver Projeto',
-      projects: {
-        vimasi: {
-          name: 'Vimasi Vedações',
-          description: 'Site institucional com SEO otimizado e design moderno.',
-        },
-        dashboard: {
-          name: 'Industrial Dashboard',
-          description: 'Dashboard industrial em tempo real com React e Node.',
-        },
-        brpd: {
-          name: 'Better Rich Presence',
-          description: 'App desktop multiplataforma com Tauri, React e Rust.',
-        },
+      roleEditor: 'Video Editor',
+      tagline: 'Engineering meets Creativity.',
+      bio: 'Desenvolvedor full stack e editor de vídeo: do front ao back-end, de apps a automações, e vídeos que prendem a atenção. Escolha um lado para conhecer o trabalho.',
+      splitLabel: 'Escolha uma área do portfólio',
+      hint: 'Passe o mouse para destacar um lado. Clique para abrir em tela cheia.',
+      hintTouch: 'Toque em um lado para abrir.',
+      dev: {
+        title: 'Desenvolvedor',
+        description: 'Web, back-end, apps desktop e automações com Vue, React e Node.',
+        cta: 'Ver projetos',
+        aria: 'Abrir a área de desenvolvimento',
+      },
+      editor: {
+        title: 'Editor de Vídeo',
+        description: 'Edição, motion e thumbnails para canais do YouTube.',
+        cta: 'Ver portfólio',
+        aria: 'Abrir a área de edição de vídeo',
       },
     },
 
-    // Video Gallery
-    videoGallery: {
-      title: 'Portfólio de Vídeos',
-      viewAll: 'Ver portfólio completo',
+    // Sobre + O que eu faço
+    about: {
+      photoAlt: 'Retrato em preto e branco de João Camilo Mallmann',
+      title: 'Eu construo o produto e conto a história dele.',
+      text: 'Sou desenvolvedor full stack e editor de vídeo. No código, faço o produto inteiro: interfaces em Vue e React, APIs em Node, banco de dados, apps desktop e automações. Na edição, transformo horas de gravação em vídeos com ritmo, cor e som no lugar certo.',
+      stats: {
+        years: '4+ anos',
+        yearsTail: 'programando,',
+        projects: '30+ projetos',
+        projectsTail: 'entregues e',
+        videos: '30+ vídeos',
+        videosTail: 'editados.',
+      },
+      servicesTitle: 'O que eu faço',
+      frontend: {
+        title: 'Interfaces que carregam rápido e funcionam no celular.',
+        sticker: 'Vue + Nuxt',
+        sites: ['Vimasi Vedações', 'Travel Mate', 'Mobilidade Urbana', 'Dashboard Industrial'],
+      },
+      backend: {
+        title: 'Back-end e APIs',
+        text: 'Node, TypeScript, Postgres e Docker.',
+      },
+      apps: {
+        title: 'Apps e automações',
+        toggle: 'Relatório diário automático',
+        toggleState: 'Ligado',
+        text: 'Painéis, apps desktop com Tauri e rotinas que poupam horas da equipe.',
+      },
+      video: {
+        title: 'Edição de vídeo',
+        text: 'Corte, motion, cor e thumbnails para YouTube.',
+        sticker: 'Premiere + AE',
+      },
     },
 
-    // Minimal Contact
-    minimalContact: {
-      heading: 'Vamos construir algo juntos.',
+    // Contato
+    contact: {
+      title: 'Tem uma ideia? Bora tirar do papel.',
+      copyEmail: 'Copiar meu e-mail',
+      copied: 'E-mail copiado',
+      dev: {
+        label: 'Desenvolvimento',
+        title: 'Preciso de um desenvolvedor',
+        action: 'Ver projetos dev',
+      },
+      editor: {
+        label: 'Edição de vídeo',
+        title: 'Preciso de um editor de vídeo',
+        action: 'Ver portfólio de vídeo',
+      },
     },
   },
 

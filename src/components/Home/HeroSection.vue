@@ -1,175 +1,181 @@
 <script setup>
 import { useI18n } from '@/composables/useI18n'
-import { onMounted, ref } from 'vue'
+import { splitImages } from '@/data/homeSplit'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import ScrollIndicator from './ScrollIndicator.vue'
 
 const { t, localizedPath } = useI18n()
 const router = useRouter()
 
-const isLoaded = ref(false)
-const hoveredPanel = ref(null)
-const activePanel = ref(null)
-
-const fontsList = [
-  'font-mono-tech',
-  'font-pixel-retro',
-  'font-serif-classic',
-  'font-display-bebas',
-  'font-space-grotesk',
-  'font-display-syne',
-  'font-sans-default',
+const panels = [
+  {
+    key: 'dev',
+    path: '/dev',
+    icon: 'pi-code',
+    image: splitImages.dev,
+    iconClass: 'text-dev',
+    glowClass: 'from-dev/55',
+    buttonClass: 'bg-dev',
+  },
+  {
+    key: 'editor',
+    path: '/editor',
+    icon: 'pi-video',
+    image: splitImages.editor,
+    iconClass: 'text-editor',
+    glowClass: 'from-editor/50',
+    buttonClass: 'bg-editor',
+  },
 ]
 
-const currentFontClass = ref('font-sans-default')
-const isCycling = ref(false)
+const hoveredPanel = ref(null)
+const activePanel = ref(null)
+let navigateTimer = null
 
-const startDeceleratingFontCycle = () => {
-  if (isCycling.value) return
-  isCycling.value = true
-
-  // Delays em ms totalizando ~3.0 segundos com desaceleração progressiva:
-  const delays = [50, 60, 60, 70, 80, 90, 110, 140, 180, 230, 300, 400, 550, 750]
-  let step = 0
-
-  const runStep = () => {
-    if (step < delays.length) {
-      currentFontClass.value = fontsList[step % fontsList.length]
-      const delay = delays[step]
-      step++
-      setTimeout(runStep, delay)
-    } else {
-      currentFontClass.value = 'font-sans-default'
-      isCycling.value = false
-    }
-  }
-
-  runStep()
-}
-
-onMounted(() => {
-  setTimeout(() => {
-    isLoaded.value = true
-  }, 80)
-
-  // Inicia a animação de desaceleração de 3 segundos ao carregar a página
-  setTimeout(() => {
-    startDeceleratingFontCycle()
-  }, 350)
-})
-
-const handlePanelClick = (type) => {
+// O lado escolhido cresce até ocupar o split inteiro, o outro some, e só então a rota muda
+const openPanel = (panel) => {
   if (activePanel.value) return
-  activePanel.value = type
-
-  setTimeout(() => {
-    // Navigate to respective route
-    router.push(localizedPath(type === 'dev' ? '/dev' : '/editor'))
+  hoveredPanel.value = null
+  activePanel.value = panel.key
+  navigateTimer = setTimeout(() => {
+    router.push(localizedPath(panel.path))
   }, 880)
 }
 
-const scrollToStorytelling = () => {
-  window.scrollTo({
-    top: window.innerHeight,
-    behavior: 'smooth',
-  })
+const panelClass = (key) => {
+  if (activePanel.value) {
+    return activePanel.value === key ? 'grow' : 'pointer-events-none grow-0 basis-0 opacity-0'
+  }
+  return hoveredPanel.value === key ? 'md:grow-[1.6]' : ''
 }
+
+const isLit = (key) => hoveredPanel.value === key || activePanel.value === key
+
+// Nome: na entrada do site troca de fonte, cor e escala, desacelerando até parar no estilo final
+const cycleFonts = [
+  "'Fira Code', monospace",
+  "'Silkscreen', monospace",
+  "'Playfair Display', serif",
+  "'Bebas Neue', sans-serif",
+  "'Monoton', sans-serif",
+  "'Syne', sans-serif",
+  "'Permanent Marker', cursive",
+  "'Orbitron', sans-serif",
+  "'Abril Fatface', serif",
+  'var(--font-display)',
+]
+const cycleColors = [
+  'var(--color-dev)',
+  'var(--color-editor)',
+  'var(--color-magenta)',
+  'var(--color-cyan-glow)',
+  'var(--color-fg)',
+]
+const cycleDelays = [
+  60, 60, 70, 70, 80, 80, 90, 100, 110, 120, 140, 160, 190, 230, 280, 340, 420, 520,
+]
+
+const cycleStep = ref(0)
+let cycleTimers = []
+
+const cycleName = () => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  let step = 0
+
+  const run = () => {
+    if (step < cycleDelays.length) {
+      cycleStep.value = step + 1
+      cycleTimers.push(setTimeout(run, cycleDelays[step]))
+      step++
+    } else {
+      cycleStep.value = 0
+    }
+  }
+
+  run()
+}
+
+const nameStyle = computed(() => {
+  if (!cycleStep.value) return null
+  const index = cycleStep.value - 1
+  return {
+    fontFamily: cycleFonts[index % cycleFonts.length],
+    color: cycleColors[index % cycleColors.length],
+    transform: `scale(${index % 2 ? 1.03 : 0.98})`,
+  }
+})
+
+// Nome em 3D leve: inclina seguindo o mouse (só em telas com mouse)
+const tilt = ref({ x: 0, y: 0 })
+let canTilt = false
+
+const nameTiltStyle = computed(() => ({
+  transform: `rotateX(${tilt.value.x}deg) rotateY(${tilt.value.y}deg)`,
+}))
+
+const handleTilt = (event) => {
+  if (!canTilt) return
+  const rect = event.currentTarget.getBoundingClientRect()
+  const px = (event.clientX - rect.left) / rect.width - 0.5
+  const py = (event.clientY - rect.top) / rect.height - 0.5
+  tilt.value = { x: -py * 14, y: px * 18 }
+}
+
+const resetTilt = () => {
+  tilt.value = { x: 0, y: 0 }
+}
+
+onMounted(() => {
+  cycleTimers.push(setTimeout(cycleName, 350))
+  canTilt =
+    window.matchMedia('(pointer: fine)').matches &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+})
+
+onBeforeUnmount(() => {
+  cycleTimers.forEach(clearTimeout)
+  clearTimeout(navigateTimer)
+})
 </script>
 
 <template>
   <section
-    class="relative w-full h-[100dvh] overflow-hidden flex flex-col md:flex-row bg-bg"
-    :class="{ 'opacity-100': isLoaded, 'opacity-0': !isLoaded }"
-    style="transition: opacity 0.5s ease"
-    role="region"
-    aria-label="Hero Identity & Portfolio Tracks"
+    class="relative mx-auto flex min-h-svh max-w-7xl flex-col px-4 pt-24 pb-6 md:px-6 md:pt-28 2xl:max-w-[1400px]"
+    aria-labelledby="home-hero-name"
   >
-    <!-- MOBILE FLOATING IDENTITY OVERLAY (Compacto e não intrusivo para caber em 100dvh) -->
-    <div
-      v-motion
-      :initial="{ opacity: 0, y: -20 }"
-      :enter="{
-        opacity: 1,
-        y: 0,
-        transition: { type: 'spring', stiffness: 180, damping: 16, delay: 100 },
-      }"
-      class="md:hidden absolute top-0 left-0 right-0 z-30 pointer-events-none flex flex-col items-center text-center px-4 pt-3 pb-2 bg-linear-to-b from-black/85 via-black/40 to-transparent"
-    >
-      <div class="flex items-center gap-2 mb-0.5 pointer-events-auto">
-        <img
-          src="/img/eu.webp"
-          alt="João Camilo Mallmann"
-          class="w-7 h-7 rounded-full border border-white/30 shadow-md object-cover"
-        />
-        <h1
-          class="shimmer-title text-base sm:text-lg font-extrabold text-white tracking-tight drop-shadow-lg transition-transform duration-150"
-          :class="[currentFontClass, { 'scale-[1.02] text-dev': isCycling }]"
-        >
-          {{ t('home.hero.name') }}
-        </h1>
-      </div>
-
-      <p
-        class="text-[11px] font-medium text-white/90 flex items-center gap-1.5 justify-center drop-shadow"
-      >
-        <span class="text-dev font-semibold">{{ t('home.hero.title') }}</span>
-        <span class="text-white/40">{{ t('home.hero.titleSeparator') }}</span>
-        <span class="text-editor font-semibold">{{ t('home.hero.titleSecondary') }}</span>
-      </p>
-
+    <!-- Nome, atuação e frase -->
+    <div class="flex flex-wrap items-end justify-between gap-x-12 gap-y-5 pb-6 md:pb-8">
       <div
-        class="h-px w-16 bg-linear-to-r from-dev/60 via-white/50 to-editor/60 my-0.5 rounded-full"
-      ></div>
-
-      <p class="text-[10px] sm:text-[11px] text-white/80 italic tracking-wide drop-shadow">
-        {{ t('home.hero.tagline') }}
-      </p>
-    </div>
-
-    <!-- DESKTOP ONLY: Top Left Profile Photo -->
-    <div
-      v-motion
-      :initial="{ opacity: 0, scale: 0.5, rotate: -12 }"
-      :enter="{
-        opacity: 1,
-        scale: 1,
-        rotate: 0,
-        transition: { type: 'spring', stiffness: 200, damping: 14, delay: 100 },
-      }"
-      class="hidden md:flex absolute top-6 left-6 items-center gap-3 pointer-events-auto z-20"
-    >
-      <img
-        src="/img/eu.webp"
-        alt="João Camilo Mallmann"
-        class="w-12 h-12 rounded-full border-2 border-white/20 shadow-lg object-cover"
-      />
-    </div>
-
-    <!-- DESKTOP ONLY: Floating Identity Overlay (Centered) -->
-    <div
-      class="hidden md:flex absolute inset-0 z-10 pointer-events-none flex-col justify-center items-center text-center p-6 mix-blend-normal overflow-visible"
-    >
-      <div
-        class="flex flex-col items-center gap-2 max-w-2xl pointer-events-auto perspective-500 overflow-visible"
+        class="flex flex-col items-start [perspective:700px]"
+        @pointermove="handleTilt"
+        @pointerleave="resetTilt"
       >
-        <!-- Nome com Font-Cycling Desacelerado (3s - Entrada Única), Spring 3D e Shimmer -->
-        <h1
-          v-motion
-          :initial="{ opacity: 0, scale: 0.85, y: 30, rotateX: -15 }"
-          :enter="{
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            rotateX: 0,
-            transition: { type: 'spring', stiffness: 160, damping: 14, delay: 200 },
-          }"
-          class="shimmer-title text-4xl md:text-6xl font-extrabold text-white tracking-tight drop-shadow-2xl transition-transform duration-150"
-          :class="[currentFontClass, { 'scale-[1.02] text-dev': isCycling }]"
+        <div
+          class="origin-left transition-transform duration-300 ease-out [transform-style:preserve-3d]"
+          :style="nameTiltStyle"
         >
-          {{ t('home.hero.name') }}
-        </h1>
+          <h1
+            id="home-hero-name"
+            v-motion
+            :initial="{ opacity: 0, scale: 0.85, y: 30, rotateX: -15 }"
+            :enter="{
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              rotateX: 0,
+              transition: { type: 'spring', stiffness: 160, damping: 14, delay: 150 },
+            }"
+            class="shimmer-title text-[2.5rem] leading-[0.95] font-extrabold tracking-tight whitespace-nowrap text-fg uppercase md:text-7xl"
+          >
+            <span
+              class="name-3d block origin-left transition-transform duration-100"
+              :style="nameStyle"
+            >
+              {{ t('home.hero.nameFirst') }}&#32;<br />{{ t('home.hero.nameLast') }}
+            </span>
+          </h1>
+        </div>
 
-        <!-- Título / Atuação com Spring Materialization e Cores Semânticas -->
         <p
           v-motion
           :initial="{ opacity: 0, scale: 0.9, y: 20 }"
@@ -179,14 +185,13 @@ const scrollToStorytelling = () => {
             y: 0,
             transition: { type: 'spring', stiffness: 180, damping: 15, delay: 350 },
           }"
-          class="text-lg md:text-xl font-medium text-white/80 drop-shadow-lg mt-2 flex items-center gap-2 flex-wrap justify-center"
+          class="mt-3 flex flex-wrap items-center gap-2 text-base font-semibold md:mt-4 md:text-xl"
         >
-          <span class="text-dev font-semibold">{{ t('home.hero.title') }}</span>
-          <span class="text-white/40">{{ t('home.hero.titleSeparator') }}</span>
-          <span class="text-editor font-semibold">{{ t('home.hero.titleSecondary') }}</span>
+          <span class="text-dev">{{ t('home.hero.roleDev') }}</span>
+          <span class="text-white/40" aria-hidden="true">•</span>
+          <span class="text-editor">{{ t('home.hero.roleEditor') }}</span>
         </p>
 
-        <!-- Linha Divisora com Line Draw em Gradient Semântico -->
         <div
           v-motion
           :initial="{ scaleX: 0, opacity: 0 }"
@@ -195,10 +200,12 @@ const scrollToStorytelling = () => {
             opacity: 1,
             transition: { type: 'keyframes', ease: [0.16, 1, 0.3, 1], duration: 800, delay: 500 },
           }"
-          class="h-px w-28 bg-linear-to-r from-dev/60 via-white/50 to-editor/60 my-4 rounded-full origin-center"
+          class="mt-4 h-px w-28 origin-left rounded-full bg-linear-to-r from-dev/70 via-white/50 to-editor/70"
+          aria-hidden="true"
         ></div>
+      </div>
 
-        <!-- Tagline com Slide + Spring -->
+      <div class="flex max-w-md flex-col gap-2">
         <p
           v-motion
           :initial="{ opacity: 0, y: 20, scale: 0.95 }"
@@ -208,12 +215,10 @@ const scrollToStorytelling = () => {
             scale: 1,
             transition: { type: 'spring', stiffness: 170, damping: 16, delay: 620 },
           }"
-          class="text-xl md:text-2xl font-medium text-white/95 drop-shadow-lg italic tracking-wide"
+          class="hidden text-xl font-medium tracking-wide text-white/95 italic md:block md:text-2xl"
         >
           {{ t('home.hero.tagline') }}
         </p>
-
-        <!-- Subtitle com Entrada Suave em Cascata -->
         <p
           v-motion
           :initial="{ opacity: 0, y: 20 }"
@@ -222,174 +227,122 @@ const scrollToStorytelling = () => {
             y: 0,
             transition: { type: 'spring', stiffness: 150, damping: 18, delay: 750 },
           }"
-          class="text-sm md:text-base text-white/60 drop-shadow max-w-lg mt-2 leading-relaxed text-pretty"
+          class="text-[15px] leading-relaxed text-fg-muted text-pretty md:text-base"
         >
-          {{ t('home.hero.subtitle') }}
+          {{ t('home.hero.bio') }}
         </p>
       </div>
     </div>
 
-    <!-- Top (Mobile: 50dvh) / Left (Desktop: 100vh) Panel: Developer -->
-    <div
-      v-motion
-      :initial="{ opacity: 0, x: -30, y: -20 }"
-      :enter="{
-        opacity: 1,
-        x: 0,
-        y: 0,
-        transition: { type: 'spring', stiffness: 120, damping: 16, delay: 50 },
-      }"
-      class="panel group relative h-[50dvh] md:h-full flex-1 flex items-center justify-center cursor-pointer overflow-hidden isolate transition-[flex-grow,filter] duration-720 ease-in-out active:scale-[0.98] md:active:scale-100"
-      :class="[
-        hoveredPanel === 'dev'
-          ? 'md:flex-[0.6]'
-          : hoveredPanel === 'editor'
-            ? 'md:flex-[0.4]'
-            : 'md:flex-[0.5]',
-        activePanel === 'dev' ? 'flex-[1] md:!flex-[1] z-20' : '',
-        activePanel === 'editor'
-          ? 'flex-[0] md:!flex-[0] blur-md grayscale pointer-events-none'
-          : '',
-      ]"
-      @mouseenter="!activePanel && (hoveredPanel = 'dev')"
-      @mouseleave="hoveredPanel = null"
-      @click="handlePanelClick('dev')"
+    <!-- Split Dev / Editor -->
+    <nav
+      :aria-label="t('home.hero.splitLabel')"
+      class="flex min-h-[420px] flex-1 flex-col gap-2.5 md:mx-[calc(50%-50vw+1rem)] md:min-h-[620px] md:flex-row md:gap-0 md:overflow-hidden md:rounded-3xl md:bg-obsidian md:ring-1 md:ring-white/10"
     >
-      <div
-        class="absolute inset-0 bg-cover bg-center -z-20 transition-transform duration-[1.2s] group-hover:scale-105"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=crop');
-        "
-      ></div>
-      <div
-        class="absolute inset-0 bg-black/60 -z-10 group-hover:bg-black/40 transition-colors duration-500"
-      ></div>
-      <div
-        class="absolute inset-0 bg-radial from-dev/40 to-transparent opacity-30 md:opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-700"
-      ></div>
-
-      <!-- Panel content perfeitamente proporcionado para mobile e desktop -->
-      <div
-        class="panel-content z-20 flex flex-col items-center text-center px-4 pt-16 pb-3 md:p-6 text-shadow pointer-events-auto"
-      >
-        <i
-          class="pi pi-code text-2xl sm:text-3xl md:text-6xl text-dev md:text-white mb-1 md:mb-4 transition-transform transition-colors duration-500 md:group-hover:-translate-y-2 md:group-hover:text-dev"
-        ></i>
-        <h2 class="text-lg sm:text-xl md:text-4xl font-bold text-white mb-1 md:mb-2 text-balance">
-          {{ t('home.hero.devTitle') }}
-        </h2>
-        <p
-          class="text-white/80 max-w-sm text-sm md:text-base hidden md:block opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-opacity transition-transform duration-500 delay-100 text-pretty"
+      <template v-for="(panel, index) in panels" :key="panel.key">
+        <!-- Linha brilhante entre os lados, como no split original -->
+        <div
+          v-if="index === 1"
+          class="relative z-10 hidden w-0 transition-opacity duration-300 md:block"
+          :class="activePanel || hoveredPanel ? 'opacity-50' : 'opacity-100'"
+          aria-hidden="true"
         >
-          {{ t('home.hero.devDescription') }}
-        </p>
-        <span
-          class="mt-1.5 md:mt-6 inline-flex items-center gap-1.5 md:gap-2 px-3 py-1 md:p-0 rounded-full md:rounded-none bg-dev/20 md:bg-transparent border border-dev/40 md:border-none text-dev font-semibold text-xs sm:text-sm md:text-base shadow-sm md:shadow-none md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-opacity transition-transform duration-500 md:delay-200"
+          <div
+            class="absolute inset-y-[6%] -left-px w-px bg-linear-to-b from-transparent via-white/60 to-transparent shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+            :class="activePanel ? 'opacity-0' : ''"
+          ></div>
+        </div>
+
+        <a
+          v-motion
+          :href="localizedPath(panel.path)"
+          :aria-label="t(`home.hero.${panel.key}.aria`)"
+          :initial="{ opacity: 0, y: 30 }"
+          :enter="{
+            opacity: 1,
+            y: 0,
+            transition: { type: 'spring', stiffness: 120, damping: 16, delay: 150 + index * 100 },
+          }"
+          class="door group relative flex min-h-0 min-w-0 flex-1 flex-col justify-end overflow-hidden rounded-[20px] text-white ring-1 ring-white/10 transition-[flex-grow,flex-basis,opacity] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white md:rounded-none md:ring-0"
+          :class="panelClass(panel.key)"
+          @mouseenter="!activePanel && (hoveredPanel = panel.key)"
+          @mouseleave="hoveredPanel = null"
+          @click.prevent="openPanel(panel)"
         >
-          {{ t('home.hero.devCta') }}
-          <i
-            class="pi pi-arrow-right text-[10px] md:text-sm group-hover:translate-x-1 transition-transform"
-          ></i>
-        </span>
-      </div>
-    </div>
+          <div
+            class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+            :style="{ backgroundImage: `url('${panel.image}')` }"
+            aria-hidden="true"
+          ></div>
+          <div
+            class="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-black/15"
+            aria-hidden="true"
+          ></div>
+          <div
+            class="absolute inset-0 bg-radial-[at_50%_115%] to-transparent to-60% transition-opacity duration-500"
+            :class="[panel.glowClass, isLit(panel.key) ? 'opacity-100' : 'opacity-0']"
+            aria-hidden="true"
+          ></div>
 
-    <!-- Desktop Center Divider Line -->
-    <div
-      class="hidden md:block absolute top-0 bottom-0 w-px bg-white/20 z-20 left-1/2 -translate-x-1/2 pointer-events-none transition-all duration-[720ms] shadow-[0_0_15px_rgba(255,255,255,0.5)]"
-      :style="{
-        left: hoveredPanel === 'dev' ? '60%' : hoveredPanel === 'editor' ? '40%' : '50%',
-        opacity: activePanel ? '0' : '1',
-      }"
-    ></div>
+          <div
+            class="relative flex items-end justify-between gap-3 p-4 md:flex-col md:items-start md:justify-end md:gap-3 md:p-10"
+          >
+            <div class="flex flex-col gap-1.5 md:max-w-md md:gap-2.5">
+              <i
+                class="pi text-2xl md:text-3xl"
+                :class="[panel.icon, panel.iconClass]"
+                aria-hidden="true"
+              ></i>
+              <h2
+                class="font-display text-[1.625rem] leading-tight font-medium tracking-tight md:text-5xl"
+              >
+                {{ t(`home.hero.${panel.key}.title`) }}
+              </h2>
+              <p class="text-[13px] leading-relaxed text-white/85 text-pretty md:text-[15px]">
+                {{ t(`home.hero.${panel.key}.description`) }}
+              </p>
+            </div>
+            <span
+              class="inline-flex size-11 shrink-0 items-center justify-center gap-2 rounded-full font-bold text-obsidian md:mt-1.5 md:size-auto md:min-h-11 md:px-5 md:text-[15px]"
+              :class="panel.buttonClass"
+            >
+              <span class="hidden md:inline">{{ t(`home.hero.${panel.key}.cta`) }}</span>
+              <i
+                class="pi pi-arrow-right text-sm transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              ></i>
+            </span>
+          </div>
+        </a>
+      </template>
+    </nav>
 
-    <!-- Bottom (Mobile: 50dvh) / Right (Desktop: 100vh) Panel: Video Editor -->
-    <div
-      v-motion
-      :initial="{ opacity: 0, x: 30, y: 20 }"
-      :enter="{
-        opacity: 1,
-        x: 0,
-        y: 0,
-        transition: { type: 'spring', stiffness: 120, damping: 16, delay: 120 },
-      }"
-      class="panel group relative h-[50dvh] md:h-full flex-1 flex items-center justify-center cursor-pointer overflow-hidden isolate transition-[flex-grow,filter] duration-[720ms] ease-[cubic-bezier(0.4,0,0.2,1)] active:scale-[0.98] md:active:scale-100 border-t border-white/10 md:border-t-0"
-      :class="[
-        hoveredPanel === 'editor'
-          ? 'md:flex-[0.6]'
-          : hoveredPanel === 'dev'
-            ? 'md:flex-[0.4]'
-            : 'md:flex-[0.5]',
-        activePanel === 'editor' ? 'flex-[1] md:!flex-[1] z-20' : '',
-        activePanel === 'dev' ? 'flex-[0] md:!flex-[0] blur-md grayscale pointer-events-none' : '',
-      ]"
-      @mouseenter="!activePanel && (hoveredPanel = 'editor')"
-      @mouseleave="hoveredPanel = null"
-      @click="handlePanelClick('editor')"
-    >
-      <div
-        class="absolute inset-0 bg-cover bg-center -z-20 transition-transform duration-[1.2s] group-hover:scale-105"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1574717025058-2f8737d2e2b7?q=80&w=687&auto=format&fit=crop');
-        "
-      ></div>
-      <div
-        class="absolute inset-0 bg-black/60 -z-10 group-hover:bg-black/40 transition-colors duration-500"
-      ></div>
-      <div
-        class="absolute inset-0 bg-radial from-editor/40 to-transparent opacity-30 md:opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-700"
-      ></div>
-
-      <!-- Panel content perfeitamente proporcionado para mobile e desktop -->
-      <div
-        class="panel-content z-20 flex flex-col items-center text-center px-4 pt-2 pb-5 md:p-6 text-shadow pointer-events-auto"
-      >
-        <i
-          class="pi pi-video text-2xl sm:text-3xl md:text-6xl text-editor md:text-white mb-1 md:mb-4 transition-transform transition-colors duration-500 md:group-hover:-translate-y-2 md:group-hover:text-editor"
-        ></i>
-        <h2 class="text-lg sm:text-xl md:text-4xl font-bold text-white mb-1 md:mb-2 text-balance">
-          {{ t('home.hero.editorTitle') }}
-        </h2>
-        <p
-          class="text-white/80 max-w-sm text-sm md:text-base hidden md:block opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-opacity transition-transform duration-500 delay-100 text-pretty"
-        >
-          {{ t('home.hero.editorDescription') }}
-        </p>
-        <span
-          class="mt-1.5 md:mt-6 inline-flex items-center gap-1.5 md:gap-2 px-3 py-1 md:p-0 rounded-full md:rounded-none bg-editor/20 md:bg-transparent border border-editor/40 md:border-none text-editor font-semibold text-xs sm:text-sm md:text-base shadow-sm md:shadow-none md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-opacity transition-transform duration-500 md:delay-200"
-        >
-          {{ t('home.hero.editorCta') }}
-          <i
-            class="pi pi-arrow-right text-[10px] md:text-sm group-hover:translate-x-1 transition-transform"
-          ></i>
-        </span>
-      </div>
-    </div>
-
-    <!-- Scroll Indicator (visível no desktop em bottom-8) -->
-    <div class="hidden md:block">
-      <scroll-indicator @click="scrollToStorytelling" />
-    </div>
-
-    <!-- Floating Socials -->
+    <p class="mt-3 hidden text-center text-sm text-fg-muted md:block">
+      {{ t('home.hero.hint') }}
+    </p>
+    <p class="mt-3 text-center text-[13px] text-fg-muted md:hidden">
+      {{ t('home.hero.hintTouch') }}
+    </p>
   </section>
 </template>
 
 <style scoped>
-.text-shadow {
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
-}
-
-.perspective-500 {
-  perspective: 500px;
-}
-
 .shimmer-title {
   position: relative;
   overflow: hidden;
-  display: inline-block;
   padding-top: 0.25em;
-  padding-bottom: 0.1em;
+  padding-right: 0.15em;
+  padding-bottom: 0.18em;
+}
+
+/* Profundidade leve: camadas de sombra em azul e laranja formam um relevo */
+.name-3d {
+  text-shadow:
+    1px 1px 0 color-mix(in srgb, var(--color-dev) 55%, transparent),
+    2px 2px 0 color-mix(in srgb, var(--color-dev) 40%, transparent),
+    3px 3px 0 color-mix(in srgb, var(--color-editor) 35%, transparent),
+    4px 4px 0 color-mix(in srgb, var(--color-editor) 22%, transparent),
+    6px 10px 24px rgba(0, 0, 0, 0.55);
 }
 
 .shimmer-title::after {
@@ -401,7 +354,8 @@ const scrollToStorytelling = () => {
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   animation: shimmer 4s ease-in-out infinite;
-  animation-delay: 1.2s;
+  animation-delay: 3.6s;
+  pointer-events: none;
 }
 
 @keyframes shimmer {
@@ -414,41 +368,12 @@ const scrollToStorytelling = () => {
   }
 }
 
-.font-sans-default {
-  font-family:
-    'Inter',
-    system-ui,
-    -apple-system,
-    sans-serif;
-}
-.font-mono-tech {
-  font-family: 'Fira Code', monospace;
-}
-.font-serif-classic {
-  font-family: 'Playfair Display', Georgia, serif;
-}
-.font-display-syne {
-  font-family: 'Syne', sans-serif;
-}
-.font-space-grotesk {
-  font-family: 'Space Grotesk', sans-serif;
-}
-.font-pixel-retro {
-  font-family: 'Silkscreen', monospace;
-}
-.font-display-bebas {
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 0.08em;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .shimmer-title::after {
-    animation: none !important;
+    animation: none;
   }
-  .transition-all,
-  .transition-transform,
-  .transition-colors,
-  .transition-opacity {
+  .door,
+  .door * {
     transition-duration: 0.01ms !important;
   }
 }

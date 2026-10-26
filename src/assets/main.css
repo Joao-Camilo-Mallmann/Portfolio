@@ -20,6 +20,9 @@
   --color-obsidian: #07080a;
   --color-magenta: #d946ef;
   --color-cyan-glow: #06b6d4;
+
+  /* Fonte de destaque (nome e títulos da home) */
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
 }
 
 /* ========================================

@@ -1,7 +1,10 @@
 <script setup>
+import BackgroundLights from '@/components/Dev/BackgroundLights.vue'
 import FooterContact from '@/components/FooterContact.vue'
+import HeaderCore from '@/components/HeaderCore.vue'
 import HeroSection from '@/components/Home/HeroSection.vue'
-import StorytellingSection from '@/components/Home/StorytellingSection.vue'
+import HomeAboutSection from '@/components/Home/HomeAboutSection.vue'
+import HomeContactSection from '@/components/Home/HomeContactSection.vue'
 import { useI18n } from '@/composables/useI18n'
 import { useSeoHead } from '@/composables/useSeoHead'
 
@@ -20,19 +23,27 @@ useSeoHead({
 </script>
 
 <template>
-  <main class="page-transition relative overflow-hidden" role="main" aria-label="Portfolio Home">
-    <!-- Hero — 100vh immersive split -->
+  <main
+    class="page-transition relative overflow-hidden"
+    role="main"
+    :aria-label="t('home.ariaLabel')"
+  >
+    <!-- Luzes de fundo nas duas cores do portfólio -->
+    <template v-for="i in 6" :key="`dev-light-${i}`">
+      <background-lights color="var(--color-dev)" />
+    </template>
+    <template v-for="i in 6" :key="`editor-light-${i}`">
+      <background-lights color="var(--color-editor)" />
+    </template>
+
+    <header-core />
+
     <hero-section />
 
-    <!-- Storytelling — "Beyond the Code." -->
-    <storytelling-section />
+    <home-about-section />
 
-    <!-- Skill Cards & Philosophy — Two Worlds, One Vision -->
-    <skill-cards-section />
+    <home-contact-section />
 
-    <!-- Footer de Contato Padrão -->
-    <div v-motion-scroll-visible :delay="100">
-      <footer-contact primary-color="#ffffff" :cta-text="t('footer.ctaDefault')" />
-    </div>
+    <footer-contact :cta-text="t('footer.ctaDefault')" />
   </main>
 </template>
