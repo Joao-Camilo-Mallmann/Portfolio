@@ -1,11 +1,11 @@
 <script setup>
+import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
 import { useI18n } from '@/composables/useI18n'
 import { onMounted, onUnmounted, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
-const { t, isPt, toggleLocale, localizedPath } = useI18n()
+const { t, localizedPath } = useI18n()
 const router = useRouter()
-const route = useRoute()
 
 const mobileMenuOpen = ref(false)
 const isScrolled = ref(false)
@@ -16,10 +16,6 @@ function toggleMobileMenu() {
 
 function closeMobileMenu() {
   mobileMenuOpen.value = false
-}
-
-function handleLocaleToggle() {
-  toggleLocale(router, route)
 }
 
 function navigateHome() {
@@ -74,86 +70,72 @@ onUnmounted(() => {
           </span>
         </div>
 
-        <!-- Menu Mobile Button -->
-        <button
-          v-motion
-          :hovered="{ scale: 1.05 }"
-          :tapped="{ scale: 0.95 }"
-          class="md:hidden text-gray-300 hover:text-white min-w-10 min-h-10 flex items-center justify-center rounded-lg transition duration-300"
-          @click="toggleMobileMenu"
-        >
-          <i class="pi pi-bars text-lg"></i>
-        </button>
+        <div class="flex items-center gap-2 md:gap-4">
+          <!-- Navegação Desktop -->
+          <nav class="hidden md:flex items-center gap-4">
+            <router-link
+              v-motion
+              :to="localizedPath('/')"
+              :hovered="{
+                scale: 1.03,
+                y: -2,
+                transition: { type: 'spring', stiffness: 300, damping: 20 },
+              }"
+              :tapped="{ scale: 0.97 }"
+              class="text-gray-300 hover:text-white transition duration-300 px-3 py-2 min-h-10 rounded-lg hover:bg-white/10 hover:shadow-lg flex items-center gap-2 group"
+            >
+              <i
+                class="pi pi-home text-sm transition-transform duration-300 group-hover:scale-110"
+              ></i>
+              <span>{{ t('header.home') }}</span>
+            </router-link>
+            <router-link
+              v-motion
+              :to="localizedPath('/dev')"
+              :hovered="{
+                scale: 1.03,
+                y: -2,
+                transition: { type: 'spring', stiffness: 300, damping: 20 },
+              }"
+              :tapped="{ scale: 0.97 }"
+              class="text-gray-300 hover:text-dev transition duration-300 px-3 py-2 min-h-10 rounded-lg hover:bg-dev/10 hover:shadow-lg hover:shadow-dev/20 flex items-center gap-2 group"
+            >
+              <i
+                class="pi pi-code text-sm transition-transform duration-300 group-hover:scale-110"
+              ></i>
+              <span>{{ t('header.dev') }}</span>
+            </router-link>
+            <router-link
+              v-motion
+              :to="localizedPath('/editor')"
+              :hovered="{
+                scale: 1.03,
+                y: -2,
+                transition: { type: 'spring', stiffness: 300, damping: 20 },
+              }"
+              :tapped="{ scale: 0.97 }"
+              class="text-gray-300 hover:text-editor transition duration-300 px-3 py-2 min-h-10 rounded-lg hover:bg-editor/10 hover:shadow-lg hover:shadow-editor/20 flex items-center gap-2 group"
+            >
+              <i
+                class="pi pi-video text-sm transition-transform duration-300 group-hover:scale-110"
+              ></i>
+              <span>{{ t('header.editor') }}</span>
+            </router-link>
+          </nav>
 
-        <!-- Navegação Desktop + Toggle de Idioma -->
-        <nav class="hidden md:flex items-center gap-4">
-          <router-link
-            v-motion
-            :to="localizedPath('/')"
-            :hovered="{
-              scale: 1.03,
-              y: -2,
-              transition: { type: 'spring', stiffness: 300, damping: 20 },
-            }"
-            :tapped="{ scale: 0.97 }"
-            class="text-gray-300 hover:text-white transition duration-300 px-3 py-2 min-h-10 rounded-lg hover:bg-white/10 hover:shadow-lg flex items-center gap-2 group"
-          >
-            <i
-              class="pi pi-home text-sm transition-transform duration-300 group-hover:scale-110"
-            ></i>
-            <span>{{ t('header.home') }}</span>
-          </router-link>
-          <router-link
-            v-motion
-            :to="localizedPath('/dev')"
-            :hovered="{
-              scale: 1.03,
-              y: -2,
-              transition: { type: 'spring', stiffness: 300, damping: 20 },
-            }"
-            :tapped="{ scale: 0.97 }"
-            class="text-gray-300 hover:text-dev transition duration-300 px-3 py-2 min-h-10 rounded-lg hover:bg-dev/10 hover:shadow-lg hover:shadow-dev/20 flex items-center gap-2 group"
-          >
-            <i
-              class="pi pi-code text-sm transition-transform duration-300 group-hover:scale-110"
-            ></i>
-            <span>{{ t('header.dev') }}</span>
-          </router-link>
-          <router-link
-            v-motion
-            :to="localizedPath('/editor')"
-            :hovered="{
-              scale: 1.03,
-              y: -2,
-              transition: { type: 'spring', stiffness: 300, damping: 20 },
-            }"
-            :tapped="{ scale: 0.97 }"
-            class="text-gray-300 hover:text-editor transition duration-300 px-3 py-2 min-h-10 rounded-lg hover:bg-editor/10 hover:shadow-lg hover:shadow-editor/20 flex items-center gap-2 group"
-          >
-            <i
-              class="pi pi-video text-sm transition-transform duration-300 group-hover:scale-110"
-            ></i>
-            <span>{{ t('header.editor') }}</span>
-          </router-link>
+          <locale-switcher />
 
-          <!-- Botão de troca de idioma (Desktop) -->
+          <!-- Menu Mobile Button -->
           <button
             v-motion
-            class="locale-toggle"
-            :aria-label="isPt ? 'Switch to English' : 'Mudar para Português'"
-            :title="isPt ? 'Switch to English' : 'Mudar para Português'"
-            :hovered="{
-              scale: 1.03,
-              y: -2,
-              transition: { type: 'spring', stiffness: 300, damping: 20 },
-            }"
-            :tapped="{ scale: 0.97 }"
-            @click="handleLocaleToggle"
+            :hovered="{ scale: 1.05 }"
+            :tapped="{ scale: 0.95 }"
+            class="md:hidden text-gray-300 hover:text-white min-w-10 min-h-10 flex items-center justify-center rounded-lg transition duration-300"
+            @click="toggleMobileMenu"
           >
-            <span class="locale-flag">{{ isPt ? '🇧🇷' : '🇺🇸' }}</span>
-            <span class="locale-label">{{ isPt ? 'PT' : 'EN' }}</span>
+            <i class="pi pi-bars text-lg"></i>
           </button>
-        </nav>
+        </div>
       </div>
 
       <!-- Menu Mobile -->
@@ -206,88 +188,9 @@ onUnmounted(() => {
               ></i>
               <span>{{ t('header.videoEditor') }}</span>
             </router-link>
-
-            <!-- Botão de troca de idioma (Mobile) -->
-            <button
-              v-motion
-              class="locale-toggle-mobile"
-              :aria-label="isPt ? 'Switch to English' : 'Mudar para Português'"
-              :hovered="{ x: 8 }"
-              :tapped="{ scale: 0.98 }"
-              @click="
-                () => {
-                  handleLocaleToggle()
-                  closeMobileMenu()
-                }
-              "
-            >
-              <span class="locale-flag text-lg">{{ isPt ? '🇺🇸' : '🇧🇷' }}</span>
-              <span class="text-gray-300">{{ isPt ? 'English' : 'Português' }}</span>
-            </button>
           </nav>
         </div>
       </transition>
     </div>
   </header>
 </template>
-
-<style scoped>
-/* Botão de troca de idioma - Desktop */
-.locale-toggle {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.05);
-  color: #d1d5db;
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease;
-  letter-spacing: 0.05em;
-}
-
-.locale-toggle:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.3);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.locale-flag {
-  font-size: 1rem;
-  line-height: 1;
-}
-
-.locale-label {
-  text-transform: uppercase;
-}
-
-/* Botão de troca de idioma - Mobile */
-.locale-toggle-mobile {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease;
-  width: 100%;
-  text-align: left;
-}
-
-.locale-toggle-mobile:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-</style>
