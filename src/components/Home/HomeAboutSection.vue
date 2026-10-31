@@ -212,7 +212,7 @@ const cardTo = (delay = 0) => ({
         >
           <article
             ref="terminalRef"
-            class="flex h-full flex-col overflow-hidden rounded-[20px] bg-obsidian ring-1 ring-white/10 transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:ring-green-400/40 max-lg:rotate-[1.5deg]"
+            class="flex h-full flex-col overflow-hidden rounded-[20px] bg-obsidian ring-1 ring-white/10 transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:ring-green-400/40"
           >
             <div class="flex gap-1.5 border-b border-white/10 px-4 py-3" aria-hidden="true">
               <span class="size-2.5 rounded-full bg-white/15"></span>
@@ -270,7 +270,7 @@ const cardTo = (delay = 0) => ({
           class="max-lg:w-[90%] lg:col-span-5"
         >
           <article
-            class="group flex h-full flex-col gap-4 overflow-hidden rounded-[20px] bg-surface-100 p-5 ring-1 ring-white/10 transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:ring-cyan-glow/40 max-lg:-rotate-[1.5deg]"
+            class="group flex h-full flex-col gap-4 overflow-hidden rounded-[20px] bg-surface-100 p-5 ring-1 ring-white/10 transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:ring-cyan-glow/40"
           >
             <div class="relative h-40 md:h-44" aria-hidden="true">
               <img
@@ -359,7 +359,7 @@ const cardTo = (delay = 0) => ({
             </div>
 
             <span
-              class="absolute -top-0.5 left-6 z-10 -rotate-5 rounded-b-lg bg-editor px-3 py-1.5 font-display text-[13px] font-bold text-obsidian shadow-lg transition-transform duration-300 group-hover:-rotate-1"
+              class="absolute top-3 left-4 z-10 -rotate-2 lg:-top-0.5 lg:left-6 lg:-rotate-5 rounded-b-lg bg-editor px-3 py-1.5 font-display text-[13px] font-bold text-obsidian shadow-lg transition-transform duration-300 group-hover:-rotate-1"
               aria-hidden="true"
             >
               {{ t('home.about.video.sticker') }}
