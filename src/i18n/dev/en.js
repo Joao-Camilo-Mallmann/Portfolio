@@ -58,15 +58,19 @@ export default {
     jobCompany: 'Liquid Soluções em TI',
     jobPeriod: '2022 - Present',
     jobTask1:
-      'Technical leadership in defining scalable SPA architectures, ensuring performance, maintainability and rigorous code standards.',
+      'Led frontend architecture definition with Vue.js 3, strict-mode TypeScript, and atomic componentization, reducing runtime bugs by approximately 40% and shortening onboarding time for new developers.',
     jobTask2:
-      'Design and implementation of robust RESTful APIs and query optimization in relational databases (PostgreSQL/MySQL) for high load.',
+      'Designed real-time data pipeline with WebSockets and Web Workers for a monitoring dashboard tracking hundreds of field agents, delivering near-zero latency without browser performance degradation.',
     jobTask3:
-      'Strategic modernization of legacy systems (Legacy Modernization), migrating monoliths to modern architectures without downtime.',
+      'Modernized PHP monolith by planning and executing modular migration to Node.js and TypeScript, unblocking feature delivery stalled for over a year.',
     jobTask4:
-      'Implementation of DevOps culture and automated CI/CD pipelines, significantly reducing deploy cycles and production bugs.',
+      'Developed and maintained REST APIs with PHP / Laravel and Node.js, documenting contracts with OpenAPI/Swagger to streamline consumption by Vue.js and React clients.',
     jobTask5:
-      'Technical mentoring and code reviews, raising the technical level of the team and ensuring the application of software engineering best practices.',
+      'Structured CI/CD pipeline in GitLab with Cypress for end-to-end testing and Vitest for unit testing, speeding up delivery feedback loops by ~50% and cutting deploy time from hours to minutes.',
+    jobTask6:
+      'Leveraged AI in development workflow to generate technical documentation (JSDoc and Swagger) and standardize deliverables, reducing manual task overhead while ensuring code quality.',
+    jobTask7:
+      'Collaborated in Scrum ceremonies with product owners and stakeholders, participating in backlog refinement and Planning Poker estimations.',
     additionalTraining: 'Additional Training',
     courseFrontBack: 'Front-End & Back-End',
     courseFrontBackDetails: 'Alura • 2022-2024 • 200h',

@@ -20,7 +20,7 @@ const courses = [
   },
 ]
 
-const tasks = ['jobTask1', 'jobTask2', 'jobTask3', 'jobTask4', 'jobTask5']
+const tasks = Array.from({ length: 7 }, (_, i) => `jobTask${i + 1}`)
 </script>
 
 <template>
@@ -156,43 +156,55 @@ const tasks = ['jobTask1', 'jobTask2', 'jobTask3', 'jobTask4', 'jobTask5']
         </div>
       </div>
 
-      <!-- Cursos Alura em destaque -->
-      <h4 class="text-sm font-medium text-fg mt-8 mb-3 flex items-center gap-2">
-        <img
-          src="/img/badges/alura.webp"
-          alt=""
-          width="16"
-          height="16"
-          loading="lazy"
-          class="w-4 h-4 rounded-sm"
-        />
-        {{ t('devCerts.aluraTitle') }}
-      </h4>
-      <ul
-        class="rounded-xl border border-border ring-1 ring-inset ring-white/5 divide-y divide-white/5 overflow-hidden"
+      <!-- Cursos Alura em destaque (recolhível) -->
+      <details
+        class="group/alura mt-8 rounded-xl border border-border ring-1 ring-inset ring-white/5 overflow-hidden"
       >
-        <li v-for="course in aluraCertifications" :key="course.url">
-          <a
-            :href="course.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex items-center gap-4 px-4 py-3 min-h-12 transition-colors duration-200 hover:bg-purple-400/5 focus-visible:outline-2 focus-visible:outline-purple-400 focus-visible:-outline-offset-2"
-          >
-            <span class="font-mono text-xs tabular-nums text-fg-muted/70 shrink-0 w-14">
-              {{ course.date.replace('-', '.') }}
-            </span>
-            <span
-              class="flex-1 min-w-0 text-sm text-fg-muted group-hover:text-fg transition-colors duration-200 text-pretty"
+        <summary
+          class="flex items-center gap-3 px-4 py-3 min-h-12 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden transition-colors duration-200 hover:bg-purple-400/5 focus-visible:outline-2 focus-visible:outline-purple-400 focus-visible:-outline-offset-2"
+        >
+          <img
+            src="/img/badges/alura.webp"
+            alt=""
+            width="16"
+            height="16"
+            loading="lazy"
+            class="w-4 h-4 rounded-sm shrink-0"
+          />
+          <span class="flex-1 text-sm font-medium text-fg">
+            {{ t('devCerts.aluraTitle') }}
+            <span class="text-fg-muted font-normal">({{ aluraCertifications.length }})</span>
+          </span>
+          <i
+            class="pi pi-chevron-down text-xs text-fg-muted transition-transform duration-200 group-open/alura:rotate-180 motion-reduce:transition-none"
+            aria-hidden="true"
+          ></i>
+        </summary>
+
+        <ul class="border-t border-white/5 divide-y divide-white/5">
+          <li v-for="course in aluraCertifications" :key="course.url">
+            <a
+              :href="course.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center gap-4 px-4 py-3 min-h-12 transition-colors duration-200 hover:bg-purple-400/5 focus-visible:outline-2 focus-visible:outline-purple-400 focus-visible:-outline-offset-2"
             >
-              {{ course.title }}
-            </span>
-            <i
-              class="pi pi-external-link text-[10px] text-fg-muted/50 group-hover:text-purple-400 transition-colors duration-200 shrink-0"
-              aria-hidden="true"
-            ></i>
-          </a>
-        </li>
-      </ul>
+              <span class="font-mono text-xs tabular-nums text-fg-muted/70 shrink-0 w-14">
+                {{ course.date.replace('-', '.') }}
+              </span>
+              <span
+                class="flex-1 min-w-0 text-sm text-fg-muted group-hover:text-fg transition-colors duration-200 text-pretty"
+              >
+                {{ course.title }}
+              </span>
+              <i
+                class="pi pi-external-link text-[10px] text-fg-muted/50 group-hover:text-purple-400 transition-colors duration-200 shrink-0"
+                aria-hidden="true"
+              ></i>
+            </a>
+          </li>
+        </ul>
+      </details>
 
       <a
         :href="allCertificationsUrl"

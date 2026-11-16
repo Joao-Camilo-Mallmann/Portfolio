@@ -54,19 +54,23 @@ export default {
     technicianDegree: 'Técnico em Automação Industrial',
     technicianPeriod: 'por instituto federal (2019-2023).',
     professionalExperience: 'Experiência Profissional',
-    jobTitle: 'Full Stack Developer',
+    jobTitle: 'Desenvolvedor Full Stack',
     jobCompany: 'Liquid Soluções em TI',
     jobPeriod: '2022 - Atual',
     jobTask1:
-      'Liderança técnica na definição de arquitetura de SPAs escaláveis, garantindo performance, manutenibilidade e padrões de código rigorosos.',
+      'Liderou a definição da arquitetura frontend com Vue.js 3, TypeScript em modo estrito e componentização atômica, reduzindo bugs de runtime em aproximadamente 40% e diminuindo o tempo de onboarding de novos desenvolvedores.',
     jobTask2:
-      'Design e implementação de APIs RESTful robustas e otimização de queries em bancos de dados relacionais (PostgreSQL/MySQL) para alta carga.',
+      'Projetou pipeline de dados com WebSockets e Web Workers para um dashboard de monitoramento em tempo real de centenas de agentes de campo, entregando latência próxima de zero sem degradação de performance no navegador dos operadores.',
     jobTask3:
-      'Modernização estratégica de sistemas legados (Legacy Modernization), migrando monólitos para arquiteturas modernas sem downtime.',
+      'Atuou na modernização de um monólito PHP, planejando e executando a migração modular para Node.js e TypeScript, destravando entregas de funcionalidades que estavam represadas havia mais de um ano.',
     jobTask4:
-      'Implementação de cultura DevOps e pipelines de CI/CD automatizados, reduzindo significativamente o ciclo de deploy e bugs em produção.',
+      'Desenvolveu e manteve APIs REST com PHP / Laravel e Node.js, documentando contratos com OpenAPI/Swagger para facilitar o consumo pelos clientes Vue.js e React.',
     jobTask5:
-      'Mentoria técnica e code reviews, elevando o nível técnico da equipe e garantindo a aplicação das melhores práticas de engenharia de software.',
+      'Estruturou pipeline de CI/CD no GitLab com Cypress para testes end-to-end e Vitest para testes unitários, acelerando o ciclo de feedback das entregas em aproximadamente 50% e reduzindo o tempo de deploy de horas para minutos.',
+    jobTask6:
+      'Utilizou IA no desenvolvimento para geração de documentação técnica (JSDoc e Swagger) e padronização de entregas, reduzindo o tempo gasto com tarefas manuais e mantendo a qualidade do código.',
+    jobTask7:
+      'Colaborou em cerimônias de Scrum com product owners e stakeholders, participando do refinamento de backlog e de estimativas com Planning Poker.',
     additionalTraining: 'Formação Complementar',
     courseFrontBack: 'Front-End e Back-End',
     courseFrontBackDetails: 'Alura • 2022-2024 • 200h',
