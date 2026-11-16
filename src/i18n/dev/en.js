@@ -72,10 +72,14 @@ export default {
     courseFrontBackDetails: 'Alura • 2022-2024 • 200h',
     courseEnglish: 'English Communication',
     courseEnglishDetails: 'UPTIME • 2020-2021 • 198h',
-    courseLinux: 'Linux Fundamentals',
-    courseLinuxDetails: 'Red Hat • 2025',
-    courseCCNA: 'CCNA: Routing & Wireless',
-    courseCCNADetails: 'Cisco • 2025',
+  },
+
+  // Dev Certifications
+  devCerts: {
+    title: 'Certifications',
+    verify: 'Verify credential',
+    aluraTitle: 'Featured Alura courses',
+    seeAll: 'See all on LinkedIn',
   },
 
   // Dev Projects

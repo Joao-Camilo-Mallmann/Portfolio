@@ -1,5 +1,7 @@
 <script setup>
+import DevCertifications from '@/components/Dev/DevCertifications.vue'
 import { useI18n } from '@/composables/useI18n'
+import { aluraCertifications, allCertificationsUrl } from '@/data/certifications'
 
 const { t } = useI18n()
 
@@ -15,18 +17,6 @@ const courses = [
     color: 'text-blue-400',
     titleKey: 'courseEnglish',
     detailsKey: 'courseEnglishDetails',
-  },
-  {
-    icon: 'pi pi-server',
-    color: 'text-red-400',
-    titleKey: 'courseLinux',
-    detailsKey: 'courseLinuxDetails',
-  },
-  {
-    icon: 'pi pi-sitemap',
-    color: 'text-cyan-400',
-    titleKey: 'courseCCNA',
-    detailsKey: 'courseCCNADetails',
   },
 ]
 
@@ -111,6 +101,17 @@ const tasks = ['jobTask1', 'jobTask2', 'jobTask3', 'jobTask4', 'jobTask5']
       </div>
     </div>
 
+    <!-- Certificações -->
+    <dev-certifications
+      v-motion
+      :initial="{ opacity: 0, y: 16 }"
+      :enter="{
+        opacity: 1,
+        y: 0,
+        transition: { delay: 150, duration: 400, ease: [0.16, 1, 0.3, 1] },
+      }"
+    />
+
     <!-- Formação Complementar -->
     <div
       v-motion
@@ -154,6 +155,54 @@ const tasks = ['jobTask1', 'jobTask2', 'jobTask3', 'jobTask4', 'jobTask5']
           </div>
         </div>
       </div>
+
+      <!-- Cursos Alura em destaque -->
+      <h4 class="text-sm font-medium text-fg mt-8 mb-3 flex items-center gap-2">
+        <img
+          src="/img/badges/alura.webp"
+          alt=""
+          width="16"
+          height="16"
+          loading="lazy"
+          class="w-4 h-4 rounded-sm"
+        />
+        {{ t('devCerts.aluraTitle') }}
+      </h4>
+      <ul
+        class="rounded-xl border border-border ring-1 ring-inset ring-white/5 divide-y divide-white/5 overflow-hidden"
+      >
+        <li v-for="course in aluraCertifications" :key="course.url">
+          <a
+            :href="course.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center gap-4 px-4 py-3 min-h-12 transition-colors duration-200 hover:bg-purple-400/5 focus-visible:outline-2 focus-visible:outline-purple-400 focus-visible:-outline-offset-2"
+          >
+            <span class="font-mono text-xs tabular-nums text-fg-muted/70 shrink-0 w-14">
+              {{ course.date.replace('-', '.') }}
+            </span>
+            <span
+              class="flex-1 min-w-0 text-sm text-fg-muted group-hover:text-fg transition-colors duration-200 text-pretty"
+            >
+              {{ course.title }}
+            </span>
+            <i
+              class="pi pi-external-link text-[10px] text-fg-muted/50 group-hover:text-purple-400 transition-colors duration-200 shrink-0"
+              aria-hidden="true"
+            ></i>
+          </a>
+        </li>
+      </ul>
+
+      <a
+        :href="allCertificationsUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-3 inline-flex items-center gap-2 min-h-11 text-xs text-fg-muted hover:text-dev transition-colors duration-200"
+      >
+        <i class="pi pi-linkedin text-sm"></i>
+        {{ t('devCerts.seeAll') }}
+      </a>
     </div>
   </div>
 </template>
