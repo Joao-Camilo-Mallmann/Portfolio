@@ -1,8 +1,7 @@
 // Fonte única dos trabalhos de edição (landing /editor e galeria /editor/projetos)
-// duration em segundos, ano e canal vêm da página pública de cada vídeo no YouTube
+import youtube from './youtube.generated.json'
 
-export const PLAYLIST_URL =
-  'https://www.youtube.com/playlist?list=PL6E1iPJrFf0NPhk4D7ohTw2_yMmRG9goH'
+export const PLAYLIST_URL = `https://www.youtube.com/playlist?list=${youtube.playlists.videos}`
 
 /**
  * Thumbnail do vídeo: vertical (9:16) para Shorts, 16:9 para vídeos longos
@@ -30,194 +29,117 @@ export function toTimecode(seconds, frames = 0) {
   return `${pad(h)}:${pad(m)}:${pad(s)}:${pad(frames)}`
 }
 
+// Vídeos e thumbnails vêm das playlists do YouTube (scripts/sync-youtube.mjs,
+// roda em todo build). Para mudar o site, basta editar as playlists.
+//   Vídeos editados: PLAYLIST_URL
+//   Thumbnails:      THUMBS_PLAYLIST_URL
+
+export const THUMBS_PLAYLIST_URL = `https://www.youtube.com/playlist?list=${youtube.playlists.thumbs}`
+
+// Configuração visual dos canais conhecidos (chave = channelId do YouTube)
 // own: canal do próprio João
 // showcase: ganha aba própria na seção "Canais" da landing
-export const channels = {
-  ofurry: {
+const knownChannels = {
+  UCoxVHHWapsMhjOZGSRIUCcQ: {
     key: 'ofurry',
-    name: 'OFurry Investidor',
-    handle: '@OFurryOficial',
-    url: 'https://www.youtube.com/@OFurryOficial',
     avatar: '/img/channel-ofurry.webp',
     own: true,
     showcase: true,
   },
-  alves: {
+  'UCoOhr-Ed1xRt1uWq8mrm8sA': {
     key: 'alves',
-    name: 'Alves',
-    handle: '@Alves-d08',
-    url: 'https://www.youtube.com/@Alves-d08',
     avatar: '/img/channel-alves.webp',
     own: false,
     showcase: true,
   },
-  tutor: {
+  UCGzwBw0TKrErr4iA2o5C3mQ: {
     key: 'tutor',
-    name: 'Tutor Incógnito',
     own: false,
   },
 }
 
+// Destaques da landing; se nenhum estiver nas playlists, usa o 1º vídeo de cada canal
+const FEATURED_IDS = ['UptGuUMaYMs', 'h9FdiKXLKCE', 'YVjG6wA-zz4', 'Gt92_iQ1D_0']
+
+const slugify = (text) =>
+  text
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+
+export const channels = {}
+const channelKeyById = {}
+
+for (const video of [...youtube.videos, ...youtube.thumbs]) {
+  const { id, name, handle } = video.channel
+  if (channelKeyById[id]) continue
+  const known = knownChannels[id] ?? { key: slugify(handle ?? name), own: false }
+  channelKeyById[id] = known.key
+  channels[known.key] = {
+    ...known,
+    name,
+    handle: handle ?? undefined,
+    url: handle ? `https://www.youtube.com/${handle}` : `https://www.youtube.com/channel/${id}`,
+  }
+}
+
+const thumbIds = new Set(youtube.thumbs.map((video) => video.youtubeId))
+
+/** @param {typeof youtube.videos[number]} video */
+const toProject = (video) => ({
+  youtubeId: video.youtubeId,
+  title: video.title,
+  channel: channelKeyById[video.channel.id],
+  format: video.format,
+  thumb: thumbIds.has(video.youtubeId),
+  duration: video.duration,
+  year: video.year,
+  featured: FEATURED_IDS.includes(video.youtubeId),
+})
+
 // format: 'long' (vídeo 16:9) | 'short' (vertical 9:16)
-// thumb: thumbnail criada pelo João (entra no mural de thumbnails)
-export const editorProjects = [
-  // OFurry Investidor
-  {
-    youtubeId: 'UptGuUMaYMs',
-    title: 'VOCÊ tem até 2030, antes de se arrepender...',
-    channel: 'ofurry',
-    format: 'long',
-    thumb: true,
-    duration: 517,
-    year: 2025,
-    featured: true,
-  },
-  {
-    youtubeId: 'h9FdiKXLKCE',
-    title: 'Você Está Ignorando o Aviso do Criador da IA?',
-    channel: 'ofurry',
-    format: 'long',
-    thumb: true,
-    duration: 568,
-    year: 2026,
-    featured: true,
-  },
-  {
-    youtubeId: 'EsDjvUCQhRU',
-    title: 'O COE É A Maior M#rD4',
-    channel: 'ofurry',
-    format: 'long',
-    thumb: true,
-    duration: 676,
-    year: 2026,
-  },
-  {
-    youtubeId: 'daq35jIn-mg',
-    title: 'A Janela do Bitcoin Está se Fechando',
-    channel: 'ofurry',
-    format: 'long',
-    thumb: true,
-    duration: 705,
-    year: 2026,
-  },
-  {
-    youtubeId: 'sfba7_eredc',
-    title: 'Como INVESTIR MELHOR que 90% das pessoas!!',
-    channel: 'ofurry',
-    format: 'long',
-    thumb: true,
-    duration: 656,
-    year: 2026,
-  },
-  {
-    youtubeId: 'Zbs_wV3k8zo',
-    title: '3 MELHORES Investimentos e (3 BOMBAS 💣)',
-    channel: 'ofurry',
-    format: 'long',
-    thumb: true,
-    duration: 658,
-    year: 2025,
-  },
-  {
-    youtubeId: 'C8VGMvum854',
-    title: 'Esse deve ser o seu primeiro investimento',
-    channel: 'ofurry',
-    format: 'long',
-    thumb: true,
-    duration: 499,
-    year: 2025,
-  },
-  {
-    youtubeId: 's7bjysMoHYQ',
-    title: 'Você Ama… Mas Talvez Na Linguagem Errada',
-    channel: 'ofurry',
-    format: 'long',
-    thumb: true,
-    duration: 453,
-    year: 2025,
-  },
-  {
-    youtubeId: 'q2kZZujRofs',
-    title: 'Por que Você Já Tem TUDO para Ser Feliz',
-    channel: 'ofurry',
-    format: 'long',
-    thumb: true,
-    duration: 284,
-    year: 2024,
-  },
+// thumb: thumbnail criada pelo João (está na playlist de thumbs)
+export const editorProjects = youtube.videos.map(toProject)
 
-  // Alves
-  {
-    youtubeId: 'YVjG6wA-zz4',
-    title: 'Um jogo sobre Redenção.......',
-    channel: 'alves',
-    format: 'long',
-    duration: 646,
-    year: 2025,
-    featured: true,
-  },
-  {
-    youtubeId: 'jhuB7rwE3U8',
-    title: 'Obsessão.....',
-    channel: 'alves',
-    format: 'long',
-    duration: 388,
-    year: 2025,
-  },
-  {
-    youtubeId: 'X4gyL4ccbgE',
-    title: 'Carta Aberta: "Aquele que ficou"',
-    channel: 'alves',
-    format: 'long',
-    duration: 348,
-    year: 2024,
-  },
-  {
-    youtubeId: '17csXimKSzA',
-    title: 'O Studio Ghibli é Poético....',
-    channel: 'alves',
-    format: 'long',
-    duration: 397,
-    year: 2024,
-  },
-  {
-    youtubeId: '_GMvwzjEBD4',
-    title: 'Poesia...',
-    channel: 'alves',
-    format: 'long',
-    duration: 320,
-    year: 2024,
-  },
-  {
-    youtubeId: 'skXFasWEC6o',
-    title: 'Os esportes são justos?',
-    channel: 'alves',
-    format: 'long',
-    duration: 278,
-    year: 2024,
-  },
-
-  // Tutor Incógnito
-  {
-    youtubeId: 'Gt92_iQ1D_0',
-    title: 'Dicas de PROFISSIONAIS Para Superar a Procrastinação',
-    channel: 'tutor',
-    format: 'long',
-    duration: 349,
-    year: 2025,
-    featured: true,
-  },
-]
-
-export const featuredProjects = editorProjects.filter((project) => project.featured)
-
-export const thumbProjects = editorProjects.filter((project) => project.thumb)
+// Mural de thumbnails segue a ordem da playlist de thumbs
+export const thumbProjects = youtube.thumbs.map(toProject)
 
 export const projectsByChannel = (channelKey) =>
   editorProjects.filter((project) => project.channel === channelKey)
 
-// Canais na ordem de exibição: próprios primeiro, depois clientes
-export const channelOrder = ['ofurry', 'alves', 'tutor']
+// Canais fixos no topo, nesta ordem (Alves = canal do Matheus, referência principal)
+const PINNED_CHANNELS = ['alves']
+
+const pinRank = (key) => {
+  const index = PINNED_CHANNELS.indexOf(key)
+  return index === -1 ? PINNED_CHANNELS.length : index
+}
+
+// Canais na ordem de exibição: fixos, depois próprios, depois quem tem mais vídeos
+export const channelOrder = Object.values(channels)
+  .filter((channel) => projectsByChannel(channel.key).length > 0)
+  .sort(
+    (a, b) =>
+      pinRank(a.key) - pinRank(b.key) ||
+      Number(b.own) - Number(a.own) ||
+      projectsByChannel(b.key).length - projectsByChannel(a.key).length,
+  )
+  .map((channel) => channel.key)
+
+// Destaques seguem a ordem dos canais
+const pickedFeatured = editorProjects.filter((project) => FEATURED_IDS.includes(project.youtubeId))
+
+export const featuredProjects = (
+  pickedFeatured.length
+    ? pickedFeatured
+    : Object.keys(channels)
+        .map((key) => editorProjects.find((project) => project.channel === key))
+        .filter(Boolean)
+)
+  .map((project) => ({ ...project, featured: true }))
+  .sort((a, b) => channelOrder.indexOf(a.channel) - channelOrder.indexOf(b.channel))
 
 export const showcaseChannels = channelOrder
   .map((key) => channels[key])

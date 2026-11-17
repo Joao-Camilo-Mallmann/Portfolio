@@ -9,6 +9,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+  # Rebuild semanal (segunda, 6h de Brasília): puxa vídeos e thumbs novos das playlists do YouTube (prebuild)
+  schedule:
+    - cron: '0 9 * * 1'
+
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
