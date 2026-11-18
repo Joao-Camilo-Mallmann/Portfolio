@@ -1,8 +1,8 @@
 <script setup>
+import { useI18n } from '@/composables/useI18n'
 import { useHead } from '@unhead/vue'
 import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useI18n } from '@/composables/useI18n'
 
 const router = useRouter()
 const { t, localizedPath } = useI18n()
@@ -160,8 +160,7 @@ const doDeny = () => {
           ]"
         >
           <span class="mr-2 opacity-50">$</span>
-          <span>{{ line.text }}</span
-          ><span
+          <span>{{ line.text }}</span><span
             v-if="line.loading"
             class="animate-pulse inline-block w-2 h-4 bg-green-500/80 ml-1 align-middle"
           ></span>

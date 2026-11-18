@@ -82,8 +82,9 @@ const onKeydown = (event, index) => {
         class="text-4xl font-black tracking-tight text-fg text-balance md:text-6xl"
       >
         {{ t('editorServices.titleStart') }}
-        <span class="text-editor">{{ t('editorServices.titleHighlight') }}</span
-        >{{ t('editorServices.titleEnd') }}
+        <span class="text-editor">{{ t('editorServices.titleHighlight') }}</span>{{
+          t('editorServices.titleEnd')
+        }}
       </h2>
       <p class="mt-5 text-lg leading-relaxed text-fg-muted text-pretty">
         {{ t('editorServices.subtitle') }}

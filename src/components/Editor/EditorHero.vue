@@ -1,7 +1,7 @@
 <script setup>
-import { toTimecode } from '@/data/editorProjects'
 import { useI18n } from '@/composables/useI18n'
 import { useWhatsApp } from '@/composables/useWhatsApp'
+import { toTimecode } from '@/data/editorProjects'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 const emit = defineEmits(['showreel'])
@@ -93,8 +93,7 @@ onUnmounted(() => {
         {{ t('editorHero.titleStart') }}
         <span
           class="text-editor underline decoration-editor/50 decoration-4 underline-offset-[0.12em] md:decoration-[6px]"
-          >{{ t('editorHero.titleHighlight') }}</span
-        >{{ t('editorHero.titleEnd') }}
+          >{{ t('editorHero.titleHighlight') }}</span>{{ t('editorHero.titleEnd') }}
       </h1>
 
       <p

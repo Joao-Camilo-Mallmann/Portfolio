@@ -47,8 +47,9 @@ const ctaText = computed(() => props.cta || t('editorFinalCta.cta'))
         <template v-if="title">{{ title }}</template>
         <template v-else>
           {{ t('editorFinalCta.titleStart') }}
-          <span class="text-editor">{{ t('editorFinalCta.titleHighlight') }}</span
-          >{{ t('editorFinalCta.titleEnd') }}
+          <span class="text-editor">{{ t('editorFinalCta.titleHighlight') }}</span>{{
+            t('editorFinalCta.titleEnd')
+          }}
         </template>
       </h2>
       <p class="relative mx-auto mt-6 max-w-xl text-lg text-fg-muted text-pretty">

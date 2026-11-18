@@ -29,8 +29,9 @@ const { t, localizedPath } = useI18n()
         class="text-4xl font-black tracking-tight text-fg text-balance md:text-6xl"
       >
         {{ t('editorFilmstrip.titleStart') }}
-        <span class="text-editor">{{ t('editorFilmstrip.titleHighlight') }}</span
-        >{{ t('editorFilmstrip.titleEnd') }}
+        <span class="text-editor">{{ t('editorFilmstrip.titleHighlight') }}</span>{{
+          t('editorFilmstrip.titleEnd')
+        }}
       </h2>
       <p class="mt-5 text-lg leading-relaxed text-fg-muted text-pretty">
         {{ t('editorFilmstrip.subtitle') }}

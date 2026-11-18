@@ -35,8 +35,9 @@ const handleImageLoad = (event, project) => {
           class="text-4xl font-black tracking-tight text-fg text-balance md:text-6xl"
         >
           {{ t('editorThumbs.titleStart') }}
-          <span class="text-editor">{{ t('editorThumbs.titleHighlight') }}</span
-          >{{ t('editorThumbs.titleEnd') }}
+          <span class="text-editor">{{ t('editorThumbs.titleHighlight') }}</span>{{
+            t('editorThumbs.titleEnd')
+          }}
         </h2>
         <p class="mt-5 text-lg leading-relaxed text-fg-muted text-pretty">
           {{ t('editorThumbs.subtitle') }}
