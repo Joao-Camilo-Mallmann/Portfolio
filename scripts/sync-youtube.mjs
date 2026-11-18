@@ -93,25 +93,54 @@ async function fetchVideo(videoId) {
   }
 }
 
+async function readPrevious() {
+  try {
+    return JSON.parse(await readFile(OUTPUT, 'utf8'))
+  } catch {
+    return null
+  }
+}
+
 async function sync() {
-  const [videoIds, thumbIds] = await Promise.all([
+  const [videoIds, thumbIds, previous] = await Promise.all([
     fetchPlaylistIds(PLAYLISTS.videos),
     fetchPlaylistIds(PLAYLISTS.thumbs),
+    readPrevious(),
   ])
   const allIds = [...new Set([...videoIds, ...thumbIds])]
+  const cachedById = Object.fromEntries(
+    [...(previous?.videos ?? []), ...(previous?.thumbs ?? [])].map((v) => [v.youtubeId, v]),
+  )
 
   const results = await Promise.allSettled(allIds.map(fetchVideo))
   const videos = {}
+  let freshCount = 0
   results.forEach((result, index) => {
-    if (result.status === 'fulfilled') videos[allIds[index]] = result.value
-    else console.warn(`[sync-youtube] ignorando ${allIds[index]}: ${result.reason.message}`)
+    const id = allIds[index]
+    if (result.status === 'fulfilled') {
+      videos[id] = result.value
+      freshCount++
+    } else {
+      console.warn(`[sync-youtube] ignorando ${id}: ${result.reason.message}`)
+      if (cachedById[id]) videos[id] = cachedById[id]
+    }
   })
+
+  if (allIds.length > 0 && freshCount === 0) {
+    throw new Error('nenhum vídeo pôde ser buscado (possível bloqueio do YouTube)')
+  }
+
+  const syncedVideos = videoIds.map((id) => videos[id]).filter(Boolean)
+  const syncedThumbs = thumbIds.map((id) => videos[id]).filter(Boolean)
+  if (syncedVideos.length === 0 || syncedThumbs.length === 0) {
+    throw new Error('playlists sincronizadas vieram vazias')
+  }
 
   return {
     syncedAt: new Date().toISOString(),
     playlists: PLAYLISTS,
-    videos: videoIds.filter((id) => videos[id]).map((id) => videos[id]),
-    thumbs: thumbIds.filter((id) => videos[id]).map((id) => videos[id]),
+    videos: syncedVideos,
+    thumbs: syncedThumbs,
   }
 }
 

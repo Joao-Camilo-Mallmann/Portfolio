@@ -57,7 +57,7 @@ const openPlayer = (project) => {
   >
     <header-core />
 
-    <editor-hero @showreel="openPlayer(featuredProjects[0])" />
+    <editor-hero @showreel="featuredProjects[0] && openPlayer(featuredProjects[0])" />
     <editor-timeline-nav :clips="timelineClips" />
 
     <editor-filmstrip :projects="featuredProjects" @play="openPlayer" />

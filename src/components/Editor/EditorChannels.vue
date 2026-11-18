@@ -10,18 +10,22 @@ const { t, localizedPath } = useI18n()
 
 const MAX_VIDEOS = 3
 
-const activeKey = ref(showcaseChannels[0].key)
+const activeKey = ref(showcaseChannels[0]?.key ?? null)
 const tabRefs = ref([])
 
-const activeChannel = computed(() => channels[activeKey.value])
+const activeChannel = computed(() => (activeKey.value ? channels[activeKey.value] : null))
 // Vídeos em destaque já aparecem na faixa de cortes: aqui eles vão para o fim da fila
 const activeProjects = computed(() =>
-  [...projectsByChannel(activeKey.value)]
-    .sort((a, b) => Number(Boolean(a.featured)) - Number(Boolean(b.featured)))
-    .slice(0, MAX_VIDEOS),
+  activeKey.value
+    ? [...projectsByChannel(activeKey.value)]
+        .sort((a, b) => Number(Boolean(a.featured)) - Number(Boolean(b.featured)))
+        .slice(0, MAX_VIDEOS)
+    : [],
 )
 const isShortChannel = computed(() => activeProjects.value.every((p) => p.format === 'short'))
-const roles = computed(() => t(`editorChannels.items.${activeKey.value}.roles`))
+const roles = computed(() =>
+  activeKey.value ? t(`editorChannels.items.${activeKey.value}.roles`) : [],
+)
 
 // Setas do teclado alternam entre as abas (padrão WAI-ARIA)
 const onTabKeydown = (event, index) => {
@@ -49,8 +53,9 @@ const onTabKeydown = (event, index) => {
         class="text-4xl font-black tracking-tight text-fg text-balance md:text-6xl"
       >
         {{ t('editorChannels.titleStart') }}
-        <span class="text-editor">{{ t('editorChannels.titleHighlight') }}</span
-        >{{ t('editorChannels.titleEnd') }}
+        <span class="text-editor">{{ t('editorChannels.titleHighlight') }}</span>{{
+          t('editorChannels.titleEnd')
+        }}
       </h2>
       <p class="mt-5 text-lg leading-relaxed text-fg-muted text-pretty">
         {{ t('editorChannels.subtitle') }}
@@ -97,6 +102,7 @@ const onTabKeydown = (event, index) => {
 
     <!-- Painel do canal ativo -->
     <div
+      v-if="activeChannel"
       :id="`channel-panel-${activeChannel.key}`"
       role="tabpanel"
       :aria-labelledby="`channel-tab-${activeChannel.key}`"
