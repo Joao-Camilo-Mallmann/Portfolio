@@ -1,4 +1,8 @@
 // English Translations - Dev
+import profile from '@/data/profile.generated.json'
+
+const syncedDevProfile = profile.devProfile.en
+
 export default {
   // Dev Page
   dev: {
@@ -21,18 +25,16 @@ export default {
     funKonamiHint:
       "🎮 What if you used the Konami Code anywhere on the site... wouldn't it be cool to have an easter egg? 🤫",
     heroGreeting: 'Hey, Im',
-    heroName: 'João Camilo',
+    heroName: profile.identity.shortName,
     ctaProjects: 'View Projects',
     ctaGithub: 'GitHub',
   },
 
   // Dev Profile Card
   devProfile: {
-    role: 'Full Stack Developer',
-    description:
-      'Full Stack Developer with a central focus on Frontend. Specialized in Vue.js and React, I build high-performance web applications with scalable architectures and clean code.',
-    summary:
-      'Passionate about software architecture and code quality. I transform complex requirements into robust, scalable and easily maintainable systems.',
+    role: syncedDevProfile.role,
+    description: syncedDevProfile.description,
+    summary: syncedDevProfile.summary,
     whatMotivates: 'What motivates me',
     cleanCode: 'Clean Code & Architecture',
     uxDesign: 'UX/UI Design',
@@ -54,28 +56,10 @@ export default {
     technicianDegree: 'Industrial Automation Technician',
     technicianPeriod: 'from a federal institute (2019-2023).',
     professionalExperience: 'Professional Experience',
-    jobTitle: 'Full Stack Developer',
-    jobCompany: 'Liquid Soluções em TI',
-    jobPeriod: '2022 - Present',
-    jobTask1:
-      'Led frontend architecture definition with Vue.js 3, strict-mode TypeScript, and atomic componentization, reducing runtime bugs by approximately 40% and shortening onboarding time for new developers.',
-    jobTask2:
-      'Designed real-time data pipeline with WebSockets and Web Workers for a monitoring dashboard tracking hundreds of field agents, delivering near-zero latency without browser performance degradation.',
-    jobTask3:
-      'Modernized PHP monolith by planning and executing modular migration to Node.js and TypeScript, unblocking feature delivery stalled for over a year.',
-    jobTask4:
-      'Developed and maintained REST APIs with PHP / Laravel and Node.js, documenting contracts with OpenAPI/Swagger to streamline consumption by Vue.js and React clients.',
-    jobTask5:
-      'Structured CI/CD pipeline in GitLab with Cypress for end-to-end testing and Vitest for unit testing, speeding up delivery feedback loops by ~50% and cutting deploy time from hours to minutes.',
-    jobTask6:
-      'Leveraged AI in development workflow to generate technical documentation (JSDoc and Swagger) and standardize deliverables, reducing manual task overhead while ensuring code quality.',
-    jobTask7:
-      'Collaborated in Scrum ceremonies with product owners and stakeholders, participating in backlog refinement and Planning Poker estimations.',
+    jobTitle: syncedDevProfile.jobTitle,
+    jobCompany: syncedDevProfile.jobCompany,
+    jobPeriod: syncedDevProfile.jobPeriod,
     additionalTraining: 'Additional Training',
-    courseFrontBack: 'Front-End & Back-End',
-    courseFrontBackDetails: 'Alura • 2022-2024 • 200h',
-    courseEnglish: 'English Communication',
-    courseEnglishDetails: 'UPTIME • 2020-2021 • 198h',
   },
 
   // Dev Certifications

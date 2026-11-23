@@ -1,206 +1,24 @@
 <script setup>
 import { useI18n } from '@/composables/useI18n'
+import profile from '@/data/profile.generated.json'
 import { computed } from 'vue'
 
-const { t } = useI18n()
-const githubProfileUrl = 'https://github.com/Joao-Camilo-Mallmann'
+const { t, locale } = useI18n()
+const githubProfileUrl = profile.identity.links.github
 
-const projects = computed(() => [
-  {
-    title: t('devProjects.project7Title'),
-    image: '/img/painel-vimasi.webp',
-    imageAlt: t('devProjects.project7Alt'),
-    description: t('devProjects.project7Desc'),
-    statusType: 'public',
-    devStatusType: 'completed',
-    featuredLevel: 'primary',
-    year: 2026,
-    colors: { from: '#0ea5e9', to: '#0284c7' },
-    tags: [
-      { label: 'React', color: '#61dafb' },
-      { label: 'TypeScript', color: '#3178c6' },
-      { label: 'Tailwind v4', color: '#06b6d4' },
-      { label: 'Python', color: '#3776ab' },
-      { label: 'Supabase', color: '#3ecf8e' },
-    ],
-    links: [
-      {
-        label: t('devProjects.code'),
-        icon: 'pi pi-github',
-        url: 'https://github.com/Joao-Camilo-Mallmann/vimasi-painel',
-        type: 'primary',
-      },
-    ],
-  },
-  {
-    title: t('devProjects.project3Title'),
-    image: '/img/smu.webp',
-    imageAlt: t('devProjects.project3Alt'),
-    description: t('devProjects.project3Desc'),
-    statusType: 'private',
-    devStatusType: 'active',
-    featuredLevel: 'secondary',
-    year: 2024,
-    colors: { from: '#8b5cf6', to: '#7c3aed' },
-    tags: [
-      { label: 'Vue.js 3', color: '#42b883' },
-      { label: 'TypeScript', color: '#3178c6' },
-      { label: 'WebSockets', color: '#38bdf8' },
-      { label: 'Deck.gl', color: '#ec4899' },
-      { label: 'Pinia', color: '#9333ea' },
-    ],
-    links: [],
-  },
-
-  {
-    title: t('devProjects.project1Title'),
-    image: '/img/vimasi.webp',
-    imageAlt: t('devProjects.project1Alt'),
-    description: t('devProjects.project1Desc'),
-    statusType: 'public',
-    devStatusType: 'completed',
-    featuredLevel: 'secondary',
-    year: 2025,
-    colors: { from: '#ff6b35', to: '#f7931e' },
-    tags: [
-      { label: 'Nuxt', color: '#00DC82' },
-      { label: 'Vue.js', color: '#42b883' },
-      { label: 'SEO Técnico', color: '#f59e0b' },
-      { label: 'JavaScript', color: '#f7df1e' },
-    ],
-    links: [
-      {
-        label: t('devProjects.visitSite'),
-        icon: 'pi pi-external-link',
-        url: 'https://vimasi-vedacoes.com/',
-        type: 'primary',
-      },
-      {
-        label: t('devProjects.code'),
-        icon: 'pi pi-github',
-        url: 'https://github.com/Joao-Camilo-Mallmann/vimasi-vedacoes-vue',
-        type: 'secondary',
-      },
-    ],
-  },
-  {
-    title: t('devProjects.project6Title'),
-    image: '/img/brpd.webp',
-    imageAlt: t('devProjects.project6Alt'),
-    description: t('devProjects.project6Desc'),
-    statusType: 'public',
-    devStatusType: 'completed',
-    featuredLevel: 'primary',
-    year: 2026,
-    colors: { from: '#5865f2', to: '#404eed' },
-    tags: [
-      { label: 'Tauri', color: '#2496ed' },
-      { label: 'Rust', color: '#e05d44' },
-      { label: 'React', color: '#61dafb' },
-      { label: 'TypeScript', color: '#3178c6' },
-      { label: 'Discord RPC', color: '#5865f2' },
-    ],
-    links: [
-      {
-        label: t('devProjects.viewSite'),
-        icon: 'pi pi-external-link',
-        url: 'https://better-discord-rich-presence.netlify.app/',
-        type: 'primary',
-      },
-      {
-        label: t('devProjects.code'),
-        icon: 'pi pi-github',
-        url: 'https://github.com/Joao-Camilo-Mallmann/Better-Rich-Presence-For-Discord',
-        type: 'secondary',
-      },
-    ],
-  },
-
-  {
-    title: t('devProjects.project5Title'),
-    image: '/img/STW.webp',
-    imageAlt: t('devProjects.project5Alt'),
-    description: t('devProjects.project5Desc'),
-    statusType: 'public',
-    devStatusType: 'completed',
-    featuredLevel: 'secondary',
-    year: 2026,
-    colors: { from: '#0284c7', to: '#0369a1' },
-    tags: [
-      { label: 'React', color: '#61dafb' },
-      { label: 'Node.js', color: '#339933' },
-      { label: 'SQLite', color: '#003b57' },
-      { label: 'Tailwind v4', color: '#06b6d4' },
-    ],
-    links: [
-      {
-        label: t('devProjects.viewSite'),
-        icon: 'pi pi-external-link',
-        url: 'https://smart-dashboard-frontend.onrender.com/',
-        type: 'primary',
-      },
-      {
-        label: t('devProjects.code'),
-        icon: 'pi pi-github',
-        url: 'https://github.com/Joao-Camilo-Mallmann/Smart-manufacturing-dashboard',
-        type: 'secondary',
-      },
-    ],
-  },
-  {
-    title: t('devProjects.project2Title'),
-    image: '/img/destinos.webp',
-    imageAlt: t('devProjects.project2Alt'),
-    description: t('devProjects.project2Desc'),
-    statusType: 'public',
-    devStatusType: 'completed',
-    year: 2024,
-    colors: { from: '#4285f4', to: '#1e40af' },
-    tags: [
-      { label: 'Node.js', color: '#43853d' },
-      { label: 'Express.js', color: '#ffffff' },
-      { label: 'SQLite', color: '#38bdf8' },
-      { label: 'Railway', color: '#0066ff' },
-    ],
-    links: [
-      {
-        label: t('devProjects.viewSite'),
-        icon: 'pi pi-external-link',
-        url: 'https://web-production-758be.up.railway.app/',
-        type: 'primary',
-      },
-      {
-        label: t('devProjects.code'),
-        icon: 'pi pi-github',
-        url: 'https://github.com/JoaoCamiloMallmann/back',
-        type: 'secondary',
-      },
-    ],
-  },
-  {
-    title: t('devProjects.project4Title'),
-    image: null,
-    imageAlt: t('devProjects.project4Alt'),
-    description: t('devProjects.project4Desc'),
-    statusType: 'public',
-    devStatusType: 'active',
-    year: 2024,
-    colors: { from: '#10b981', to: '#059669' },
-    tags: [
-      { label: 'Vue.js 3', color: '#4fc08d' },
-      { label: 'Tailwind v4', color: '#06b6d4' },
-      { label: 'CI/CD', color: '#f59e0b' },
-    ],
-    links: [
-      {
-        label: t('devProjects.code'),
-        icon: 'pi pi-github',
-        url: 'https://github.com/Joao-Camilo-Mallmann/Portfolio',
-        type: 'primary',
-      },
-    ],
-  },
-])
+const projects = computed(() => {
+  const currentLocale = locale.value === 'en' ? 'en' : 'pt-BR'
+  return profile.projects.map((project) => ({
+    ...project,
+    title: project.title[currentLocale] ?? project.title['pt-BR'],
+    imageAlt: project.imageAlt[currentLocale] ?? project.imageAlt['pt-BR'],
+    description: project.description[currentLocale] ?? project.description['pt-BR'],
+    links: project.links.map((link) => ({
+      ...link,
+      label: t(`devProjects.${link.labelKey}`),
+    })),
+  }))
+})
 
 const getStatusLabel = (statusType) => {
   return statusType === 'public' ? t('devProjects.public') : t('devProjects.private')

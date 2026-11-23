@@ -2,25 +2,16 @@
 import DevCertifications from '@/components/Dev/DevCertifications.vue'
 import { useI18n } from '@/composables/useI18n'
 import { aluraCertifications, allCertificationsUrl } from '@/data/certifications'
+import profile from '@/data/profile.generated.json'
+import { computed } from 'vue'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
-const courses = [
-  {
-    icon: 'pi pi-desktop',
-    color: 'text-purple-400',
-    titleKey: 'courseFrontBack',
-    detailsKey: 'courseFrontBackDetails',
-  },
-  {
-    icon: 'pi pi-language',
-    color: 'text-blue-400',
-    titleKey: 'courseEnglish',
-    detailsKey: 'courseEnglishDetails',
-  },
-]
-
-const tasks = Array.from({ length: 7 }, (_, i) => `jobTask${i + 1}`)
+const currentDevProfile = computed(
+  () => profile.devProfile[locale.value] ?? profile.devProfile['pt-BR'],
+)
+const courses = computed(() => currentDevProfile.value.courses)
+const tasks = computed(() => currentDevProfile.value.jobTasks)
 </script>
 
 <template>
@@ -84,7 +75,7 @@ const tasks = Array.from({ length: 7 }, (_, i) => `jobTask${i + 1}`)
         <ul class="text-sm text-fg-muted space-y-3 tracking-wide">
           <li
             v-for="(task, idx) in tasks"
-            :key="task"
+            :key="idx"
             v-motion
             class="flex items-start gap-3 hover:text-gray-200 transition-colors duration-200"
             :initial="{ opacity: 0, x: -8 }"
@@ -95,7 +86,7 @@ const tasks = Array.from({ length: 7 }, (_, i) => `jobTask${i + 1}`)
             }"
           >
             <i class="pi pi-check-circle text-green-400 mt-0.5 shrink-0"></i>
-            <span class="text-pretty">{{ t(`devProfile.${task}`) }}</span>
+            <span class="text-pretty">{{ task }}</span>
           </li>
         </ul>
       </div>
@@ -130,7 +121,7 @@ const tasks = Array.from({ length: 7 }, (_, i) => `jobTask${i + 1}`)
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div
           v-for="(course, idx) in courses"
-          :key="course.titleKey"
+          :key="course.id"
           v-motion
           class="border border-border shadow-sm ring-1 ring-inset ring-white/5 rounded-xl p-4 flex items-center gap-4 transition-opacity duration-200 hover:opacity-80"
           :initial="{ opacity: 0, y: 12 }"
@@ -147,10 +138,10 @@ const tasks = Array.from({ length: 7 }, (_, i) => `jobTask${i + 1}`)
           </div>
           <div class="min-w-0">
             <h5 class="text-fg font-medium text-sm text-balance">
-              {{ t(`devProfile.${course.titleKey}`) }}
+              {{ course.title }}
             </h5>
             <p class="text-fg-muted text-xs tracking-wide">
-              {{ t(`devProfile.${course.detailsKey}`) }}
+              {{ course.details }}
             </p>
           </div>
         </div>

@@ -1,0 +1,541 @@
+{
+  "_sync": {
+    "updatedAt": "2026-11-23T17:56:46-03:00",
+    "contentHash": "2f6cf75bc805",
+    "source": "Curriculo/profile.json"
+  },
+  "identity": {
+    "fullName": "João Camilo Mallmann",
+    "shortName": "João Camilo",
+    "email": "jcamilomallmann@hotmail.com",
+    "links": {
+      "github": "https://github.com/Joao-Camilo-Mallmann",
+      "linkedin": "https://www.linkedin.com/in/jo%C3%A3o-camilo-mallmann/",
+      "youtube": "https://www.youtube.com/@J.C-12",
+      "discord": "https://discord.com/users/740010338136621227",
+      "portfolio": "https://joao-camilo-mallmann.com",
+      "allCertifications": "https://www.linkedin.com/in/jo%C3%A3o-camilo-mallmann/details/certifications/"
+    }
+  },
+  "devProfile": {
+    "pt-BR": {
+      "role": "Full Stack Developer",
+      "description": "Full Stack Developer com foco central em Frontend. Especialista em Vue.js e React, construo aplicações web de alta performance com arquiteturas escaláveis e código limpo.",
+      "summary": "Apaixonado por arquitetura de software e qualidade de código. Transformo requisitos complexos em sistemas robustos, escaláveis e de fácil manutenção.",
+      "jobTitle": "Desenvolvedor Full Stack",
+      "jobCompany": "Liquid Soluções em TI",
+      "jobPeriod": "2022 - Atual",
+      "jobTasks": [
+        "Liderou a definição da arquitetura frontend com Vue.js 3, TypeScript em modo estrito e componentização atômica, reduzindo bugs de runtime em aproximadamente 40% e diminuindo o tempo de onboarding de novos desenvolvedores.",
+        "Projetou pipeline de dados com WebSockets e Web Workers para um dashboard de monitoramento em tempo real de centenas de agentes de campo, entregando latência próxima de zero sem degradação de performance no navegador dos operadores.",
+        "Atuou na modernização de um monólito PHP, planejando e executando a migração modular para Node.js e TypeScript, destravando entregas de funcionalidades que estavam represadas havia mais de um ano.",
+        "Estruturou pipeline de CI/CD no GitLab com Cypress para testes end-to-end e Vitest para testes unitários, acelerando o ciclo de feedback das entregas em aproximadamente 50% e reduzindo o tempo de deploy de horas para minutos.",
+        "Desenvolveu e manteve APIs REST com PHP / Laravel e Node.js, documentando contratos com OpenAPI/Swagger para facilitar o consumo pelos clientes Vue.js e React.",
+        "Utilizou IA no desenvolvimento para geração de documentação técnica (JSDoc e Swagger) e padronização de entregas, reduzindo o tempo gasto com tarefas manuais e mantendo a qualidade do código.",
+        "Colaborou em cerimônias de Scrum com product owners e stakeholders, participando do refinamento de backlog e de estimativas com Planning Poker."
+      ],
+      "courses": [
+        {
+          "id": "alura-frontback",
+          "icon": "pi pi-desktop",
+          "color": "text-purple-400",
+          "title": "Front-End e Back-End",
+          "details": "Alura • 2022-2024 • 200h"
+        },
+        {
+          "id": "uptime-english",
+          "icon": "pi pi-language",
+          "color": "text-blue-400",
+          "title": "Comunicação em Inglês",
+          "details": "UPTIME • 2020-2021 • 198h"
+        }
+      ]
+    },
+    "en": {
+      "role": "Full Stack Developer",
+      "description": "Full Stack Developer with a central focus on Frontend. Specialized in Vue.js and React, I build high-performance web applications with scalable architectures and clean code.",
+      "summary": "Passionate about software architecture and code quality. I transform complex requirements into robust, scalable and easily maintainable systems.",
+      "jobTitle": "Full Stack Developer",
+      "jobCompany": "Liquid Soluções em TI",
+      "jobPeriod": "2022 - Present",
+      "jobTasks": [
+        "Led frontend architecture definition with Vue.js 3, strict-mode TypeScript, and atomic componentization, reducing runtime bugs by approximately 40% and shortening onboarding time for new developers.",
+        "Designed real-time data pipeline with WebSockets and Web Workers for a monitoring dashboard tracking hundreds of field agents, delivering near-zero latency without browser performance degradation.",
+        "Modernized PHP monolith by planning and executing modular migration to Node.js and TypeScript, unblocking feature delivery stalled for over a year.",
+        "Structured CI/CD pipeline in GitLab with Cypress for end-to-end testing and Vitest for unit testing, speeding up delivery feedback loops by ~50% and cutting deploy time from hours to minutes.",
+        "Developed and maintained REST APIs with PHP / Laravel and Node.js, documenting contracts with OpenAPI/Swagger to streamline consumption by Vue.js and React clients.",
+        "Leveraged AI in development workflow to generate technical documentation (JSDoc and Swagger) and standardize deliverables, reducing manual task overhead while ensuring code quality.",
+        "Collaborated in Scrum ceremonies with product owners and stakeholders, participating in backlog refinement and Planning Poker estimations."
+      ],
+      "courses": [
+        {
+          "id": "alura-frontback",
+          "icon": "pi pi-desktop",
+          "color": "text-purple-400",
+          "title": "Front-End & Back-End",
+          "details": "Alura • 2022-2024 • 200h"
+        },
+        {
+          "id": "uptime-english",
+          "icon": "pi pi-language",
+          "color": "text-blue-400",
+          "title": "English Communication",
+          "details": "UPTIME • 2020-2021 • 198h"
+        }
+      ]
+    }
+  },
+  "projects": [
+    {
+      "id": "vimasi-painel",
+      "title": {
+        "pt-BR": "Vimasi Painel — Catálogo & Estoque 📦",
+        "en": "Vimasi Panel — Industrial Catalog & Inventory 📦"
+      },
+      "image": "/img/painel-vimasi.webp",
+      "imageAlt": {
+        "pt-BR": "Screenshot do Painel Vimasi",
+        "en": "Vimasi Panel screenshot"
+      },
+      "description": {
+        "pt-BR": "SPA em React, TypeScript, Vite e Tailwind CSS v4 com motor de busca dimensional e tolerância para catálogo de +6.000 peças em 20 categorias. Automação em Python para extração de catálogos em PDF e persistência no Supabase (PostgreSQL, RLS).",
+        "en": "High-performance SPA built with React, TypeScript, Vite, and Tailwind CSS v4 featuring a dimensional search engine with tolerance matching for 6,000+ parts across 20 categories. Includes Python scripts for automated PDF parsing and persistence in Supabase (PostgreSQL, RLS)."
+      },
+      "statusType": "public",
+      "devStatusType": "completed",
+      "featuredLevel": "primary",
+      "year": 2026,
+      "colors": {
+        "from": "#0ea5e9",
+        "to": "#0284c7"
+      },
+      "tags": [
+        {
+          "label": "React",
+          "color": "#61dafb"
+        },
+        {
+          "label": "TypeScript",
+          "color": "#3178c6"
+        },
+        {
+          "label": "Tailwind v4",
+          "color": "#06b6d4"
+        },
+        {
+          "label": "Python",
+          "color": "#3776ab"
+        },
+        {
+          "label": "Supabase",
+          "color": "#3ecf8e"
+        }
+      ],
+      "links": [
+        {
+          "labelKey": "visitSite",
+          "icon": "pi pi-external-link",
+          "url": "https://painel.vimasi-vedacoes.com/",
+          "type": "primary"
+        },
+        {
+          "labelKey": "code",
+          "icon": "pi pi-github",
+          "url": "https://github.com/Joao-Camilo-Mallmann/vimasi-painel",
+          "type": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "smu",
+      "title": {
+        "pt-BR": "Sistema de Mobilidade Urbana",
+        "en": "Urban Mobility System"
+      },
+      "image": "/img/smu.webp",
+      "imageAlt": {
+        "pt-BR": "Screenshot do SMU",
+        "en": "SMU screenshot"
+      },
+      "description": {
+        "pt-BR": "Painel ao vivo de missão crítica para monitoramento de frotas e agentes via WebSockets (Pusher). Mapa operacional otimizado para alto volume de pontos com Google Maps, clustering e heatmaps com Deck.gl em Vue 3, TypeScript, Vuetify e Pinia.",
+        "en": "Mission-critical live panel for fleet and field agent monitoring via WebSockets (Pusher). Operational map optimized for high volume of points combining Google Maps, clustering, and Deck.gl heatmaps with Vue 3, TypeScript, Vuetify, and Pinia."
+      },
+      "statusType": "private",
+      "devStatusType": "active",
+      "featuredLevel": "secondary",
+      "year": 2024,
+      "colors": {
+        "from": "#8b5cf6",
+        "to": "#7c3aed"
+      },
+      "tags": [
+        {
+          "label": "Vue.js 3",
+          "color": "#42b883"
+        },
+        {
+          "label": "TypeScript",
+          "color": "#3178c6"
+        },
+        {
+          "label": "WebSockets",
+          "color": "#38bdf8"
+        },
+        {
+          "label": "Deck.gl",
+          "color": "#ec4899"
+        },
+        {
+          "label": "Pinia",
+          "color": "#9333ea"
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "vimasi-site",
+      "title": {
+        "pt-BR": "Vimasi Vedações 🔧",
+        "en": "Vimasi Vedações 🔧"
+      },
+      "image": "/img/vimasi.webp",
+      "imageAlt": {
+        "pt-BR": "Screenshot do site Vimasi Vedações",
+        "en": "Vimasi Vedações website screenshot"
+      },
+      "description": {
+        "pt-BR": "Site institucional de alta performance com Nuxt. Implementação de estratégias avançadas de SEO Técnico e SSG (Static Site Generation), resultando em Core Web Vitals otimizados e alta taxa de conversão.",
+        "en": "High-performance institutional site with Nuxt. Implementation of advanced Technical SEO and SSG (Static Site Generation) strategies, resulting in optimized Core Web Vitals and high conversion rates."
+      },
+      "statusType": "public",
+      "devStatusType": "completed",
+      "featuredLevel": "secondary",
+      "year": 2025,
+      "colors": {
+        "from": "#ff6b35",
+        "to": "#f7931e"
+      },
+      "tags": [
+        {
+          "label": "Nuxt",
+          "color": "#00DC82"
+        },
+        {
+          "label": "Vue.js",
+          "color": "#42b883"
+        },
+        {
+          "label": "SEO Técnico",
+          "color": "#f59e0b"
+        },
+        {
+          "label": "JavaScript",
+          "color": "#f7df1e"
+        }
+      ],
+      "links": [
+        {
+          "labelKey": "visitSite",
+          "icon": "pi pi-external-link",
+          "url": "https://vimasi-vedacoes.com/",
+          "type": "primary"
+        },
+        {
+          "labelKey": "code",
+          "icon": "pi pi-github",
+          "url": "https://github.com/Joao-Camilo-Mallmann/vimasi-vedacoes-vue",
+          "type": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "better-rich-presence",
+      "title": {
+        "pt-BR": "Better Rich Presence 🎮",
+        "en": "Better Rich Presence 🎮"
+      },
+      "image": "/img/brpd.webp",
+      "imageAlt": {
+        "pt-BR": "Screenshot do Better Rich Presence",
+        "en": "Better Rich Presence screenshot"
+      },
+      "description": {
+        "pt-BR": "Aplicação desktop leve desenvolvida em Rust e Tauri com integração direta com Discord RPC/IPC para automação de status de 286 aplicativos. Interface em React e TypeScript para detecção automática, personalização e pré-visualização em tempo real.",
+        "en": "Lightweight desktop application built with Rust and Tauri with direct Discord RPC/IPC integration covering 286 applications. Features a React & TypeScript interface for automatic detection, live preview, and low background resource consumption."
+      },
+      "statusType": "public",
+      "devStatusType": "completed",
+      "featuredLevel": "primary",
+      "year": 2026,
+      "colors": {
+        "from": "#5865f2",
+        "to": "#404eed"
+      },
+      "tags": [
+        {
+          "label": "Tauri",
+          "color": "#2496ed"
+        },
+        {
+          "label": "Rust",
+          "color": "#e05d44"
+        },
+        {
+          "label": "React",
+          "color": "#61dafb"
+        },
+        {
+          "label": "TypeScript",
+          "color": "#3178c6"
+        },
+        {
+          "label": "Discord RPC",
+          "color": "#5865f2"
+        }
+      ],
+      "links": [
+        {
+          "labelKey": "viewSite",
+          "icon": "pi pi-external-link",
+          "url": "https://better-discord-rich-presence.netlify.app/",
+          "type": "primary"
+        },
+        {
+          "labelKey": "code",
+          "icon": "pi pi-github",
+          "url": "https://github.com/Joao-Camilo-Mallmann/Better-Rich-Presence-For-Discord",
+          "type": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "industrial-dashboard",
+      "title": {
+        "pt-BR": "Dashboard de Monitoramento Industrial",
+        "en": "Industrial Monitoring Dashboard"
+      },
+      "image": "/img/STW.webp",
+      "imageAlt": {
+        "pt-BR": "Ícone do Dashboard Industrial",
+        "en": "Industrial Dashboard icon"
+      },
+      "description": {
+        "pt-BR": "Solução full stack para monitoramento em tempo real de máquina industrial com simulação assíncrona, painéis React e API REST NodeJS robusta. Inclui SQLite embutido e Tailwind CSS v4.",
+        "en": "Full stack solution for real-time monitoring of industrial machines featuring asynchronous simulation, React panels and robust NodeJS REST API. Includes embedded SQLite and Tailwind CSS v4."
+      },
+      "statusType": "public",
+      "devStatusType": "completed",
+      "featuredLevel": "secondary",
+      "year": 2026,
+      "colors": {
+        "from": "#0284c7",
+        "to": "#0369a1"
+      },
+      "tags": [
+        {
+          "label": "React",
+          "color": "#61dafb"
+        },
+        {
+          "label": "Node.js",
+          "color": "#339933"
+        },
+        {
+          "label": "SQLite",
+          "color": "#003b57"
+        },
+        {
+          "label": "Tailwind v4",
+          "color": "#06b6d4"
+        }
+      ],
+      "links": [
+        {
+          "labelKey": "viewSite",
+          "icon": "pi pi-external-link",
+          "url": "https://smart-dashboard-frontend.onrender.com/",
+          "type": "primary"
+        },
+        {
+          "labelKey": "code",
+          "icon": "pi pi-github",
+          "url": "https://github.com/Joao-Camilo-Mallmann/Smart-manufacturing-dashboard",
+          "type": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "travel-mate",
+      "title": {
+        "pt-BR": "Travel Mate - Agência de Turismo",
+        "en": "Travel Mate - Tourism Agency"
+      },
+      "image": "/img/destinos.webp",
+      "imageAlt": {
+        "pt-BR": "Screenshot do Travel Mate",
+        "en": "Travel Mate screenshot"
+      },
+      "description": {
+        "pt-BR": "Solução Full Stack escalável com arquitetura monolítica modular em Node.js. API RESTful documentada, integração com banco de dados SQLite otimizado e pipeline de deploy automatizado na Railway.",
+        "en": "Scalable Full Stack solution with modular monolithic architecture in Node.js. Documented RESTful API, integration with optimized SQLite database and automated deployment pipeline on Railway."
+      },
+      "statusType": "public",
+      "devStatusType": "completed",
+      "year": 2024,
+      "colors": {
+        "from": "#4285f4",
+        "to": "#1e40af"
+      },
+      "tags": [
+        {
+          "label": "Node.js",
+          "color": "#43853d"
+        },
+        {
+          "label": "Express.js",
+          "color": "#ffffff"
+        },
+        {
+          "label": "SQLite",
+          "color": "#38bdf8"
+        },
+        {
+          "label": "Railway",
+          "color": "#0066ff"
+        }
+      ],
+      "links": [
+        {
+          "labelKey": "viewSite",
+          "icon": "pi pi-external-link",
+          "url": "https://web-production-758be.up.railway.app/",
+          "type": "primary"
+        },
+        {
+          "labelKey": "code",
+          "icon": "pi pi-github",
+          "url": "https://github.com/JoaoCamiloMallmann/back",
+          "type": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "portfolio",
+      "title": {
+        "pt-BR": "Portfolio Pessoal (Esse Site)",
+        "en": "Personal Portfolio (This Site)"
+      },
+      "image": null,
+      "imageAlt": {
+        "pt-BR": "Ícone do portfólio pessoal",
+        "en": "Personal portfolio icon"
+      },
+      "description": {
+        "pt-BR": "Vitrine tecnológica desenvolvida com foco em DX e performance. Utiliza Vue 3 Composition API, Tailwind v4 e automação de CI/CD. Implementação de práticas de acessibilidade (a11y) e SEO semântico.",
+        "en": "Technology showcase developed with focus on DX and performance. Uses Vue 3 Composition API, Tailwind v4 and CI/CD automation. Implementation of accessibility (a11y) and semantic SEO practices."
+      },
+      "statusType": "public",
+      "devStatusType": "active",
+      "year": 2024,
+      "colors": {
+        "from": "#10b981",
+        "to": "#059669"
+      },
+      "tags": [
+        {
+          "label": "Vue.js 3",
+          "color": "#4fc08d"
+        },
+        {
+          "label": "Tailwind v4",
+          "color": "#06b6d4"
+        },
+        {
+          "label": "CI/CD",
+          "color": "#f59e0b"
+        }
+      ],
+      "links": [
+        {
+          "labelKey": "code",
+          "icon": "pi pi-github",
+          "url": "https://github.com/Joao-Camilo-Mallmann/Portfolio",
+          "type": "primary"
+        }
+      ]
+    }
+  ],
+  "vendorCertifications": [
+    {
+      "title": "JavaScript Essentials 1",
+      "issuer": "Cisco",
+      "date": "2026-10",
+      "id": "c943ce95-4611-4f42-9f2a-420396d2e11b",
+      "url": "https://www.credly.com/badges/c943ce95-4611-4f42-9f2a-420396d2e11b",
+      "badge": "/img/badges/js-essentials-1.webp"
+    },
+    {
+      "title": "CCNA: Introduction to Networks",
+      "issuer": "Cisco",
+      "date": "2025-12",
+      "id": "ab540e49-c97f-4fd6-af58-9dcf5e372f53",
+      "url": "https://www.credly.com/badges/ab540e49-c97f-4fd6-af58-9dcf5e372f53",
+      "badge": "/img/badges/ccna-itn.webp"
+    },
+    {
+      "title": "Getting Started with Linux Fundamentals (RH104)",
+      "issuer": "Red Hat",
+      "date": "2025-08",
+      "id": "79929e12-df60-4d47-879b-89782b000795",
+      "url": "https://www.credly.com/badges/79929e12-df60-4d47-879b-89782b000795",
+      "badge": "/img/badges/redhat-rh104.webp"
+    },
+    {
+      "title": "CCNA: Switching, Routing, and Wireless Essentials",
+      "issuer": "Cisco",
+      "date": "2025-07",
+      "id": "3d31a663-274a-4fe4-afd2-0ca3fdf18a24",
+      "url": "https://www.credly.com/badges/3d31a663-274a-4fe4-afd2-0ca3fdf18a24",
+      "badge": "/img/badges/ccna-srwe.webp"
+    }
+  ],
+  "aluraCertifications": [
+    {
+      "title": "Formação: Melhore sua experiência de desenvolvimento com TypeScript",
+      "date": "2023-10",
+      "url": "https://cursos.alura.com.br/degree/certificate/3431d52c-e393-4585-aea9-c2195006395a"
+    },
+    {
+      "title": "Node.js: API Rest com Express e MongoDB",
+      "date": "2023-07",
+      "url": "https://cursos.alura.com.br/certificate/83f20d10-8d4e-47e8-9641-6c0fc7ddfad1"
+    },
+    {
+      "title": "HTTP: entendendo a web por baixo dos panos",
+      "date": "2023-07",
+      "url": "https://cursos.alura.com.br/certificate/9f7f5935-c793-4a14-a2e2-ca24c8e1a866"
+    },
+    {
+      "title": "SOLID com PHP: princípios da programação orientada a objetos",
+      "date": "2023-01",
+      "url": "https://cursos.alura.com.br/certificate/4277bdb7-523d-4151-ab7f-8fc3f25653c6"
+    },
+    {
+      "title": "JavaScript: consumindo e tratando dados de uma API",
+      "date": "2022-08",
+      "url": "https://cursos.alura.com.br/certificate/4f6e979e-99d5-47ba-8108-984348b137bb"
+    },
+    {
+      "title": "SQL com MySQL: manipule e consulte dados",
+      "date": "2022-06",
+      "url": "https://cursos.alura.com.br/certificate/3b492be4-299a-4c3e-81e6-60460f057547"
+    },
+    {
+      "title": "JavaScript: programando a Orientação a Objetos",
+      "date": "2022-05",
+      "url": "https://cursos.alura.com.br/certificate/6669d162-f71b-46df-abc4-8787be7ff01b"
+    }
+  ],
+  "allCertificationsUrl": "https://www.linkedin.com/in/jo%C3%A3o-camilo-mallmann/details/certifications/"
+}

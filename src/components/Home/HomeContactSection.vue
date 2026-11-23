@@ -1,11 +1,12 @@
 <script setup>
 import { useI18n } from '@/composables/useI18n'
 import { splitImages } from '@/data/homeSplit'
+import profile from '@/data/profile.generated.json'
 import { onBeforeUnmount, ref } from 'vue'
 
 const { t, localizedPath } = useI18n()
 
-const EMAIL = 'jcamilomallmann@hotmail.com'
+const EMAIL = profile.identity.email
 
 // O split volta aqui como chamada para ação: cada lado leva para a sub-página correspondente
 // No hover, uma imagem do trabalho se abre em círculo a partir da seta e um ícone gigante entra girando

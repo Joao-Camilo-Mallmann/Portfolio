@@ -1,6 +1,7 @@
 <script setup>
 import { useI18n } from '@/composables/useI18n'
 import { useWhatsApp } from '@/composables/useWhatsApp'
+import profile from '@/data/profile.generated.json'
 import { computed } from 'vue'
 import SocialMediaButton from './SocialMediaButton.vue'
 
@@ -29,11 +30,11 @@ const computedPrimaryColor = computed(() => {
 })
 
 const baseSocialButtons = [
-  { platform: 'github', link: 'https://github.com/Joao-Camilo-Mallmann' },
-  { platform: 'linkedin', link: 'https://www.linkedin.com/in/joão-camilo-mallmann/' },
-  { platform: 'youtube', link: 'https://www.youtube.com/@J.C-12' },
-  { platform: 'discord', link: 'https://discord.com/users/740010338136621227' },
-  { platform: 'email', link: 'mailto:jcamilomallmann@hotmail.com' },
+  { platform: 'github', link: profile.identity.links.github },
+  { platform: 'linkedin', link: profile.identity.links.linkedin },
+  { platform: 'youtube', link: profile.identity.links.youtube },
+  { platform: 'discord', link: profile.identity.links.discord },
+  { platform: 'email', link: `mailto:${profile.identity.email}` },
 ]
 
 // Na página de editor o WhatsApp é o canal principal de contato
@@ -120,7 +121,7 @@ const socialButtons = computed(() =>
         class="flex flex-col md:flex-row justify-center items-center gap-4 text-sm text-gray-400"
       >
         <div class="text-center md:text-right">
-          <p>&copy; {{ currentYear }} João Camilo Mallmann</p>
+          <p>&copy; {{ currentYear }} {{ profile.identity.fullName }}</p>
         </div>
       </div>
     </div>

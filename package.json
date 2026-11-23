@@ -11,7 +11,9 @@
     "postbuild": "cp dist/index.html dist/404.html && mkdir -p dist/dev dist/editor && cp dist/index.html dist/dev/index.html && cp dist/index.html dist/editor/index.html",
     "preview": "vite preview",
     "lint": "eslint . --fix",
-    "deploy": "bun run build"
+    "deploy": "bun run build",
+    "sync:profile": "bun ../Curriculo/sync.mjs --no-pdf",
+    "sync:agy": "bun ../Curriculo/sync-agy.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.5",

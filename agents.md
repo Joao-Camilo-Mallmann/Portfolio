@@ -14,6 +14,13 @@ Este documento é o índice central das regras e convenções do projeto. Cada s
 | 6   | Scroll e Animações (Vue Motion)             | [docs/scroll-e-animacoes.md](docs/scroll-e-animacoes.md)           |
 | 7   | Polimento de Interface (UI/UX)              | [docs/polimento-ui.md](docs/polimento-ui.md)                       |
 
+## Dados Sincronizados (Perfil Dev)
+
+- Os dados públicos de perfil, experiência Dev, projetos, certificações e links de contato da área Dev/Contato vêm de `src/data/profile.generated.json` (gerado automaticamente a partir da fonte única de perfil).
+- **Regra de privacidade (repositório público):** nunca commitar ou incluir em `src/data/profile.generated.json` (ou em qualquer arquivo deste repositório) número de telefone, endereço residencial, pretensão salarial, status de busca de emprego, notas internas ou caminhos locais da máquina.
+- Nunca importe arquivos fora deste repositório dentro de `src/` (o build do GitHub Actions precisa rodar isolado).
+- Para atualizar e sincronizar a partir da fonte única: `bun run sync:profile` (ou `bun run sync:agy "sua alteração"` com **Gemini 4 Neon High**).
+
 ---
 
 **Última atualização:** Agosto 2026
