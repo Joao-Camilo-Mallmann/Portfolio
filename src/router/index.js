@@ -40,19 +40,19 @@ export const routes = [
   // Mapeamento de rotas legadas para compatibilidade de URLs e backlinks
   {
     path: '/dev',
-    redirect: () => `/${getDefaultLocale()}/dev`,
+    redirect: () => `/${getDefaultLocale()}/dev/`,
   },
   {
     path: '/editor',
-    redirect: () => `/${getDefaultLocale()}/editor`,
+    redirect: () => `/${getDefaultLocale()}/editor/`,
   },
   {
     path: '/editor/projetos',
-    redirect: () => `/${getDefaultLocale()}/editor/projetos`,
+    redirect: () => `/${getDefaultLocale()}/editor/projetos/`,
   },
   {
     path: '/easter-egg',
-    redirect: () => `/${getDefaultLocale()}/easter-egg`,
+    redirect: () => `/${getDefaultLocale()}/easter-egg/`,
   },
 
   // Captura todas as rotas não encontradas e redireciona para a home no idioma ativo

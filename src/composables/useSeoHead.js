@@ -27,7 +27,8 @@ const SOCIAL_LINKS = [
 export function useSeoHead(options) {
   const { isPt } = useI18n()
 
-  const pathSuffix = options.path ? `/${options.path}` : ''
+  const cleanPath = (options.path || '').replace(/^\/+|\/+$/g, '')
+  const pathSuffix = cleanPath ? `/${cleanPath}/` : '/'
   const currentLang = computed(() => (isPt.value ? 'pt-br' : 'en-us'))
   const htmlLang = computed(() => (isPt.value ? 'pt-BR' : 'en-US'))
 
@@ -87,7 +88,7 @@ export function useSeoHead(options) {
       {
         '@type': 'WebSite',
         '@id': `${SITE_URL}/#website`,
-        url: SITE_URL,
+        url: `${SITE_URL}/`,
         name: 'João Camilo Mallmann Portfolio',
         description: resolvedDescription.value,
         inLanguage: htmlLang.value,
@@ -97,7 +98,7 @@ export function useSeoHead(options) {
         '@id': `${SITE_URL}/#person`,
         name: 'João Camilo Mallmann',
         alternateName: 'João Camilo',
-        url: canonicalUrl.value,
+        url: `${SITE_URL}/`,
         image: PROFILE_IMAGE_URL,
         sameAs: SOCIAL_LINKS,
         jobTitle: isPt.value

@@ -24,7 +24,7 @@ const handleKeydown = (e) => {
   if (e.key === konamiCode[konamiIndex]) {
     konamiIndex++
     if (konamiIndex === konamiCode.length) {
-      router.push(`/${getDefaultLocale()}/easter-egg`)
+      router.push(`/${getDefaultLocale()}/easter-egg/`)
       konamiIndex = 0
     }
     return

@@ -6,11 +6,16 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
+const SITE_URL = 'https://joao-camilo-mallmann.com'
+
 useHead({
   title: 'João Camilo Mallmann',
-  meta: [
-    { 'http-equiv': 'refresh', content: '0; url=/en-us/' },
-    { name: 'robots', content: 'noindex, follow' },
+  meta: [{ 'http-equiv': 'refresh', content: '0; url=/en-us/' }],
+  link: [
+    { rel: 'canonical', href: `${SITE_URL}/en-us/` },
+    { rel: 'alternate', hreflang: 'pt-br', href: `${SITE_URL}/pt-br/` },
+    { rel: 'alternate', hreflang: 'en-us', href: `${SITE_URL}/en-us/` },
+    { rel: 'alternate', hreflang: 'x-default', href: `${SITE_URL}/en-us/` },
   ],
   script: [
     {

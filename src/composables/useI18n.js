@@ -51,19 +51,19 @@ export function getDefaultLocale() {
 }
 
 /**
- * Retorna a rota equivalente (espelhada) no idioma de destino
- * Ex: /pt-br/dev com target 'en-us' -> /en-us/dev
+ * Retorna a rota equivalente (espelhada) no idioma de destino com barra final
+ * Ex: /pt-br/dev?canal=x com target 'en-us' -> /en-us/dev/?canal=x
  * @param {string} path
  * @param {'pt-br' | 'en-us'} targetLocale
  * @returns {string}
  */
 export function getMirroredPath(path, targetLocale) {
   const normTarget = normalizeLocale(targetLocale)
-  const pathWithoutLocale = path.replace(/^\/(pt-br|en-us)/i, '') || '/'
-  if (pathWithoutLocale === '/') {
-    return `/${normTarget}/`
-  }
-  return `/${normTarget}${pathWithoutLocale.startsWith('/') ? '' : '/'}${pathWithoutLocale}`
+  const [, rawPathname = '/', suffix = ''] = String(path || '/').match(/^([^?#]*)([\s\S]*)$/)
+  const pathWithoutLocale = rawPathname.replace(/^\/(pt-br|en-us)(?=\/|$)/i, '')
+  const cleanSegment = pathWithoutLocale.replace(/^\/+|\/+$/g, '')
+  const normalizedPathname = cleanSegment ? `/${normTarget}/${cleanSegment}/` : `/${normTarget}/`
+  return `${normalizedPathname}${suffix}`
 }
 
 /**

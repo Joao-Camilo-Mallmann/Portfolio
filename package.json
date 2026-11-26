@@ -8,7 +8,7 @@
     "sync:youtube": "node scripts/sync-youtube.mjs",
     "prebuild": "node scripts/sync-youtube.mjs",
     "build": "vite-ssg build",
-    "postbuild": "cp dist/index.html dist/404.html && mkdir -p dist/dev dist/editor && cp dist/index.html dist/dev/index.html && cp dist/index.html dist/editor/index.html",
+    "postbuild": "node scripts/postbuild.mjs",
     "preview": "vite preview",
     "lint": "eslint . --fix",
     "deploy": "bun run build",
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@unhead/vue": "^3.4.3",
+    "@unhead/vue": "^2.1.2",
     "@vitejs/plugin-vue": "^6.0.11",
     "@vue/eslint-config-prettier": "^10.2.0",
     "eslint": "^10.15.0",

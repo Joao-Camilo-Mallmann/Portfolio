@@ -45,7 +45,7 @@ jobs:
         run: bun install --frozen-lockfile
       - name: Build
         # Roda o script de build que gera a pasta 'dist'
-        # O postbuild automático já cria 404.html e estrutura /dev/ e /editor/
+        # O postbuild automático já cria 404.html e os redirecionamentos das rotas legadas
         run: bun run build
       - name: Setup Pages
         uses: actions/configure-pages@v5
