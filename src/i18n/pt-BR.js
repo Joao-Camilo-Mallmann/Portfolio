@@ -37,6 +37,7 @@ export default {
   },
 
   header: {
+    menu: 'Abrir menu de navegação',
     home: 'Home',
     dev: 'Dev',
     editor: 'Editor',

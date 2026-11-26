@@ -1,0 +1,167 @@
+/* Arquivo gerado automaticamente por scripts/generate-icons-css.mjs */
+/* Não edite manualmente — regenere com: bun run icons:sync (ou node scripts/generate-icons-css.mjs) */
+
+@font-face {
+  font-family: 'primeicons';
+  font-display: block;
+  src: url('../../node_modules/primeicons/fonts/primeicons.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.pi {
+    font-family: "primeicons";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.pi:before {
+    --webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.pi-arrow-left:before {
+    content: "\e918";
+}
+.pi-arrow-right:before {
+    content: "\e91a";
+}
+.pi-arrow-up-right:before {
+    content: "\e91f";
+}
+.pi-bars:before {
+    content: "\e929";
+}
+.pi-bolt:before {
+    content: "\e930";
+}
+.pi-briefcase:before {
+    content: "\e935";
+}
+.pi-check:before {
+    content: "\e94f";
+}
+.pi-check-circle:before {
+    content: "\e94d";
+}
+.pi-chevron-down:before {
+    content: "\e954";
+}
+.pi-cloud:before {
+    content: "\e95f";
+}
+.pi-code:before {
+    content: "\e961";
+}
+.pi-copy:before {
+    content: "\e968";
+}
+.pi-database:before {
+    content: "\e96b";
+}
+.pi-desktop:before {
+    content: "\e96d";
+}
+.pi-discord:before {
+    content: "\e970";
+}
+.pi-download:before {
+    content: "\e973";
+}
+.pi-envelope:before {
+    content: "\e977";
+}
+.pi-external-link:before {
+    content: "\e97f";
+}
+.pi-file:before {
+    content: "\e991";
+}
+.pi-filter-slash:before {
+    content: "\e993";
+}
+.pi-folder:before {
+    content: "\e999";
+}
+.pi-github:before {
+    content: "\e99d";
+}
+.pi-globe:before {
+    content: "\e99e";
+}
+.pi-graduation-cap:before {
+    content: "\e9a0";
+}
+.pi-home:before {
+    content: "\e9b3";
+}
+.pi-image:before {
+    content: "\e9b7";
+}
+.pi-info-circle:before {
+    content: "\e9bc";
+}
+.pi-language:before {
+    content: "\e9c1";
+}
+.pi-linkedin:before {
+    content: "\e9c4";
+}
+.pi-lock:before {
+    content: "\e9ca";
+}
+.pi-mobile:before {
+    content: "\e9d5";
+}
+.pi-palette:before {
+    content: "\e9db";
+}
+.pi-play:before {
+    content: "\e9e9";
+}
+.pi-play-circle:before {
+    content: "\e9e8";
+}
+.pi-server:before {
+    content: "\e9ff";
+}
+.pi-sparkles:before {
+    content: "\ea21";
+}
+.pi-star-fill:before {
+    content: "\ea26";
+}
+.pi-times:before {
+    content: "\ea46";
+}
+.pi-user:before {
+    content: "\ea54";
+}
+.pi-user-edit:before {
+    content: "\ea51";
+}
+.pi-users:before {
+    content: "\ea55";
+}
+.pi-verified:before {
+    content: "\ea57";
+}
+.pi-video:before {
+    content: "\ea58";
+}
+.pi-volume-up:before {
+    content: "\ea5c";
+}
+.pi-whatsapp:before {
+    content: "\ea60";
+}
+.pi-youtube:before {
+    content: "\ea65";
+}

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { getDefaultLocale, setLocale } from '../composables/useI18n'
+import { getDefaultLocale, loadLocaleMessages, setLocale } from '../composables/useI18n'
 
 // Definir rotas (exportado para uso no ViteSSG)
 export const routes = [
@@ -70,17 +70,20 @@ export const scrollBehavior = () => {
 
 // Configuração de navegação e guards
 export const setupRouterGuards = (router) => {
-  router.beforeEach((to, from, next) => {
-    // Normalização de caixa alta na URL
+  router.beforeEach(async (to, from) => {
+    // Normalização de caixa alta na URL e carregamento sob demanda das traduções da rota
     if (to.params.lang) {
       const lower = to.params.lang.toLowerCase()
       if (to.params.lang !== lower) {
-        return next({
+        return {
           path: to.path.toLowerCase(),
           replace: true,
-        })
+        }
       }
+      await loadLocaleMessages(lower)
       setLocale(lower)
+    } else {
+      await loadLocaleMessages(getDefaultLocale())
     }
 
     // Força a navegação mesmo para a mesma rota se necessário
@@ -95,8 +98,6 @@ export const setupRouterGuards = (router) => {
       }, 0)
       return false
     }
-
-    next()
   })
 }
 

@@ -1,19 +1,20 @@
-import en from '@/i18n/en.js'
-import ptBR from '@/i18n/pt-BR.js'
-import { computed, reactive } from 'vue'
+import { computed, reactive, shallowReactive } from 'vue'
 import { useRoute } from 'vue-router'
 
 export const SUPPORTED_LOCALES = ['pt-br', 'en-us']
 export const DEFAULT_LOCALE = 'en-us'
 
-// Mapa de mensagens indexado pelas variações de código
-const messages = {
-  'pt-br': ptBR,
-  'pt-BR': ptBR,
-  'en-us': en,
-  'en-US': en,
-  en: en,
+// Carregadores sob demanda dos arquivos de tradução por idioma normalizado
+const loaders = {
+  'pt-br': () => import('@/i18n/pt-BR.js'),
+  'en-us': () => import('@/i18n/en.js'),
 }
+
+// Mapa reativo de mensagens já carregadas, indexado pelo locale normalizado
+const messages = shallowReactive({})
+
+// Evita carregamentos paralelos duplicados para o mesmo idioma
+const pendingLoads = new Map()
 
 // Estado global reativo
 const state = reactive({
@@ -80,6 +81,30 @@ function getNestedValue(obj, path) {
 }
 
 /**
+ * Carrega sob demanda o dicionário de traduções do idioma informado (uma única vez por locale)
+ * @param {string} locale
+ * @returns {Promise<object>}
+ */
+export async function loadLocaleMessages(locale) {
+  const norm = normalizeLocale(locale)
+  if (messages[norm]) return messages[norm]
+
+  if (!pendingLoads.has(norm)) {
+    const promise = loaders[norm]()
+      .then((mod) => {
+        messages[norm] = mod.default
+        return messages[norm]
+      })
+      .finally(() => {
+        pendingLoads.delete(norm)
+      })
+    pendingLoads.set(norm, promise)
+  }
+
+  return pendingLoads.get(norm)
+}
+
+/**
  * Inicializa o locale a partir do localStorage ou preferência do visitante
  */
 export function initI18n() {
@@ -132,12 +157,13 @@ export function useI18n() {
    * @returns {string}
    */
   function t(key) {
-    const currentLang = locale.value
+    const currentLang = normalizeLocale(locale.value)
     const translation = getNestedValue(messages[currentLang], key)
     if (translation !== null) return translation
 
-    // Fallback para pt-br
-    const fallback = getNestedValue(messages['pt-br'], key)
+    // Fallback para o outro idioma caso já esteja carregado
+    const fallbackLang = currentLang === 'pt-br' ? 'en-us' : 'pt-br'
+    const fallback = getNestedValue(messages[fallbackLang], key)
     if (fallback !== null) return fallback
 
     // Retorna a chave se não encontrar tradução
@@ -154,12 +180,13 @@ export function useI18n() {
   }
 
   /**
-   * Alterna entre PT-BR e EN-US, navegando no router se fornecido
+   * Alterna entre PT-BR e EN-US, carregando o idioma de destino antes de aplicar/navegar
    * @param {object} [routerInstance]
    * @param {object} [routeInstance]
    */
-  function toggleLocale(routerInstance, routeInstance) {
+  async function toggleLocale(routerInstance, routeInstance) {
     const next = isPt.value ? 'en-us' : 'pt-br'
+    await loadLocaleMessages(next)
     setLocale(next)
 
     const r = routerInstance
@@ -167,7 +194,7 @@ export function useI18n() {
 
     if (r && currentRoute) {
       const nextPath = getMirroredPath(currentRoute.fullPath || currentRoute.path, next)
-      r.push(nextPath)
+      await r.push(nextPath)
     }
   }
 

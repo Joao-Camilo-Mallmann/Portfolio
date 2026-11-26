@@ -131,9 +131,11 @@ onUnmounted(() => {
             :hovered="{ scale: 1.05 }"
             :tapped="{ scale: 0.95 }"
             class="md:hidden text-gray-300 hover:text-white min-w-10 min-h-10 flex items-center justify-center rounded-lg transition duration-300"
+            :aria-label="t('header.menu')"
+            :aria-expanded="mobileMenuOpen"
             @click="toggleMobileMenu"
           >
-            <i class="pi pi-bars text-lg"></i>
+            <i class="pi pi-bars text-lg" aria-hidden="true"></i>
           </button>
         </div>
       </div>

@@ -4,9 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node scripts/generate-icons-css.mjs",
     "dev": "vite",
+    "icons:sync": "node scripts/generate-icons-css.mjs",
     "sync:youtube": "node scripts/sync-youtube.mjs",
-    "prebuild": "node scripts/sync-youtube.mjs",
+    "prebuild": "node scripts/sync-youtube.mjs && node scripts/generate-icons-css.mjs",
     "build": "vite-ssg build",
     "postbuild": "node scripts/postbuild.mjs",
     "preview": "vite preview",
@@ -16,6 +18,7 @@
     "sync:agy": "bun ../Curriculo/sync-agy.mjs"
   },
   "dependencies": {
+    "@fontsource-variable/space-grotesk": "^5.3.0",
     "@tailwindcss/vite": "^4.3.5",
     "@vueuse/motion": "^3.0.3",
     "primeicons": "^8.0.2",

@@ -1,11 +1,21 @@
 <script setup>
 import { useI18n } from '@/composables/useI18n'
 import { splitImages } from '@/data/homeSplit'
+import { useHead } from '@unhead/vue'
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const { t, localizedPath } = useI18n()
 const router = useRouter()
+
+// Os fundos das portas são o maior elemento da primeira dobra: pré-carrega para adiantar o LCP
+useHead({
+  link: [
+    { rel: 'preconnect', href: 'https://images.unsplash.com' },
+    { rel: 'preload', as: 'image', href: splitImages.dev, fetchpriority: 'high' },
+    { rel: 'preload', as: 'image', href: splitImages.editor },
+  ],
+})
 
 const panels = [
   {
@@ -257,9 +267,8 @@ onBeforeUnmount(() => {
           v-motion
           :href="localizedPath(panel.path)"
           :aria-label="t(`home.hero.${panel.key}.aria`)"
-          :initial="{ opacity: 0, y: 30 }"
+          :initial="{ y: 30 }"
           :enter="{
-            opacity: 1,
             y: 0,
             transition: { type: 'spring', stiffness: 120, damping: 16, delay: 150 + index * 100 },
           }"

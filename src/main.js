@@ -5,7 +5,8 @@ import { routes, scrollBehavior, setupRouterGuards } from './router'
 
 import { MotionPlugin } from '@vueuse/motion'
 
-import 'primeicons/primeicons.css'
+import '@fontsource-variable/space-grotesk/wght.css'
+import './assets/primeicons.generated.css'
 import './assets/main.css'
 
 // Criar app com ViteSSG - gera HTML estático para cada rota

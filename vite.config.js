@@ -39,6 +39,8 @@ export default defineConfig({
     script: 'async',
     formatting: 'minify',
     dirStyle: 'nested',
+    // Só as fontes realmente usadas na primeira dobra são pré-carregadas (ver App.vue)
+    beastiesOptions: { preloadFonts: false },
     includedRoutes() {
       return [
         '/',

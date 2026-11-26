@@ -12,6 +12,15 @@ export const getThumbnailUrl = ({ youtubeId, format }) =>
     ? `https://i.ytimg.com/vi/${youtubeId}/oardefault.jpg`
     : `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`
 
+/**
+ * Thumbnail leve (320x180) para miniaturas pequenas, como a tira de filme da home
+ * @param {{ youtubeId: string, format?: string }} project
+ */
+export const getSmallThumbnailUrl = (project) =>
+  project.format === 'short'
+    ? getThumbnailUrl(project)
+    : `https://i.ytimg.com/vi/${project.youtubeId}/mqdefault.jpg`
+
 export const getFallbackThumbnailUrl = ({ youtubeId }) =>
   `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
 

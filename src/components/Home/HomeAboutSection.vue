@@ -2,7 +2,7 @@
 import { useI18n } from '@/composables/useI18n'
 import {
   getFallbackThumbnailUrl,
-  getThumbnailUrl,
+  getSmallThumbnailUrl,
   thumbProjects,
   toTimecode,
 } from '@/data/editorProjects'
@@ -70,7 +70,13 @@ onBeforeUnmount(() => {
 })
 
 const handleThumbLoad = (event, project) => {
-  if (event.target.naturalWidth <= 120) event.target.src = getFallbackThumbnailUrl(project)
+  if (event.target.naturalWidth <= 120) handleThumbError(event, project)
+}
+
+// Troca pela capa de reserva uma única vez (evita recarregar em loop se ela também falhar)
+const handleThumbError = (event, project) => {
+  const fallback = getFallbackThumbnailUrl(project)
+  if (event.target.src !== fallback) event.target.src = fallback
 }
 
 // Cards entram de lados opostos com leve rotação que se corrige
@@ -349,11 +355,12 @@ const cardTo = (delay = 0) => ({
                 <img
                   v-for="(project, index) in filmLoop"
                   :key="`${project.youtubeId}-${index}`"
-                  :src="getThumbnailUrl(project)"
+                  :src="getSmallThumbnailUrl(project)"
                   alt=""
                   class="aspect-video w-44 rounded object-cover grayscale-[35%] transition-[filter] duration-300 group-hover:grayscale-0 md:w-52"
                   loading="lazy"
                   @load="handleThumbLoad($event, project)"
+                  @error="handleThumbError($event, project)"
                 />
               </div>
             </div>

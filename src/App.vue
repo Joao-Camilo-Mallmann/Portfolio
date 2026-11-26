@@ -1,7 +1,30 @@
 <script setup>
+import spaceGroteskWoff2 from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url'
+import primeiconsWoff2 from 'primeicons/fonts/primeicons.woff2?url'
 import { getDefaultLocale } from '@/composables/useI18n'
+import { useHead } from '@unhead/vue'
 import { onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+
+// Pré-carrega o subset latino da fonte de títulos e a fonte de ícones, usados na primeira dobra
+useHead({
+  link: [
+    {
+      rel: 'preload',
+      as: 'font',
+      type: 'font/woff2',
+      href: primeiconsWoff2,
+      crossorigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      type: 'font/woff2',
+      href: spaceGroteskWoff2,
+      crossorigin: 'anonymous',
+    },
+  ],
+})
 
 const route = useRoute()
 const router = useRouter()
