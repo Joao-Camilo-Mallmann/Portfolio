@@ -76,14 +76,7 @@ const tasks = computed(() => currentDevProfile.value.jobTasks)
           <li
             v-for="(task, idx) in tasks"
             :key="idx"
-            v-motion
             class="flex items-start gap-3 hover:text-gray-200 transition-colors duration-200"
-            :initial="{ opacity: 0, x: -8 }"
-            :enter="{
-              opacity: 1,
-              x: 0,
-              transition: { delay: 200 + idx * 80, duration: 300, ease: [0.16, 1, 0.3, 1] },
-            }"
           >
             <i class="pi pi-check-circle text-green-400 mt-0.5 shrink-0"></i>
             <span class="text-pretty">{{ task }}</span>
